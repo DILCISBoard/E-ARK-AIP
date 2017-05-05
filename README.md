@@ -2,7 +2,7 @@
 
 This repository holds information about the Archival Information Package (AIP)  format specification maintained by the DLM Archival Standards Board (http://www.dasboard.eu).
 
-## Main objectives of this specification
+## Objectives
 
 Key objectives of this specification are:
 

@@ -1,4 +1,4 @@
-# AIP specification folder
+# AIP specification
 
 In this folder you will find the sources that were used to develop, publish and maintain the official AIP specification by the DLM Archival Standards Board.
 
