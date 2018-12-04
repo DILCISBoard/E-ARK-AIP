@@ -8,68 +8,39 @@ January 27th 2017
 Executive Summary
 -----------------
 
-This E-ARK AIP format specification defines the requirements for building Archival Information Packages (AIPs) containing the information to be stored by an archive for the long term. This format specification is based on the E-ARK AIP format specification developed in E-ARK project, namely is based on E-ARK deliverable, D4.4 “Final version of SIP-AIP conversion component”.1 It relates to part A of this deliverable which is the AIP format specification. A reference implementation of this specification is also described in this deliverable as part B which documents the implementation of the SIP-AIP conversion component implemented in the integrated platform2 as part of the earkweb component.3
-
+This E-ARK AIP format specification defines the requirements for building Archival Information Packages (AIPs) containing the information to be stored by an archive for the long term. This format specification is based on the E-ARK AIP format specification developed in E-ARK project, namely is based on E-ARK deliverable, D4.4 “Final version of SIP-AIP conversion component”.1 It relates to part A of this deliverable which is the AIP format specification. A reference implementation of   this specification is also described in this deliverable as part B which documents the implementation of the SIP-AIP conversion component implemented in the integrated platform2 as part of the earkweb component.3   -
+-
 TABLE OF CONTENTS
 ------------------
-1	Scope of this document	5
-2	Relation to other documents	5
-3	Introduction	6
-4	Preliminary definitions and remarks	7
-4.1	Representations	7
-4.2	Logical and physical representation of the AIP	8
-4.3	Structural division of the AIP	8
-4.4	Authenticity of the original submission	9
-4.5	Version of an AIP	9
-4.6	Cardinality of the SIP to AIP transformation	10
-5	AIP format specification	11
-5.1	Common Specification for Information Packages	11
-5.1.1	Common Specification for IPs structure	11
-5.2	E-ARK AIP structure	16
-5.2.1	AIP container for submissions	16
-5.2.2	AIP representations	19
-5.2.3	Changing the metadata of the original submission	21
-5.2.4	Parent-Child relationship	22
-5.2.5	Representation Information in the E-ARK AIP	23
-5.3	E-ARK AIP metadata	26
-5.3.1	Structural metadata	26
-5.3.2	Preservation metadata	33
-E-ARK AIP Physical Container Package	43
-5.3.3	Package manifest	43
-6	Appendices	45
-6.1	Appendix A - METS.xml referencing representation METS.xml files	45
-6.2	Appendix B – METS.xml describing a representation	46
-6.3	Appendix C - PREMIS.xml describing events on package level	48
-6.4	Appendix D - PREMIS.xml describing migration events (representation level)	48
-1	Scope of this document	5
-2	Relation to other documents	5
-3	Introduction	6
-4	Preliminary definitions and remarks	7
-4.1	Representations	7
-4.2	Logical and physical representation of the AIP	7
-4.3	Structural division of the AIP	8
-4.4	Authenticity of the original submission	8
-4.5	Version of an AIP	9
-4.6	Cardinality of the SIP to AIP transformation	10
-5	AIP format specification	10
-5.1	E-ARK IP structure	11
-5.1.1	General E-ARK IP structure	11
-5.2	E-ARK AIP structure	15
-5.2.1	AIP container for submissions	16
-5.2.2	AIP representations	18
-5.2.3	Changing the metadata of the original submission	21
-5.2.4	Parent-Child relationship	22
-5.2.5	Representation Information in the E-ARK AIP	23
-5.3	E-ARK AIP metadata	25
-5.3.1	Structural metadata	25
-5.3.2	Preservation metadata	33
-5.4	E-ARK AIP Physical Container Package	43
-5.4.1	Package manifest	43
-6	Appendices	45
-6.1	Appendix A - METS.xml referencing representation METS.xml files	45
-6.2	Appendix B – METS.xml describing a representation	46
-6.3	Appendix C - PREMIS.xml describing events on package level	48
-6.4	Appendix D - PREMIS.xml describing migration events (representation level)	48
+- 1	Scope of this document	5
+- 2	Relation to other documents	5
+- 3	Introduction	6
+- 4	Preliminary definitions and remarks	7
+  - 4.1	Representations	7
+  - 4.2	Logical and physical representation of the AIP	8
+  - 4.3	Structural division of the AIP	8
+  - 4.4	Authenticity of the original submission	9
+  - 4.5	Version of an AIP	9
+  - 4.6	Cardinality of the SIP to AIP transformation	10
+- 5	AIP format specification	11
+  - 5.1	Common Specification for Information Packages	11
+    - 5.1.1	Common Specification for IPs structure	11
+  - 5.2	E-ARK AIP structure	16
+    - 5.2.1	AIP container for submissions	16
+    - 5.2.2	AIP representations	19
+    - 5.2.3	Changing the metadata of the original submission	21
+    - 5.2.4	Parent-Child relationship	22
+    - 5.2.5	Representation Information in the E-ARK AIP	23
+  - 5.3	E-ARK AIP metadata	26
+    - 5.3.1	Structural metadata	26
+    - 5.3.2	Preservation metadata	33
+    - E-ARK AIP Physical Container Package	43
+    - 5.3.3	Package manifest	43
+- 6	Appendices	45
+  - 6.1	Appendix A - METS.xml referencing representation METS.xml files	45
+  - 6.2	Appendix B – METS.xml describing a representation	46
+  - 6.3	Appendix C - PREMIS.xml describing events on package level	48
+  - 6.4	Appendix D - PREMIS.xml describing migration events (representation level)	48
 
 ### List of Figures
 
@@ -89,35 +60,35 @@ E-ARK AIP Physical Container Package	43
 
 ### List of Tables
 
-Table 1: New version of a parent-AIP	28
-Table 2: Attributes of the file element	29
+- Table 1: New version of a parent-AIP	28
+- Table 2: Attributes of the file element	29
 
 ### Code Listings
 
-Listing 1: METS root element example with namespace and namespace location definitions	29
-Listing 2: Example of a file in the fileSec as child of a fileGroup element (long attribute values replaced by “...” for better readability)	29
-Listing 3: Compressed file	31
-Listing 4: Linking to an EAD XML descriptive metadata file	31
-Listing 5: Linking to an EAD XML descriptive metadata file	32
-Listing 7: Obligatory Common Specification structural map	32
-Listing 6: Structural map referencing METS.xml files of the different representations	33
-Listing 8: Using a structMap to reference the parent AIP	34
-Listing 9: Using a structMap to reference the parent AIP	34
-Listing 10: Object identifier	38
-Listing 11: Hashsum (value shortened)	38
-Listing 12: Optionally, the format version can be provided using the formatDesignation element.	39
-Listing 13: JHove digital object characterisation	39
-Listing 14: Original name	39
-Listing 15: Storage description	40
-Listing 16: Relationship	40
-Listing 17: Rights statement	41
-Listing 18: Event identifier	41
-Listing 19: Event date/time	41
-Listing 20: Link to agent/object	42
-Listing 21: Migration event	43
-Listing 22: Software as an agent	43
-Listing 23: Discovery right statement	44
-Listing 24: Manifest file	45
+- Listing 1: METS root element example with namespace and namespace location definitions	29
+- Listing 2: Example of a file in the fileSec as child of a fileGroup element (long attribute values replaced by “...” for better readability)	29
+- Listing 3: Compressed file	31
+- Listing 4: Linking to an EAD XML descriptive metadata file	31
+- Listing 5: Linking to an EAD XML descriptive metadata file	32
+- Listing 7: Obligatory Common Specification structural map	32
+- Listing 6: Structural map referencing METS.xml files of the different representations	33
+- Listing 8: Using a structMap to reference the parent AIP	34
+- Listing 9: Using a structMap to reference the parent AIP	34
+- Listing 10: Object identifier	38
+- Listing 11: Hashsum (value shortened)	38
+- Listing 12: Optionally, the format version can be provided using the formatDesignation element.	39
+- Listing 13: JHove digital object characterisation	39
+- Listing 14: Original name	39
+- Listing 15: Storage description	40
+- Listing 16: Relationship	40
+- Listing 17: Rights statement	41
+- Listing 18: Event identifier	41
+- Listing 19: Event date/time	41
+- Listing 20: Link to agent/object	42
+- Listing 21: Migration event	43
+- Listing 22: Software as an agent	43
+- Listing 23: Discovery right statement	44
+- Listing 24: Manifest file	45
 
 
 1 Scope of this document
@@ -412,7 +383,8 @@ intellectual entity.
 <a name="fig1"></a>
 ![Information Package structure](figs/fig_1_ip_structure.png "Structure of an IP compliant with the E-ARK Common Specification for IPs structure")
 
-**Figure 1:** Structure of an IP compliant with the E-ARK Common Specification for
+**Figure 1:**
+Structure of an IP compliant with the E-ARK Common Specification for
 IPs structure
 
 Furthermore, Figure 1 shows that metadata can be stored either at the
@@ -451,8 +423,9 @@ in Figure 2.31
 <a name="fig2"></a>
 ![Information Package structure](figs/fig_2_ip_structure.png "Structure of an IP compliant with the E-ARK Common Specification for IPs structure")
 
-**Figure 2:** Requirements regarding the structure of IPs compliant with the
-Common Specification for IPs
+**Figure 2:**
+Requirements regarding the structure of IPs compliant with the Common
+Specification for IPs
 
 The use of other components of the IP format depends on institutional
 preferences related to the use of structural metadata, and generally the type
@@ -475,8 +448,8 @@ called “compound” or “simple” METS structure.
 <a name="fig3"></a>
 ![Information Package structure](figs/fig_3_mets_root.png "One METS.xml file in the root of the IP references all metadata and data files")
 
-**Figure 3:** One METS.xml file in the root of the IP
-references all metadata and data files
+**Figure 3:**
+One METS.xml file in the root of the IP references all metadata and data files
 
 Even though the number suffix of the directories “rep-001” and “rep-002” of the
 example shown in Figure 3 suggests an order of representations, there are no
@@ -498,8 +471,8 @@ METS.xml files must be implemented if this alternative is chosen.
 <a name="fig4"></a>
 ![Information Package structure](figs/fig_4_mets_root.png "Root METS.xml file references METS files of the different representations")
 
-**Figure 4:** Root METS.xml file references METS files
-of the different representations
+**Figure 4:**
+Root METS.xml file references METS files of the different representations
 
 The reason why this alternative was introduced is that it makes it easier to
 manage representations independently from each other. This can be desired for
@@ -524,12 +497,14 @@ representation METS.xml files, to avoid overwriting representation METS.xml
 files when automatically merging the divided representation back into one single
 physical representation.
 
-**Requirement 6.**  If a representation is divided into parts, the
-representation component MUST use the same name in the different containers.
+**Requirement 6.**
+If a representation is divided into parts, the representation component MUST use
+the same name in the different containers.
 
-**Requirement 7.**  If a representation is divided into parts, there MUST not be
-any overlap in the structure of the representations and each sub-directory path
-MUST be unique across the containers
+**Requirement 7.**
+If a representation is divided into parts, there MUST not be any overlap in the
+structure of the representations and each sub-directory path MUST be unique
+across the containers
 
 It must be noted that this size-based division method assumes that the
 separation into parts is based on criteria determined by the archivist.
@@ -537,38 +512,45 @@ separation into parts is based on criteria determined by the archivist.
 <a name="fig5"></a>
 ![Information Package structure](figs/fig_5_mets_root.png "Example of an IP compliant with the Common Specification for IPs E-ARK IP")
 
-Figure 5 Example of an IP compliant with the Common Specification for IPs E-ARK IP
+**Figure 5:**
+Example of an IP compliant with the Common Specification for IPs E-ARK IP
 
 ##### 5.1.1.4 Requirements
 There is the basic requirement that the root of an IP contains a METS.xml file,
 but it can be freely chosen if this METS.xml file is broken down into METS.xml
 parts for the different representations.
 
-**Requirement 8.**  The package root of the package MUST contain a METS.xml file
-that either references metadata or and data files or references other METS.xml
-files located in the corresponding representation folders under the
-“representations” directory.
+**Requirement 8.**
+The package root of the package MUST contain a METS.xml file that either
+references metadata or and data files or references other METS.xml files located
+in the corresponding representation folders under the “representations”
+directory.
 
 As already stated, only the “data” directory is obligatory for each
 representation. Additionally, there can be other directories at the
 representation level which are specified by the following requirements:
 
-**Requirement 9.**  Each representation MUST contain a “data” directory. The
-structure within this directory can be freely chosen.
+**Requirement 9.**
+Each representation MUST contain a “data” directory. The structure within this
+directory can be freely chosen.
 
-**Requirement 10.**  A representation CAN COULD contain a “metadata” directory.
+**Requirement 10.**
+A representation CAN COULD contain a “metadata” directory.
 
-**Requirement 11.**  If a representation directory contains a “metadata”
-directory, it SHOULD be divided into “descriptive”, “preservation”, and “other”
-subdirectories for storing the corresponding category of metadata.
+**Requirement 11.**
+If a representation directory contains a “metadata” directory, it SHOULD be
+divided into “descriptive”, “preservation”, and “other” subdirectories for
+storing the corresponding category of metadata.
 
-**Requirement 12.**  The representation directory CAN COULD contain a
-“documentation” directory to store additional documents that explain the content
-available in the “data” directory.
+**Requirement 12.**
+The representation directory CAN COULD contain a “documentation” directory to
+store additional documents that explain the content available in the “data”
+directory.
 
-**Requirement 13.**  The representation directory CAN COULD contain a “schemas”
-directory to store additional XML Schema files that are needed to validate XML
-documents contained in a representation.
+**Requirement 13.**
+The representation directory CAN COULD contain a “schemas” directory to store
+additional XML Schema files that are needed to validate XML documents contained
+in a representation.
 
 ### 5.2 E-ARK AIPE-ARK AIP structure
 Based on the E-ARK IP Common Specification for IPs format described in the
@@ -634,27 +616,27 @@ reflect the order of original submission and updates. This means that the folder
 names should allow alphanumerical ordering, for example, by using
 zerofill-number suffixes or by deriving the folder name from an ISO 8601 date.
 
-**Requirement 17.** Instead of an IP, the “submission” folder COULD contain one
-or several sub-folders where each of the sub-folders contains an IP (a
-submission). It is not allowed in this case that the submission folder contains
-a METS.xml file. The sub-folders containing IPs SHOULD allow alphanumeric
-sorting, e.g. by using zero-fill numbers or ISO 8601 date derived strings as
-part of the folder name.
+**Requirement 17.**
+Instead of an IP, the “submission” folder COULD contain one or several
+sub-folders where each of the sub-folders contains an IP (a submission). It is
+not allowed in this case that the submission folder contains a METS.xml file.
+The sub-folders containing IPs SHOULD allow alphanumeric sorting, e.g. by using
+zero-fill numbers or ISO 8601 date derived strings as part of the folder name.
 
 Examples for submission folder names which allow alphanumerical sorting:
 
 - Zero-fill number suffixes:
- + Submission-00001
- + Submission-00002
- + Submission-00003
+  + Submission-00001
+  + Submission-00002
+  + Submission-00003
 - Date/time based strings:
- + 2017-12-25_ 081012
- + 2017-12-26_ 083401
- + 2017-12-27_ 090118
+  + 2017-12-25_ 081012
+  + 2017-12-26_ 083401
+  + 2017-12-27_ 090118
 - Date string suffixes:
- + Submission-2017-12-25
- + Submission-2017-12-26
- + Submission-2017-12-27
+  + Submission-2017-12-25
+  + Submission-2017-12-26
+  + Submission-2017-12-27
 
 Figure 6 shows the variant where the “submission” folder contains an IP which
 represents the original submission. Although this structure does not reflect the
@@ -665,8 +647,8 @@ folder in that case.
 <a name="fig6"></a>
 ![Information Package structure](figs/fig_6_sub_folder.png "The AIP's "submission" folder contains the IP of the original submission")
 
-**Figure 6:** The AIP's "submission" folder contains the IP of the original
-submission
+**Figure 6:**
+The AIP's "submission" folder contains the IP of the original submission
 
 Figure 7 shows an example of the alternative structure, where the submission
 folder contains three sub-folders representing one original submission and two
@@ -675,8 +657,8 @@ updates which were created over the course of three days.
 <a name="fig7"></a>
 ![Information Package structure](figs/fig_7_sub_folder.png "The AIP contains submissions in subfolders to support submission updates")
 
-**Figure 7:** The AIP contains submissions in subfolders to support submission
-updates
+**Figure 7:**
+The AIP contains submissions in subfolders to support submission updates
 
 For the sake of simplicity, only the first variant, i.e. where the “submission”
 folder directly contains an IP, is present in the following sections about the
@@ -698,7 +680,8 @@ changed.
 <a name="fig8"></a>
 ![Information Package structure](figs/fig_8_aip_reps.png "AIP representations.")
 
-**Figure 8:** AIP representations
+**Figure 8:**
+AIP representations
 
 Let us now assume that during SIP to AIP conversion an additional representation
 is added to the AIP. Figure 9 illustrates an example where an additional
@@ -709,16 +692,18 @@ representations contained in the original submission (rep-001).
 <a name="fig9"></a>
 ![Information Package structure](figs/fig_9_aip_reps.png "AIP representations.")
 
-**Figure 9:** AIP representations
+**Figure 9:**
+AIP representations
 
 This leads to the following requirement regarding representations which are
 added during SIP to AIP conversion.
 
-**Requirement 18.**  If a new representation is added during ingest (SIP to AIP
-conversion) or created as an AIP preservation measure (AIP to AIP conversion),
-the root directory of the AIP MUST contain a “representations” directory.
-For this directory, the same requirements as for the representations of an IP
-apply, namely requirements 9 to 13.
+**Requirement 18.**
+If a new representation is added during ingest (SIP to AIP conversion) or
+created as an AIP preservation measure (AIP to AIP conversion), the root
+directory of the AIP MUST contain a “representations” directory. For this
+directory, the same requirements as for the representations of an IP apply,
+namely requirements 9 to 13.
 
 Note that the three-digit number suffix following the name “rep-” used in the
 example of Figure 9 indicates the order in time in which the representation of
@@ -739,11 +724,11 @@ Note that the “representations” directory in the AIP root directory is optio
 It means that this directory must only exist in case representations other than
 the ones originally submitted are added to the AIP.
 
-**Requirement 19.**  The AIP is an IP, therefore requirement 8 applies and the
-AIP root MUST contain a METS.xml file that either references all metadata and
-data files or it references other METS.xml files located in the corresponding
-representation directories of the AIPs or of the original submission’s
-“representations”.
+**Requirement 19.**
+The AIP is an IP, therefore requirement 8 applies and the AIP root MUST contain
+a METS.xml file that either references all metadata and data files or it
+references other METS.xml files located in the corresponding representation
+directories of the AIPs or of the original submission’s “representations”.
 
 As a concrete example let us assume a policy stating that PDF documents must
 generally be converted to PDF/A.3. Taking the premise formulated in section 4.4
@@ -764,7 +749,8 @@ files and added to the AIP as an additional representation (“Rep-002.1”).
 <a name="fig10"></a>
 ![Information Package structure](figs/fig_10_aip_reps.png "AIP using representation-based division of METS.xml files.")
 
-**Figure 10:** AIP using representation-based division of METS.xml files
+**Figure 10:**
+AIP using representation-based division of METS.xml files
 
 The two representations of the original submission are located in the
 “submission/representations” directory of the AIP and the METS.xml file of the
@@ -794,12 +780,14 @@ allowed to be changed.
 <a name="fig11"></a>
 ![Information Package structure](figs/fig_11_aip_reps.png "METS file priorities.")
 
-**Figure 11:** METS.xml files in the AIP’s “Metadata/submission” directory have
-priority over the ones contained in the original submission
+**Figure 11:**
+METS.xml files in the AIP’s “Metadata/submission” directory have priority over
+the ones contained in the original submission
 
-**Requirement 20.**  Let <MDPath> be a sub-directory-path to a metadata file,
-then a metadata file under the “AIP/metadata/submission” directory MUST have
-priority over a metadata file under the “AIP/submission” directory so that
+**Requirement 20.**
+Let <MDPath> be a sub-directory-path to a metadata file, then a metadata file
+under the “AIP/metadata/submission” directory MUST have priority over a metadata
+file under the “AIP/submission” directory so that
 AIP/metadata/submission/<MDPath> has priority over AIP/submission/<MDPath>.
 
 An example is shown in Figure 11 where the METS.xml file in the root of the AIP
@@ -822,7 +810,8 @@ vice versa, the parent-AIP references the child-AIPs.
 <a name="fig12"></a>
 ![Information Package structure](figs/fig_12_aip_parent_child.png "Parent-child relationship between AIPs.")
 
-**Figure 12:** Parent-child relationship between AIPs
+**Figure 12:**
+Parent-child relationship between AIPs
 
 Even though this parent-child relationship could be used to create a
 hierarchical graph of AIPs, E-ARK only uses this method to aggregate
@@ -841,7 +830,8 @@ logical AIP is in danger if the latest version of the parent-AIP is lost.
 <a name="fig13"></a>
 ![Information Package structure](figs/fig_13_new_aip_parent.png "New version of a parent-AIP.")
 
-**Figure 13:** New version of a parent-AIP
+**Figure 13:**
+New version of a parent-AIP
 
 The result of this process is a sequence of physical containers of child-AIPs
 plus one additional parent-AIP. The relation of the AIPs is expressed by means
@@ -1006,8 +996,6 @@ Table 1: Attributes of the METS root element
 An example of a root element with namespace and namespace location definitions
 is shown in Listing 1.
 
-Listing 1: METS root element example with namespace and namespace location
-definitions
 ```xml
 <mets xmlns:mets="http://www.loc.gov/METS/"
       xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -1015,12 +1003,12 @@ definitions
       xsi:schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.w3.org/1999/xlinkschemas/xlink.xsd">...</mets>
 ```
 
+**Listing 1:**
+METS root element example with namespace and namespace location definitions
+
 ##### 5.3.1.2 Digital objects
 Digital objects are described in a file section (<fileSec>) of the METS
 document. Listing 2 shows an example of a file section with one file.
-
-Listing 2: Example of a file in the fileSec as child of a fileGroup element
-(long attribute values replaced by “...” for better readability)
 
 ```xml
 <fileSec>
@@ -1037,10 +1025,12 @@ Listing 2: Example of a file in the fileSec as child of a fileGroup element
 </fileSec>
 ```
 
+**Listing 2:**
+Example of a file in the fileSec as child of a fileGroup element (long attribute
+values replaced by “...” for readability)
+
 Table 2 lists the attributes of the <file> element with an example value. The
 /file/FLocat element provides the link to the actual file.
-
-Table 2: Attributes of the file element
 
 |      Attribute      |   Description   |            Value             |
 |---------------------|-----------------|------------------------------|
@@ -1052,8 +1042,8 @@ Table 2: Attributes of the file element
 | //file/@SIZE | Size of the file in bytes. | 2498 |
 | //file/@MIMETYPE | Mime-type | application/pdf |
 
-Table 2 lists the attributes of the file element with an example value. The
-/file/FLocat element provides the link to the actual file.
+**Table 2:**
+Attributes of the file element
 
 The following rules apply for the URL attribute of the <FLocat> element:
 
@@ -1073,7 +1063,6 @@ If a file is compressed, the transformFile element (//file/transformFile) SHOULD
 indicate how the packages have to be processed by means of the attributes
 ’TRANSFORMTYPE’, ’TRANSFORMALGORITHM’, and ’TRANSFORMORDER’.
 
-Listing 3: Compressed file
 ```xml
 <file ...>
     <FLocat xlink:href="../compressed.tar.gz" xlink:type="simple" LOCTYPE="URL"/>
@@ -1083,6 +1072,9 @@ Listing 3: Compressed file
         TRANSFORMTYPE="decompression" TRANSFORMALGORITHM="tar"/>
 </file>
 ```
+
+**Listing 3:**
+Compressed file
 
 ##### 5.3.1.3 Referenced Metadata
 Generally, the use of embedded metadata by using the <mdWrap> element is allowed
@@ -1103,7 +1095,6 @@ Descriptive metadata is referenced by means of the <mdRef> element as part of
 the descriptive metadata element <dmdSec>. Listing 4 shows an example linking to
 an EAD XML metadata file.
 
-Listing 4: Linking to an EAD XML descriptive metadata file
 ```xml
 <dmdSec ID="ID550e8400-e29b-41d4-a716-44665544000a">
 	<mdRef LOCTYPE="URL" MDTYPE="EAD" MIMETYPE="text/xml"
@@ -1113,7 +1104,11 @@ Listing 4: Linking to an EAD XML descriptive metadata file
 </dmdSec>
 ```
 
+**Listing 4:**
+Linking to an EAD XML descriptive metadata file
+
 ###### 5.3.1.3.2 Administrative Metadata
+
 **Requirement 26.**
 The AIP METS must have a single <amdSec> element which contains one or several
 <digiprovMD> elements. The <mdRef> child of at least one of these elements must
@@ -1122,7 +1117,6 @@ the “Metadata” directory of the AIP root.
 
 Listing 5 shows an example with a link to a PREMIS.xml file:
 
-Listing 5: Linking to an EAD XML descriptive metadata file
 ```xml
 <amdSec ID="...">
     <digiprovMD ID="..." @STATUS="CURRENT">
@@ -1134,6 +1128,9 @@ Listing 5: Linking to an EAD XML descriptive metadata file
 </amdSec>
 ```
 
+**Listing 5:**
+Linking to an EAD XML descriptive metadata file
+
 **Requirement 27.**
 The @STATUS attribute value of the <digiprovMD> element SHOULD be “SUPERSEDED”
 if the PREMIS file is obsolete and only included in the AIP to ensure
@@ -1144,6 +1141,7 @@ The @STATUS attribute value of the <digiprovMD> element COULD be “CURRENT” t
 make explicit that the PREMIS file is active.
 
 ##### 5.3.1.4 Structural map
+
 **Requirement 29.**
 One <structMap> with the LABEL attribute value “Common Specification structural
 map” MUST be present in the METS.xml file.
@@ -1151,7 +1149,6 @@ map” MUST be present in the METS.xml file.
 Listing 6 shows a structural map with the LABEL attribute value “Common
 Specification structural map”.
 
-Listing 6: Obligatory Common Specification structural map
 ```xml
 <structMap ID="IDf413c073-5b03-4499-830e-8ef724613bef" TYPE="physical" LABEL=" Common specifcation structural map">
     <div>
@@ -1167,7 +1164,11 @@ Listing 6: Obligatory Common Specification structural map
 </structMap>
 ```
 
+**Listing 6:**
+Obligatory Common Specification structural map
+
 ###### 5.3.1.4.1 Structural map of a divided METS structure
+
 **Requirement 30.**
 When an AIP uses the divided METS structure, i.e. the different representations
 have their own METS.xml file, the mandatory <structMap> MUST organize those
@@ -1175,7 +1176,6 @@ METS.xml files through <mptr> and <fptr> entries, for each representation.
 The <mptr> node MUST reference the /<representation>/METS.xml and point at the
 corresponding <file> entry in the <fileSec> using the <fptr> element.
 
-Listing 7: Structural map referencing METS.xml files of the different representations
 ```xml
 <structMap TYPE="physical" LABEL="Common Specification structural map">
    <div LABEL="d7ef386d-275b-4a5d-9abf-48de9c390339">
@@ -1191,6 +1191,9 @@ Listing 7: Structural map referencing METS.xml files of the different representa
 </structMap>
 ```
 
+**Listing 7:**
+Structural map referencing METS.xml files of the different representations
+
 ##### 5.3.1.5 Metadata representation of the AIP structure
 
 ##### 5.3.1.6 Child AIP references parent AIP
@@ -1202,7 +1205,6 @@ references the METS.xml file of the corresponding package. If other locator
 types, such as URN, URL, PURL, HANDLE, or DOI are used, the LOCTYPE attribute
 can be set correspondingly.
 
-Listing 8: Using a structMap to reference the parent AIP
 ```xml
 <structMap TYPE="logical" LABEL="parent AIP">
     <div LABEL="AIP parent identifier">
@@ -1215,12 +1217,14 @@ Listing 8: Using a structMap to reference the parent AIP
 </structMap>
 ```
 
+**Listing 8:**
+Using a structMap to reference the parent AIP
+
 ##### 5.3.1.7 Parent AIP references child AIPs
 The parent AIP which is referenced by child AIPs must have a structural map
 listing all child AIPs. Listing 9 shows the structural map of a parent AIP
 listing four child AIPs.
 
-Listing 9: Using a structMap to reference the parent AIP
 ```xml
 <structMap TYPE="logical" LABEL="child AIPs">
     <div LABEL="child AIPs">
@@ -1251,6 +1255,10 @@ Listing 9: Using a structMap to reference the parent AIP
     </div>
 </structMap>
 ```
+
+**Listing 9:**
+Using a structMap to reference the parent AIP
+
 #### 5.3.2 Preservation metadata
 As already mentioned, PREMIS (version 342) is used to describe technical
 metadata of digital objects, rights metadata to define the rights status in
@@ -1278,14 +1286,18 @@ The vocabularies listed in the following sections are therefore to be seen as
 core vocabularies which are able to be extended.
 
 ###### 5.3.2.1.1 Identifier type
-Values of *IdentifierType elements.
+
+Values of IdentifierType elements.
+
 - local = Scope is the PREMIS file.
 - uuid = UUID
 - uri = Identifier that is a unique resource identifier.
 
 ###### 5.3.2.1.2 Event type
+
 The values of eventType elements are based on the LoC eventType preservation
 term.46
+
 - adding emulation information - Adding emulation information.
 - AIP validation - Validation of the AIP.
 - archive - Archiving the AIP.
@@ -1313,12 +1325,16 @@ term.46
 - virus check - Virus check
 
 ###### 5.3.2.1.3 Event outcome
+
 Values of eventOutcome elements.
+
 - success - Process was applied successfully
 - failure - An error occurred
 
 ###### 5.3.2.1.4 Agent Type
+
 Values of agentType elements.
+
 - software - Software agent
 - person - Person agent
 - organisation - Organisation agent
@@ -1336,6 +1352,7 @@ possible or not; those details are supposed to be described within descriptive
 metadata, but there are no requirements on how this has to be done.
 
 Values of rightsGranted/act elements:
+
 - discover
 - display
 - copy
@@ -1346,7 +1363,9 @@ Values of rightsGranted/act elements:
 - print
 
 ###### 5.3.2.1.6 Rights granted - restriction
+
 Values of rightsGranted/restriction elements:
+
 - GENERAL – the Rights statement must not be explicitly stated for each file
 object, action is allowed to be performed on each digital object. In this case
 it is sufficient to know that an agent has a specific right.
@@ -1355,7 +1374,9 @@ object. It is not sufficient to know if an agent has a specific right, it must
 be verified for each individual object if the specific right is given.
 
 ###### 5.3.2.1.7 Relationship
+
 Values of relationshipSubType elements. Logical relations to other AIPs.
+
 - part of
 - has part
 - is sibling
@@ -1370,14 +1391,13 @@ The PREMIS object contains technical information about a digital object.
 If an identifier of type “local” MUST be used, this identifier SHOULD be valid
 in the scope of the PREMIS document.
 
-**Requirement 30:** Other object identifiers of the allowed types COULD be used
-additionally to the identifier of type “local”.
+**Requirement 30:**
+Other object identifiers of the allowed types COULD be used additionally to the
+identifier of type “local”.
 
 The example shown in Listing 10 has one identifier which is valid in the scope
 of the PREMIS file of type “local”.
 
-
-Listing 10: Object identifier
 ```xml
 <objectIdentifier>
 	<objectIdentifierType>local</objectIdentifierType>
@@ -1385,12 +1405,14 @@ Listing 10: Object identifier
 </objectIdentifier>
 ```
 
+**Listing 10:**
+Object identifier
+
 ###### 5.3.2.2.2 Fixity
 Fixity information is provided as a descendant of the objectCharacteristics
 element information in form of a SHA-256 hashsum, a fixed size 256-bit value. An
 example is shown in Listing 11.
 
-Listing 11: Hashsum (value shortened)
 ```xml
 <fixity>
 	<messageDigestAlgorithm>SHA-256</messageDigestAlgorithm>
@@ -1399,13 +1421,15 @@ Listing 11: Hashsum (value shortened)
 </fixity>
 ```
 
+**Listing 11:**
+Hashsum (value shortened)
+
 ###### 5.3.2.2.3 File format
 The format element MUST be provided either using the formatRegistry or the
 formatDesignation element subelements, or both. Regarding the formatRegistry,
 the Persistent Unique Identifier (PUID)47 based on the PRONOM technical
 registry48 can be used. An example is shown in Figure shown in Listing 12.
 
-Listing 12: Optionally, the format version can be provided using the formatDesignation element.
 ```xml
 <format>
     <formatDesignation>
@@ -1420,13 +1444,14 @@ Listing 12: Optionally, the format version can be provided using the formatDesig
 </format>
 ```
 
+**Listing 12:**
+Optionally, the format version can be provided using the formatDesignation element.
+
 ###### 5.3.2.2.4 Object characterisation
 The JHOVE 49 technical characterisation result (XML format) is embedded as a
 descendant of the obbjectCharacteristicsExtension element. An example is shown
 in Listing 13.
 
-
-Listing 13: JHove digital object characterisation
 ```xml
 <objectCharacteristicsExtension>
     <jhove>
@@ -1435,14 +1460,19 @@ Listing 13: JHove digital object characterisation
 </objectCharacteristicsExtension>
 ```
 
+**Listing 13:**
+JHove digital object characterisation
+
 ###### 5.3.2.2.5 Original name
 The original name is an optional element to hold the original file, an example
 is shown in Listing 14.
 
-Listing 14: Original name
 ```xml
 <originalName>originalfilename.ext</originalName>
 ```
+
+**Listing 14:**
+Original name
 
 ###### 5.3.2.2.6 Storage
 The storage element COULD hold contain information about the physical location
@@ -1451,7 +1481,6 @@ generally hold information needed to retrieve the digital object from the
 storage system (e.g. access control or for segmented AIPs). An example is shown
 in Listing 15.
 
-Listing 15: Storage description
 ```xml
 <storage>
     <contentLocation>
@@ -1464,6 +1493,9 @@ Listing 15: Storage description
 </storage>
 ```
 
+**Listing 15:**
+Storage description
+
 ###### 5.3.2.2.7 Relationship
 This element contains the "part-of" relationship of the digital object. For
 digital objects included in the AIP, the value "is included in" of the
@@ -1473,7 +1505,6 @@ of "segmented AIPs", it is used to express that an AIP is part of a parent AIP
 which is not expressed otherwise. An example of the latter case is shown in
 Listing 16.
 
-Listing 16: Relationship
 ```xml
 <relationship>
     <relationshipType>structural</relationshipType>
@@ -1487,6 +1518,9 @@ Listing 16: Relationship
 </relationship>
 ```
 
+**Listing 16:**
+Relationship
+
 ###### 5.3.2.2.8 Linking rights statement
 If a linkingRightsStatementIdentifier child element object exists, there is a
 rights statement attached to the object. For example, only files which have the
@@ -1494,7 +1528,6 @@ rights statement attached to the object. For example, only files which have the
 retrievable by the full-text search. An example of the latter case is shown in
 Listing 17.
 
-Listing 17: Rights statement
 ```xml
 <linkingRightsStatementIdentifier>
     <linkingRightsStatementIdentifierType>
@@ -1506,12 +1539,14 @@ Listing 17: Rights statement
 </linkingRightsStatementIdentifier>
 ```
 
+**Listing 17:**
+Rights statement
+
 ##### 5.3.2.3 PREMIS event
 ###### 5.3.2.3.1 Event identifier
 The event identifier is an identifier that is valid in the scope of the PREMIS
 file. An example is shown in Listing 18.
 
-Listing 18: Event identifier
 ```xml
 <eventIdentifier>
 	<eventIdentifierType>local</eventIdentifierType>
@@ -1519,13 +1554,18 @@ Listing 18: Event identifier
 </eventIdentifier>
 ```
 
+**Listing 18:**
+Event identifier
+
 ###### 5.3.2.3.2 Event date/time
 Combined date and time in UTC format (ISO 8601), example shown in Listing 19.
 
-Listing 19: Event date/time
 ```xml
 <eventDateTime>2014-05-01T01:00:00+01:00</eventDateTime>
 ```
+
+**Listing 19:**
+Event date/time
 
 ###### 5.3.2.3.3 Link to agent/object
 The event is linked to an agent and an object. In the example shown in listing
@@ -1533,7 +1573,6 @@ The event is linked to an agent and an object. In the example shown in listing
 ’Sip2Aip’ and the corresponding object is linked by the local UUID value. An
 example is shown in Listing 20.
 
-Listing 20: Link to agent/object
 ```xml
 <linkingAgentIdentifier>
     <linkingAgentIdentifierType>local</linkingAgentIdentifierType>
@@ -1549,12 +1588,14 @@ Listing 20: Link to agent/object
 </linkingObjectIdentifier>
 ```
 
+**Listing 20:**
+Link to agent/object
+
 ###### 5.3.2.3.4 Migration event type
 The migration event (value of element eventIdentifierType is "migration") needs
 to be related to the event that created the source object by means of the
 relatedEventIdentification. An example is shown inn.
 
-Listing 21: Migration event
 ```xml
 <event>
     <eventIdentifier>
@@ -1587,6 +1628,9 @@ Listing 21: Migration event
 </event>
 ```
 
+**Listing 21:**
+Migration event
+
 The event shown in Listing 21 expresses the fact that the object
 "metadata/file.xml" is the result of the migration event "migration-001" and the
 event which created the source object is "ingest-001".
@@ -1600,7 +1644,6 @@ E-ARK project is used to index the text content of archival information
 packages. There is the "discovery right" assigned to this agent. The example is
 shown in.
 
-Listing 22: Software as an agent
 ```xml
 <agent>
     <agentIdentifier>
@@ -1620,6 +1663,9 @@ Listing 22: Software as an agent
 </agent>
 ```
 
+**Listing 22:**
+Software as an agent
+
 ##### 5.3.2.5 PREMIS rights
 The “rights” element holds information about the rights status of individual
 digital objects or about agents.
@@ -1629,7 +1675,6 @@ E-ARK project is used to index the text content of archival information
 packages. There is the "discovery right" assigned to this agent. An example is
 shown in Listing 23.
 
-Listing 23: Discovery right statement
 ```xml
 <rights>
 	<rightsStatement>
@@ -1649,6 +1694,9 @@ Listing 23: Discovery right statement
 	</rightsStatement>
 </rights>
 ```
+
+**Listing 23:**
+Discovery right statement
 
 ### E-ARK AIP Physical Container Package
 Part of the E-ARK AIP format is the specification which shows how the AIP is
@@ -1677,6 +1725,7 @@ The manifest file is a text file containing a list of records separated by two
 line breaks (two carriage return characters (hexadecimal 0D0D) or two times
 carriage return/line feed (hexadecimal 0D0A0D0A). A record is a list of named
 fields, the minimum fields being:
+
 - Name := File path relative to the AIP root
 - Size := Size in bytes
 - SHA256 := SHA-256 Checksum
@@ -1684,7 +1733,6 @@ fields, the minimum fields being:
 
 An example is shown in Listing 24.
 
-Listing 24: Manifest file
 ```xml
 Name: METS.xml
 Size: 12135
@@ -1695,6 +1743,9 @@ Size: 53719
 SHA256: ef01bc59a21f6e99ad3d87b0d25b89d6e8b4915c63dadb8791d9490739fe26d4
 MD5: 96b85205a9b4b0b5d3c88e2e51b0dc4c
 ```
+
+**Listing 24:**
+Manifest file
 
 ##### 5.3.3.1 Naming of the physical container of the AIP
 When creating an AIP a unique identifier is assigned, which defines the AIP as
