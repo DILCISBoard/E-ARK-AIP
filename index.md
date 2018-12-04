@@ -8,10 +8,11 @@ January 27th 2017
 Executive Summary
 -----------------
 
-This E-ARK AIP format specification defines the requirements for building Archival Information Packages (AIPs) containing the information to be stored by an archive for the long term. This format specification is based on the E-ARK AIP format specification developed in E-ARK project, namely is based on E-ARK deliverable, D4.4 “Final version of SIP-AIP conversion component”.1 It relates to part A of this deliverable which is the AIP format specification. A reference implementation of   this specification is also described in this deliverable as part B which documents the implementation of the SIP-AIP conversion component implemented in the integrated platform2 as part of the earkweb component.3   -
--
+This E-ARK AIP format specification defines the requirements for building Archival Information Packages (AIPs) containing the information to be stored by an archive for the long term. This format specification is based on the E-ARK AIP format specification developed in E-ARK project, namely is based on E-ARK deliverable, D4.4 “Final version of SIP-AIP conversion component”.1 It relates to part A of this deliverable which is the AIP format specification. A reference implementation of   this specification is also described in this deliverable as part B which documents the implementation of the SIP-AIP conversion component implemented in the integrated platform2 as part of the earkweb component.3
+
 TABLE OF CONTENTS
 ------------------
+
 - 1	Scope of this document	5
 - 2	Relation to other documents	5
 - 3	Introduction	6
@@ -1110,9 +1111,9 @@ Linking to an EAD XML descriptive metadata file
 ###### 5.3.1.3.2 Administrative Metadata
 
 **Requirement 26.**
-The AIP METS must have a single <amdSec> element which contains one or several
-<digiprovMD> elements. The <mdRef> child of at least one of these elements must
-be of type “PREMIS” (@MDTYPE=”PREMIS”) with the reference to a PREMIS file in
+The AIP METS must have a single `<amdSec>` element which contains one or several
+`<digiprovMD>` elements. The `<mdRef>` child of at least one of these elements must
+be of type `“PREMIS”` (`@MDTYPE=”PREMIS”`) with the reference to a PREMIS file in
 the “Metadata” directory of the AIP root.
 
 Listing 5 shows an example with a link to a PREMIS.xml file:
@@ -1132,18 +1133,18 @@ Listing 5 shows an example with a link to a PREMIS.xml file:
 Linking to an EAD XML descriptive metadata file
 
 **Requirement 27.**
-The @STATUS attribute value of the <digiprovMD> element SHOULD be “SUPERSEDED”
+The `@STATUS` attribute value of the `<digiprovMD>` element SHOULD be `“SUPERSEDED”`
 if the PREMIS file is obsolete and only included in the AIP to ensure
 traceability.
 
 **Requirement 28.**
-The @STATUS attribute value of the <digiprovMD> element COULD be “CURRENT” to
+The `@STATUS` attribute value of the `<digiprovMD>` element COULD be `“CURRENT”` to
 make explicit that the PREMIS file is active.
 
 ##### 5.3.1.4 Structural map
 
 **Requirement 29.**
-One <structMap> with the LABEL attribute value “Common Specification structural
+One `<structMap>` with the LABEL attribute value “Common Specification structural
 map” MUST be present in the METS.xml file.
 
 Listing 6 shows a structural map with the LABEL attribute value “Common
