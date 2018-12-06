@@ -28,7 +28,7 @@ Final versions of the specification are published on the [DILCIS Board web site]
 
 ### Draft versions
 
-The most up-to-date version is the [AIP specification is the one in markdown format](blob/master/index.md) in this GitHub repository.
+The most up-to-date version is the [AIP specification is the one in markdown format](index.md) in this GitHub repository.
 
 See [Markdown documentation ](https://guides.github.com/features/mastering-markdown/) regarding how to edit Markdown documents.
 
