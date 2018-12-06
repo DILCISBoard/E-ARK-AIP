@@ -12,10 +12,27 @@ Key objectives of this specification are:
 
 ## Target audience
 
-The target audiences for this specification are  records creators, archival institutions and software providers that are willing to implement or update their AIP format specification.
+The target group for this document are archivists, archival institutions, or people responsible for repositories of archival records that want to use the AIP format to store information packages for the long term. Alternatively, the AIP format can serve as an export format for information packages which contains the complete provenance of submissions (SIPs) over a period of time. 
 
 ## Structure of this repository
 
 In this repository you may find an "examples" folder that holds examples of AIPs, and a "specs" folder containing the source files of the specification document.
 
 You may also find issues found on the documentation submitted by implementers  of the specification. This issues will be reviewed by the DAS Board and will be taken into account during the review process of this specification.
+
+## The specification
+
+### Final versions
+
+Final versions of the specification are published on the [DILCIS Board web site](http://dilcis.eu/specifications/aip).
+
+### Draft versions
+
+The most up-to-date version is the [AIP specification is the one in markdown format](blob/master/index.md) in this GitHub repository.
+
+See [Markdown documentation ](https://guides.github.com/features/mastering-markdown/) regarding how to edit Markdown documents.
+
+### Previous versions of the specification
+
+Previous versions of the specification are available on the [archive](./archive/) folder.
+
