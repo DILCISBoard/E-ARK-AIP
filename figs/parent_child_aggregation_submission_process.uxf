@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.baselet.element.old.allinone.SequenceDiagram</type>
+    <coordinates>
+      <x>20</x>
+      <y>20</y>
+      <w>610</w>
+      <h>480</h>
+    </coordinates>
+    <panel_attributes>Submission~id1|SIP to AIP conversion~id2|Storage~id3
+id1-&gt;id2:id1,id2:submitParentSIP
+id2-&gt;id2:id2:createParentID
+id2-&gt;id1:id1,id2:parentID
+id1-&gt;id2:id1,id2:submitChildSIP(parentID)
+id2-&gt;id2:id2:createChildAIP(parentID)
+id1-&gt;id2:id1,id2:submitChildSIP(parentID)
+id2-&gt;id2:id2:createChildAIP(parentID)
+id1-&gt;id2:id1,id2:submitChildSIP(parentID)
+id2-&gt;id2:id2:createChildAIP(parentID)
+id1-&gt;id2:id1,id2:...
+id2-&gt;id2:id2:...
+id2-&gt;id2:id2:createParentAIP(childs)
+id2-&gt;id3:id2,id3: storeAIP(parent, childs)     </panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
