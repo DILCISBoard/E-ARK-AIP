@@ -1,99 +1,4 @@
-Archival Information Package (AIP)
-==================================
-
-version 1.0
-
-January 27th 2017
-
-Executive Summary
------------------
-
-This E-ARK AIP format specification defines the requirements for building Archival Information Packages (AIPs) containing the information to be stored by an archive for the long term. While the AIP format inherits general properties from the “Common Specification for Information Packages” (CSIP), the difference to the Submission Information Package (SIP) and Dissemination Information Package (DIP) is the time dimension: The AIP format defines a generic structure for storing both, a series of information packages, i.e. Submission Information Packages (SIPs), which were transferred at different, subsequent points in time, as well as any changes that had to be applied for preservation reasons, under the same archival entity. The AIP format can therefore be seen as a wrapper which allows recording the provenance of the archival entity including its sequential submissions (SIPs) over time. Furthermore, one of the main issues regarding the AIP is its overall size. The AIP specification defines therefore a practice for splitting very large AIPs into multiple, sub-ordinated parts. Finally, the AIP specification gives a best practice recommendations regarding the physical packaging of AIPs. 
-
-TABLE OF CONTENTS
-------------------
-
-- 1	Scope of this document	5
-- 2	Relation to other documents	5
-- 3	Introduction	6
-- 4	Preliminary definitions and remarks	7
-  - 4.1	Representations	7
-  - 4.2	Logical and physical representation of the AIP	8
-  - 4.3	Structural division of the AIP	8
-  - 4.4	Authenticity of the original submission	9
-  - 4.5	Version of an AIP	9
-  - 4.6	Cardinality of the SIP to AIP transformation	10
-- 5	AIP format specification	11
-  - 5.1	Common Specification for Information Packages	11
-    - 5.1.1	Common Specification for IPs structure	11
-  - 5.2	E-ARK AIP structure	16
-    - 5.2.1	AIP container for submissions	16
-    - 5.2.2	AIP representations	19
-    - 5.2.3	Changing the metadata of the original submission	21
-    - 5.2.4	Parent-Child relationship	22
-    - 5.2.5	Representation Information in the E-ARK AIP	23
-  - 5.3	E-ARK AIP metadata	26
-    - 5.3.1	Structural metadata	26
-    - 5.3.2	Preservation metadata	33
-    - E-ARK AIP Physical Container Package	43
-    - 5.3.3	Package manifest	43
-- 6	Appendices	45
-  - 6.1	Appendix A - METS.xml referencing representation METS.xml files	45
-  - 6.2	Appendix B – METS.xml describing a representation	46
-  - 6.3	Appendix C - PREMIS.xml describing events on package level	48
-  - 6.4	Appendix D - PREMIS.xml describing migration events (representation level)	48
-
-### List of Figures
-
-- [Figure 1: General E-ARK IP structure](#fig1)
-- [Figure 2: Minimum E-ARK IP structure requirements](#fig2)
-- [Figure 3: One METS.xml file in the root of the IP references all metadata and data files](#fig3)
-- [Figure 4: Root METS.xml file references METS files of the different representations](#fig4)
-- [Figure 5 Example of an E-ARK IP](#fig5)
-- [Figure 6: The AIP's "submission" folder contains the IP of the original submission](#fig6)
-- [Figure 7: The AIP contains submissions in subfolders to support submission updates](#fig7)
-- [Figure 8: AIP representations](#fig8)
-- [Figure 9: AIP representations](#fig9)
-- [Figure 10: AIP using representation-based division of METS.xml files](#fig10)
-- [Figure 11: METS.xml files in the AIP’s “Metadata/submission” directory have priority over the ones contained in the original submission](#fig11)
-- [Figure 12: Parent-child relationship between AIPs](#fig12)
-- [Figure 13: New version of a parent-AIP](#fig13)
-
-### List of Tables
-
-- Table 1: New version of a parent-AIP	28
-- Table 2: Attributes of the file element	29
-
-### Code Listings
-
-- Listing 1: METS root element example with namespace and namespace location definitions	29
-- Listing 2: Example of a file in the fileSec as child of a fileGroup element (long attribute values replaced by “...” for better readability)	29
-- Listing 3: Compressed file	31
-- Listing 4: Linking to an EAD XML descriptive metadata file	31
-- Listing 5: Linking to an EAD XML descriptive metadata file	32
-- Listing 7: Obligatory Common Specification structural map	32
-- Listing 6: Structural map referencing METS.xml files of the different representations	33
-- Listing 8: Using a structMap to reference the parent AIP	34
-- Listing 9: Using a structMap to reference the parent AIP	34
-- Listing 10: Object identifier	38
-- Listing 11: Hashsum (value shortened)	38
-- Listing 12: Optionally, the format version can be provided using the formatDesignation element.	39
-- Listing 13: JHove digital object characterisation	39
-- Listing 14: Original name	39
-- Listing 15: Storage description	40
-- Listing 16: Relationship	40
-- Listing 17: Rights statement	41
-- Listing 18: Event identifier	41
-- Listing 19: Event date/time	41
-- Listing 20: Link to agent/object	42
-- Listing 21: Migration event	43
-- Listing 22: Software as an agent	43
-- Listing 23: Discovery right statement	44
-- Listing 24: Manifest file	45
-
-
-1 Scope of this document
-------------------------
+# Scope of this document
 
 To briefly recall the three types of information packages as defined by OAIS4,
 there is the Submission Information Package (SIP) which is used to submit
@@ -127,8 +32,8 @@ which allows the transmission of a package to the repository, and its storage
 over the long-term; and the Dissemination Information Package (DIP) which is
 used to disseminate digital objects to the requesting user.
 
-2 Relation to other documents
------------------------------
+# Relation to other documents
+
 This DAS Board AIP format specification is an adapted and improved version of
 the format specification for Archival Information Packages (AIPs) developed in
 E-ARK project, namely deliverable, D4.4 “Final version of SIP-AIP conversion
@@ -146,8 +51,8 @@ As already mentioned in section 1, the current document relates to the
 The fundamental document to understand the purpose of the AIP format is the
 Reference Model for an Open Archival Information System (OAIS).
 
-3 Introduction
---------------
+# Introduction
+
 The E-ARK AIP format specification defines a basic structure for how to store
 submitted information packages (SIPs) and also how to store changes over time
 due to metadata edits, digital preservation measures (e.g. migration or adding
@@ -189,16 +94,22 @@ the AIP format specification contains the documentation of the implementation of
 structural and preservation metadata in the E-ARK reference implementation of
 earkweb.19
 
-4 Preliminary definitions and remarks
--------------------------------------
+# Preliminary definitions and remarks
 
-### 4.1 Representations
+## Representations
 
 The concept of “representations” is crucial in the context of E-ARK and it is
 generally used according to the definition given in the context of the PREMIS
 digital preservation metadata standard:
 
-> "The set of files, including structural metadata, needed for a complete and reasonable rendition of an Intellectual Entity. For example, a journal article may be complete in one PDF file; this single file constitutes the representation. Another journal article may consist of one SGML file and two image files; these three files constitute the representation. A third article may be represented by one TIFF image for each of 12 pages plus an XML file of structural metadata showing the order of the pages; these 13 files constitute the representation."
+> "The set of files, including structural metadata, needed for a complete and 
+> reasonable rendition of an Intellectual Entity. For example, a journal 
+> article may be complete in one PDF file; this single file constitutes the 
+> representation. Another journal article may consist of one SGML file and two 
+> image files; these three files constitute the representation. A third article 
+> may be represented by one TIFF image for each of 12 pages plus an XML file of 
+> structural metadata showing the order of the pages; these 13 files constitute 
+> the representation."
 
 Representations are a core concept of the E-ARK Information Package (IP)
 according to the Common Specification. The peculiarity in the context of the AIP
@@ -216,7 +127,7 @@ of a file format migration, but can also be the a set of instructions presented
 as part of representation metadata on how to create an emulation environment in
 order to render a set of files.
 
-### 4.2 Logical and physical representation of the AIP
+## Logical and physical representation of the AIP
 
 In line with OAIS, we call the logical container of the AIP the complete set of
 digital objects and metadata representing the conceptual entity as a whole. The
@@ -235,7 +146,7 @@ separately. For In both cases, the representation-based and the size-based
 splitting, described in section 5.1.1.3, the purpose is to store each of the
 constituent parts as one physical container.
 
-### 4.3 Structural division of the AIP
+## Structural division of the AIP
 
 One of the basic requirements prescribed by the Common Specification is to use
 METS as the metadata standard to describe the structure of the AIP – in line
@@ -264,7 +175,7 @@ media more easily. In this case, E-ARK proposes a “compound” structure using
 single METS.xml file that contains all references to the data and metadata of
 the package.
 
-### 4.4 Authenticity of the original submission
+## Authenticity of the original submission
 
 The AIP format provides a structure for storing the original submission
 separately from any data that is created during SIP to -AIP conversion and
@@ -285,7 +196,7 @@ requirements and core metadata together with recommendations on how to use the
 requirements in order to allow changing the AIP while keeping seamless track of
 the AIP’s history.
 
-### 4.5 Version of an AIP
+## Version of an AIP
 
 While the AIP always describes the same unaltered conceptual entity, the way in
 which this information is represented may change. Therefore the E-ARK AIP format
@@ -318,9 +229,10 @@ defined in OAIS as follows:
 > preserve information, but to increase or improve it. An AIP edition is not
 > considered to be the result of a Migration.”
 
-The result of an AIP Edition is stored as part of the submission as explained in detail in section 5.2.1.
+The result of an AIP Edition is stored as part of the submission as explained in 
+detail in section 5.2.1.
 
-### 4.6 Cardinality of the SIP to AIP transformation
+## Cardinality of the SIP to AIP transformation
 
 While
 
@@ -337,8 +249,8 @@ However, the AIP format allows defining that these AIPs belong together so that
 it is possible to aggregate the parts in order to reconstruct the intellectual
 entity.
 
-5 AIP format specification
----------------------------
+# AIP format specification
+
 The purpose of the AIP format is to provide a logical and physical container for
 E-ARK Information Packages (IP) which is adequate for preserving digital objects
 over a long time period while keeping track of any changes by recording the
@@ -362,7 +274,7 @@ information package which complies with the Common Specification) structure
 because the AIP format is basically a container which allows managing the
 life-cycle of an E-ARK IP starting with the ingest of an SIP.
 
-### 5.1 E-ARK IPCommon Specification for Information Packages structure
+## E-ARK IPCommon Specification for Information Packages structure
 
 In this section we briefly briefly describe the structure of IPs which comply
 with the the E-ARK Common Specification for Information Packages, which is
@@ -370,7 +282,7 @@ defined by common a set of rules applicable for all the information package
 types (SIP, AIP, and DIP) specified by the Common Specification, with a focus on
 the parts that are relevant for the AIP.
 
-#### 5.1.1 General E-ARK IPCommon Specification for IPs structure
+### General E-ARK IPCommon Specification for IPs structure
 
 As already mentioned in section 2.1, the E-ARK IP Common Specification for IP
 format relies on the concept of “representations”. Given an example of two
@@ -441,7 +353,7 @@ consists of a set of three files. In the first representation all data files are
 in the Open Document Format (ODT) and in the second one - as a derivative of the
 first representation - all files are in the Portable Document Format (PDF).
 
-##### 5.1.1.1 Compound METS structure
+#### Compound METS structure
 The first option, as shown in Figure 3, is to have a single METS.xml file that
 contains all references to metadata and data files available of the IP which is
 called “compound” or “simple” METS structure.
@@ -459,7 +371,7 @@ The order of representations and the relations between them is defined by the
 structural and preservation metadata. The “representations” directory is
 mandatory, even for IPs which contain only one representation (Requirement 1.).
 
-##### 5.1.1.2 Divided METS structure
+#### Divided METS structure
 The second option, called “divided” METS structure, as shown in Figure 4, is to
 have separate METS.xml files for each representation and the METS.xml in the
 IP’s root directory points to the METS.xml files for each of the
@@ -481,7 +393,7 @@ very large representations, in terms of file size (e.g. a binary database and
 the database in a vendor independent XML format as two separate representations)
 or the amount of files (making the root METS difficult to work with).
 
-##### 5.1.1.3 Representation-based vs. size-based division
+#### Representation-based vs. size-based division
 As a corollary of this division method we define, on the one hand, a
 representation-based division as the separation of representations in different
 directories under the “representations” folder as shown in the example of
@@ -516,7 +428,7 @@ separation into parts is based on criteria determined by the archivist.
 **Figure 5:**
 Example of an IP compliant with the Common Specification for IPs E-ARK IP
 
-##### 5.1.1.4 Requirements
+#### Requirements
 There is the basic requirement that the root of an IP contains a METS.xml file,
 but it can be freely chosen if this METS.xml file is broken down into METS.xml
 parts for the different representations.
@@ -553,7 +465,7 @@ The representation directory CAN COULD contain a “schemas” directory to stor
 additional XML Schema files that are needed to validate XML documents contained
 in a representation.
 
-### 5.2 E-ARK AIPE-ARK AIP structure
+## E-ARK AIPE-ARK AIP structure
 Based on the E-ARK IP Common Specification for IPs format described in the
 previous section, the AIP format specifies a logical structure and guidelines
 for using METS and PREMIS metadata to create E-ARK AIPE-ARK AIPs.
@@ -582,7 +494,7 @@ E-ARK Common Specification for IPs which are complemented by AIP specific
 properties. This is the reason why the inherent structure of the AIP is
 different to the one of the SIP and the DIP.
 
-#### 5.2.1 AIP container for submissions
+### AIP container for submissions
 The AIP format allows storing submissions; having the submission in its original
 form can help to ensure authenticity of its representations. For this purpose,
 the AIP format defines a “submission” folder in the root of the AIP which
@@ -665,7 +577,7 @@ For the sake of simplicity, only the first variant, i.e. where the “submission
 folder directly contains an IP, is present in the following sections about the
 AIP structure.
 
-#### 5.2.2 AIP representations
+### AIP representations
 As described in section 5.1 in relation to an IP, one or several representations
 can be part of an SIP which is submitted to the repository. Additionally, the
 AIP must be able to include further representations which are either added
@@ -761,7 +673,7 @@ AIP references the METS.xml file of the original submission
 (submission/METS.xml) and the METS.xml file of the new representation
 (representations/Rep-002.1/METS.xml).
 
-#### 5.2.3 Changing the metadata of the original submission
+### Changing the metadata of the original submission
 If the originally submitted SIP as a consequence of an implementation decision
 is not supposed to change, then the AIP level metadata directory can contain
 metadata that relates to representations contained in the original submission.
@@ -798,7 +710,7 @@ AIP/metadata/submission/METS.xml has priority over the metadata file
 AIP/submission/METS.xml. In this way users have the possibility to consult both
 the initial metadata and the updated metadata.
 
-#### 5.2.4 Parent-Child relationship
+### Parent-Child relationship
 As already pointed out, the divided METS structure was introduced to make the
 separation of representations or representation parts easier and allow the
 distribution of these components over a sequence of AIPs.
@@ -839,7 +751,7 @@ plus one additional parent-AIP. The relation of the AIPs is expressed by means
 of structural metadata in the METS.xml files as described in the sections
 5.3.1.6 and 5.3.1.7.
 
-#### 5.2.5 Representation Information in the E-ARK AIPE-ARK AIP
+### Representation Information in the E-ARK AIPE-ARK AIP
 Representation Information (RI) is a key concept in digital preservation and is
 defined by OAIS as follows:
 
@@ -850,12 +762,13 @@ defined by OAIS as follows:
 The RI is required to preserve data in a way that makes it possible to get
 meaningful information which a person or system is able to understand.
 
-##### 5.2.5.1 Types of Representation Information
+#### Types of Representation Information
 Representation Information can be subdivided into three classes:
 
 - **Structural Information:** describes the format and data structure concepts
 to be applied to the bitstream, which result in more meaningful values like
-characters or number of pixels. 
+characters or number of pixels.
+
 - **Semantic Information:** this is needed on top of the structure information.
 If the digital object is interpreted by the structure information as a sequence
 of text characters, the semantic information should include details of which
@@ -867,13 +780,13 @@ printed documentation.
 The RI does not necessarily have to be documentation. It can also be executable
 software, such as a PDF viewer, or be expressed as meta data.
 
-##### 5.2.5.2 Representation networks
+#### Representation networks
 The RI may contain references to other RI components. And as the RI is in itself
 an Information Object, with its own Data Object and related Representation
 Information, a whole network of RI may be built up, which is called a
 Representation network.
 
-##### 5.2.5.3 Limitations of the Representation Information of the E-ARK AIPE-ARK AIP
+#### Limitations of the Representation Information of the E-ARK AIPE-ARK AIP
 The following figure, taken from the OAIS document, depicts which components are
 considered relevant in the context of an AIP definition. Aligning the following
 definition with the components currently present on the E-ARK AIPE-ARK AIP we
@@ -900,7 +813,7 @@ Moreover, the RI may itself contain data, e.g. the visualization software, that
 needs to be updated over time. Having this unit of information stored physically
 inside the AIP means redundantly storing the same information many times.
 
-##### 5.2.5.4 Representation Information in the E-ARK AIPE-ARK AIP
+#### Representation Information in the E-ARK AIPE-ARK AIP
 The proposed approach to include representation information in the E-ARK AIP is
 to use a relationship model that enables the creation of links between an AIP
 and one or more “Representation Information packages”. These “Representation
@@ -919,7 +832,7 @@ way as the parent-child relationship between AIPs which is explained in section
 the METS structural metadata to define the relationships with RI AIPs. This
 structMap has the LABEL attribute “Representation Information”.
 
-### 5.3 E-ARK AIPE-ARK AIP metadata
+## E-ARK AIPE-ARK AIP metadata
 The AIP format specifies the use of structural and preservation metadata. Any
 type of additional metadata, such as descriptive metadata using Dublin Core or
 EAD, can be used.
@@ -932,7 +845,7 @@ match the selection, no matter where they are. Also in line with the XPath
 syntax, element attributes have a leading ’@’ character. For example
 //mets:file/@USE denotes the ’USE’ attribute of a <file> element.
 
-#### 5.3.1 Structural metadata
+### Structural metadata
 Structural metadata is expressed by means of the METS standard. Some of the high
 level functions which the standard fulfils in the context of the AIP are the
 following.
@@ -952,8 +865,9 @@ parts belonging to the same intellectual entity.
 This section has a focus on METS, therefore, if no namespace prefix is given,
 the element belongs to the METS default namespace.
 
-##### 5.3.1.1 METS root element
-###### 5.3.1.1.1 METS identifier
+#### METS root element
+
+##### METS identifier
 Each METS document must be assigned a persistent and (ideally globally) unique
 identifier. Possible identifier schemes are amongst others: OCLC Purls35, CNRI
 Handles36, DOI37. Alternatively, it is possible to use a UUID as a locally
@@ -981,7 +895,7 @@ packages as well. For example, if the package identifier value is
 element’s ‘OBJID’ attribute:
 /mets/@OBJID="urn:uuid:123e4567-e89b-12d3-a456-426655440000"
 
-###### 5.3.1.1.2 Namespace and namespace schema definitions
+##### Namespace and namespace schema definitions
 **Requirement 21.** The METS document MUST use at least the namespace and
 namespace schema definitions defined in table 1.
 
@@ -1007,7 +921,7 @@ is shown in Listing 1.
 **Listing 1:**
 METS root element example with namespace and namespace location definitions
 
-##### 5.3.1.2 Digital objects
+#### Digital objects
 Digital objects are described in a file section (<fileSec>) of the METS
 document. Listing 2 shows an example of a file section with one file.
 
@@ -1077,7 +991,7 @@ indicate how the packages have to be processed by means of the attributes
 **Listing 3:**
 Compressed file
 
-##### 5.3.1.3 Referenced Metadata
+#### Referenced Metadata
 Generally, the use of embedded metadata by using the <mdWrap> element is allowed
 by E-ARK. However, using the <mdRef> element is recommended due to scalability
 concerns.
@@ -1087,7 +1001,7 @@ External metadata files such as EAD41 or PREMIS files MUST be referenced by
 means of the <mdRef> element. Its "xlink:href" attribute value must be either a
 URL relative to the location of the METS root or an absolute URL.
 
-###### 5.3.1.3.1 Descriptive metadata
+##### Descriptive metadata
 The descriptive metadata section (<dmdSec>) references descriptive metadata
 contained in the AIP. Multiple <dmdSec> elements are allowed so that descriptive
 metadata file can be referenced separately within the METS object.
@@ -1108,7 +1022,7 @@ an EAD XML metadata file.
 **Listing 4:**
 Linking to an EAD XML descriptive metadata file
 
-###### 5.3.1.3.2 Administrative Metadata
+##### Administrative Metadata
 
 **Requirement 26.**
 The AIP METS must have a single `<amdSec>` element which contains one or several
@@ -1141,7 +1055,7 @@ traceability.
 The `@STATUS` attribute value of the `<digiprovMD>` element COULD be `“CURRENT”` to
 make explicit that the PREMIS file is active.
 
-##### 5.3.1.4 Structural map
+#### Structural map
 
 **Requirement 29.**
 One `<structMap>` with the LABEL attribute value “Common Specification structural
@@ -1168,7 +1082,7 @@ Specification structural map”.
 **Listing 6:**
 Obligatory Common Specification structural map
 
-###### 5.3.1.4.1 Structural map of a divided METS structure
+##### Structural map of a divided METS structure
 
 **Requirement 30.**
 When an AIP uses the divided METS structure, i.e. the different representations
@@ -1179,25 +1093,25 @@ corresponding <file> entry in the <fileSec> using the <fptr> element.
 
 ```xml
 <structMap TYPE="physical" LABEL="Common Specification structural map">
-   <div LABEL="d7ef386d-275b-4a5d-9abf-48de9c390339">
-     <div LABEL="representations/images_mig-1">
-       <mptr xlink:href="./representations/images_mig-1/METS.xml" xlink:title="Mets file describing representation: images_mig-1 of AIP: urn:uuid:d7ef386d-275b-4a5d-9abf-48de9c390339." LOCTYPE="URL" ID="IDc063ebaf-e594-4996-9e2d-37bf91009155"/>
-       <fptr FILEID="IDfb9c37e7-1c90-4849-a052-1875e67853d5"/>
-     </div>
-     <div LABEL="representations/docs_mig-1">
-       <mptr xlink:href="./representations/docs_mig-1/METS.xml" xlink:title="Mets file describing representation: docs_mig-1 of AIP: urn:uuid:d7ef386d-275b-4a5d-9abf-48de9c390339." LOCTYPE="URL" ID="ID335f9e55-17b2-4cff-b62f-03fd6df4adbf"/>
-       <fptr FILEID="ID3f2268cd-7da9-4ad8-909b-4f17730dacaf"/>
-     </div>
-   </div>
+   <div LABEL="d7ef386d-275b-4a5d-9abf-48de9c390339">
+     <div LABEL="representations/images_mig-1">
+       <mptr xlink:href="./representations/images_mig-1/METS.xml" xlink:title="Mets file describing representation: images_mig-1 of AIP: urn:uuid:d7ef386d-275b-4a5d-9abf-48de9c390339." LOCTYPE="URL" ID="IDc063ebaf-e594-4996-9e2d-37bf91009155"/>
+       <fptr FILEID="IDfb9c37e7-1c90-4849-a052-1875e67853d5"/>
+     </div>
+     <div LABEL="representations/docs_mig-1">
+       <mptr xlink:href="./representations/docs_mig-1/METS.xml" xlink:title="Mets file describing representation: docs_mig-1 of AIP: urn:uuid:d7ef386d-275b-4a5d-9abf-48de9c390339." LOCTYPE="URL" ID="ID335f9e55-17b2-4cff-b62f-03fd6df4adbf"/>
+       <fptr FILEID="ID3f2268cd-7da9-4ad8-909b-4f17730dacaf"/>
+     </div>
+   </div>
 </structMap>
 ```
 
 **Listing 7:**
 Structural map referencing METS.xml files of the different representations
 
-##### 5.3.1.5 Metadata representation of the AIP structure
+#### Metadata representation of the AIP structure
 
-##### 5.3.1.6 Child AIP references parent AIP
+#### Child AIP references parent AIP
 The optional reference to a parent AIP is expressed by a structural map with the
 LABEL attribute value “Parent”. Listing 8 shows an example where a UUID is used
 as the package identifier and the xlink:href attribute has the UUID identifier
@@ -1221,7 +1135,7 @@ can be set correspondingly.
 **Listing 8:**
 Using a structMap to reference the parent AIP
 
-##### 5.3.1.7 Parent AIP references child AIPs
+#### Parent AIP references child AIPs
 The parent AIP which is referenced by child AIPs must have a structural map
 listing all child AIPs. Listing 9 shows the structural map of a parent AIP
 listing four child AIPs.
@@ -1260,7 +1174,7 @@ listing four child AIPs.
 **Listing 9:**
 Using a structMap to reference the parent AIP
 
-#### 5.3.2 Preservation metadata
+### Preservation metadata
 As already mentioned, PREMIS (version 342) is used to describe technical
 metadata of digital objects, rights metadata to define the rights status in
 relation to specific agents or for specific objects, and to record events that
@@ -1272,7 +1186,7 @@ code parts, the prefix "premis" is omitted (default namespace is the PREMIS
 namespace43) while the "mets" prefix is explicitly added if a relation to the
 METS file is explained.
 
-##### 5.3.2.1 Vocabulary
+#### Vocabulary
 The definition of a vocabulary for PREMIS is an ongoing process, therefore E-ARK
 does not define an exhaustive list of vocabularies that are to be used
 exclusively.
@@ -1286,7 +1200,7 @@ made by E-ARK project partners based on experience and best practices.
 The vocabularies listed in the following sections are therefore to be seen as
 core vocabularies which are able to be extended.
 
-###### 5.3.2.1.1 Identifier type
+##### Identifier type
 
 Values of IdentifierType elements.
 
@@ -1294,7 +1208,7 @@ Values of IdentifierType elements.
 - uuid = UUID
 - uri = Identifier that is a unique resource identifier.
 
-###### 5.3.2.1.2 Event type
+##### Event type
 
 The values of eventType elements are based on the LoC eventType preservation
 term.46
@@ -1325,14 +1239,14 @@ term.46
 - validation - Structure and compliance validation of the AIP.
 - virus check - Virus check
 
-###### 5.3.2.1.3 Event outcome
+##### Event outcome
 
 Values of eventOutcome elements.
 
 - success - Process was applied successfully
 - failure - An error occurred
 
-###### 5.3.2.1.4 Agent Type
+##### Agent Type
 
 Values of agentType elements.
 
@@ -1341,7 +1255,7 @@ Values of agentType elements.
 - organisation - Organisation agent
 - hardware - Hardware agent
 
-###### 5.3.2.1.5 Rights granted - act
+##### Rights granted - act
 Generally, rights metadata in PREMIS are used to express restrictions which need
 to be taken into consideration from a technical perspective. It can express, for
 example if a software component is allowed to index the files contained in an
@@ -1363,7 +1277,7 @@ Values of rightsGranted/act elements:
 - delete
 - print
 
-###### 5.3.2.1.6 Rights granted - restriction
+##### Rights granted - restriction
 
 Values of rightsGranted/restriction elements:
 
@@ -1374,7 +1288,7 @@ it is sufficient to know that an agent has a specific right.
 object. It is not sufficient to know if an agent has a specific right, it must
 be verified for each individual object if the specific right is given.
 
-###### 5.3.2.1.7 Relationship
+##### Relationship
 
 Values of relationshipSubType elements. Logical relations to other AIPs.
 
@@ -1383,10 +1297,10 @@ Values of relationshipSubType elements. Logical relations to other AIPs.
 - is sibling
 - is version of
 
-#####5.3.2.2 PREMIS object
+#### PREMIS object
 The PREMIS object contains technical information about a digital object.
 
-###### 5.3.2.2.1 Object identifier
+##### Object identifier
 
 **Requirement 29:**
 If an identifier of type “local” MUST be used, this identifier SHOULD be valid
@@ -1409,7 +1323,7 @@ of the PREMIS file of type “local”.
 **Listing 10:**
 Object identifier
 
-###### 5.3.2.2.2 Fixity
+##### Fixity
 Fixity information is provided as a descendant of the objectCharacteristics
 element information in form of a SHA-256 hashsum, a fixed size 256-bit value. An
 example is shown in Listing 11.
@@ -1425,7 +1339,7 @@ example is shown in Listing 11.
 **Listing 11:**
 Hashsum (value shortened)
 
-###### 5.3.2.2.3 File format
+##### File format
 The format element MUST be provided either using the formatRegistry or the
 formatDesignation element subelements, or both. Regarding the formatRegistry,
 the Persistent Unique Identifier (PUID)47 based on the PRONOM technical
@@ -1448,7 +1362,7 @@ registry48 can be used. An example is shown in Figure shown in Listing 12.
 **Listing 12:**
 Optionally, the format version can be provided using the formatDesignation element.
 
-###### 5.3.2.2.4 Object characterisation
+##### Object characterisation
 The JHOVE 49 technical characterisation result (XML format) is embedded as a
 descendant of the obbjectCharacteristicsExtension element. An example is shown
 in Listing 13.
@@ -1464,7 +1378,7 @@ in Listing 13.
 **Listing 13:**
 JHove digital object characterisation
 
-###### 5.3.2.2.5 Original name
+##### Original name
 The original name is an optional element to hold the original file, an example
 is shown in Listing 14.
 
@@ -1475,7 +1389,7 @@ is shown in Listing 14.
 **Listing 14:**
 Original name
 
-###### 5.3.2.2.6 Storage
+##### Storage
 The storage element COULD hold contain information about the physical location
 of the digital object. Ideally this is a resolvable URI, but it can also
 generally hold information needed to retrieve the digital object from the
@@ -1497,7 +1411,7 @@ in Listing 15.
 **Listing 15:**
 Storage description
 
-###### 5.3.2.2.7 Relationship
+##### Relationship
 This element contains the "part-of" relationship of the digital object. For
 digital objects included in the AIP, the value "is included in" of the
 relationshipSubType element means that a digital object is part of an AIP which
@@ -1522,7 +1436,7 @@ Listing 16.
 **Listing 16:**
 Relationship
 
-###### 5.3.2.2.8 Linking rights statement
+##### Linking rights statement
 If a linkingRightsStatementIdentifier child element object exists, there is a
 rights statement attached to the object. For example, only files which have the
 "discovery right" are being indexed in order to allow these files to be
@@ -1543,8 +1457,8 @@ Listing 17.
 **Listing 17:**
 Rights statement
 
-##### 5.3.2.3 PREMIS event
-###### 5.3.2.3.1 Event identifier
+#### PREMIS event
+##### Event identifier
 The event identifier is an identifier that is valid in the scope of the PREMIS
 file. An example is shown in Listing 18.
 
@@ -1558,7 +1472,7 @@ file. An example is shown in Listing 18.
 **Listing 18:**
 Event identifier
 
-###### 5.3.2.3.2 Event date/time
+##### Event date/time
 Combined date and time in UTC format (ISO 8601), example shown in Listing 19.
 
 ```xml
@@ -1568,7 +1482,7 @@ Combined date and time in UTC format (ISO 8601), example shown in Listing 19.
 **Listing 19:**
 Event date/time
 
-###### 5.3.2.3.3 Link to agent/object
+##### Link to agent/object
 The event is linked to an agent and an object. In the example shown in listing
 20 the SIP to AIP conversion software is linked as agent with identifier value
 ’Sip2Aip’ and the corresponding object is linked by the local UUID value. An
@@ -1592,7 +1506,7 @@ example is shown in Listing 20.
 **Listing 20:**
 Link to agent/object
 
-###### 5.3.2.3.4 Migration event type
+##### Migration event type
 The migration event (value of element eventIdentifierType is "migration") needs
 to be related to the event that created the source object by means of the
 relatedEventIdentification. An example is shown inn.
@@ -1636,7 +1550,7 @@ The event shown in Listing 21 expresses the fact that the object
 "metadata/file.xml" is the result of the migration event "migration-001" and the
 event which created the source object is "ingest-001".
 
-##### 5.3.2.4 PREMIS agent
+#### PREMIS agent
 The agent element holds information about agents (people, organizations or
 software).
 
@@ -1667,7 +1581,7 @@ shown in.
 **Listing 22:**
 Software as an agent
 
-##### 5.3.2.5 PREMIS rights
+#### PREMIS rights
 The “rights” element holds information about the rights status of individual
 digital objects or about agents.
 
@@ -1699,7 +1613,7 @@ shown in Listing 23.
 **Listing 23:**
 Discovery right statement
 
-### E-ARK AIP Physical Container Package
+## AIP Physical Container Package
 Part of the E-ARK AIP format is the specification which shows how the AIP is
 packaged into a transferable and storable entity.
 
@@ -1716,7 +1630,7 @@ which defines what "manageable" means, because this depends on limitations given
 by the hardware, software, and network environment and especially on the storage
 media which is used for long-term preservation.
 
-#### 5.3.3 Package manifest
+### Package manifest
 Provided as a convenience for developers, in addition to fixity information
 included in the METS file, Tthe E-ARK AIPE-ARK AIP COULD (in addition to fixity
 information included in the METS file) contain a manifest file (manifest.txt)
@@ -1748,7 +1662,7 @@ MD5: 96b85205a9b4b0b5d3c88e2e51b0dc4c
 **Listing 24:**
 Manifest file
 
-##### 5.3.3.1 Naming of the physical container of the AIP
+#### Naming of the physical container of the AIP
 When creating an AIP a unique identifier is assigned, which defines the AIP as
 one consistent coherent logical entity. This identifier should also used to
 derive the name of the physical storage container.51
@@ -1774,9 +1688,9 @@ TAR the name would be:
 
 urn+uuid+123e4567-e89b-12d3-a456-426655440000.tar.gz
 
-6 Appendices
-------------
-### 6.1 Appendix A - METS.xml referencing representation METS.xml files
+# Appendices
+
+## Appendix A - METS.xml referencing representation METS.xml files
 
 ```xml
 <fileSec>
@@ -1813,7 +1727,7 @@ urn+uuid+123e4567-e89b-12d3-a456-426655440000.tar.gz
 </structMap>
 ```
 
-### 6.2 Appendix B – METS.xml describing a representation
+## Appendix B – METS.xml describing a representation
 
 ```xml
 <mets xmlns:ext="ExtensionMETS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.loc.gov/METS/" PROFILE="http://www.ra.ee/METS/v01/IP.xml" TYPE="AIP" OBJID="urn:uuid:docs_mig-1" LABEL="METS file describing the AIP matching the OBJID." xsi:schemaLocation="http://www.loc.gov/METS/ ../../schemas/mets_1_11.xsd http://www.w3.org/1999/xlink ../../schemas/xlink.xsd">
@@ -1865,7 +1779,7 @@ urn+uuid+123e4567-e89b-12d3-a456-426655440000.tar.gz
 </mets>
 ```
 
-### 6.3 Appendix C - PREMIS.xml describing events on package level
+## Appendix C - PREMIS.xml describing events on package level
 
 ```xml
 <premis xmlns="info:lc/xmlns/premis-v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="info:lc/xmlns/premis-v2 ../../schemas/premis-v2-2.xsd">
@@ -1905,7 +1819,7 @@ urn+uuid+123e4567-e89b-12d3-a456-426655440000.tar.gz
 </premis>
 ```
 
-### 6.4 Appendix D - PREMIS.xml describing migration events (representation level)
+## Appendix D - PREMIS.xml describing migration events (representation level)
 
 ```xml
 <premis xmlns="info:lc/xmlns/premis-v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="info:lc/xmlns/premis-v2 ../../schemas/premis-v2-2.xsd">
@@ -1963,7 +1877,7 @@ urn+uuid+123e4567-e89b-12d3-a456-426655440000.tar.gz
     </eventOutcomeInformation>
     <linkingAgentIdentifier>
       <linkingAgentIdentifierType>software</linkingAgentIdentifierType>
-      <linkingAgentIdentifierValue>Version: ImageMagick 6.7.7-10 2016-06-01 Q16 http://www.imagemagick.orgCopyright: Copyright (C) 1999-2012 ImageMagick Studio LLCFeatures: OpenMP    </linkingAgentIdentifierValue>
+      <linkingAgentIdentifierValue>Version: ImageMagick 6.7.7-10 2016-06-01 Q16 http://www.imagemagick.orgCopyright: Copyright (C) 1999-2012 ImageMagick Studio LLCFeatures: OpenMP</linkingAgentIdentifierValue>
     </linkingAgentIdentifier>
     <linkingObjectIdentifier>
       <linkingObjectIdentifierType>local</linkingObjectIdentifierType>
