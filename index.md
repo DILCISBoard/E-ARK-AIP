@@ -1,64 +1,48 @@
 # Scope of this document
 
-To briefly recall the three types of information packages as defined by OAIS4,
+To briefly recall the three types of information packages as defined by OAIS,
 there is the Submission Information Package (SIP) which is used to submit
 digital objects to a repository system; the Archival Information Package (AIP)
 which allows the transmission of a package to the repository, and its storage
 over the long-term; and the Dissemination Information Package (DIP) which is
 used to disseminate digital objects to the requesting user.
 
-The current document constitutes a specification of the E-ARK Archival
-Information Package (AIP) format specification. It is important to note that
-there is a common structure of information packages shared between the different
-types of information packages which is defined by the a document called
-“Common Specification for Information Packages”. The current document references
-this Common Specification and focuses on the structural peculiarities of the AIP
-format and the implementation as part of the reference implementation E-ARK Web
-(in short: earkweb).
+In this context, the current document represents the specification of the 
+E-ARK Archival Information Package format (E-ARK AIP, in the following: AIP). 
+It defines the specific requirements for archiving and storing information
+packages for the long term and focuses on the structural peculiarities 
+of the AIP. The key objectives of this format are to:
 
-Key objectives of this document are:
-
-- To define a generic structure of the AIP format in a way that it is suitable
+- define a generic structure of the AIP format in a way that it is suitable
 for a wide variety of data types, such as document and image collections,
 archival records, databases or geographical data.
-- To recommend a set of metadata related to the structural and the preservation
-aspects of the AIP as implemented by the reference implementation (earkweb).
-- To ensure the format is also suitable to store large quantities of data.
-
-To briefly recall, there are three types of information packages as defined by
-OAIS. There is the Submission Information Package (SIP) which is used to submit
-digital objects to a repository system; the Archival Information Package (AIP)
-which allows the transmission of a package to the repository, and its storage
-over the long-term; and the Dissemination Information Package (DIP) which is
-used to disseminate digital objects to the requesting user.
+- recommend a set of metadata standards related to the structural and the 
+preservation aspects of the AIP.
+- ensure the format is suitable to store large quantities of data.
+- mitigate the potential preservation risk of repository obsolescence and 
+thereby allowing to implementing a repository succession strategy. 
 
 # Relation to other documents
 
-This DAS Board AIP format specification is an adapted and improved version of
-the format specification for Archival Information Packages (AIPs) developed in
-E-ARK project, namely deliverable, D4.4 “Final version of SIP-AIP conversion
-component”.
+This specification documents originates from deliverable D4.4 
+“Final version of SIP-AIP conversion component (Part A: AIP specification)"
+which was developed in the E-ARK project (European Archival Records and 
+Knowledge Preservation, 2014 – 2017, see [@e-ark-d4.4]).
 
-More concretely, it relates to part A of this deliverable which is the AIP
-format specification. A reference implementation of this specification is also
-described in this deliverable as part B which documents the implementation of
-the SIP-AIP conversion component implemented in the integrated platform as part
-of the earkweb component.
-
-As already mentioned in section 1, the current document relates to the
-“Common Specification for Information Packages”.
-
-The fundamental document to understand the purpose of the AIP format is the
-Reference Model for an Open Archival Information System (OAIS).
+The common requirements for all types of E-ARK information packages are 
+defined by the “Common Specification for Information Packages (CSIP) 
+[see @csip-2.0.0-DRAFT]”. The requirements and recommendations of the CSIP 
+apply to the AIP format. Further related documents are listed in the CSIP
+(section 1.4 "Relation to other documents").
 
 # Introduction
 
-The E-ARK AIP format specification defines a basic structure for how to store
-submitted information packages (SIPs) and also how to store changes over time
-due to metadata edits, digital preservation measures (e.g. migration or adding
-emulation information), or submission updates. Compliance with the AIP format
-defined by this specification means that an AIP makes this structure explicit
-and that the structural components can be identified correctly.
+The E-ARK AIP format specification defines a basic structure for storing
+information packages which are transferred to an archive in form of 
+submission information packages (SIPs). The AIP provides the means to keep a
+record of changes that are being applied over time due to metadata edits, 
+digital preservation measures (e.g. migration or adding emulation information), 
+or submission updates.
 
 The purpose of defining a standard format for the archival information package
 is to pave the way for simplified repository migration. Given the increasing
@@ -77,30 +61,13 @@ data transformation or having to fulfil varying SIP creation requirements.
 Repository systems are not expected to implement this AIP format, however, they
 are expected to be able to generate it it in a simple way for a set of AIPs.
 
-On the one hand, the AIP format specification consists of an obligatory set of
-structural requirements which will be explained more precisely in section 5.
-At this point, it is important to note that the structure of the AIP could be,
-in principle, expressed in terms of structural metadata only (e.g. by use of an
-E-ARK specific structMap in a METS document). However, the E-ARK
-implementations, which make use of AIPs, require the structure of the AIP to be
-implemented as a file system folder hierarchy, to make it clear for both humans
-and tools where to find what. This means that the implementation of the
-structure of the AIP format as described in section 5 is a necessary condition
-to make use of the E-ARK reference implementation of earkweb.
-
-On the other hand, the compliance rules regarding implementation of structural
-and preservation metadata are defined by the Common Specification. Section 5 of
-the AIP format specification contains the documentation of the implementation of
-structural and preservation metadata in the E-ARK reference implementation of
-earkweb.19
-
 # Preliminary definitions and remarks
 
 ## Representations
 
-The concept of “representations” is crucial in the context of E-ARK and it is
-generally used according to the definition given in the context of the PREMIS
-digital preservation metadata standard:
+The concept of “representations” is crucial in the context of this specification 
+and it is generally used according to the definition given in the context of the 
+PREMIS digital preservation metadata standard:
 
 > "The set of files, including structural metadata, needed for a complete and 
 > reasonable rendition of an Intellectual Entity. For example, a journal 
@@ -109,7 +76,7 @@ digital preservation metadata standard:
 > image files; these three files constitute the representation. A third article 
 > may be represented by one TIFF image for each of 12 pages plus an XML file of 
 > structural metadata showing the order of the pages; these 13 files constitute 
-> the representation."
+> the representation. [@premis3.0-2017]"
 
 Representations are a core concept of the E-ARK Information Package (IP)
 according to the Common Specification. The peculiarity in the context of the AIP
@@ -843,7 +810,7 @@ latter case a leading slash selects a node from the XML document root and the
 double slash (’//’) selects nodes in the document from the current node that
 match the selection, no matter where they are. Also in line with the XPath
 syntax, element attributes have a leading ’@’ character. For example
-//mets:file/@USE denotes the ’USE’ attribute of a <file> element.
+//mets:file/\@USE denotes the ’USE’ attribute of a <file> element.
 
 ### Structural metadata
 Structural metadata is expressed by means of the METS standard. Some of the high
@@ -893,7 +860,7 @@ Platform, a UUID is used as identifier of an intellectual entity. The prefix
 packages as well. For example, if the package identifier value is
 "123e4567-e89b-12d3-a456-426655440000" this would be the value of the METS root
 element’s ‘OBJID’ attribute:
-/mets/@OBJID="urn:uuid:123e4567-e89b-12d3-a456-426655440000"
+/mets/\@OBJID="urn:uuid:123e4567-e89b-12d3-a456-426655440000"
 
 ##### Namespace and namespace schema definitions
 **Requirement 21.** The METS document MUST use at least the namespace and
@@ -903,10 +870,10 @@ Table 1: Attributes of the METS root element
 
 |      Attribute      |   Description   |            Value             |
 |---------------------|-----------------|------------------------------|
-| //mets/@xmlns       | METS-Namespace  | http://www.loc.gov/METS/     |
-| //mets/@xmlns:xlink | Xlink-Namespace | http://www.w3.org/1999/xlink |
-| //mets/@xmlns:xsi   | Schema-Instance | http://www.w3.org/2001/XMLSchema-instance |
-| //mets/@xsi:schemaLocation | Schema-Location | http://www.loc.gov/METS/ <br/> http://www.loc.gov/standards/mets/mets.xsd <br/> http://www.w3.org/1999/xlinkschemas/xlink.xsd |
+| //mets/\@xmlns       | METS-Namespace  | http://www.loc.gov/METS/     |
+| //mets/\@xmlns:xlink | Xlink-Namespace | http://www.w3.org/1999/xlink |
+| //mets/\@xmlns:xsi   | Schema-Instance | http://www.w3.org/2001/XMLSchema-instance |
+| //mets/\@xsi:schemaLocation | Schema-Location | http://www.loc.gov/METS/ <br/> http://www.loc.gov/standards/mets/mets.xsd <br/> http://www.w3.org/1999/xlinkschemas/xlink.xsd |
 
 An example of a root element with namespace and namespace location definitions
 is shown in Listing 1.
@@ -927,7 +894,7 @@ document. Listing 2 shows an example of a file section with one file.
 
 ```xml
 <fileSec>
-    <fileGroup @USE="Common Specification root">
+    <fileGroup \@USE="Common Specification root">
         <file ID="ID77146c6c-c8c3-4406-80b5-b3b41901f9d0"
             ADMID="..." MIMETYPE="text/x-sql" SIZE="2862064"
             CHECKSUMTYPE="SHA-256" CHECKSUM="..."
@@ -949,13 +916,13 @@ Table 2 lists the attributes of the <file> element with an example value. The
 
 |      Attribute      |   Description   |            Value             |
 |---------------------|-----------------|------------------------------|
-| //file/@ID          | Identifier of a file wich is part of the AIPFile identifier; must be unique and start with the prefix “ID” | ID77146c6c-c8c3-4406-80b5-b3b41901f9d0 |
-| //file/@ADMID       | Used to link it to relevant administrative metadata sections that relate to the digital object described. Can be a white space separated list of identifiers. | ID4566af74-0f7b-11e5-a6c0-1697f925ec7b ID4566af74-0f7b-11e5-a6c0-1697f925ec7c |
-| //file/@CHECKSUMTYPE | Hash-sum calculator algorithm | SHA-256 |
-| //file/@CHECKSUM | Hash-sum | 977fb584d53cd64662dfba427f35190813dfc58979f51a2703f8621b9e1bc274 |
-| //file/@CREATED | Date when the file entry was created. | 2014-05-01T01:00:00+01:00 |
-| //file/@SIZE | Size of the file in bytes. | 2498 |
-| //file/@MIMETYPE | Mime-type | application/pdf |
+| //file/\@ID          | Identifier of a file wich is part of the AIPFile identifier; must be unique and start with the prefix “ID” | ID77146c6c-c8c3-4406-80b5-b3b41901f9d0 |
+| //file/\@ADMID       | Used to link it to relevant administrative metadata sections that relate to the digital object described. Can be a white space separated list of identifiers. | ID4566af74-0f7b-11e5-a6c0-1697f925ec7b ID4566af74-0f7b-11e5-a6c0-1697f925ec7c |
+| //file/\@CHECKSUMTYPE | Hash-sum calculator algorithm | SHA-256 |
+| //file/\@CHECKSUM | Hash-sum | 977fb584d53cd64662dfba427f35190813dfc58979f51a2703f8621b9e1bc274 |
+| //file/\@CREATED | Date when the file entry was created. | 2014-05-01T01:00:00+01:00 |
+| //file/\@SIZE | Size of the file in bytes. | 2498 |
+| //file/\@MIMETYPE | Mime-type | application/pdf |
 
 **Table 2:**
 Attributes of the file element

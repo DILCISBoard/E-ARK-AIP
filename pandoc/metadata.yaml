@@ -32,4 +32,6 @@ logo:	pandoc/img/DILCISlogo.png
 footer-center:	Version 1.1
 footer-left:	DILCIS Board
 version:	1.1
+bibliography:	pandoc/bibliography.bib
+reference-section-title:	'Bibliography'
 ...
