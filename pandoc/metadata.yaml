@@ -1,5 +1,5 @@
 ---
-title:  'Archival Information Package (AIP)'
+title:  'E-ARK Archival Information Package (AIP)'
 abstract: |
         This E-ARK AIP format specification defines the requirements for building
         Archival Information Packages (AIPs) containing the information to be stored by
@@ -21,17 +21,20 @@ abstract: |
 margin-left:    1in
 margin-right:   1in
 
-date: "2018-12-12"
+date: "12.12.2018"
 toc-title:	'Table of contents' 
 titlepage: true
-titlepage-color: "FFFFFF"
-titlepage-text-color: "000000"
-titlepage-rule-color: "000000"
+titlepage-color: "186b9e"
+titlepage-text-color: "3adeca"
+titlepage-rule-color: "3adeca"
 titlepage-rule-height: 1
 logo:	pandoc/img/DILCISlogo.png
 footer-center:	Version 1.1
-footer-left:	DILCIS Board
+footer-left:	12.12.2018
+header-right:	DILCIS Board
 version:	1.1
 bibliography:	pandoc/bibliography.bib
 reference-section-title:	'Bibliography'
+autoSectionLabels: True
+listings-disable-line-numbers:	True
 ...

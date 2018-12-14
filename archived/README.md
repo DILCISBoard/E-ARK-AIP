@@ -1,6 +1,6 @@
-# AIP specification
+# AIP specification (DEPRECATED)
 
-In this folder you will find the sources that were used to develop, publish and maintain the official AIP specification by the DLM Archival Standards Board.
+This folder contains the the sources that were previously used to develop, publish and maintain the AIP specification.
 
 Here you may find 3 folders:
 

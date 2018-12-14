@@ -1,0 +1,35 @@
+
+    urn+uuid+123e4567-e89b-12d3-a456-426655440000/
+    ├── data
+    │   └── urn:uuid:7d0d1987-0f1c-47a7-8fd6-cc5c7de4064f
+    │       ├── metadata
+    │       │   └── preservation
+    │       │       └── premis.xml
+    │       ├── METS.xml
+    │       └── submission
+    │           ├── metadata
+    │           │   ├── descriptive
+    │           │   │   └── ead.xml
+    │           ├── METS.xml
+    │           └── representations
+    │               └── rep1
+    │                   ├── data
+    │                   │   └── Example1.docx
+    │                   └── METS.xml
+    ├── manifest-md5.txt
+    │     408ad21d50cef31da4df6d9ed81b01a7 data/urn+uuid+123e4567-e89b-12d3-a456-426655440000/ \
+    │                                      metadata/preservation/premis.xml
+    │     49afbd86a1ca9f34b677a3f09655eae9 data/urn+uuid+123e4567-e89b-12d3-a456-426655440000/ \
+    │                                      METS.xml
+    │     9ecbfc432b994415c405259aff694632 data/urn+uuid+123e4567-e89b-12d3-a456-426655440000/ \
+    │                                      submission/metadata/descriptive/ead.xml
+    │     8df7468ea611b0714148cb607ec74fe1 data/urn+uuid+123e4567-e89b-12d3-a456-426655440000/ \
+    │                                      submission/METS.xml
+    │     e1e7914bd762605f38631d21281e9s82 data/urn+uuid+123e4567-e89b-12d3-a456-426655440000/ \
+    │                                      submission/representations/rep1/data/Example1.docx
+    │     028df7468ea611b0714148cb607ec74d data/urn+uuid+123e4567-e89b-12d3-a456-426655440000/ \
+    │                                      submission/representations/rep1/METS.xml
+    └── bagit.txt
+          BagIt-Version: 0.97
+          Tag-File-Character-Encoding: UTF-8
+
