@@ -1,7 +1,7 @@
 # Scope of this document
 
 To briefly recall the three types of information packages as defined by OAIS 
-[@OAIS2012],there is the Submission Information Package (SIP) which is used to 
+[@OAIS2012], there is the Submission Information Package (SIP) which is used to 
 submit digital objects to a repository system; the Archival Information Package 
 (AIP) which allows the transmission of a package to the repository, and its 
 storage over the long-term; and the Dissemination Information Package (DIP) 
@@ -36,12 +36,12 @@ The common requirements for all types of E-ARK information packages are
 defined by the “Common Specification for Information Packages (CSIP) 
 [see @csip-2.0.0-DRAFT]”. 
 
-Further documents which related to the AIP specification in a general sense
-are listed in the CSIP (section 1.4 "Relation to other documents").
+Further documents which are related to the AIP specification in a general 
+sense are listed in the CSIP (section 1.4 "Relation to other documents").
 
 # Introduction
 
-The E-ARK AIP format specification defines a basic structure for storing 
+The AIP format specification defines a basic structure for storing 
 information packages which are transferred to an archive in form of submission 
 information packages (SIPs). The AIP format provides the means to keep a record of 
 changes that are being applied to an AIP due to metadata edits, digital 
@@ -57,13 +57,13 @@ is to pave the way for simplified repository migration. Given the increasing
 amount of digital content archives need to safeguard nowadays, changing the
 repository solution should be based on a standard exchange format. This is to
 say that a data repository solution provider does not necessarily have to
-implement this E-ARK AIP format as the internal storage format, but it should at
-least allow exporting E-ARK AIPs. By this way, the costly procedure of exporting
+implement this format as the internal storage format, but it should at
+least allow exporting AIPs. By this way, the costly procedure of exporting
 data, producing SIPs, and ingesting them again in the new repository can be
 simplified. Data repository solution providers know what kind of existing data
 they can expect if they were chosen to replace an existing repository solution.
 An E-ARK compliant repository solution should be able to immediately analyse and
-incorporate existing data in form of E-ARK AIPs without the need of applying
+incorporate existing data in form of AIPs without the need of applying
 data transformation or having to fulfil varying SIP creation requirements.
 
 Generally, a great variety of repository systems are being developed by 
@@ -123,12 +123,12 @@ or possibly more physical containers which represent one conceptual entity.
 
 From the point of view of preserving the integrity of the AIP, the ideal case 
 is that the logical AIP representing the intellectual entity is packaged as one 
-single physical container. This way recovery is much easier because the 
-physical container has all the information required to interpret and render the 
-contained representations. In reality, however, this is not always possible 
-because the size of the physical container can become very large, and this is 
+single physical container. This makes recovery easier because the information 
+required to interpret and render the contained representations is bundled. 
+In reality, however, this is not always possible because the size of the physical 
+container can become very large, and this is 
 the reason for proposing the divided METS structure described more in detail in 
-section [5.1.1](#dividedmets). The divided structure makes it easier to manage 
+section [5.1.2](#dividedmets). The divided structure makes it easier to manage 
 representations or representation parts separately.
 
 ## <a name="structdiv"></a>Structural division of the AIP
@@ -169,7 +169,7 @@ version of the submitted data stored as part of the AIP:
 > precisely the same format as in the SIP. Indeed, preserving the original
 > information exactly as submitted may not be desirable. [@OAIS2012, p. 4-52]”
 
-The E-ARK AIPE-ARK AIP format prescribes a structure by defining a set of
+The E-ARK AIP format prescribes a structure by defining a set of
 requirements and core metadata together with recommendations on how to use the
 requirements in order to allow changing the AIP while keeping seamless track of
 the AIP’s history.
@@ -222,13 +222,13 @@ mapping.
 
 # AIP format specification
 
-The follwing AIP format specification is defined as a set of requirements[^2] which 
+The following AIP format specification is defined as a set of requirements[^2] which 
 will be explained with the help of textual descriptions, figures, and concrete 
 examples. It is divided into two parts. On the one hand, there is the structure 
 and metadata specification which defines how the AIP is conceptually organized 
-by means of a directory hierarchy in a file system and aset of metadata 
-standards. And on the other hand, there is the physicalcontainer specification 
-which defines the bit-level manifestation of thetransferable entity.
+by means of a directory hierarchy in a file system and a set of metadata 
+standards. And on the other hand, there is the physical container specification 
+which defines the bit-level manifestation of the transferable entity.
 
 [^2]: The requirements terminology is based upon RFC2119, "Key words for use in 
 RFCs to indicate requirement levels", RFC 2119, S. Bradner, March 1997. 
@@ -238,8 +238,8 @@ Available at: http://www.ietf.org/rfc/rfc2119.txt
 
 In the following, we will briefly describe the structure of an IP as defined 
 by the CSIP. Against this background, the AIP format will be introduced as a 
-container format which allows managing thelife-cycle of an E-ARK IP starting 
-with the ingest of an SIP. 
+container format which allows managing the life-cycle of an E-ARK IP that 
+starts with the ingest of an SIP. 
 
 As already mentioned in section [4.1](#reps), the CSIP relies on the concept of 
 "representations". Figure [1](#fig1) gives an example of the structure of an IP
@@ -260,15 +260,16 @@ metadata can relate either to the IP as a whole or to individual representations
 As already mentioned, the structural requirements defined by the CSIP generally
 apply to the AIP. However, the AIP `representations` folder contains representations 
 which are created as part of the AIP maintenance. If no mainteance operation was
-performed, this folder is not present. For this reason, 
+performed, this folder is not present. For this reason, the CSIP requirement which
+prescribes the presence of the `representations` folder is overruled by the 
+following AIP specific requirement. 
 
 **AIP-REPRESENTATIONS-OPTIONAL**: The Archival Information Package (AIP) folder 
 COULD include a folder named representations. This requirement overrules 
 requirement *CSIPSTR9* defined by the CSIP. See also requirement 
 *AIP-REPRESENTATIONS*.
 
-The defined by the CSIP in relation to the `representation` folder also
-apply to AIP representations.
+## Compound vs. divided METS structure
 
 In the following section a concrete example is used to describe the two
 alternatives of using either a *compound* or a *divided* METS structure in more
@@ -278,7 +279,7 @@ detail.
 
 The first case, as shown in Figure [3](#fig3), where a single METS file 
 contains all references to metadata and data files contained in a package is 
-called *compound* or *simple* METS structure.
+called *compound* METS structure.
 
 <a name="fig3"></a>
 ![Information Package structure](figs/fig_3_mets_root.png "One METS file in the root of the IP references all metadata and data files")
@@ -291,8 +292,7 @@ example shown in Figure [3](#fig3) suggests an order of representations, there a
 requirements regarding the naming of directories containing the representations.
 The order of representations and the relations between them is defined by the
 structural and preservation metadata. The `representations` directory is
-mandatory, even for IPs which contain only one representation (see Requirement 
-AIP-REPDIR).
+mandatory, even for IPs which contain only one representation.
 
 ### <a name="dividedmets"></a> Divided METS structure 
 
@@ -968,6 +968,7 @@ listing four child AIPs.
 Using a structMap to reference the parent AIP
 
 ### Preservation metadata
+
 As already mentioned, PREMIS (version 342) is used to describe technical
 metadata of digital objects, rights metadata to define the rights status in
 relation to specific agents or for specific objects, and to record events that
@@ -1421,8 +1422,8 @@ Discovery right statement
 ## Physical Container Packaging
 
 This part of the AIP format specification gives recommendations regarding the 
-creation of the physical packaging of the AIP into a transferable and storable 
-entity.
+creation of the physical packaging of the logical AIP into either one or 
+multiple transferable and storable entities.
 
 ### Naming of the packaged entity
 
@@ -1433,10 +1434,34 @@ identifier of the AIP itself.
 
 **AIP-CONTAINER-ID:**: The identifier of the AIP -- defined by the 
 attribute `OBJID` of the root METS file's root element SHOULD be used to derive 
-the name of the physical storage container.
+the beginning part of the file name of the physical storage container. 
 
-**AIP-SAFE-FILENAME**: To encode special characters of the identifier the
-pairtree character mapping specification COULD be used.[^17]
+The file name part which is derived from the AIP's identifier is called the 
+*AIP file name ID*.
+
+**AIP-ID-FILENAME-MAPPING**: A specified policy SHOULD be defined which allows
+deriving a cross-platform, portable file name part from the AIP's identifier 
+and, vice versa, to infer the identifier from the physical container's filename. 
+
+A first option to implement this requirement would be to limit the characters
+used in the file name to the "Portable Filename Character Set"[^17] which 
+only allows the following character set for saving files:
+
+[^17]: http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1\_chap03.html#tag\_03\_282
+
+* Uppercase A to Z
+* Lowercase a to z
+* Numbers 0 to 9
+* Period (.)
+* Underscore (\_)
+* Hyphen (-)
+
+If the identifier of the AIP had characters which do not fall into this 
+character set, then these would need to be mapped into specific ones of the
+accepted character set. 
+
+One proposed way to achieve a bi-directional mapping between identifiers and file names 
+is the pairtree character mapping specification.[^17]
 
 [^17]: https://tools.ietf.org/html/draft-kunze-pairtree-01 (see section 3: “Identifier string cleaning”)
 
@@ -1454,7 +1479,17 @@ name would be:
 
     "urn+uuid+123e4567-e89b-12d3-a456-426655440000.tar"
 
-The converted string is called the AIP's *safe file name*.
+In this example, the AIP's physical container file name only consists of the 
+AIP file name ID. 
+
+**AIP-CONTAINER-SUFFIX**: Any suffix COULD be added to the physical container
+file that bears additional information, such as the version, date, sequence number, 
+or the like.
+
+For example, a version number could be added as a suffix to the AIP file name ID as
+follows:
+
+    "urn+uuid+123e4567-e89b-12d3-a456-426655440000_v00001.tar"
 
 ### Packaging
 
@@ -1530,8 +1565,8 @@ packaging the AIP.
 [^18]: https://tools.ietf.org/html/rfc8493
 
 **AIP-PACKAGE-BAGIT**: If the BagIt packaging format is used, the containing 
-folder of the AIP -- which bears the AIP's safe file name -- SHOULD be located 
-in the `data` folder as shown Figure [15](#fig15).
+folder of the AIP SHOULD be located in the `data` folder as shown 
+Figure [15](#fig15).
 
 <a name="fig15"></a>
 ![Information Package structure](figs/AIP-in-BagIt-data-folder.png "AIP in the `data` folder of a BagIt container.")
