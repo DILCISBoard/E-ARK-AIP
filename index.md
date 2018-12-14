@@ -274,6 +274,80 @@ In the following section a concrete example is used to describe the two
 alternatives of using either a *compound* or a *divided* METS structure in more
 detail.
 
+### Compound METS structure
+
+The first case, as shown in Figure [3](#fig3), where a single METS file 
+contains all references to metadata and data files contained in a package is 
+called *compound* or *simple* METS structure.
+
+<a name="fig3"></a>
+![Information Package structure](figs/fig_3_mets_root.png "One METS file in the root of the IP references all metadata and data files")
+
+**Figure 3:**
+One METS file in the root of the package references all metadata and data files
+
+Even though the number suffix of the directories `rep-001` and `rep-002` of the
+example shown in Figure [3](#fig3) suggests an order of representations, there are no
+requirements regarding the naming of directories containing the representations.
+The order of representations and the relations between them is defined by the
+structural and preservation metadata. The `representations` directory is
+mandatory, even for IPs which contain only one representation (see Requirement 
+AIP-REPDIR).
+
+### <a name="dividedmets"></a> Divided METS structure 
+
+The second case, as shown in Figure [4](#fig4), is to have separate METS files for 
+each representation and the METS file in the IP’s root directory points to the 
+METS files for each of the representations. This is called a *divided*
+METS structure. More concretely, the example shown in Figure [4](#fig4) has a 
+METS file in the IP’s root which points to the METS files 
+`Representations/Rep-001/METS.xml` and 
+`Representations/Rep-002/METS.xml`. Section [5.3.1](#structmd) provides 
+more details about how the referencing of METS.xml files must be implemented if 
+this alternative is chosen.
+
+<a name="fig4"></a>
+![Information Package structure](figs/fig_4_mets_root.png "Root METS file references METS files of the different representations")
+
+**Figure 4:**
+Root METS file references METS files of the different representations
+
+The reason why this alternative was introduced is that it makes it easier to
+manage representations independently from each other. This can be desired for
+very large representations, in terms of file size or the amount of files 
+(making the root METS difficult to work with).
+
+#### Representation-based vs. size-based division
+
+As a corollary of this division method we define, on the one hand, a
+representation-based division as the separation of representations in different
+directories under the `representations` folder as shown in the example of
+Figure [4](#fig4). And, on the other hand, we define a size-based division as the
+separation of representation parts. To illustrate this, Figure [5](#fig5) shows an
+example where a set of files belongs to the same representation (here named
+`binary`) and is referenced in two separate physical containers (here named {C1}
+and {C2} respectively). A key requirement when using size-based division of a
+representation is that there must not be any overlap in the structure of the
+representations, and that each sub-directory path must be unique across the
+containers where the representation parts together constitute a representation
+entity. Note that for this reason a numerical suffix is added to the
+representation METS files, to avoid overwriting representation METS
+files when automatically merging the divided representation back into one single
+physical representation.
+
+**AIP-REP-DIV-NAME**: If a representation is divided into parts, the representation 
+component MUST use the same name in the different containers.
+
+**AIP-REP-DIV-OVERLAP**: If a representation is divided into parts, any overlap 
+MUST be avoided regarding the structure of the representations and each 
+sub-directory path MUST be unique across the containers.
+
+<a name="fig5"></a>
+![Information Package structure](figs/fig_5_mets_root.png "Example of an IP.")
+
+**Figure 5:**
+Example of an IP.
+
 As a simple example, let us assume an IP with two representations, 
 each of which consists of a set of three files. In the first representation all data 
 files are in the Open Document Format (ODT) and in the second one - as a derivative of the
