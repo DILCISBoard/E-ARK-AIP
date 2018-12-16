@@ -60,7 +60,11 @@ $for(beameroption)$
 \setbeameroption{$beameroption$}
 $endfor$
 % Prevent slide breaks in the middle of a paragraph:
-\widowpenalties 1 10000
+% Hurenkinder und Schusterjungen verhindern
+\clubpenalty10000
+\widowpenalty10000
+\displaywidowpenalty=10000
+% \widowpenalties 1 10000
 \raggedbottom
 $if(section-titles)$
 \setbeamertemplate{part page}{

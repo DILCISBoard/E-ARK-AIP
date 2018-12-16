@@ -1,93 +1,90 @@
 # Scope of this document
 
-To briefly recall the three types of information packages as defined by OAIS 
-[@OAIS2012], there is the Submission Information Package (SIP) which is used to 
-submit digital objects to a repository system; the Archival Information Package 
-(AIP) which allows the transmission of a package to the repository, and its 
-storage over the long-term; and the Dissemination Information Package (DIP) 
+To briefly recall the three types of information packages as defined by OAIS
+[@OAIS2012], there is the Submission Information Package (SIP) which is used to
+submit digital objects to a repository system; the Archival Information Package
+(AIP) which allows the transmission of a package to the repository, and its
+storage over the long-term; and the Dissemination Information Package (DIP)
 which is used to disseminate digital objects to the requesting user.
 
-In this context, the current document represents the specification of the E-ARK 
-Archival Information Package format (E-ARK AIP, in the following named shortly 
-AIP). It defines the specific requirements for archiving and storing 
-information packages for the long term and focuses on the structural 
-peculiarities and metadata requirements relating to the AIP. Considered in 
-detail, the key objectives of this format are to:
+In this context, the current document represents the specification of the E-ARK
+Archival Information Package format (E-ARK AIP, in the following named shortly
+AIP). It defines the specific requirements for archiving and storing information
+packages for the long term and focuses on the structural peculiarities and
+metadata requirements relating to the AIP. Considered in detail, the key
+objectives of this format are to:
 
-- define a generic structure of the AIP format in a way that it is suitable
-for a wide variety of data types, such as document and image collections,
-archival records, databases or geographical data.
-- recommend a set of metadata standards related to the structural and the 
-preservation aspects of the AIP.
+- define a generic structure of the AIP format in a way that it is suitable for
+  a wide variety of data types, such as document and image collections, archival
+records, databases or geographical data.
+- recommend a set of metadata standards related to the structural and the
+  preservation aspects of the AIP.
 - ensure the format is suitable to store large quantities of data.
-- mitigate the potential preservation risk of repository obsolescence by 
-implementing a repository succession strategy. 
+- mitigate the potential preservation risk of repository obsolescence by
+  implementing a repository succession strategy. 
 
 # Relation to other documents
 
-This specification document originates from the document "D4.4 Final 
-version of SIP-AIP conversion component (Part A: AIP specification)"
-[@e-ark-d4.4] created in the E-ARK project (European Archival 
-Records and Knowledge Preservation) which ran from 2014 to 2017 and
-was funded by the European Commission as part of the Seventh Framework 
-Programme for Research.
+This specification document originates from the document "D4.4 Final version of
+SIP-AIP conversion component (Part A: AIP specification)" [@e-ark-d4.4] created
+in the E-ARK project (European Archival Records and Knowledge Preservation)
+which ran from 2014 to 2017 and was funded by the European Commission as part of
+the Seventh Framework Programme for Research.
 
-The common requirements for all types of E-ARK information packages are 
-defined by the “Common Specification for Information Packages (CSIP) 
-[see @csip-2.0.0-DRAFT]”. 
+The common requirements for all types of E-ARK information packages are defined
+by the “Common Specification for Information Packages (CSIP) [see
+@csip-2.0.0-DRAFT]”. 
 
-Further documents which are related to the AIP specification in a general 
-sense are listed in the CSIP (section 1.4 "Relation to other documents").
+Further documents which are related to the AIP specification in a general sense
+are listed in the CSIP (section 1.4 "Relation to other documents").
 
 # Introduction
 
-The AIP format specification defines a basic structure for storing 
-information packages which are transferred to an archive in form of submission 
-information packages (SIPs). The AIP format provides the means to keep a record of 
-changes that are being applied to an AIP due to metadata edits, digital 
-preservation measures (e.g. migration or adding emulation information), or 
-submission updates.[^1]
+The AIP format specification defines a basic structure for storing information
+packages which are transferred to an archive in form of submission information
+packages (SIPs). The AIP format provides the means to keep a record of changes
+that are being applied to an AIP due to metadata edits, digital preservation
+measures (e.g. migration or adding emulation information), or submission
+updates.[^1]
 
-[^1]: A *submission update* is a re-submission of an SIP at a later point in 
-time related to an AIP which contains a previous version of this SIP. 
-Section [5.2.1](#aipcontsubm) explains this concept more in detail.
+[^1]: A *submission update* is a re-submission of an SIP at a later point in
+  time related to an AIP which contains a previous version of this SIP. Section
+[5.2.1](#aipcontsubm) explains this concept more in detail.
 
 The purpose of defining a standard format for the archival information package
 is to pave the way for simplified repository migration. Given the increasing
 amount of digital content archives need to safeguard nowadays, changing the
 repository solution should be based on a standard exchange format. This is to
 say that a data repository solution provider does not necessarily have to
-implement this format as the internal storage format, but it should at
-least allow exporting AIPs. By this way, the costly procedure of exporting
-data, producing SIPs, and ingesting them again in the new repository can be
+implement this format as the internal storage format, but it should at least
+allow exporting AIPs. By this way, the costly procedure of exporting data,
+producing SIPs, and ingesting them again in the new repository can be
 simplified. Data repository solution providers know what kind of existing data
 they can expect if they were chosen to replace an existing repository solution.
 An E-ARK compliant repository solution should be able to immediately analyse and
-incorporate existing data in form of AIPs without the need of applying
-data transformation or having to fulfil varying SIP creation requirements.
+incorporate existing data in form of AIPs without the need of applying data
+transformation or having to fulfil varying SIP creation requirements.
 
-Generally, a great variety of repository systems are being developed by 
-different providers, and there are specific requirements which have been 
-addressed according to the needs of their respective customers. For this 
-reason, the purpose of this AIP format is not to impose a common storage format 
-that all repository systems need to implement. While it can be used as an 
-archival storage format, it can also be regarded as a format that makes system 
-migration easier if repository systems are at least able to generate this 
-format.
+Generally, a great variety of repository systems are being developed by
+different providers, and the way how the AIP is stored depends on specific
+requirements which have been addressed according to the needs of their
+respective customers. For this reason, the purpose of this AIP format is not to
+impose a common storage format that all repository systems need to implement.
+While it can be used as an archival storage format, it can also be seen as a
+format that makes system migration easier.
 
 # Preliminary definitions and remarks
 
 ## <a name="ip"></a>Information package (IP)
 
 As already mentioned, the CSIP defines the requirements for concrete package format
-specifications, such as the SIP, AIP, or DIP. In this sense, an *information package (IP)* 
-is an instance of a format that complies with the CSIP.
+specifications, such as the SIP, AIP, or DIP. In this sense, an 
+*information package* (IP) is an instance of a format that complies with the CSIP.
 
 ## <a name="reps"></a>Representations
 
-The concept of "representations" is crucial in the context of this specification 
-and it is generally used according to the definition given in the context of the 
-PREMIS digital preservation metadata standard:
+The concept of "representations" is used according to the definition given in
+the PREMIS digital preservation metadata standard:
 
 > "The set of files, including structural metadata, needed for a complete and 
 > reasonable rendition of an Intellectual Entity. For example, a journal 
@@ -98,21 +95,20 @@ PREMIS digital preservation metadata standard:
 > structural metadata showing the order of the pages; these 13 files constitute 
 > the representation. [@premis3.0-2017]"
 
-Representations are a core concept for any type of IP
-according to the CSIP. One important requirement which exists in relation to 
-the AIP format is that it must be able, on the one hand, to include 
-representations which are part of the SIP and which need to be stored as part 
-of the submission, and, on the other hand, it must also be able to manage 
-representations which are created during SIP to AIP conversion or as a result 
-of any repository maintenance operation.
+According to the CSIP, representations are a core concept for all types of IPs.
+One specific requirement regarding representations in the AIP is that the AIP
+format must be able, on the one hand, to include representations which are part
+of the SIP, and, on the other hand, to manage representations which are created
+during SIP to AIP conversion or as a result of any maintenance operation
+applying changes to the AIP.
 
-It should also be mentioned that representations can be derived from each 
-other; this is typically the case if digital objects making up a representation 
-are migrated to another format. However, a new representation, in our 
-understanding, does not have to be necessarily the result of a file format 
-migration. It can also consist of a set of instructions included as part of 
-representation metadata explaining how to create an emulation environment in 
-order to render a set of files.
+It should also be mentioned that representations can be derived from each other;
+this is typically the case if digital objects making up a representation are
+migrated to another format. However, a new representation, in our understanding,
+does not have to be necessarily the result of a file format migration. It can
+also consist of a set of instructions included as part of representation
+metadata explaining how to create an emulation environment in order to render a
+set of files.
 
 ## Logical and physical representation of the AIP
 
@@ -121,47 +117,45 @@ digital objects and metadata representing the conceptual entity as a whole. The
 conceptual entity must be distinguished from the physical representation of one
 or possibly more physical containers which represent one conceptual entity.
 
-From the point of view of preserving the integrity of the AIP, the ideal case 
-is that the logical AIP representing the intellectual entity is packaged as one 
-single physical container. This makes recovery easier because the information 
-required to interpret and render the contained representations is bundled. 
-In reality, however, this is not always possible because the size of the physical 
-container can become very large, and this is 
-the reason for proposing the divided METS structure described more in detail in 
-section [5.1.2](#dividedmets). The divided structure makes it easier to manage 
-representations or representation parts separately.
+From the point of view of preserving the integrity of the AIP, the ideal case is
+that the logical AIP representing the intellectual entity is packaged as one
+single physical container. This makes recovery easier because the information
+required to interpret and render the contained representations is bundled
+together. In reality, however, this is not always possible because the size of
+the physical container can become very large, and this is the reason for
+proposing the divided METS structure described more in detail in section
+[5.1](#compdiv). The divided structure makes it easier to manage representations
+or representation parts separately.
 
 ## <a name="structdiv"></a>Structural division of the AIP
 
-One of the basic requirements prescribed by the CSIP is to use METS as the 
-metadata standard to describe the structure of the AIP – in line with the 
-decision related to the other package types, namely the SIP and the DIP.
+One of the basic requirements formulated by the CSIP is the use of METS as the
+metadata standard to describe the structure of an IP.
 
-Special attention was given to the fact that it might not be possible to
-store all representations of an intellectual entity in one physical container,
-or that even a single representation might have to be divided so that it can be
-stored on long-term storage media. In order to make it easier to manage
-representations or representation parts separately, a *divided* METS structure 
-using a METS file in the root directory of the AIP is proposed which
-references METS files of the individual representations. This structure lays
-the groundwork for addressing the practical requirement of distributing parts of
-the intellectual entity over a sequence of physical containers representing a
-logical AIP. Even though this puts the integrity of the AIP at risk - because in
-case of disaster recovery the physical container does not represent the complete
-intellectual entity and dependencies to another (lost) physical container can
-potentially make it impossible to interpret, understand, or render the content -
-it is a necessary measure if the amount of data exceeds the capacity limitation
-of long-term storage media.
+Special attention was given to the fact that it might not be possible to store
+all representations of an intellectual entity in one physical container, or that
+even a single representation might have to be divided so that it can be stored
+on long-term storage media. For this reason, the AIP format describes means to
+manage representations or representation parts separately.
+
+This structure lays the groundwork for addressing the practical requirement of
+distributing parts of the intellectual entity over a sequence of physical
+containers representing a logical AIP. Even though this puts the integrity of
+the AIP at risk - because in case of disaster recovery the physical container
+does not represent the complete intellectual entity and dependencies to another
+(lost) physical container can potentially make it impossible to interpret,
+understand, or render the content - it is a necessary measure if the amount of
+data exceeds the capacity limitation of long-term storage media.
 
 ## Authenticity of the original submission
 
 The AIP format provides a structure for storing the original submission
-separately from any data that is created during SIP-to-AIP conversion and
-during the life-cycle of the AIP. This allows safeguarding the authenticity of
-the original submission.
+separately from any data that is created during SIP-to-AIP conversion and during
+the life-cycle of the AIP. This allows safeguarding the authenticity of the
+original submission.
 
-However, it is an implementation decision if the original submission is kept
-“as is” or if the SIP data is adapted during SIP to AIP conversion. In line with
+However, it is an implementation decision if the original submission is kept “as
+is” or if the SIP data is adapted during SIP to AIP conversion. In line with
 OAIS, the content of the original SIP does not have to be identical to the
 version of the submitted data stored as part of the AIP:
 
@@ -169,10 +163,10 @@ version of the submitted data stored as part of the AIP:
 > precisely the same format as in the SIP. Indeed, preserving the original
 > information exactly as submitted may not be desirable. [@OAIS2012, p. 4-52]”
 
-The E-ARK AIP format prescribes a structure by defining a set of
-requirements and core metadata together with recommendations on how to use the
-requirements in order to allow changing the AIP while keeping seamless track of
-the AIP’s history.
+The E-ARK AIP format prescribes a structure by defining a set of requirements
+and core metadata together with recommendations on how to use the requirements
+in order to allow changing the AIP while keeping seamless track of the AIP’s
+history.
 
 ## Version of an AIP
 
@@ -222,19 +216,20 @@ mapping.
 
 # AIP format specification
 
-The following AIP format specification is defined as a set of requirements[^2] which 
-will be explained with the help of textual descriptions, figures, and concrete 
-examples. It is divided into two parts. On the one hand, there is the structure 
-and metadata specification which defines how the AIP is conceptually organized 
-by means of a directory hierarchy in a file system and a set of metadata 
-standards. And on the other hand, there is the physical container specification 
-which defines the bit-level manifestation of the transferable entity.
+The following AIP format specification is defined as a set of requirements[^2]
+which will be explained with the help of textual descriptions, figures, and
+concrete examples. It is divided into two parts. On the one hand, there is the
+structure and metadata specification which defines how the AIP is conceptually
+organized by means of a directory hierarchy in a file system and a set of
+metadata standards. And on the other hand, there is the physical container
+specification which defines the bit-level manifestation of the transferable
+entity.
 
 [^2]: The requirements terminology is based upon RFC2119, "Key words for use in 
 RFCs to indicate requirement levels", RFC 2119, S. Bradner, March 1997. 
 Available at: http://www.ietf.org/rfc/rfc2119.txt
 
-## <a name="csip"></a>Brief overview about the CSIP
+## <a name="csip"></a>Overview about the CSIP
 
 In the following, we will briefly describe the structure of an IP as defined 
 by the CSIP. Against this background, the AIP format will be introduced as a 
@@ -257,29 +252,39 @@ detail where different types of metadata can be stored. In this context, it is
 sufficient to mention that descriptive, technical, preservation, and rights 
 metadata can relate either to the IP as a whole or to individual representations.
 
+### Representations in the AIP
+
 As already mentioned, the structural requirements defined by the CSIP generally
-apply to the AIP. However, the AIP `representations` folder contains representations 
-which are created as part of the AIP maintenance. If no mainteance operation was
-performed, this folder is not present. For this reason, the CSIP requirement which
-prescribes the presence of the `representations` folder is overruled by the 
-following AIP specific requirement. 
+apply to the AIP. However, the AIP `representations` folder contains
+representations which are created as part of the AIP maintenance. If no
+mainteance operation was performed, this folder is not present. For this reason,
+the CSIP requirement which prescribes the presence of the `representations`
+folder is overruled by the following AIP specific requirement. 
 
-**AIP-REPRESENTATIONS-OPTIONAL**: The Archival Information Package (AIP) folder 
-COULD include a folder named representations. This requirement overrules 
-requirement *CSIPSTR9* defined by the CSIP. See also requirement 
-*AIP-REPRESENTATIONS*.
+<a name="aip-representations-optional"></a>**AIP-REPRESENTATIONS-OPTIONAL**: The
+Archival Information Package (AIP) folder COULD include a folder named
+representations. This requirement overrules requirement *CSIPSTR9* defined by
+the CSIP. See also requirement *AIP-REPRESENTATIONS*.
 
-## Compound vs. divided METS structure
+### <a name="compdiv"></a>Compound vs. divided package structure
 
-In the following section a concrete example is used to describe the two
-alternatives of using either a *compound* or a *divided* METS structure in more
-detail.
+As mentioned, the ability to manage representations or representation parts
+separately is required because the digital data submissions can become very
+large. This is not only relevant for storing the AIP, it also concerns the SIP
+which might need to be divided before the data is submitted to the repository.
+And regarding the DIP, it requires the capability to reconstruct the DIP from an
+AIP which is decomposed into multiple parts.
 
-### Compound METS structure
+In the following, two approaches for describing the structure of the IP will be
+described with a focus on requirements of the AIP format: the *compound*
+structure is represented by one single structural metadata file, and the
+*divided* structure has one structural metadata file that references those of
+individual representations. An example will help to describe the two
+alternatives.
 
-The first case, as shown in Figure [3](#fig3), where a single METS file 
-contains all references to metadata and data files contained in a package is 
-called *compound* METS structure.
+If the *compound* METS structure is used, as shown in Figure [3](#fig3), a
+single METS file contains all references to metadata and data files contained in
+the IP.
 
 <a name="fig3"></a>
 ![Information Package structure](figs/fig_3_mets_root.png "One METS file in the root of the IP references all metadata and data files")
@@ -288,23 +293,17 @@ called *compound* METS structure.
 One METS file in the root of the package references all metadata and data files
 
 Even though the number suffix of the directories `rep-001` and `rep-002` of the
-example shown in Figure [3](#fig3) suggests an order of representations, there are no
-requirements regarding the naming of directories containing the representations.
-The order of representations and the relations between them is defined by the
-structural and preservation metadata. The `representations` directory is
-mandatory, even for IPs which contain only one representation.
+example shown in Figure [3](#fig3) suggests an order of representations, there
+are no requirements regarding the naming of directories containing the
+representations.  The order of representations and the relations between them is
+defined by the structural and preservation metadata. The `representations`
+directory is mandatory, even for IPs which contain only one representation.
 
-### <a name="dividedmets"></a> Divided METS structure 
-
-The second case, as shown in Figure [4](#fig4), is to have separate METS files for 
-each representation and the METS file in the IP’s root directory points to the 
-METS files for each of the representations. This is called a *divided*
-METS structure. More concretely, the example shown in Figure [4](#fig4) has a 
-METS file in the IP’s root which points to the METS files 
-`Representations/Rep-001/METS.xml` and 
-`Representations/Rep-002/METS.xml`. Section [5.3.1](#structmd) provides 
-more details about how the referencing of METS.xml files must be implemented if 
-this alternative is chosen.
+If the *divided* METS structure is used, as shown in Figure [4](#fig4), then a
+separate METS file for each representation exists which are referenced by the
+root METS file. The example shown in Figure [4](#fig4) has a METS file in the
+IP’s root which points to the METS files `Representations/Rep-001/METS.xml` and
+`Representations/Rep-002/METS.xml`.
 
 <a name="fig4"></a>
 ![Information Package structure](figs/fig_4_mets_root.png "Root METS file references METS files of the different representations")
@@ -314,33 +313,33 @@ Root METS file references METS files of the different representations
 
 The reason why this alternative was introduced is that it makes it easier to
 manage representations independently from each other. This can be desired for
-very large representations, in terms of file size or the amount of files 
-(making the root METS difficult to work with).
-
-#### Representation-based vs. size-based division
+very large representations, in terms of file size or the amount of files (making
+the root METS difficult to work with).
 
 As a corollary of this division method we define, on the one hand, a
 representation-based division as the separation of representations in different
-directories under the `representations` folder as shown in the example of
-Figure [4](#fig4). And, on the other hand, we define a size-based division as the
-separation of representation parts. To illustrate this, Figure [5](#fig5) shows an
-example where a set of files belongs to the same representation (here named
+directories under the `representations` folder as shown in the example of Figure
+[4](#fig4). And, on the other hand, we define a size-based division as the
+separation of representation parts. To illustrate this, Figure [5](#fig5) shows
+an example where a set of files belongs to the same representation (here named
 `binary`) and is referenced in two separate physical containers (here named {C1}
 and {C2} respectively). A key requirement when using size-based division of a
 representation is that there must not be any overlap in the structure of the
 representations, and that each sub-directory path must be unique across the
 containers where the representation parts together constitute a representation
 entity. Note that for this reason a numerical suffix is added to the
-representation METS files, to avoid overwriting representation METS
-files when automatically merging the divided representation back into one single
-physical representation.
+representation METS files, to avoid overwriting representation METS files when
+automatically merging the divided representation back into one single physical
+representation.
 
-**AIP-REP-DIV-NAME**: If a representation is divided into parts, the representation 
-component MUST use the same name in the different containers.
+<a name="aip-rep-div-name"></a>**AIP-REP-DIV-NAME**: If a representation is divided 
+into parts, the representation component MUST use the same name in the different 
+containers.
 
-**AIP-REP-DIV-OVERLAP**: If a representation is divided into parts, any overlap 
-MUST be avoided regarding the structure of the representations and each 
-sub-directory path MUST be unique across the containers.
+<a name="aip-rep-div-overlap"></a>**AIP-REP-DIV-OVERLAP**: If a representation is 
+divided into parts, any overlap MUST be avoided regarding the structure of the 
+representations and each sub-directory path MUST be unique across the 
+containers.
 
 <a name="fig5"></a>
 ![Information Package structure](figs/fig_5_mets_root.png "Example of an IP.")
@@ -348,10 +347,11 @@ sub-directory path MUST be unique across the containers.
 **Figure 5:**
 Example of an IP.
 
-As a simple example, let us assume an IP with two representations, 
-each of which consists of a set of three files. In the first representation all data 
-files are in the Open Document Format (ODT) and in the second one - as a derivative of the
-first representation - all files are in the Portable Document Format (PDF).
+For example, let us assume an IP with two representations, each of which 
+consists of a set of three files. In the first representation all data files 
+are in the Open Document Format (ODT) and in the second one - as a derivative 
+of the first representation - all files are in the Portable Document Format 
+(PDF).
 
 ## <a name="aipstruct"></a>AIP structure
 Based on the brief overview about the CSIP given in the previous section, the 
@@ -362,15 +362,14 @@ The AIP format offers a structure for storing the complete SIP, and it allows
 holding data and metadata which are created during SIP to AIP conversion and
 data that are created during the lifecycle of the AIP.
 
-It is important to note that the AIP format implements the CSIP differently 
-compared to the SIP and the DIP. The SIP and the DIP represent “snapshots in 
-time`, one capturing the state of an information package at submission time 
-(SIP), the other one capturing a specific form of delivery at the point in time 
-when the information package for access was created (DIP). The AIP, in 
-contrast, allows holding the original submission (snapshot of the IP at 
-submission time), the outcome of preservation actions in the course of the 
-life-cycle separately, and submission updates that occur after the AIP was 
-created.
+It is important to note that the AIP format implements the CSIP differently
+compared to the SIP and the DIP. The SIP and the DIP represent “snapshots in
+time`, one capturing the state of an information package at submission time
+(SIP), the other one capturing a specific form of delivery at the point in time
+when the information package for access was created (DIP). The AIP, in contrast,
+allows holding the original submission (snapshot of the IP at submission time),
+the outcome of preservation actions in the course of the life-cycle separately,
+and submission updates that occur after the AIP was created.
 
 The main difference is that the AIP is an information package which can 
 contain one or several IPs, namely SIPs. The purpose of this meta-structure is 
@@ -379,7 +378,7 @@ specific structure which is not required in the SIP and the DIP. The AIP must
 therefore not be understood as an extension of the IP (as defined by the CSIP) 
 in the sense that it inherits general properties from the CSIP which are 
 complemented by AIP specific properties. This is the reason why the inherent 
-structure of the AIP isdifferent to the one of the SIP and the DIP.
+structure of the AIP is different to the one of the SIP and the DIP.
 
 ### <a name="aipcontsubm"></a>AIP container for submissions
 
@@ -389,35 +388,36 @@ the AIP format defines a `submission` folder in the root of the AIP which
 contains the original submission as well as any submission updates added after
 the AIP was created. The following obligatory requirement applies:
 
-**AIP-SUBMISSION-ROOT**: The root directory of the AIP package COULD 
-contain a `submission` directory which is a container for the original 
-submission and for any updates of SIPs which are submitted after the AIP was 
-created.
+<a name="aip-submission-root"></a>**AIP-SUBMISSION-ROOT**: The root directory of
+the AIP package COULD contain a `submission` directory which is a container for
+the original submission and for any updates of SIPs which are submitted after
+the AIP was created.
 
-In case updating submissions is permitted after the AIP was created, the 
-submission folder can contain sub-folders which can contain a series of 
-original submission and submission updates.
+If submission updates are enabled for a repository, the submission folder can 
+contain sub-folders with a series of submissions, starting from the original 
+one and followed by the submission updates.
 
 If the submission folder does not contain a METS file, it is assumed that
 one or several submissions are contained in subfolders.
 
-**AIP-SUBMISSION-IP**: The `submission` folder MUST contain 
-an IP or at least one or several IPs in sub-folders.
+<a name="aip-submission-ip"></a>**AIP-SUBMISSION-IP**: The `submission` folder 
+MUST contain an IP or at least one or several IPs in sub-folders.
 
-**AIP-SUBMISSION-IPS**: If the `submission` folder contains one 
-or several sub-folders, the sub-folders MUST contain IPs.
+<a name="aip-submission-ips"></a>**AIP-SUBMISSION-IPS**: If the `submission` 
+folder contains one or several sub-folders, the sub-folders MUST contain IPs.
 
-**AIP-SUBMISSIONS-NOMETS**: If the `submission` folder contains one 
-or several IPs in sub-folders it MUST NOT contain a METS file.
+<a name="aip-submission-nomets"></a>**AIP-SUBMISSIONS-NOMETS**: If the 
+`submission` folder contains one or several IPs in sub-folders it MUST NOT 
+contain a METS file.
 
 The naming scheme of these sub-folders can be freely defined. However, it should
 reflect the order of original submission and updates. This means that the folder
 names should allow alphanumerical ordering, for example, by using
 zerofill-number suffixes or by deriving the folder name from an ISO 8601 date.
 
-**AIP-SUBMISSIONS-ORDER**: The sub-folders containing IPs 
-SHOULD allow alphanumeric sorting, e.g. by using zero-fill numbers or ISO 8601 
-date derived strings as part of the folder name.
+<a name="aip-submissions-order"></a>**AIP-SUBMISSIONS-ORDER**: The sub-folders 
+containing IPs SHOULD allow alphanumeric sorting, e.g. by using zero-fill 
+numbers or ISO 8601 date derived strings as part of the folder name.
 
 Examples for submission folder names which allow alphanumerical sorting:
 
@@ -442,7 +442,8 @@ folder in that case.
 
 <a name="fig6"></a>
 
-![Information Package structure](figs/fig_6_sub_folder.png "The AIP's "submission" folder contains the IP of the original submission"){ width=193px }
+![Information Package structure](figs/fig_6_sub_folder.png "The AIP's
+"submission" folder contains the IP of the original submission"){ width=193px }
 
 **Figure 6:**
 The AIP's "submission" folder containing the IP of the original submission.
@@ -496,11 +497,11 @@ AIP representations.
 This leads to the following requirement regarding representations which are
 added during SIP to AIP conversion.
 
-**AIP-REPRESENTATIONS**: If a new representation is added during ingest (SIP to 
-AIP conversion) or created as an AIP preservation measure (AIP to AIP 
-conversion), the root directory of the AIP MUST contain a `representations` 
-directory. For this directory, the same requirements as for the representations 
-of an IP apply.
+<a name="aip-representations"></a>**AIP-REPRESENTATIONS**: If a new 
+representation is added during ingest (SIP to AIP conversion) or created as an 
+AIP preservation measure (AIP to AIP conversion), the root directory of the AIP 
+MUST contain a `representations` directory. For this directory, the same 
+requirements as for the representations of an IP apply.
 
 Note that the three-digit number suffix following the name `rep-` used in 
 the example of Figure [9](#fig9) indicates the order in time in which the 
@@ -587,10 +588,11 @@ allowed to be changed.
 METS files in the AIP’s `Metadata/submission` directory have priority over
 the ones contained in the original submission
 
-**AIP-MD-PRIORITY**: Let `<MDPath>` be a sub-directory-path to a metadata file, 
-then a metadata file under the `AIP/metadata/submission` directory MUST have 
-priority over a metadata file under the `AIP/submission` directory so that 
-`AIP/metadata/submission/<MDPath>` has priority over `AIP/submission/<MDPath>`.
+<a name="aip-md-priority"></a>**AIP-MD-PRIORITY**: Let `<MDPath>` be a 
+sub-directory-path to a metadata file, then a metadata file under the 
+`AIP/metadata/submission` directory MUST have priority over a metadata file 
+under the `AIP/submission` directory so that `AIP/metadata/submission/<MDPath>` 
+has priority over `AIP/submission/<MDPath>`.
 
 An example is shown in Figure [11](#fig11) where the METS file in the root of 
 the AIP references an obsolete METS file of the original submission and a 
@@ -714,8 +716,9 @@ the AIP.
 
 #### Digital objects
 
-**AIP-DIGITAL-OBJECTS**: Any file contained in the AIP is a *digital objects* which MUST 
-be described in a file section (`<fileSec>`) of the METS document.
+<a name="aip-digital-objects"></a>**AIP-DIGITAL-OBJECTS**: Any file contained 
+in the AIP is a *digital objects* which MUST be described in a file section 
+(`<fileSec>`) of the METS document.
 
 Listing 2 shows an example of a file section with one file.
 
@@ -757,22 +760,23 @@ Attributes of the file element
 
 The following rules apply for the URL attribute of the <FLocat> element:
 
-**AIP-PATHS-PROTOCOL**: The local file paths COULD indicate the protocol part 
-(`file://`), in this case the path must be a valid URI according to 
-RFC3986.[^9]
+<a name="aip-paths-protocol"></a>**AIP-PATHS-PROTOCOL**: The local file paths 
+COULD indicate the protocol part (`file://`), in this case the path must be a 
+valid URI according to RFC3986.[^9]
 
 [^9]: https://tools.ietf.org/html/rfc3986
 
-**AIP-PATHS-RELATIVE**: If the protocol part is omitted, the path MUST be 
-interpreted as a reference relative to the METS document (e.g. `./file.txt` or 
-`file.txt` referring to the file `file.txt` in the current folder).
+<a name="aip-paths-relative"></a>**AIP-PATHS-RELATIVE**: If the protocol part 
+is omitted, the path MUST be interpreted as a reference relative to the METS 
+document (e.g. `./file.txt` or `file.txt` referring to the file `file.txt` in 
+the current folder).
 
 Additionally, the following requirement applies for compressed files:
 
-**AIP-TRANSFORM**: If a file is compressed, the transformFile element 
-(`//file/transformFile`) SHOULD indicate how the packages have to be processed 
-by means of the attributes ’TRANSFORMTYPE’, ’TRANSFORMALGORITHM’, and 
-’TRANSFORMORDER’.
+<a name="aip-transform"></a>**AIP-TRANSFORM**: If a file is compressed, the
+transformFile element (`//file/transformFile`) SHOULD indicate how the packages
+have to be processed by means of the attributes ’TRANSFORMTYPE’,
+’TRANSFORMALGORITHM’, and ’TRANSFORMORDER’.
 
 ```xml
 <file ...>
@@ -792,10 +796,10 @@ Compressed file
 The use of embedded metadata by using the `<mdWrap>` element is discouraged.
 Instead, it is recommended to reference metadata by using the `<mdRef>` element.
 
-**AIP-METS-MD-REF**: External metadata files such as EAD or PREMIS files MUST be 
-referenced by means of the `<mdRef>` element. Its `xlink:href` attribute value 
-must be either a URL relative to the location of the METS root or an absolute 
-URL.
+<a name="aip-mets-md-ref"></a>**AIP-METS-MD-REF**: External metadata files such 
+as EAD or PREMIS files MUST be referenced by means of the `<mdRef>` element. 
+Its `xlink:href` attribute value must be either a URL relative to the location 
+of the METS root or an absolute URL.
 
 ##### Descriptive metadata
 The descriptive metadata section (`<dmdSec>`) references descriptive metadata
@@ -820,11 +824,11 @@ Linking to an EAD XML descriptive metadata file
 
 ##### Administrative Metadata
 
-**AIP-METS-MD-AMDSEC**: The AIP METS MUST have a single `<amdSec>` element which 
-contains one or several `<digiprovMD>` elements. The `<mdRef>` child of at 
-least one of these elements must be of type `PREMIS` (`@MDTYPE=”PREMIS”`) 
-with the reference to a PREMIS file in the `Metadata` directory of the AIP 
-root.
+<a name="aip-mets-md-amdsec"></a>**AIP-METS-MD-AMDSEC**: The AIP METS MUST have 
+a single `<amdSec>` element which contains one or several `<digiprovMD>` 
+elements. The `<mdRef>` child of at least one of these elements must be of type 
+`PREMIS` (`@MDTYPE=”PREMIS”`) with the reference to a PREMIS file in the `Metadata` 
+directory of the AIP root.
 
 Listing 5 shows an example with a link to a PREMIS.xml file:
 
@@ -842,17 +846,20 @@ Listing 5 shows an example with a link to a PREMIS.xml file:
 **Listing 5:**
 Linking to an EAD XML descriptive metadata file
 
-**AIP-PREMIS-OBSOLETE**: The `@STATUS` attribute value of the `<digiprovMD>` 
-element SHOULD be `SUPERSEDED` if the PREMIS file is obsolete and only 
-included in the AIP to ensure traceability.
+<a name="aip-premis-obsolete"></a>**AIP-PREMIS-OBSOLETE**: The `@STATUS` 
+attribute value of the `<digiprovMD>` element SHOULD be `SUPERSEDED` if 
+the PREMIS file is obsolete and only included in the AIP to ensure 
+traceability.
 
-**AIP-PREMIS-STATUS**: The `@STATUS` attribute value of the `<digiprovMD>` 
-element COULD be `CURRENT` to make explicit that the PREMIS file is active.
+<a name="aip-premis-status"></a>**AIP-PREMIS-STATUS**: The `@STATUS` attribute 
+value of the `<digiprovMD>` element COULD be `CURRENT` to make explicit that 
+the PREMIS file is active.
 
 #### Structural map
 
-**AIP-STRUCTMAP-LABEL**: One `<structMap>` with the LABEL attribute value 
-“Common Specification structural map” MUST be present in the METS file.
+<a name="aip-structmap-label"></a>**AIP-STRUCTMAP-LABEL**: One `<structMap>` 
+with the LABEL attribute value “Common Specification structural map” MUST 
+be present in the METS file.
 
 Listing 6 shows a structural map with the LABEL attribute value “Common
 Specification structural map”.
@@ -877,12 +884,12 @@ Obligatory Common Specification structural map
 
 ##### Structural map of a divided METS structure
 
-**AIP-DIVIDED-METS**: When an AIP uses the divided METS structure, i.e. the 
-different representations have their own METS file, the mandatory `<structMap>` 
-MUST organize those METS files through `<mptr>` and `<fptr>` entries, for each 
-representation. The `<mptr>` node MUST reference the 
-`/<representation>/METS.xml` and point at the corresponding `<file>` entry in 
-the `<fileSec>` using the `<fptr>` element.
+<a name="aip-divided-mets"></a>**AIP-DIVIDED-METS**: When an AIP uses the 
+divided METS structure, i.e. the different representations have their own 
+METS file, the mandatory `<structMap>` MUST organize those METS files 
+through `<mptr>` and `<fptr>` entries, for each representation. The `<mptr>` 
+node MUST reference the `/<representation>/METS.xml` and point at the 
+corresponding `<file>` entry in the `<fileSec>` using the `<fptr>` element.
 
 ```xml
 <structMap TYPE="physical" LABEL="Common Specification structural map">
@@ -969,7 +976,7 @@ Using a structMap to reference the parent AIP
 
 ### Preservation metadata
 
-As already mentioned, PREMIS (version 342) is used to describe technical
+As already mentioned, PREMIS [@premis3.0-2017] is used to describe technical
 metadata of digital objects, rights metadata to define the rights status in
 relation to specific agents or for specific objects, and to record events that
 are relevant regarding the digital provenance of digital objects.
@@ -980,7 +987,7 @@ code parts, the prefix "premis" is omitted (default namespace is the PREMIS
 namespace[^10]) while the "mets" prefix is explicitly added if a relation to the
 METS file is explained.
 
-[^10]: Namespace: info:lc/xmlns/premis-v2, namespace schema location: http://www.loc.gov/standards/premis/v2/premis-v2-2.xsd
+[^10]: Namespace: http://www.loc.gov/premis/v3, namespace schema location: http://www.loc.gov/standards/premis/premis.xsd
 
 #### Vocabulary
 
@@ -1104,11 +1111,11 @@ The PREMIS object contains technical information about a digital object.
 
 ##### Object identifier
 
-**AIP-ID-LOCAL**: If an identifier of type `local` is used, this 
-identifier SHOULD be unique in the scope of the PREMIS document.
+<a name="aip-id-local"></a>**AIP-ID-LOCAL**: If an identifier of type `local` is
+used, this identifier SHOULD be unique in the scope of the PREMIS document.
 
-**AIP-ID-OTHER**: Other object identifiers of the allowed types COULD be used 
-additionally to the identifier of type `local`.
+<a name="aip-id-other"></a>**AIP-ID-OTHER**: Other object identifiers of the
+allowed types COULD be used additionally to the identifier of type `local`.
 
 Listing 10 shows an example of an identifier of type `local`.
 
@@ -1122,11 +1129,13 @@ Listing 10 shows an example of an identifier of type `local`.
 **Listing 10:**
 Object identifier
 
-##### Fixity
+##### Checksums
 
-Fixity information is provided as a descendant of the `objectCharacteristics`
-element information in form of a SHA-256 hashsum, a fixed size 256-bit value. An
-example is shown in Listing 11.
+<a name="aip-premis-checksums"></a>**AIP-PREMIS-CHECKSUMS**: Checksums COULD be
+provided as a descendant of the `objectCharacteristics` element information in
+form of a SHA-256 hashsum, a fixed size 256-bit value. 
+
+An example is shown in Listing 11.
 
 ```xml
 <fixity>
@@ -1141,13 +1150,18 @@ Hashsum (value shortened)
 
 ##### File format
 
-The format element COULD be provided either using the formatRegistry or the
-formatDesignation element subelements, or both. Regarding the formatRegistry,
-the Persistent Unique Identifier (PUID)[^14] based on the PRONOM technical
-registry[^15] can be used. An example is shown in Listing 12.
+<a name="aip-premis-file-format"></a>**AIP-PREMIS-FILE-FORMAT**: The format
+element COULD be provided either using the formatRegistry or the
+formatDesignation element subelements, or both. 
+
+<a name="aip-premis-file-format-puid"></a>**AIP-PREMIS-FILE-FORMAT-PUID**:
+Regarding the formatRegistry, the Persistent Unique Identifier (PUID)[^14]
+based on the PRONOM technical registry[^15] COULD be used. 
 
 [^14]: http://www.nationalarchives.gov.uk/aboutapps/pronom/puid.htm
 [^15]: http://www.nationalarchives.gov.uk/PRONOM
+
+An example is shown in Listing 12.
 
 ```xml
 <format>
@@ -1164,12 +1178,14 @@ registry[^15] can be used. An example is shown in Listing 12.
 ```
 
 **Listing 12:**
-Optionally, the format version can be provided using the formatDesignation element.
+Optionally, the format version can be provided using the `formatDesignation` element.
 
 ##### Object characterisation
-The JHOVE[^16] technical characterisation result (XML format) COULD be embedded as a
-descendant of the obbjectCharacteristicsExtension element. An example is shown
-in Listing 13.
+
+<a name="aip-premis-characterisation"></a>**AIP-PREMIS-CHARACTERISATION**: The
+JHOVE[^16] technical characterisation result (XML format) COULD be embedded as
+a descendant of the `objectCharacteristicsExtension` element. An example is
+shown in Listing 13.
 
 [^16]: http://sourceforge.net/projects/jhove/
 
@@ -1186,8 +1202,10 @@ JHove digital object characterisation
 
 ##### Original name
 
-The `originalName` element is an optional element to record the name of an 
-original file. An example is shown in Listing 14.
+<a name="aip-premis-original-name"></a>**AIP-PREMIS-ORIGINAL-NAME**: The
+`originalName` element COULD be used to record the name of an original file. 
+
+An example is shown in Listing 14.
 
 ```xml
 <originalName>originalfilename.ext</originalName>
@@ -1197,11 +1215,16 @@ original file. An example is shown in Listing 14.
 Original name
 
 ##### Storage
-The storage element COULD hold contain information about the physical location
-of the digital object. Ideally this is a resolvable URI, but it can also
-generally hold information needed to retrieve the digital object from the
-storage system (e.g. access control or for segmented AIPs). An example is shown
-in Listing 15.
+
+<a name="aip-premis-storage"></a>**AIP-PREMIS-STORAGE**: The storage element
+COULD hold contain information about the physical location of the digital
+object. 
+
+Ideally this is a resolvable URI, but it can also generally hold information
+needed to retrieve the digital object from the storage system (e.g. access
+control or for segmented AIPs). 
+
+An example is shown in Listing 15.
 
 ```xml
 <storage>
@@ -1219,13 +1242,16 @@ in Listing 15.
 Storage description
 
 ##### Relationship
-The `relationship` element contains the "part-of" relationship of the digital 
-object. For digital objects included in the AIP, the value "is included in" of 
-the `relationshipSubType` element means that a digital object is part of an AIP 
-which is just making an explicit statement about a fact. More importantly, in 
-the case of "segmented AIPs", it is used to express that an AIP is part of a 
-parent AIP which is not expressed otherwise. An example of the latter case is 
-shown in Listing 16.
+
+<a name="aip-premis-relationship"></a>**AIP-PREMIS-RELATIONSHIP**: The
+`relationship` element SHOULD be used to describe relationships of the digital
+object. 
+
+<a name="aip-premis-aip-included"></a>**AIP-PREMIS-AIP-INCLUDED**: If an AIP is
+part of another AIP, then the element `relationshipSubType` MUST reference the
+superordinated AIP. 
+
+An example of the latter case is shown in Listing 16.
 
 ```xml
 <relationship>
@@ -1244,11 +1270,15 @@ shown in Listing 16.
 Relationship
 
 ##### Linking rights statement
-If a `linkingRightsStatementIdentifier` child element object exists, there is a
-rights statement attached to the object. For example, only files which have the
-"discovery right" are being indexed in order to allow these files to be
-retrievable by the full-text search. An example of the latter case is shown in
-Listing 17.
+
+<a name="aip-premis-rights"></a>**AIP-PREMIS-RIGHTS**: The a
+`linkingRightsStatementIdentifier` element COULD be used to describe rights
+statement attached to the object. 
+
+For example, only files which have the "discovery right" are being indexed in
+order to allow these files to be retrievable by the full-text search. 
+
+An example of the latter case is shown in Listing 17.
 
 ```xml
 <linkingRightsStatementIdentifier>
@@ -1267,8 +1297,10 @@ Rights statement
 #### PREMIS event
 
 ##### Event identifier
-The `eventIdentifier` element records an identifier that is valid in the scope of the PREMIS
-file. An example is shown in Listing 18.
+
+<a name="aip-premis-event-id"></a>**AIP-PREMIS-EVENT-ID**: The `eventIdentifier` 
+SHOULD be used to identify events, such as preservation actions, which were applied. 
+An example is shown in Listing 18.
 
 ```xml
 <eventIdentifier>
@@ -1280,20 +1312,12 @@ file. An example is shown in Listing 18.
 **Listing 18:**
 Event identifier
 
-##### Event date/time
-
-Date/time in UTC format (ISO 8601), example shown in Listing 19.
-
-```xml
-<eventDateTime>2014-05-01T01:00:00+01:00</eventDateTime>
-```
-
-**Listing 19:**
-Event date/time
-
 ##### Link to agent/object
-The event is linked to an agent and an object. In the example shown in listing
-20 the SIP to AIP conversion software is linked as agent with identifier value
+
+<a name="aip-premis-event-agent"></a>**AIP-PREMIS-EVENT-AGENT**: If an event is desscribed, the agent which caused 
+the event (e.g. person, software, hardware, etc.) MUST be related to the event by means of the `linkingAgentIdentifier` element.
+
+In the example shown in listing 20 the SIP to AIP conversion software is linked as agent with identifier value
 ’Sip2Aip’ and the corresponding object is linked by the local UUID value. An
 example is shown in Listing 20.
 
@@ -1317,9 +1341,11 @@ Link to agent/object
 
 ##### Migration event type
 
-The migration event (value of element `eventIdentifierType` is "migration") needs
-to be related to the event that created the source object by means of the
-`relatedEventIdentification`. An example is shown inn.
+<a name="aip-premis-event-type"></a>**AIP-PREMIS-EVENT-AGENT**: The event by which a 
+resource was created SHOULD to be recorded by means of the
+`relatedEventIdentification` element.
+
+An example is shown in Listing 21.
 
 ```xml
 <event>
@@ -1362,11 +1388,11 @@ event which created the source object is "ingest-001".
 
 #### PREMIS agent
 
-The agent element holds information about agents (people, organizations or
-software).
+<a name="aip-premis-agent"></a>**AIP-PREMIS-AGENT**: Agents which are referenced in
+events must be described by means of the `agent` element.
 
-As an example for an agent, Listing 22 shows a software for indexing named 
-`IndexingSoftware` which supports full text search of the items contained in a package.
+Listing 22 shows a software for indexing named `IndexingSoftware` which supports 
+full text search of the items contained in a package.
 In this case, the "discovery right" is assigned to this agent. 
 
 ```xml
@@ -1392,6 +1418,9 @@ In this case, the "discovery right" is assigned to this agent.
 Software as an agent
 
 #### PREMIS rights
+
+<a name="aip-premis-rights"></a>**AIP-PREMIS-RIGHTS**: Rights which are referenced
+in rights statements MUST be described by means of the `rights` element.
 
 The `rights` element holds information about the rights status of individual
 digital objects or about agents. An example is shown in Listing 23.
@@ -1432,16 +1461,18 @@ According to the requirement defined in section [5.3.1](#metsid)
 in the root METS file of the AIP. By definition, this identifier is the
 identifier of the AIP itself.
 
-**AIP-CONTAINER-ID:**: The identifier of the AIP -- defined by the 
-attribute `OBJID` of the root METS file's root element SHOULD be used to derive 
-the beginning part of the file name of the physical storage container. 
+<a name="aip-container-id"></a>**AIP-CONTAINER-ID:**: The identifier of the AIP
+-- defined by the attribute `OBJID` of the root METS file's root element SHOULD
+be used to derive the beginning part of the file name of the physical storage
+container. 
 
 The file name part which is derived from the AIP's identifier is called the 
 *AIP file name ID*.
 
-**AIP-ID-FILENAME-MAPPING**: A specified policy SHOULD be defined which allows
-deriving a cross-platform, portable file name part from the AIP's identifier 
-and, vice versa, to infer the identifier from the physical container's filename. 
+<a name="aip-id-filename-mapping"></a>**AIP-ID-FILENAME-MAPPING**: A specified
+policy SHOULD be defined which allows deriving a cross-platform, portable file
+name part from the AIP's identifier and, vice versa, to infer the identifier
+from the physical container's filename. 
 
 A first option to implement this requirement would be to limit the characters
 used in the file name to the "Portable Filename Character Set"[^17] which 
@@ -1461,9 +1492,9 @@ character set, then these would need to be mapped into specific ones of the
 accepted character set. 
 
 One proposed way to achieve a bi-directional mapping between identifiers and file names 
-is the pairtree character mapping specification.[^17]
+is the pairtree character mapping specification.[^18]
 
-[^17]: https://tools.ietf.org/html/draft-kunze-pairtree-01 (see section 3: “Identifier string cleaning”)
+[^18]: https://tools.ietf.org/html/draft-kunze-pairtree-01 (see section 3: “Identifier string cleaning”)
 
 For example, let us assume the identifier of the AIP was:
 
@@ -1482,14 +1513,23 @@ name would be:
 In this example, the AIP's physical container file name only consists of the 
 AIP file name ID. 
 
-**AIP-CONTAINER-SUFFIX**: Any suffix COULD be added to the physical container
-file that bears additional information, such as the version, date, sequence number, 
-or the like.
+<a name="aip-container-suffix"></a>**AIP-CONTAINER-SUFFIX**: Any suffix COULD be
+added to the physical container file that bears additional information, such as
+the version, date, sequence number, or the like.
 
 For example, a version number could be added as a suffix to the AIP file name ID as
 follows:
 
     "urn+uuid+123e4567-e89b-12d3-a456-426655440000_v00001.tar"
+
+<a name="aip-container-part"></a>**AIP-CONTAINER-PART**: If a physical container
+contains a part of a superordinate AIP, a suffix COULD be added to the AIP file
+name ID.
+
+For example, a number for the corresponding part could be added as a suffix to the 
+AIP file name ID as follows:
+
+    "urn+uuid+123e4567-e89b-12d3-a456-426655440000_part00001.tar"
 
 ### Packaging
 
@@ -1499,7 +1539,7 @@ TAR is an archive file format and also refers to the software `tar` which is
 a software utility that can be used to conveniently bundle up files into 
 one file for being able to transfer archival packages. 
 
-**AIP-PACKAGE-SINGLEFOLDER**: The package content SHOULD be contained in a 
+<a name="aip-package-singlefolder"></a>**AIP-PACKAGE-SINGLEFOLDER**: The package content SHOULD be contained in a 
 single folder.
 
 This means that if a TAR packaged AIP is unpackaged, the content is 
@@ -1507,9 +1547,9 @@ extracted into a single folder which includes the AIP content.
 
 As an example, let's assume a TAR file with the following name:
 
-    "urn+uuid+7d0d1987-0f1c-47a7-8fd6-cc5c7de4064f.tar"
+    "urn+uuid+123e4567-e89b-12d3-a456-426655440000.tar"
 
-If it is extracted, a folder `urn:uuid:7d0d1987-0f1c-47a7-8fd6-cc5c7de4064f` is
+If it is extracted, a folder `urn:uuid:123e4567-e89b-12d3-a456-426655440000` is
 created which includes the AIP content, as shown in Figure [14](#fig14).
 
 <a name="fig14"></a>
@@ -1519,9 +1559,9 @@ created which includes the AIP content, as shown in Figure [14](#fig14).
 AIP content extracted from a TAR package.
 
 
-**AIP-TARPACKAGE-MANIFEST**: In addition to fixity information recorded in the 
-METS file, the AIP COULD include a manifest file (manifest.txt) listing files 
-with MD5 and SHA-256 hashsum.
+<a name="aip-tarpackage-manifest"></a>**AIP-TARPACKAGE-MANIFEST**: In addition
+to fixity information recorded in the METS file, the AIP COULD include a
+manifest file (manifest.txt) listing files with MD5 and SHA-256 hashsum.
 
 The manifest file is a text file containing a list of records separated by two
 line breaks (two carriage return characters (hexadecimal 0D0D) or two times
@@ -1549,24 +1589,26 @@ MD5: 96b85205a9b4b0b5d3c88e2e51b0dc4c
 **Listing 25:**
 Manifest file
 
-**AIP-PACKAGE-UNCOMPRESSED**: If TAR is used as the packaging format, the content 
-SHOULD be aggregated without compression.
+<a name="aip-package-uncompressed"></a>**AIP-PACKAGE-UNCOMPRESSED**: If TAR is
+used as the packaging format, the content SHOULD be aggregated without
+compression.
 
-For exmaple, to create a TAR archive without compression using the TAR utility:
+For example, to create a TAR archive without compression for the AIP folder 
+`"urn+uuid+123e4567-e89b-12d3-a456-426655440000"` using the `tar` utility:
 
-    tar -cf "urn+uuid+123e4567-e89b-12d3-a456-426655440000"
+    tar -cf "urn+uuid+123e4567-e89b-12d3-a456-426655440000.tar" "urn+uuid+123e4567-e89b-12d3-a456-426655440000"
 
 #### BagIt
 
-The BagIt[^18] format specifies a set of hierarchical file layout conventions 
+The BagIt[^19] format specifies a set of hierarchical file layout conventions 
 for storage and transfer of arbitrary digital content. It can be used for 
 packaging the AIP.
 
-[^18]: https://tools.ietf.org/html/rfc8493
+[^19]: https://tools.ietf.org/html/rfc8493
 
-**AIP-PACKAGE-BAGIT**: If the BagIt packaging format is used, the containing 
-folder of the AIP SHOULD be located in the `data` folder as shown 
-Figure [15](#fig15).
+<a name="aip-package-bagit"></a>**AIP-PACKAGE-BAGIT**: If the BagIt packaging
+format is used, the containing folder of the AIP SHOULD be located in the `data`
+folder as shown Figure [15](#fig15).
 
 <a name="fig15"></a>
 ![Information Package structure](figs/AIP-in-BagIt-data-folder.png "AIP in the `data` folder of a BagIt container.")
