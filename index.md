@@ -1536,11 +1536,11 @@ AIP file name ID as follows:
 #### TAR packaging
 
 TAR is an archive file format and also refers to the software `tar` which is
-a software utility that can be used to conveniently bundle up files into 
-one file for being able to transfer archival packages. 
+a software utility that can be used to bundle up files into one file for being 
+able to transfer archival packages. 
 
-<a name="aip-package-singlefolder"></a>**AIP-PACKAGE-SINGLEFOLDER**: The package content SHOULD be contained in a 
-single folder.
+<a name="aip-package-singlefolder"></a>**AIP-PACKAGE-SINGLEFOLDER**: The package
+content SHOULD be contained in a single folder.
 
 This means that if a TAR packaged AIP is unpackaged, the content is 
 extracted into a single folder which includes the AIP content.
@@ -1600,21 +1600,58 @@ For example, to create a TAR archive without compression for the AIP folder
 
 #### BagIt
 
-The BagIt[^19] format specifies a set of hierarchical file layout conventions 
-for storage and transfer of arbitrary digital content. It can be used for 
+The BagIt[^19] format specifies a set of hierarchical file layout conventions
+for storage and transfer of arbitrary digital content. It can be used for
 packaging the AIP.
 
 [^19]: https://tools.ietf.org/html/rfc8493
 
-<a name="aip-package-bagit"></a>**AIP-PACKAGE-BAGIT**: If the BagIt packaging
-format is used, the containing folder of the AIP SHOULD be located in the `data`
-folder as shown Figure [15](#fig15).
+<a name="aip-package-bagit"></a>**AIP-PACKAGE-BAGIT**: As defined by the BagIt
+specification, the `bagit.txt` file in the root directory MUST contain the BagIt
+version and tag file character encoding.
 
-<a name="fig15"></a>
-![Information Package structure](figs/AIP-in-BagIt-data-folder.png "AIP in the `data` folder of a BagIt container.")
+    BagIt-Version: 0.97 
+    Tag-File-Character-Encoding: UTF-8
 
-**Figure 15:**
-AIP in the `data` folder of a BagIt container.
+<a name="aip-package-bagit-profile"></a>**AIP-PACKAGE-BAGIT-PROFILE**: A
+`bagit-info.txt` MUST be available and valid according to the E-ARK BagIt
+profile (corresponding to the version of this specification).[^20]
+
+[^20]:
+https://github.com/DILCISBoard/E-ARK-AIP/blob/{version-tag}/profiles/bagit/e-ark-bag-profile.json
+
+Example of a `bagit-info` file:
+
+    BagIt-Profile: https://github.com/DILCISBoard/E-ARK-AIP/blob/{version-tag}/profiles/bagit/e-ark-bag-profile.json
+    Source-Organization: Example Organisation 
+    Organization-Address: {Street}, {City}, {Country}
+    External-Identifier: urn:uuid:123e4567-e89b-12d3-a456-426655440000 
+    External-Description: Example container.  
+    Bagging-Date: 2018-12-18 
+    Bag-Size: 2.7 MB 
+    Payload-Oxum: 2791644.35
+    E-ARK-Package-Type: AIP 
+    E-ARK-Specification-Version: 1.1
+
+<a name="aip-package-bagit"></a>**AIP-PACKAGE-BAGIT**: The containing folder of
+the AIP SHOULD be located in the `data` folder as shown Figure [15](#fig15).
+
+<a name="fig15"></a> ![Information Package structure](figs/AIP-in-BagIt-data-folder.png "AIP in the `data` folder of a BagIt container.")
+
+**Figure 15:** AIP in the `data` folder of a BagIt container.
+
+<a name="aip-package-bagit-fetch"></a>**AIP-PACKAGE-BAGIT-FETCH**: If the AIP is
+a parent-AIP with the content of the logical AIP distributed over multiple
+child-AIPs, then the `fetch.txt` file[^21] SHOULD contain a list of URLs
+referencing the child-AIP packages.
+
+<a name="aip-package-bagit-fetch-manifest"></a>
+**AIP-PACKAGE-BAGIT-FETCH-MANIFEST**: If a `fetch.txt` file with a list of
+child-AIPs is used, then every child-AIP file listed in the fetch file SHOULD be
+listed in every payload manifest. 
+
+[^21] https://tools.ietf.org/id/draft-kunze-bagit-08.html#rfc.section.2.2.3
+
 
 # Appendices
 
