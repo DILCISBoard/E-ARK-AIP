@@ -1,4 +1,4 @@
-# Scope of this document
+# Scope and purpose
 
 To briefly recall the three types of information packages as defined by OAIS
 [@OAIS2012], there is the Submission Information Package (SIP) which is used to
