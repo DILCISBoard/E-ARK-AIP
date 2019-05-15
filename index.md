@@ -695,17 +695,22 @@ package from the repository.
 
 According to the Common Specification, any ID element must start with a prefix
 (also, the XML ID datatype is does not allow IDs ed to start with a number, so a
-prefix solves this issue). We recommended to use
-> "as a prefix an internationally recognized standard identifier for the
-> institution from which the SIP originates. This may lead to problems with
-> smaller institutions, which do not have any such internationally recognized
-> standard identifier. We propose in that case, to start the prefix with the
-> internationally recognized standard identifier of the institution, where the
-> AIP is created, augmented by an identifier for the institution from which the
-> SIP originates."
+prefix solves this issue). 
 
-As an example of the implementation a UUID could be used. The prefix
-`urn:uuid:` would indicate the identifier type. For example, if the package identifier value is
+We recommended to use as a prefix an internationally recognized standard identifier 
+for the institution from which the SIP originates. This may lead to problems 
+with smaller institutions, which do not have any such internationally recognized
+standard identifier. We propose in that case, to start the prefix with the
+internationally recognized standard identifier of the institution, where the
+AIP is created, augmented by an identifier for the institution from which the
+SIP originates.
+
+An alternative to this is to use a UUID:
+
+    https://tools.ietf.org/html/rfc4122
+
+The prefix `urn:uuid:` would indicate the identifier type. For example, if the 
+package identifier value is
 `"123e4567-e89b-12d3-a456-426655440000"` this would be the value of the METS root
 element’s `OBJID` attribute:
 
@@ -1523,7 +1528,7 @@ Example of a `bagit-info` file:
     Source-Organization: Example Organisation 
     Organization-Address: {Street}, {City}, {Country}
     External-Identifier: urn:uuid:123e4567-e89b-12d3-a456-426655440000 
-    External-Description: Example container.  
+    External-Description: Example container.
     Bagging-Date: 2018-12-18 
     Bag-Size: 2.7 MB 
     Payload-Oxum: 2791644.35
