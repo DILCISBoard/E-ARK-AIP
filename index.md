@@ -241,7 +241,7 @@ As already mentioned in section [4.1](#reps), the CSIP relies on the concept of
 with two representations.
 
 <a name="fig1"></a>
-![Information Package structure](figs/fig_1_ip_structure.png "Structure of an IP compliant with the E-ARK Common Specification for IPs structure")
+![Information Package structure](figs/visio/fig_1_ip_structure.svg "Structure of an IP compliant with the E-ARK Common Specification for IPs structure")
 
 **Figure 1:**
 Structure of an IP.
