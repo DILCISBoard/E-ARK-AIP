@@ -241,7 +241,7 @@ As already mentioned in section [4.1](#reps), the CSIP relies on the concept of
 with two representations.
 
 <a name="fig1"></a>
-![Information Package structure](figs/visio/fig_1_ip_structure.svg "Structure of an IP compliant with the E-ARK Common Specification for IPs structure")
+![Information Package structure](figs/visio/visio/fig_1_ip_structure.svg "Structure of an IP compliant with the E-ARK Common Specification for IPs structure")
 
 **Figure 1:**
 Structure of an IP.
@@ -287,7 +287,7 @@ single METS file contains all references to metadata and data files contained in
 the IP.
 
 <a name="fig3"></a>
-![Information Package structure](figs/fig_3_mets_root.png "One METS file in the root of the IP references all metadata and data files")
+![Information Package structure](figs/visio/visio/fig_3_mets_root.svg "One METS file in the root of the IP references all metadata and data files")
 
 **Figure 3:**
 One METS file in the root of the package references all metadata and data files
@@ -306,7 +306,7 @@ IP’s root which points to the METS files `Representations/Rep-001/METS.xml` an
 `Representations/Rep-002/METS.xml`.
 
 <a name="fig4"></a>
-![Information Package structure](figs/fig_4_mets_root.png "Root METS file references METS files of the different representations")
+![Information Package structure](figs/visio/fig_4_mets_root.svg "Root METS file references METS files of the different representations")
 
 **Figure 4:**
 Root METS file references METS files of the different representations
@@ -342,7 +342,7 @@ representations and each sub-directory path MUST be unique across the
 containers.
 
 <a name="fig5"></a>
-![Information Package structure](figs/fig_5_mets_root.png "Example of an IP.")
+![Information Package structure](figs/visio/fig_5_mets_root.svg "Example of an IP.")
 
 **Figure 5:**
 Example of an IP.
@@ -442,7 +442,7 @@ folder in that case.
 
 <a name="fig6"></a>
 
-![Information Package structure](figs/fig_6_sub_folder.png "The AIP's
+![Information Package structure](figs/visio/fig_6_sub_folder.png "The AIP's
 "submission" folder contains the IP of the original submission"){ width=193px }
 
 **Figure 6:**
@@ -453,7 +453,7 @@ folder contains three sub-folders representing one original submission and two
 updates which were created over the course of three days.
 
 <a name="fig7"></a>
-![Information Package structure](figs/fig_7_sub_folder.png "The AIP contains submissions in subfolders to support submission updates")
+![Information Package structure](figs/visio/fig_7_sub_folder.svg "The AIP contains submissions in subfolders to support submission updates")
 
 **Figure 7:**
 The AIP containing submissions in subfolders to support submission updates.
@@ -477,7 +477,7 @@ representations which were part of the original submission. The
 is”, which means that neither data nor metadata is changed.
 
 <a name="fig8"></a>
-![Information Package structure](figs/fig_8_aip_reps.png "AIP representations.")
+![Information Package structure](figs/visio/fig_8_aip_reps.svg "AIP representations.")
 
 **Figure 8:**
 AIP representations.
@@ -489,7 +489,7 @@ which contains a new representation (rep-001.1) derived from one of the
 representations contained in the original submission (rep-001).
 
 <a name="fig9"></a>
-![Information Package structure](figs/fig_9_aip_reps.png "AIP representations.")
+![Information Package structure](figs/visio/fig_9_aip_reps.svg "AIP representations.")
 
 **Figure 9:**
 AIP representations.
@@ -550,7 +550,7 @@ PDF/A during SIP to AIP conversion. Therefore the second representation
 an additional representation (`Rep-002.1`).
 
 <a name="fig10"></a>
-![Information Package structure](figs/fig_10_aip_reps.png "AIP using representation-based division of METS files.")
+![Information Package structure](figs/visio/fig_10_aip_reps.svg "AIP using representation-based division of METS files.")
 
 **Figure 10:**
 AIP using representation-based division of METS files.
@@ -582,7 +582,7 @@ level metadata directory because metadata for the original submission is not
 allowed to be changed.
 
 <a name="fig11"></a>
-![Information Package structure](figs/fig_11_aip_reps.png "METS file priorities.")
+![Information Package structure](figs/visio/fig_11_aip_reps.svg "METS file priorities.")
 
 **Figure 11:**
 METS files in the AIP’s `Metadata/submission` directory have priority over
@@ -613,7 +613,7 @@ relationship where each child-AIP bears the information about the parent-AIP
 to which they belong and, vice versa, the parent-AIP references the child-AIPs.
 
 <a name="fig12"></a>
-![Information Package structure](figs/fig_12_aip_parent_child.png "Parent-child relationship between AIPs."){ width=278px }
+![Information Package structure](figs/visio/fig_12_aip_parent_child.svg "Parent-child relationship between AIPs."){ width=278px }
 
 **Figure 12:**
 Parent-child relationship between AIPs
@@ -633,7 +633,7 @@ version of the parent-AIP which implies the risk that the integrity of the
 logical AIP is in danger if the latest version of the parent-AIP is lost.
 
 <a name="fig13"></a>
-![Information Package structure](figs/fig_13_new_aip_parent.png "New version of a parent-AIP."){ width=382px }
+![Information Package structure](figs/visio/fig_13_new_aip_parent.svg "New version of a parent-AIP."){ width=382px }
 
 **Figure 13:**
 New version of a parent-AIP
@@ -1450,7 +1450,7 @@ If it is extracted, a folder `urn:uuid:123e4567-e89b-12d3-a456-426655440000` is
 created which includes the AIP content, as shown in Figure [14](#fig14).
 
 <a name="fig14"></a>
-![Information Package structure](figs/AIP-in-BagIt-data-folder.png "AIP content extracted from a TAR package.")
+![Information Package structure](figs/visio/AIP-in-BagIt-data-folder.png "AIP content extracted from a TAR package.")
 
 **Figure 14:**
 AIP content extracted from a TAR package.
@@ -1533,7 +1533,7 @@ Example of a `bagit-info` file:
 <a name="aip-package-bagit"></a>**AIP-PACKAGE-BAGIT**: The containing folder of
 the AIP SHOULD be located in the `data` folder as shown Figure [15](#fig15).
 
-<a name="fig15"></a> ![Information Package structure](figs/AIP-in-BagIt-data-folder.png "AIP in the `data` folder of a BagIt container.")
+<a name="fig15"></a> ![Information Package structure](figs/visio/AIP-in-BagIt-data-folder.png "AIP in the `data` folder of a BagIt container.")
 
 **Figure 15:** AIP in the `data` folder of a BagIt container.
 
