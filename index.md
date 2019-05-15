@@ -220,7 +220,7 @@ The following AIP format specification is defined as a set of requirements[^2]
 which will be explained with the help of textual descriptions, figures, and
 concrete examples. It is divided into two parts. On the one hand, there is the
 structure and metadata specification which defines how the AIP is conceptually
-organized by means of a directory hierarchy in a file system and a set of
+organized by means of a folder hierarchy in a file system and a set of
 metadata standards. And on the other hand, there is the physical container
 specification which defines the bit-level manifestation of the transferable
 entity.
@@ -292,12 +292,12 @@ the IP.
 **Figure 3:**
 One METS file in the root of the package references all metadata and data files
 
-Even though the number suffix of the directories `rep-001` and `rep-002` of the
+Even though the number suffix of the folders `rep-001` and `rep-002` of the
 example shown in Figure [3](#fig3) suggests an order of representations, there
-are no requirements regarding the naming of directories containing the
+are no requirements regarding the naming of folders containing the
 representations.  The order of representations and the relations between them is
 defined by the structural and preservation metadata. The `representations`
-directory is mandatory, even for IPs which contain only one representation.
+folder is mandatory, even for IPs which contain only one representation.
 
 If the *divided* METS structure is used, as shown in Figure [4](#fig4), then a
 separate METS file for each representation exists which are referenced by the
@@ -318,14 +318,14 @@ the root METS difficult to work with).
 
 As a corollary of this division method we define, on the one hand, a
 representation-based division as the separation of representations in different
-directories under the `representations` folder as shown in the example of Figure
+folders under the `representations` folder as shown in the example of Figure
 [4](#fig4). And, on the other hand, we define a size-based division as the
 separation of representation parts. To illustrate this, Figure [5](#fig5) shows
 an example where a set of files belongs to the same representation (here named
 `binary`) and is referenced in two separate physical containers (here named {C1}
 and {C2} respectively). A key requirement when using size-based division of a
 representation is that there must not be any overlap in the structure of the
-representations, and that each sub-directory path must be unique across the
+representations, and that each sub-folder path must be unique across the
 containers where the representation parts together constitute a representation
 entity. Note that for this reason a numerical suffix is added to the
 representation METS files, to avoid overwriting representation METS files when
@@ -338,7 +338,7 @@ containers.
 
 <a name="aip-rep-div-overlap"></a>**AIP-REP-DIV-OVERLAP**: If a representation is 
 divided into parts, any overlap MUST be avoided regarding the structure of the 
-representations and each sub-directory path MUST be unique across the 
+representations and each sub-folder path MUST be unique across the 
 containers.
 
 <a name="fig5"></a>
@@ -388,8 +388,8 @@ the AIP format defines a `submission` folder in the root of the AIP which
 contains the original submission as well as any submission updates added after
 the AIP was created. The following obligatory requirement applies:
 
-<a name="aip-submission-root"></a>**AIP-SUBMISSION-ROOT**: The root directory of
-the AIP package COULD contain a `submission` directory which is a container for
+<a name="aip-submission-root"></a>**AIP-SUBMISSION-ROOT**: The root folder of
+the AIP package COULD contain a `submission` folder which is a container for
 the original submission and for any updates of SIPs which are submitted after
 the AIP was created.
 
@@ -473,7 +473,7 @@ maintenance or for digital preservation purposes.
 To illustrate this with the help of an example, Figure [8](#fig8) shows the 
 structure of an AIP where the original submission consists of two 
 representations which were part of the original submission. The 
-`submission` directory of the AIP contains the original submission “as 
+`submission` folder of the AIP contains the original submission “as 
 is”, which means that neither data nor metadata is changed.
 
 <a name="fig8"></a>
@@ -484,7 +484,7 @@ AIP representations.
 
 Let us now assume that during SIP to AIP conversion an additional representation
 is added to the AIP. Figure [9](#fig9) illustrates an example where an additional
-`representations` directory exists as a sibling of the `submission` directory
+`representations` folder exists as a sibling of the `submission` folder
 which contains a new representation (rep-001.1) derived from one of the
 representations contained in the original submission (rep-001).
 
@@ -499,8 +499,8 @@ added during SIP to AIP conversion.
 
 <a name="aip-representations"></a>**AIP-REPRESENTATIONS**: If a new 
 representation is added during ingest (SIP to AIP conversion) or created as an 
-AIP preservation measure (AIP to AIP conversion), the root directory of the AIP 
-MUST contain a `representations` directory. For this directory, the same 
+AIP preservation measure (AIP to AIP conversion), the root folder of the AIP 
+MUST contain a `representations` folder. For this folder, the same 
 requirements as for the representations of an IP apply.
 
 Note that the three-digit number suffix following the name `rep-` used in 
@@ -514,19 +514,19 @@ not have to follow such logic.
 
 The AIP is an extension of the IP format; therefore it must follow the 
 basic structure of an IP. Figure [9](#fig9) shows that the IP components, 
-consisting of METS file, `Metadata` and `representations` directories, 
+consisting of METS file, `Metadata` and `representations` folders, 
 are repeated on theAIP level. The extension of the AIP format is basically 
 given by the fact thatthe AIP is an IP which can contain another IP (here i.e. 
-a SIP) in the `submission` directory.
+a SIP) in the `submission` folder.
 
-Note that the `representations` directory in the AIP root directory is optional.
-It means that this directory must only exist in case representations other than
+Note that the `representations` folder in the AIP root folder is optional.
+It means that this folder must only exist in case representations other than
 the ones originally submitted are added to the AIP.
 
 The AIP is an IP, therefore the CSIP requirement *CSIPSTR4* applies and the 
 AIP's root MUST contain a METS file that either references all metadata and 
 data files or it references other METS files located in the corresponding 
-representation directories of the AIPs or of the original submission’s 
+representation folders of the AIPs or of the original submission’s 
 `representations`.
 
 The METS file which is located in the root folder of the information package is
@@ -536,7 +536,7 @@ As a concrete example let us assume a policy stating that PDF documents must
 generally be converted to PDF/A. Taking the premise formulated in section 
 [4.4](#structdiv) into account that the original submission is not to be 
 changed, the additional representation is added in a `Representation` 
-directory in the root of the AIP as shown in figure [7](#fig7). Note that this 
+folder in the root of the AIP as shown in figure [7](#fig7). Note that this 
 example uses a representation-based division of METS files.
 
 Analogously to Figure [8](#fig8) there are also two representations in the 
@@ -556,7 +556,7 @@ an additional representation (`Rep-002.1`).
 AIP using representation-based division of METS files.
 
 The two representations of the original submission are located in the
-`submission/representations` directory of the AIP and the METS file of the
+`submission/representations` folder of the AIP and the METS file of the
 submission references the corresponding representation METS files using a
 relative path to be resolved within the SIP. The root level METS file of the
 AIP references the METS file of the original submission
@@ -566,32 +566,32 @@ AIP references the METS file of the original submission
 ### Changing the metadata of the original submission
 
 If the originally submitted SIP -- as a consequence of an implementation 
-decision -- is not supposed to change, then the AIP level metadata directory 
+decision -- is not supposed to change, then the AIP level metadata folder 
 can contain metadata that relates to representations contained in the original 
 submission. Then, there might be scenarios where the originally submitted 
 metadata needs to be updated.
 
 As an example let us assume that we have to recalculate the checksum during SIP
 to AIP conversion and that the checksum is recorded as an attribute of the METS
-file element. As shown in Figure [11](#fig11), the AIP’s `Metadata` directory can --
-additionally to the existing metadata category directories -- contain a
-`submission` directory with metadata files (here `METS.xml`) that by definition
+file element. As shown in Figure [11](#fig11), the AIP’s `Metadata` folder can --
+additionally to the existing metadata category folders -- contain a
+`submission` folder with metadata files (here `METS.xml`) that by definition
 have priority over the ones contained in the original submission. This means
 that in case metadata needs to be updated, they must be placed into the root
-level metadata directory because metadata for the original submission is not
+level metadata folder because metadata for the original submission is not
 allowed to be changed.
 
 <a name="fig11"></a>
 ![Information Package structure](figs/visio/fig_11_aip_reps.svg "METS file priorities.")
 
 **Figure 11:**
-METS files in the AIP’s `Metadata/submission` directory have priority over
+METS files in the AIP’s `Metadata/submission` folder have priority over
 the ones contained in the original submission
 
 <a name="aip-md-priority"></a>**AIP-MD-PRIORITY**: Let `<MDPath>` be a 
-sub-directory-path to a metadata file, then a metadata file under the 
-`AIP/metadata/submission` directory MUST have priority over a metadata file 
-under the `AIP/submission` directory so that `AIP/metadata/submission/<MDPath>` 
+sub-folder-path to a metadata file, then a metadata file under the 
+`AIP/metadata/submission` folder MUST have priority over a metadata file 
+under the `AIP/submission` folder so that `AIP/metadata/submission/<MDPath>` 
 has priority over `AIP/submission/<MDPath>`.
 
 An example is shown in Figure [11](#fig11) where the METS file in the root of 
@@ -828,7 +828,7 @@ Linking to an EAD XML descriptive metadata file
 a single `<amdSec>` element which contains one or several `<digiprovMD>` 
 elements. The `<mdRef>` child of at least one of these elements must be of type 
 `PREMIS` (`@MDTYPE=”PREMIS”`) with the reference to a PREMIS file in the `Metadata` 
-directory of the AIP root.
+folder of the AIP root.
 
 Listing 5 shows an example with a link to a PREMIS.xml file:
 
@@ -1504,7 +1504,7 @@ packaging the AIP.
 [^19]: https://tools.ietf.org/html/rfc8493
 
 <a name="aip-package-bagit"></a>**AIP-PACKAGE-BAGIT**: As defined by the BagIt
-specification, the `bagit.txt` file in the root directory MUST contain the BagIt
+specification, the `bagit.txt` file in the root folder MUST contain the BagIt
 version and tag file character encoding.
 
     BagIt-Version: 0.97 
