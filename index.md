@@ -687,7 +687,7 @@ unique identifier.[^8]
 
 [^5]: http://purl.org/docs/index.html
 [^6]: http://www.handle.net
-[^7]: http://purl.org/docs/index.html
+[^7]: https://www.doi.org
 [^8]: Universally Unique Identifier according to RFC 4122, http://tools.ietf.org/html/rfc4122.html
 
 Using this identifier, the system must be able to retrieve the corresponding
@@ -702,7 +702,7 @@ prefix solves this issue). We recommended to use
 > standard identifier. We propose in that case, to start the prefix with the
 > internationally recognized standard identifier of the institution, where the
 > AIP is created, augmented by an identifier for the institution from which the
-> SIP originates."39
+> SIP originates."
 
 As an example of the implementation a UUID could be used. The prefix
 `urn:uuid:` would indicate the identifier type. For example, if the package identifier value is
@@ -1547,7 +1547,7 @@ referencing the child-AIP packages.
 child-AIPs is used, then every child-AIP file listed in the fetch file SHOULD be
 listed in every payload manifest. 
 
-[^21] https://tools.ietf.org/id/draft-kunze-bagit-08.html#rfc.section.2.2.3
+[^21]: https://tools.ietf.org/id/draft-kunze-bagit-08.html#rfc.section.2.2.3
 
 
 # Appendices
