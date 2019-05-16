@@ -730,7 +730,7 @@ Listing 2 shows an example of a file section with one file.
 ```xml
 <fileSec>
     <fileGroup @USE="Common Specification root">
-        <file ID="ID77146c6c-c8c3-4406-80b5-b3b41901f9d0"
+        <file ID="uuid-77146c6c-c8c3-4406-80b5-b3b41901f9d0"
             ADMID="..." MIMETYPE="text/x-sql" SIZE="2862064"
             CHECKSUMTYPE="SHA-256" CHECKSUM="..."
             CREATED="2015-0501T01:00:00+01:00">
@@ -816,7 +816,7 @@ the descriptive metadata element `<dmdSec>`. Listing 4 shows an example linking 
 an EAD XML metadata file.
 
 ```xml
-<dmdSec ID="ID550e8400-e29b-41d4-a716-44665544000a">
+<dmdSec ID="uuid-550e8400-e29b-41d4-a716-44665544000a">
 	<mdRef LOCTYPE="URL" MDTYPE="EAD" MIMETYPE="text/xml"
     	    CREATED="2015-04-26T12:00:00+01:00" xlink:type="simple"
     	    xlink:href="./metadata/EAD.xml"
@@ -863,14 +863,14 @@ the PREMIS file is active.
 #### Structural map
 
 <a name="aip-structmap-label"></a>**AIP-STRUCTMAP-LABEL**: One `<structMap>` 
-with the LABEL attribute value “Common Specification structural map” MUST 
+with the LABEL attribute value “CSIP structMap” MUST 
 be present in the METS file.
 
 Listing 6 shows a structural map with the LABEL attribute value “Common
 Specification structural map”.
 
 ```xml
-<structMap ID="IDf413c073-5b03-4499-830e-8ef724613bef" TYPE="physical" LABEL=" Common specifcation structural map">
+<structMap ID="uuid-f413c073-5b03-4499-830e-8ef724613bef" TYPE="physical" LABEL="CSIP structMap">
     <div>
         <div LABEL="submission">
         	...
@@ -885,7 +885,7 @@ Specification structural map”.
 ```
 
 **Listing 6:**
-Obligatory Common Specification structural map
+Obligatory CSIP structMap
 
 ##### Structural map of a divided METS structure
 
@@ -897,15 +897,15 @@ node MUST reference the `/<representation>/METS.xml` and point at the
 corresponding `<file>` entry in the `<fileSec>` using the `<fptr>` element.
 
 ```xml
-<structMap TYPE="physical" LABEL="Common Specification structural map">
-   <div LABEL="d7ef386d-275b-4a5d-9abf-48de9c390339">
+<structMap ID="uuid-1465D250-0A24-4714-9555-5C1211722FB8" TYPE="PHYSICAL" LABEL="CSIP structMap">
+   <div ID="uuid-638362BC-65D9-4DA7-9457-5156B3965A18" LABEL="uuid-4422c185-5407-4918-83b1-7abfa77de182">
      <div LABEL="representations/images_mig-1">
-       <mptr xlink:href="./representations/images_mig-1/METS.xml" xlink:title="Mets file describing representation: images_mig-1 of AIP: urn:uuid:d7ef386d-275b-4a5d-9abf-48de9c390339." LOCTYPE="URL" ID="IDc063ebaf-e594-4996-9e2d-37bf91009155"/>
-       <fptr FILEID="IDfb9c37e7-1c90-4849-a052-1875e67853d5"/>
+       <mptr xlink:href="./representations/images_mig-1/METS.xml" xlink:title="Mets file describing representation: images_mig-1 of AIP: urn:uuid:d7ef386d-275b-4a5d-9abf-48de9c390339." LOCTYPE="URL" ID="uuid-c063ebaf-e594-4996-9e2d-37bf91009155"/>
+       <fptr FILEID="uuid-fb9c37e7-1c90-4849-a052-1875e67853d5"/>
      </div>
      <div LABEL="representations/docs_mig-1">
-       <mptr xlink:href="./representations/docs_mig-1/METS.xml" xlink:title="Mets file describing representation: docs_mig-1 of AIP: urn:uuid:d7ef386d-275b-4a5d-9abf-48de9c390339." LOCTYPE="URL" ID="ID335f9e55-17b2-4cff-b62f-03fd6df4adbf"/>
-       <fptr FILEID="ID3f2268cd-7da9-4ad8-909b-4f17730dacaf"/>
+       <mptr xlink:href="./representations/docs_mig-1/METS.xml" xlink:title="Mets file describing representation: docs_mig-1 of AIP: urn:uuid:d7ef386d-275b-4a5d-9abf-48de9c390339." LOCTYPE="URL" ID="uuid-335f9e55-17b2-4cff-b62f-03fd6df4adbf"/>
+       <fptr FILEID="uuid-3f2268cd-7da9-4ad8-909b-4f17730dacaf"/>
      </div>
    </div>
 </structMap>
@@ -926,13 +926,13 @@ types, such as URN, URL, PURL, HANDLE, or DOI are used, the `LOCTYPE` attribute
 can be set correspondingly.
 
 ```xml
-<structMap TYPE="logical" LABEL="parent AIP">
-    <div LABEL="AIP parent identifier">
+<structMap ID="uuid-35CB3341-D731-4AC3-9622-DB8901CD6736" TYPE="PHYSICAL" LABEL="parent AIP">
+    <div ID="uuid-35CB3341-D731-4AC3-9622-DB8901CD6738" LABEL="AIP parent identifier">
       <mptr xlink:href="urn:uuid:3a487ce5-63cf-4000-9522-7288e208e2bc"
             xlink:title="Referencing the parent AIP of this AIP
                          (URN:UUID:3218729b-c93c-4daa-ad3c-acb92ab59cee)."
             LOCTYPE="OTHER" OTHERLOCTYPE="UUID"
-            ID="ID755d4d5f-5c5d-4751-9652-fcf839c7c6f2"/>
+            ID="uuid-755d4d5f-5c5d-4751-9652-fcf839c7c6f2"/>
     </div>
 </structMap>
 ```
@@ -946,31 +946,31 @@ listing all child AIPs. Listing 9 shows the structural map of a parent AIP
 listing four child AIPs.
 
 ```xml
-<structMap TYPE="logical" LABEL="child AIPs">
+<structMap TYPE="PHYSICAL" LABEL="child AIPs">
     <div LABEL="child AIPs">
         <div LABEL="child AIP">
             <mptr xlink:href="urn:uuid:cea73348-741d-4594-ab8f-0b9e652c1099"
                   xlink:title="Referencing a child AIP."
                   LOCTYPE="OTHER" OTHERLOCTYPE="UUID"
-                  ID="IDd98e416f-55a7-4237-8d45-59c22d221669"/>
+                  ID="uuid-d98e416f-55a7-4237-8d45-59c22d221669"/>
         </div>
         <div LABEL="child AIP">
             <mptr xlink:href="urn:uuid:cea73348-741d-4594-ab8f-0b9e652c1099"
                   xlink:title="Referencing a child AIP."
                   LOCTYPE="OTHER" OTHERLOCTYPE="UUID"
-                  ID="ID70f8ec28-23f1-4364-9163-b3e99165b6e6"/>
+                  ID="uuid-70f8ec28-23f1-4364-9163-b3e99165b6e6"/>
         </div>
         <div LABEL="child AIP">
             <mptr xlink:href="urn:uuid:3218729b-c93c-4daa-ad3c-acb92ab59cee"
                   xlink:title="Referencing a child AIP."
                   LOCTYPE="OTHER" OTHERLOCTYPE="UUID"
-                  ID="ID77373d7f-e241-481b-bf89-675335beb049"/>
+                  ID="uuid-77373d7f-e241-481b-bf89-675335beb049"/>
         </div>
         <div LABEL="child AIP">
             <mptr xlink:href="urn:uuid:cea73348-741d-4594-ab8f-0b9e652c1099"
                   xlink:title="Referencing a child AIP."
                   LOCTYPE="OTHER" OTHERLOCTYPE="UUID"
-                  ID="ID3f0cc05c-f27d-499d-a6fd-63bdfed13cb0"/>
+                  ID="uuid-3f0cc05c-f27d-499d-a6fd-63bdfed13cb0"/>
         </div>
     </div>
 </structMap>
@@ -1561,16 +1561,16 @@ listed in every payload manifest.
 
 ```xml
 <fileSec>
-  <fileGrp USE="Common Specification root" ID="ID0d4f09a8-0734-49fb-9bea-dbf6a3f5a444">
-    <file MIMETYPE="application/xml" USE="Datafile" CHECKSUMTYPE="SHA-256" CREATED="2016-12-14T09:15:24" CHECKSUM="8d3f057ac0e45ef173f9ecbfc432b994415c405259aff694632925faf108f541" ID="ID3af3e474-991a-4aad-b453-ed3f91d54280" SIZE="2855">
+  <fileGrp USE="Common Specification root" ID="uuid-0d4f09a8-0734-49fb-9bea-dbf6a3f5a444">
+    <file MIMETYPE="application/xml" USE="Datafile" CHECKSUMTYPE="SHA-256" CREATED="2016-12-14T09:15:24" CHECKSUM="8d3f057ac0e45ef173f9ecbfc432b994415c405259aff694632925faf108f541" ID="uuid-3af3e474-991a-4aad-b453-ed3f91d54280" SIZE="2855">
       <FLocat xlink:href="./representations/images_mig-1/METS.xml" xlink:type="simple" LOCTYPE="URL"/>
     </file>
-    <file MIMETYPE="application/xml" USE="Datafile" CHECKSUMTYPE="SHA-256" CREATED="2016-12-14T09:15:24" CHECKSUM="81e028df7468ea611b0714148cb607ec74fe1e7914bd762605f38631d21281e9" ID="IDe1df6f8b-8cc0-442d-bc45-e61724c63372" SIZE="2873">
+    <file MIMETYPE="application/xml" USE="Datafile" CHECKSUMTYPE="SHA-256" CREATED="2016-12-14T09:15:24" CHECKSUM="81e028df7468ea611b0714148cb607ec74fe1e7914bd762605f38631d21281e9" ID="uuid-e1df6f8b-8cc0-442d-bc45-e61724c63372" SIZE="2873">
       <FLocat xlink:href="./representations/docs_mig-1/METS.xml" xlink:type="simple" LOCTYPE="URL"/>
     </file>
   </fileGrp>
 </fileSec>
-<structMap TYPE="physical" LABEL="Common Specification structural map">
+<structMap TYPE="physical" LABEL="CSIP structMap">
   <div LABEL="urn:uuid:7ff70669-73a0-4551-ad5b-12ed9b229e38">
     <div LABEL="submission">
       <!-- removed to improve readability -->
@@ -1583,12 +1583,12 @@ listed in every payload manifest.
     </div>
     <div LABEL="representations"/>
     <div LABEL="representations/images_mig-1">
-      <mptr xlink:href="./representations/images_mig-1/METS.xml" xlink:title="Mets file describing representation: images_mig-1 of AIP: urn:uuid:7ff70669-73a0-4551-ad5b-12ed9b229e38." LOCTYPE="URL" ID="ID0799bb22-b3b1-4661-b32d-5c2dae0341f9"/>
-      <fptr FILEID="ID3af3e474-991a-4aad-b453-ed3f91d54280"/>
+      <mptr xlink:href="./representations/images_mig-1/METS.xml" xlink:title="Mets file describing representation: images_mig-1 of AIP: urn:uuid:7ff70669-73a0-4551-ad5b-12ed9b229e38." LOCTYPE="URL" ID="uuid-0799bb22-b3b1-4661-b32d-5c2dae0341f9"/>
+      <fptr FILEID="uuid-3af3e474-991a-4aad-b453-ed3f91d54280"/>
     </div>
     <div LABEL="representations/docs_mig-1">
-      <mptr xlink:href="./representations/docs_mig-1/METS.xml" xlink:title="Mets file describing representation: docs_mig-1 of AIP: urn:uuid:7ff70669-73a0-4551-ad5b-12ed9b229e38." LOCTYPE="URL" ID="IDcc2c70c5-9712-4697-834c-5d5acad47f49"/>
-      <fptr FILEID="IDe1df6f8b-8cc0-442d-bc45-e61724c63372"/>
+      <mptr xlink:href="./representations/docs_mig-1/METS.xml" xlink:title="Mets file describing representation: docs_mig-1 of AIP: urn:uuid:7ff70669-73a0-4551-ad5b-12ed9b229e38." LOCTYPE="URL" ID="uuid-cc2c70c5-9712-4697-834c-5d5acad47f49"/>
+      <fptr FILEID="uuid-e1df6f8b-8cc0-442d-bc45-e61724c63372"/>
     </div>
   </div>
 </structMap>
@@ -1605,41 +1605,41 @@ listed in every payload manifest.
     </agent>
     <metsDocumentID>METS.xml</metsDocumentID>
   </metsHdr>
-  <amdSec ID="IDfacb861c-5f25-43f7-a1a4-86dfa345a119">
-    <digiprovMD ID="IDc4113098-6eb5-43f5-9618-6f33ef442400">
-      <mdRef MIMETYPE="application/xml" xlink:href="./metadata/preservation/premis.xml" LOCTYPE="URL" CREATED="2016-12-14T09:15:24" CHECKSUM="d9e3bdc2c2e1d1a07cd88585dfddad62cdf40ca060e09456efc68bd2dc88e3a9" xlink:type="simple" ID="ID2c990270-d140-4d92-8bca-629e21926535" MDTYPE="PREMIS" CHECKSUMTYPE="SHA-256"/>
+  <amdSec ID="uuid-facb861c-5f25-43f7-a1a4-86dfa345a119">
+    <digiprovMD ID="uuid-c4113098-6eb5-43f5-9618-6f33ef442400">
+      <mdRef MIMETYPE="application/xml" xlink:href="./metadata/preservation/premis.xml" LOCTYPE="URL" CREATED="2016-12-14T09:15:24" CHECKSUM="d9e3bdc2c2e1d1a07cd88585dfddad62cdf40ca060e09456efc68bd2dc88e3a9" xlink:type="simple" ID="uuid-2c990270-d140-4d92-8bca-629e21926535" MDTYPE="PREMIS" CHECKSUMTYPE="SHA-256"/>
     </digiprovMD>
   </amdSec>
   <fileSec>
-    <fileGrp USE="Common Specification representation urn:uuid:docs_mig-1" ID="IDcee0bbc3-ac88-4f21-834e-2c06104141ac">
-      <file MIMETYPE="application/pdf" USE="Datafile" CHECKSUMTYPE="SHA-256" CREATED="2016-12-14T09:15:05" CHECKSUM="d50fe727b6bed7b04569671a46d4d8a56b93c295afb69703b14c0544286ff86c" ID="IDcf9818bb-567b-44ee-88d8-60a1420feae3" SIZE="2530049">
+    <fileGrp USE="Common Specification representation urn:uuid:docs_mig-1" ID="uuid-cee0bbc3-ac88-4f21-834e-2c06104141ac">
+      <file MIMETYPE="application/pdf" USE="Datafile" CHECKSUMTYPE="SHA-256" CREATED="2016-12-14T09:15:05" CHECKSUM="d50fe727b6bed7b04569671a46d4d8a56b93c295afb69703b14c0544286ff86c" ID="uuid-cf9818bb-567b-44ee-88d8-60a1420feae3" SIZE="2530049">
         <FLocat xlink:href="./data/Suleiman the Magnificent.pdf" xlink:type="simple" LOCTYPE="URL"/>
       </file>
-      <file MIMETYPE="application/pdf" USE="Datafile" CHECKSUMTYPE="SHA-256" CREATED="2016-12-14T09:15:12" CHECKSUM="3824fb493235e94bcca3baf33c93a9e4f62d4af387ce055560f01c274ef63da9" ID="ID3b0e4dcb-727a-44d1-af24-d35676b02bed" SIZE="7603618">
+      <file MIMETYPE="application/pdf" USE="Datafile" CHECKSUMTYPE="SHA-256" CREATED="2016-12-14T09:15:12" CHECKSUM="3824fb493235e94bcca3baf33c93a9e4f62d4af387ce055560f01c274ef63da9" ID="uuid-3b0e4dcb-727a-44d1-af24-d35676b02bed" SIZE="7603618">
         <FLocat xlink:href="./data/Charlemagne.pdf" xlink:type="simple" LOCTYPE="URL"/>
       </file>
     </fileGrp>
   </fileSec>
-  <structMap TYPE="physical" LABEL="Common Specification structural map">
+  <structMap TYPE="physical" LABEL="CSIP structMap">
     <div LABEL="docs_mig-1">
       <div LABEL="metadata">
-        <fptr FILEID="ID2c990270-d140-4d92-8bca-629e21926535"/>
+        <fptr FILEID="uuid-2c990270-d140-4d92-8bca-629e21926535"/>
       </div>
       <div LABEL="data">
-        <fptr FILEID="IDcf9818bb-567b-44ee-88d8-60a1420feae3"/>
-        <fptr FILEID="ID3b0e4dcb-727a-44d1-af24-d35676b02bed"/>
+        <fptr FILEID="uuid-cf9818bb-567b-44ee-88d8-60a1420feae3"/>
+        <fptr FILEID="uuid-3b0e4dcb-727a-44d1-af24-d35676b02bed"/>
       </div>
     </div>
   </structMap>
   <structMap TYPE="logical" LABEL="Simple AIP structuring">
     <div LABEL="Package structure">
       <div LABEL="metadata files">
-        <fptr FILEID="ID2c990270-d140-4d92-8bca-629e21926535"/>
+        <fptr FILEID="uuid-2c990270-d140-4d92-8bca-629e21926535"/>
       </div>
       <div LABEL="schema files"/>
       <div LABEL="content files">
-        <fptr FILEID="IDcf9818bb-567b-44ee-88d8-60a1420feae3"/>
-        <fptr FILEID="ID3b0e4dcb-727a-44d1-af24-d35676b02bed"/>
+        <fptr FILEID="uuid-cf9818bb-567b-44ee-88d8-60a1420feae3"/>
+        <fptr FILEID="uuid-3b0e4dcb-727a-44d1-af24-d35676b02bed"/>
       </div>
     </div>
   </structMap>
@@ -1650,7 +1650,7 @@ listed in every payload manifest.
 
 ```xml
 <premis xmlns="info:lc/xmlns/premis-v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="info:lc/xmlns/premis-v2 ../../schemas/premis-v2-2.xsd">
-  <object xmlID="ID187f239d-c080-4a7f-936d-b35cec4e8ef7" xsi:type="representation">
+  <object xmlID="uuid-187f239d-c080-4a7f-936d-b35cec4e8ef7" xsi:type="representation">
     <objectIdentifier>
       <objectIdentifierType>repository</objectIdentifierType>
       <objectIdentifierValue>urn:uuid:7ff70669-73a0-4551-ad5b-12ed9b229e38</objectIdentifierValue>
@@ -1690,13 +1690,13 @@ listed in every payload manifest.
 
 ```xml
 <premis xmlns="info:lc/xmlns/premis-v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="info:lc/xmlns/premis-v2 ../../schemas/premis-v2-2.xsd">
-  <object xmlID="ID983381f2-edc7-4264-aaf8-10a33dc7a811" xsi:type="representation">
+  <object xmlID="uuid-983381f2-edc7-4264-aaf8-10a33dc7a811" xsi:type="representation">
     <objectIdentifier>
       <objectIdentifierType>repository</objectIdentifierType>
       <objectIdentifierValue>ID983381f2-edc7-4264-aaf8-10a33dc7a811</objectIdentifierValue>
     </objectIdentifier>
   </object>
-  <object xmlID="ID37b54f97-bef3-4018-abd0-dfd71216fa5f" xsi:type="file">
+  <object xmlID="uuid-37b54f97-bef3-4018-abd0-dfd71216fa5f" xsi:type="file">
     <objectIdentifier>
       <objectIdentifierType>filepath</objectIdentifierType>
       <objectIdentifierValue>./data/bluemarble.tiff</objectIdentifierValue>
