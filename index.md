@@ -241,7 +241,7 @@ As already mentioned in section [4.1](#reps), the CSIP relies on the concept of
 with two representations.
 
 <a name="fig1"></a>
-![Information Package structure](figs/visio/visio/fig_1_ip_structure.svg "Structure of an IP compliant with the E-ARK Common Specification for IPs structure")
+![Information Package structure](figs/visio/fig_1_ip_structure.svg "Structure of an IP compliant with the E-ARK Common Specification for IPs structure")
 
 **Figure 1:**
 Structure of an IP.
@@ -287,7 +287,7 @@ single METS file contains all references to metadata and data files contained in
 the IP.
 
 <a name="fig3"></a>
-![Information Package structure](figs/visio/visio/fig_3_mets_root.svg "One METS file in the root of the IP references all metadata and data files")
+![Information Package structure](figs/visio/fig_3_mets_root.svg "One METS file in the root of the IP references all metadata and data files")
 
 **Figure 3:**
 One METS file in the root of the package references all metadata and data files
