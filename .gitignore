@@ -1,2 +1,5 @@
-aip-specification.pdf
+# aip-specification.pdf
 pandoc/bibliography.bib.bak
+.vagrant*
+Gemfile.lock
+_site
