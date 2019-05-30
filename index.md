@@ -220,7 +220,7 @@ The following AIP format specification is defined as a set of requirements[^2]
 which will be explained with the help of textual descriptions, figures, and
 concrete examples. It is divided into two parts. On the one hand, there is the
 structure and metadata specification which defines how the AIP is conceptually
-organized by means of a directory hierarchy in a file system and a set of
+organized by means of a folder hierarchy in a file system and a set of
 metadata standards. And on the other hand, there is the physical container
 specification which defines the bit-level manifestation of the transferable
 entity.
@@ -241,7 +241,7 @@ As already mentioned in section [4.1](#reps), the CSIP relies on the concept of
 with two representations.
 
 <a name="fig1"></a>
-![Information Package structure](figs/fig_1_ip_structure.png "Structure of an IP compliant with the E-ARK Common Specification for IPs structure")
+![Information Package structure](figs/visio/fig_1_ip_structure.svg "Structure of an IP compliant with the E-ARK Common Specification for IPs structure")
 
 **Figure 1:**
 Structure of an IP.
@@ -287,17 +287,17 @@ single METS file contains all references to metadata and data files contained in
 the IP.
 
 <a name="fig3"></a>
-![Information Package structure](figs/fig_3_mets_root.png "One METS file in the root of the IP references all metadata and data files")
+![Information Package structure](figs/visio/fig_3_mets_root.svg "One METS file in the root of the IP references all metadata and data files")
 
 **Figure 3:**
 One METS file in the root of the package references all metadata and data files
 
-Even though the number suffix of the directories `rep-001` and `rep-002` of the
+Even though the number suffix of the folders `rep-001` and `rep-002` of the
 example shown in Figure [3](#fig3) suggests an order of representations, there
-are no requirements regarding the naming of directories containing the
+are no requirements regarding the naming of folders containing the
 representations.  The order of representations and the relations between them is
 defined by the structural and preservation metadata. The `representations`
-directory is mandatory, even for IPs which contain only one representation.
+folder is mandatory, even for IPs which contain only one representation.
 
 If the *divided* METS structure is used, as shown in Figure [4](#fig4), then a
 separate METS file for each representation exists which are referenced by the
@@ -306,7 +306,7 @@ IP’s root which points to the METS files `Representations/Rep-001/METS.xml` an
 `Representations/Rep-002/METS.xml`.
 
 <a name="fig4"></a>
-![Information Package structure](figs/fig_4_mets_root.png "Root METS file references METS files of the different representations")
+![Information Package structure](figs/visio/fig_4_mets_root.svg "Root METS file references METS files of the different representations")
 
 **Figure 4:**
 Root METS file references METS files of the different representations
@@ -318,14 +318,14 @@ the root METS difficult to work with).
 
 As a corollary of this division method we define, on the one hand, a
 representation-based division as the separation of representations in different
-directories under the `representations` folder as shown in the example of Figure
+folders under the `representations` folder as shown in the example of Figure
 [4](#fig4). And, on the other hand, we define a size-based division as the
 separation of representation parts. To illustrate this, Figure [5](#fig5) shows
 an example where a set of files belongs to the same representation (here named
 `binary`) and is referenced in two separate physical containers (here named {C1}
 and {C2} respectively). A key requirement when using size-based division of a
 representation is that there must not be any overlap in the structure of the
-representations, and that each sub-directory path must be unique across the
+representations, and that each sub-folder path must be unique across the
 containers where the representation parts together constitute a representation
 entity. Note that for this reason a numerical suffix is added to the
 representation METS files, to avoid overwriting representation METS files when
@@ -338,11 +338,11 @@ containers.
 
 <a name="aip-rep-div-overlap"></a>**AIP-REP-DIV-OVERLAP**: If a representation is 
 divided into parts, any overlap MUST be avoided regarding the structure of the 
-representations and each sub-directory path MUST be unique across the 
+representations and each sub-folder path MUST be unique across the 
 containers.
 
 <a name="fig5"></a>
-![Information Package structure](figs/fig_5_mets_root.png "Example of an IP.")
+![Information Package structure](figs/visio/fig_5_mets_root.svg "Example of an IP.")
 
 **Figure 5:**
 Example of an IP.
@@ -388,8 +388,8 @@ the AIP format defines a `submission` folder in the root of the AIP which
 contains the original submission as well as any submission updates added after
 the AIP was created. The following obligatory requirement applies:
 
-<a name="aip-submission-root"></a>**AIP-SUBMISSION-ROOT**: The root directory of
-the AIP package COULD contain a `submission` directory which is a container for
+<a name="aip-submission-root"></a>**AIP-SUBMISSION-ROOT**: The root folder of
+the AIP package COULD contain a `submission` folder which is a container for
 the original submission and for any updates of SIPs which are submitted after
 the AIP was created.
 
@@ -442,7 +442,7 @@ folder in that case.
 
 <a name="fig6"></a>
 
-![Information Package structure](figs/fig_6_sub_folder.png "The AIP's
+![Information Package structure](figs/visio/fig_6_sub_folder.png "The AIP's
 "submission" folder contains the IP of the original submission"){ width=193px }
 
 **Figure 6:**
@@ -453,7 +453,7 @@ folder contains three sub-folders representing one original submission and two
 updates which were created over the course of three days.
 
 <a name="fig7"></a>
-![Information Package structure](figs/fig_7_sub_folder.png "The AIP contains submissions in subfolders to support submission updates")
+![Information Package structure](figs/visio/fig_7_sub_folder.svg "The AIP contains submissions in subfolders to support submission updates")
 
 **Figure 7:**
 The AIP containing submissions in subfolders to support submission updates.
@@ -473,23 +473,23 @@ maintenance or for digital preservation purposes.
 To illustrate this with the help of an example, Figure [8](#fig8) shows the 
 structure of an AIP where the original submission consists of two 
 representations which were part of the original submission. The 
-`submission` directory of the AIP contains the original submission “as 
+`submission` folder of the AIP contains the original submission “as 
 is”, which means that neither data nor metadata is changed.
 
 <a name="fig8"></a>
-![Information Package structure](figs/fig_8_aip_reps.png "AIP representations.")
+![Information Package structure](figs/visio/fig_8_aip_reps.svg "AIP representations.")
 
 **Figure 8:**
 AIP representations.
 
 Let us now assume that during SIP to AIP conversion an additional representation
 is added to the AIP. Figure [9](#fig9) illustrates an example where an additional
-`representations` directory exists as a sibling of the `submission` directory
+`representations` folder exists as a sibling of the `submission` folder
 which contains a new representation (rep-001.1) derived from one of the
 representations contained in the original submission (rep-001).
 
 <a name="fig9"></a>
-![Information Package structure](figs/fig_9_aip_reps.png "AIP representations.")
+![Information Package structure](figs/visio/fig_9_aip_reps.svg "AIP representations.")
 
 **Figure 9:**
 AIP representations.
@@ -499,8 +499,8 @@ added during SIP to AIP conversion.
 
 <a name="aip-representations"></a>**AIP-REPRESENTATIONS**: If a new 
 representation is added during ingest (SIP to AIP conversion) or created as an 
-AIP preservation measure (AIP to AIP conversion), the root directory of the AIP 
-MUST contain a `representations` directory. For this directory, the same 
+AIP preservation measure (AIP to AIP conversion), the root folder of the AIP 
+MUST contain a `representations` folder. For this folder, the same 
 requirements as for the representations of an IP apply.
 
 Note that the three-digit number suffix following the name `rep-` used in 
@@ -514,19 +514,19 @@ not have to follow such logic.
 
 The AIP is an extension of the IP format; therefore it must follow the 
 basic structure of an IP. Figure [9](#fig9) shows that the IP components, 
-consisting of METS file, `Metadata` and `representations` directories, 
+consisting of METS file, `Metadata` and `representations` folders, 
 are repeated on theAIP level. The extension of the AIP format is basically 
 given by the fact thatthe AIP is an IP which can contain another IP (here i.e. 
-a SIP) in the `submission` directory.
+a SIP) in the `submission` folder.
 
-Note that the `representations` directory in the AIP root directory is optional.
-It means that this directory must only exist in case representations other than
+Note that the `representations` folder in the AIP root folder is optional.
+It means that this folder must only exist in case representations other than
 the ones originally submitted are added to the AIP.
 
 The AIP is an IP, therefore the CSIP requirement *CSIPSTR4* applies and the 
 AIP's root MUST contain a METS file that either references all metadata and 
 data files or it references other METS files located in the corresponding 
-representation directories of the AIPs or of the original submission’s 
+representation folders of the AIPs or of the original submission’s 
 `representations`.
 
 The METS file which is located in the root folder of the information package is
@@ -536,7 +536,7 @@ As a concrete example let us assume a policy stating that PDF documents must
 generally be converted to PDF/A. Taking the premise formulated in section 
 [4.4](#structdiv) into account that the original submission is not to be 
 changed, the additional representation is added in a `Representation` 
-directory in the root of the AIP as shown in figure [7](#fig7). Note that this 
+folder in the root of the AIP as shown in figure [7](#fig7). Note that this 
 example uses a representation-based division of METS files.
 
 Analogously to Figure [8](#fig8) there are also two representations in the 
@@ -550,13 +550,13 @@ PDF/A during SIP to AIP conversion. Therefore the second representation
 an additional representation (`Rep-002.1`).
 
 <a name="fig10"></a>
-![Information Package structure](figs/fig_10_aip_reps.png "AIP using representation-based division of METS files.")
+![Information Package structure](figs/visio/fig_10_aip_reps.svg "AIP using representation-based division of METS files.")
 
 **Figure 10:**
 AIP using representation-based division of METS files.
 
 The two representations of the original submission are located in the
-`submission/representations` directory of the AIP and the METS file of the
+`submission/representations` folder of the AIP and the METS file of the
 submission references the corresponding representation METS files using a
 relative path to be resolved within the SIP. The root level METS file of the
 AIP references the METS file of the original submission
@@ -566,32 +566,32 @@ AIP references the METS file of the original submission
 ### Changing the metadata of the original submission
 
 If the originally submitted SIP -- as a consequence of an implementation 
-decision -- is not supposed to change, then the AIP level metadata directory 
+decision -- is not supposed to change, then the AIP level metadata folder 
 can contain metadata that relates to representations contained in the original 
 submission. Then, there might be scenarios where the originally submitted 
 metadata needs to be updated.
 
 As an example let us assume that we have to recalculate the checksum during SIP
 to AIP conversion and that the checksum is recorded as an attribute of the METS
-file element. As shown in Figure [11](#fig11), the AIP’s `Metadata` directory can --
-additionally to the existing metadata category directories -- contain a
-`submission` directory with metadata files (here `METS.xml`) that by definition
+file element. As shown in Figure [11](#fig11), the AIP’s `Metadata` folder can --
+additionally to the existing metadata category folders -- contain a
+`submission` folder with metadata files (here `METS.xml`) that by definition
 have priority over the ones contained in the original submission. This means
 that in case metadata needs to be updated, they must be placed into the root
-level metadata directory because metadata for the original submission is not
+level metadata folder because metadata for the original submission is not
 allowed to be changed.
 
 <a name="fig11"></a>
-![Information Package structure](figs/fig_11_aip_reps.png "METS file priorities.")
+![Information Package structure](figs/visio/fig_11_aip_reps.svg "METS file priorities.")
 
 **Figure 11:**
-METS files in the AIP’s `Metadata/submission` directory have priority over
+METS files in the AIP’s `Metadata/submission` folder have priority over
 the ones contained in the original submission
 
 <a name="aip-md-priority"></a>**AIP-MD-PRIORITY**: Let `<MDPath>` be a 
-sub-directory-path to a metadata file, then a metadata file under the 
-`AIP/metadata/submission` directory MUST have priority over a metadata file 
-under the `AIP/submission` directory so that `AIP/metadata/submission/<MDPath>` 
+sub-folder-path to a metadata file, then a metadata file under the 
+`AIP/metadata/submission` folder MUST have priority over a metadata file 
+under the `AIP/submission` folder so that `AIP/metadata/submission/<MDPath>` 
 has priority over `AIP/submission/<MDPath>`.
 
 An example is shown in Figure [11](#fig11) where the METS file in the root of 
@@ -613,7 +613,7 @@ relationship where each child-AIP bears the information about the parent-AIP
 to which they belong and, vice versa, the parent-AIP references the child-AIPs.
 
 <a name="fig12"></a>
-![Information Package structure](figs/fig_12_aip_parent_child.png "Parent-child relationship between AIPs."){ width=278px }
+![Information Package structure](figs/visio/fig_12_aip_parent_child.svg "Parent-child relationship between AIPs."){ width=278px }
 
 **Figure 12:**
 Parent-child relationship between AIPs
@@ -633,7 +633,7 @@ version of the parent-AIP which implies the risk that the integrity of the
 logical AIP is in danger if the latest version of the parent-AIP is lost.
 
 <a name="fig13"></a>
-![Information Package structure](figs/fig_13_new_aip_parent.png "New version of a parent-AIP."){ width=382px }
+![Information Package structure](figs/visio/fig_13_new_aip_parent.svg "New version of a parent-AIP."){ width=382px }
 
 **Figure 13:**
 New version of a parent-AIP
@@ -687,7 +687,7 @@ unique identifier.[^8]
 
 [^5]: http://purl.org/docs/index.html
 [^6]: http://www.handle.net
-[^7]: http://purl.org/docs/index.html
+[^7]: https://www.doi.org
 [^8]: Universally Unique Identifier according to RFC 4122, http://tools.ietf.org/html/rfc4122.html
 
 Using this identifier, the system must be able to retrieve the corresponding
@@ -695,17 +695,22 @@ package from the repository.
 
 According to the Common Specification, any ID element must start with a prefix
 (also, the XML ID datatype is does not allow IDs ed to start with a number, so a
-prefix solves this issue). We recommended to use
-> "as a prefix an internationally recognized standard identifier for the
-> institution from which the SIP originates. This may lead to problems with
-> smaller institutions, which do not have any such internationally recognized
-> standard identifier. We propose in that case, to start the prefix with the
-> internationally recognized standard identifier of the institution, where the
-> AIP is created, augmented by an identifier for the institution from which the
-> SIP originates."39
+prefix solves this issue). 
 
-As an example of the implementation a UUID could be used. The prefix
-`urn:uuid:` would indicate the identifier type. For example, if the package identifier value is
+We recommended to use as a prefix an internationally recognized standard identifier 
+for the institution from which the SIP originates. This may lead to problems 
+with smaller institutions, which do not have any such internationally recognized
+standard identifier. We propose in that case, to start the prefix with the
+internationally recognized standard identifier of the institution, where the
+AIP is created, augmented by an identifier for the institution from which the
+SIP originates.
+
+An alternative to this is to use a UUID:
+
+    https://tools.ietf.org/html/rfc4122
+
+The prefix `urn:uuid:` would indicate the identifier type. For example, if the 
+package identifier value is
 `"123e4567-e89b-12d3-a456-426655440000"` this would be the value of the METS root
 element’s `OBJID` attribute:
 
@@ -725,7 +730,7 @@ Listing 2 shows an example of a file section with one file.
 ```xml
 <fileSec>
     <fileGroup @USE="Common Specification root">
-        <file ID="ID77146c6c-c8c3-4406-80b5-b3b41901f9d0"
+        <file ID="uuid-77146c6c-c8c3-4406-80b5-b3b41901f9d0"
             ADMID="..." MIMETYPE="text/x-sql" SIZE="2862064"
             CHECKSUMTYPE="SHA-256" CHECKSUM="..."
             CREATED="2015-0501T01:00:00+01:00">
@@ -811,7 +816,7 @@ the descriptive metadata element `<dmdSec>`. Listing 4 shows an example linking 
 an EAD XML metadata file.
 
 ```xml
-<dmdSec ID="ID550e8400-e29b-41d4-a716-44665544000a">
+<dmdSec ID="uuid-550e8400-e29b-41d4-a716-44665544000a">
 	<mdRef LOCTYPE="URL" MDTYPE="EAD" MIMETYPE="text/xml"
     	    CREATED="2015-04-26T12:00:00+01:00" xlink:type="simple"
     	    xlink:href="./metadata/EAD.xml"
@@ -828,7 +833,7 @@ Linking to an EAD XML descriptive metadata file
 a single `<amdSec>` element which contains one or several `<digiprovMD>` 
 elements. The `<mdRef>` child of at least one of these elements must be of type 
 `PREMIS` (`@MDTYPE=”PREMIS”`) with the reference to a PREMIS file in the `Metadata` 
-directory of the AIP root.
+folder of the AIP root.
 
 Listing 5 shows an example with a link to a PREMIS.xml file:
 
@@ -858,14 +863,14 @@ the PREMIS file is active.
 #### Structural map
 
 <a name="aip-structmap-label"></a>**AIP-STRUCTMAP-LABEL**: One `<structMap>` 
-with the LABEL attribute value “Common Specification structural map” MUST 
+with the LABEL attribute value “CSIP structMap” MUST 
 be present in the METS file.
 
 Listing 6 shows a structural map with the LABEL attribute value “Common
 Specification structural map”.
 
 ```xml
-<structMap ID="IDf413c073-5b03-4499-830e-8ef724613bef" TYPE="physical" LABEL=" Common specifcation structural map">
+<structMap ID="uuid-f413c073-5b03-4499-830e-8ef724613bef" TYPE="physical" LABEL="CSIP structMap">
     <div>
         <div LABEL="submission">
         	...
@@ -880,7 +885,7 @@ Specification structural map”.
 ```
 
 **Listing 6:**
-Obligatory Common Specification structural map
+Obligatory CSIP structMap
 
 ##### Structural map of a divided METS structure
 
@@ -892,15 +897,15 @@ node MUST reference the `/<representation>/METS.xml` and point at the
 corresponding `<file>` entry in the `<fileSec>` using the `<fptr>` element.
 
 ```xml
-<structMap TYPE="physical" LABEL="Common Specification structural map">
-   <div LABEL="d7ef386d-275b-4a5d-9abf-48de9c390339">
+<structMap ID="uuid-1465D250-0A24-4714-9555-5C1211722FB8" TYPE="PHYSICAL" LABEL="CSIP structMap">
+   <div ID="uuid-638362BC-65D9-4DA7-9457-5156B3965A18" LABEL="uuid-4422c185-5407-4918-83b1-7abfa77de182">
      <div LABEL="representations/images_mig-1">
-       <mptr xlink:href="./representations/images_mig-1/METS.xml" xlink:title="Mets file describing representation: images_mig-1 of AIP: urn:uuid:d7ef386d-275b-4a5d-9abf-48de9c390339." LOCTYPE="URL" ID="IDc063ebaf-e594-4996-9e2d-37bf91009155"/>
-       <fptr FILEID="IDfb9c37e7-1c90-4849-a052-1875e67853d5"/>
+       <mptr xlink:href="./representations/images_mig-1/METS.xml" xlink:title="Mets file describing representation: images_mig-1 of AIP: urn:uuid:d7ef386d-275b-4a5d-9abf-48de9c390339." LOCTYPE="URL" ID="uuid-c063ebaf-e594-4996-9e2d-37bf91009155"/>
+       <fptr FILEID="uuid-fb9c37e7-1c90-4849-a052-1875e67853d5"/>
      </div>
      <div LABEL="representations/docs_mig-1">
-       <mptr xlink:href="./representations/docs_mig-1/METS.xml" xlink:title="Mets file describing representation: docs_mig-1 of AIP: urn:uuid:d7ef386d-275b-4a5d-9abf-48de9c390339." LOCTYPE="URL" ID="ID335f9e55-17b2-4cff-b62f-03fd6df4adbf"/>
-       <fptr FILEID="ID3f2268cd-7da9-4ad8-909b-4f17730dacaf"/>
+       <mptr xlink:href="./representations/docs_mig-1/METS.xml" xlink:title="Mets file describing representation: docs_mig-1 of AIP: urn:uuid:d7ef386d-275b-4a5d-9abf-48de9c390339." LOCTYPE="URL" ID="uuid-335f9e55-17b2-4cff-b62f-03fd6df4adbf"/>
+       <fptr FILEID="uuid-3f2268cd-7da9-4ad8-909b-4f17730dacaf"/>
      </div>
    </div>
 </structMap>
@@ -921,13 +926,13 @@ types, such as URN, URL, PURL, HANDLE, or DOI are used, the `LOCTYPE` attribute
 can be set correspondingly.
 
 ```xml
-<structMap TYPE="logical" LABEL="parent AIP">
-    <div LABEL="AIP parent identifier">
+<structMap ID="uuid-35CB3341-D731-4AC3-9622-DB8901CD6736" TYPE="PHYSICAL" LABEL="parent AIP">
+    <div ID="uuid-35CB3341-D731-4AC3-9622-DB8901CD6738" LABEL="AIP parent identifier">
       <mptr xlink:href="urn:uuid:3a487ce5-63cf-4000-9522-7288e208e2bc"
             xlink:title="Referencing the parent AIP of this AIP
                          (URN:UUID:3218729b-c93c-4daa-ad3c-acb92ab59cee)."
             LOCTYPE="OTHER" OTHERLOCTYPE="UUID"
-            ID="ID755d4d5f-5c5d-4751-9652-fcf839c7c6f2"/>
+            ID="uuid-755d4d5f-5c5d-4751-9652-fcf839c7c6f2"/>
     </div>
 </structMap>
 ```
@@ -941,31 +946,31 @@ listing all child AIPs. Listing 9 shows the structural map of a parent AIP
 listing four child AIPs.
 
 ```xml
-<structMap TYPE="logical" LABEL="child AIPs">
+<structMap TYPE="PHYSICAL" LABEL="child AIPs">
     <div LABEL="child AIPs">
         <div LABEL="child AIP">
             <mptr xlink:href="urn:uuid:cea73348-741d-4594-ab8f-0b9e652c1099"
                   xlink:title="Referencing a child AIP."
                   LOCTYPE="OTHER" OTHERLOCTYPE="UUID"
-                  ID="IDd98e416f-55a7-4237-8d45-59c22d221669"/>
+                  ID="uuid-d98e416f-55a7-4237-8d45-59c22d221669"/>
         </div>
         <div LABEL="child AIP">
             <mptr xlink:href="urn:uuid:cea73348-741d-4594-ab8f-0b9e652c1099"
                   xlink:title="Referencing a child AIP."
                   LOCTYPE="OTHER" OTHERLOCTYPE="UUID"
-                  ID="ID70f8ec28-23f1-4364-9163-b3e99165b6e6"/>
+                  ID="uuid-70f8ec28-23f1-4364-9163-b3e99165b6e6"/>
         </div>
         <div LABEL="child AIP">
             <mptr xlink:href="urn:uuid:3218729b-c93c-4daa-ad3c-acb92ab59cee"
                   xlink:title="Referencing a child AIP."
                   LOCTYPE="OTHER" OTHERLOCTYPE="UUID"
-                  ID="ID77373d7f-e241-481b-bf89-675335beb049"/>
+                  ID="uuid-77373d7f-e241-481b-bf89-675335beb049"/>
         </div>
         <div LABEL="child AIP">
             <mptr xlink:href="urn:uuid:cea73348-741d-4594-ab8f-0b9e652c1099"
                   xlink:title="Referencing a child AIP."
                   LOCTYPE="OTHER" OTHERLOCTYPE="UUID"
-                  ID="ID3f0cc05c-f27d-499d-a6fd-63bdfed13cb0"/>
+                  ID="uuid-3f0cc05c-f27d-499d-a6fd-63bdfed13cb0"/>
         </div>
     </div>
 </structMap>
@@ -1450,7 +1455,7 @@ If it is extracted, a folder `urn:uuid:123e4567-e89b-12d3-a456-426655440000` is
 created which includes the AIP content, as shown in Figure [14](#fig14).
 
 <a name="fig14"></a>
-![Information Package structure](figs/AIP-in-BagIt-data-folder.png "AIP content extracted from a TAR package.")
+![Information Package structure](figs/visio/AIP-in-BagIt-data-folder.png "AIP content extracted from a TAR package.")
 
 **Figure 14:**
 AIP content extracted from a TAR package.
@@ -1504,7 +1509,7 @@ packaging the AIP.
 [^19]: https://tools.ietf.org/html/rfc8493
 
 <a name="aip-package-bagit"></a>**AIP-PACKAGE-BAGIT**: As defined by the BagIt
-specification, the `bagit.txt` file in the root directory MUST contain the BagIt
+specification, the `bagit.txt` file in the root folder MUST contain the BagIt
 version and tag file character encoding.
 
     BagIt-Version: 0.97 
@@ -1523,7 +1528,7 @@ Example of a `bagit-info` file:
     Source-Organization: Example Organisation 
     Organization-Address: {Street}, {City}, {Country}
     External-Identifier: urn:uuid:123e4567-e89b-12d3-a456-426655440000 
-    External-Description: Example container.  
+    External-Description: Example container.
     Bagging-Date: 2018-12-18 
     Bag-Size: 2.7 MB 
     Payload-Oxum: 2791644.35
@@ -1533,7 +1538,7 @@ Example of a `bagit-info` file:
 <a name="aip-package-bagit"></a>**AIP-PACKAGE-BAGIT**: The containing folder of
 the AIP SHOULD be located in the `data` folder as shown Figure [15](#fig15).
 
-<a name="fig15"></a> ![Information Package structure](figs/AIP-in-BagIt-data-folder.png "AIP in the `data` folder of a BagIt container.")
+<a name="fig15"></a> ![Information Package structure](figs/visio/AIP-in-BagIt-data-folder.png "AIP in the `data` folder of a BagIt container.")
 
 **Figure 15:** AIP in the `data` folder of a BagIt container.
 
@@ -1547,7 +1552,7 @@ referencing the child-AIP packages.
 child-AIPs is used, then every child-AIP file listed in the fetch file SHOULD be
 listed in every payload manifest. 
 
-[^21] https://tools.ietf.org/id/draft-kunze-bagit-08.html#rfc.section.2.2.3
+[^21]: https://tools.ietf.org/id/draft-kunze-bagit-08.html#rfc.section.2.2.3
 
 
 # Appendices
@@ -1556,16 +1561,16 @@ listed in every payload manifest.
 
 ```xml
 <fileSec>
-  <fileGrp USE="Common Specification root" ID="ID0d4f09a8-0734-49fb-9bea-dbf6a3f5a444">
-    <file MIMETYPE="application/xml" USE="Datafile" CHECKSUMTYPE="SHA-256" CREATED="2016-12-14T09:15:24" CHECKSUM="8d3f057ac0e45ef173f9ecbfc432b994415c405259aff694632925faf108f541" ID="ID3af3e474-991a-4aad-b453-ed3f91d54280" SIZE="2855">
+  <fileGrp USE="Common Specification root" ID="uuid-0d4f09a8-0734-49fb-9bea-dbf6a3f5a444">
+    <file MIMETYPE="application/xml" USE="Datafile" CHECKSUMTYPE="SHA-256" CREATED="2016-12-14T09:15:24" CHECKSUM="8d3f057ac0e45ef173f9ecbfc432b994415c405259aff694632925faf108f541" ID="uuid-3af3e474-991a-4aad-b453-ed3f91d54280" SIZE="2855">
       <FLocat xlink:href="./representations/images_mig-1/METS.xml" xlink:type="simple" LOCTYPE="URL"/>
     </file>
-    <file MIMETYPE="application/xml" USE="Datafile" CHECKSUMTYPE="SHA-256" CREATED="2016-12-14T09:15:24" CHECKSUM="81e028df7468ea611b0714148cb607ec74fe1e7914bd762605f38631d21281e9" ID="IDe1df6f8b-8cc0-442d-bc45-e61724c63372" SIZE="2873">
+    <file MIMETYPE="application/xml" USE="Datafile" CHECKSUMTYPE="SHA-256" CREATED="2016-12-14T09:15:24" CHECKSUM="81e028df7468ea611b0714148cb607ec74fe1e7914bd762605f38631d21281e9" ID="uuid-e1df6f8b-8cc0-442d-bc45-e61724c63372" SIZE="2873">
       <FLocat xlink:href="./representations/docs_mig-1/METS.xml" xlink:type="simple" LOCTYPE="URL"/>
     </file>
   </fileGrp>
 </fileSec>
-<structMap TYPE="physical" LABEL="Common Specification structural map">
+<structMap TYPE="physical" LABEL="CSIP structMap">
   <div LABEL="urn:uuid:7ff70669-73a0-4551-ad5b-12ed9b229e38">
     <div LABEL="submission">
       <!-- removed to improve readability -->
@@ -1578,12 +1583,12 @@ listed in every payload manifest.
     </div>
     <div LABEL="representations"/>
     <div LABEL="representations/images_mig-1">
-      <mptr xlink:href="./representations/images_mig-1/METS.xml" xlink:title="Mets file describing representation: images_mig-1 of AIP: urn:uuid:7ff70669-73a0-4551-ad5b-12ed9b229e38." LOCTYPE="URL" ID="ID0799bb22-b3b1-4661-b32d-5c2dae0341f9"/>
-      <fptr FILEID="ID3af3e474-991a-4aad-b453-ed3f91d54280"/>
+      <mptr xlink:href="./representations/images_mig-1/METS.xml" xlink:title="Mets file describing representation: images_mig-1 of AIP: urn:uuid:7ff70669-73a0-4551-ad5b-12ed9b229e38." LOCTYPE="URL" ID="uuid-0799bb22-b3b1-4661-b32d-5c2dae0341f9"/>
+      <fptr FILEID="uuid-3af3e474-991a-4aad-b453-ed3f91d54280"/>
     </div>
     <div LABEL="representations/docs_mig-1">
-      <mptr xlink:href="./representations/docs_mig-1/METS.xml" xlink:title="Mets file describing representation: docs_mig-1 of AIP: urn:uuid:7ff70669-73a0-4551-ad5b-12ed9b229e38." LOCTYPE="URL" ID="IDcc2c70c5-9712-4697-834c-5d5acad47f49"/>
-      <fptr FILEID="IDe1df6f8b-8cc0-442d-bc45-e61724c63372"/>
+      <mptr xlink:href="./representations/docs_mig-1/METS.xml" xlink:title="Mets file describing representation: docs_mig-1 of AIP: urn:uuid:7ff70669-73a0-4551-ad5b-12ed9b229e38." LOCTYPE="URL" ID="uuid-cc2c70c5-9712-4697-834c-5d5acad47f49"/>
+      <fptr FILEID="uuid-e1df6f8b-8cc0-442d-bc45-e61724c63372"/>
     </div>
   </div>
 </structMap>
@@ -1600,41 +1605,41 @@ listed in every payload manifest.
     </agent>
     <metsDocumentID>METS.xml</metsDocumentID>
   </metsHdr>
-  <amdSec ID="IDfacb861c-5f25-43f7-a1a4-86dfa345a119">
-    <digiprovMD ID="IDc4113098-6eb5-43f5-9618-6f33ef442400">
-      <mdRef MIMETYPE="application/xml" xlink:href="./metadata/preservation/premis.xml" LOCTYPE="URL" CREATED="2016-12-14T09:15:24" CHECKSUM="d9e3bdc2c2e1d1a07cd88585dfddad62cdf40ca060e09456efc68bd2dc88e3a9" xlink:type="simple" ID="ID2c990270-d140-4d92-8bca-629e21926535" MDTYPE="PREMIS" CHECKSUMTYPE="SHA-256"/>
+  <amdSec ID="uuid-facb861c-5f25-43f7-a1a4-86dfa345a119">
+    <digiprovMD ID="uuid-c4113098-6eb5-43f5-9618-6f33ef442400">
+      <mdRef MIMETYPE="application/xml" xlink:href="./metadata/preservation/premis.xml" LOCTYPE="URL" CREATED="2016-12-14T09:15:24" CHECKSUM="d9e3bdc2c2e1d1a07cd88585dfddad62cdf40ca060e09456efc68bd2dc88e3a9" xlink:type="simple" ID="uuid-2c990270-d140-4d92-8bca-629e21926535" MDTYPE="PREMIS" CHECKSUMTYPE="SHA-256"/>
     </digiprovMD>
   </amdSec>
   <fileSec>
-    <fileGrp USE="Common Specification representation urn:uuid:docs_mig-1" ID="IDcee0bbc3-ac88-4f21-834e-2c06104141ac">
-      <file MIMETYPE="application/pdf" USE="Datafile" CHECKSUMTYPE="SHA-256" CREATED="2016-12-14T09:15:05" CHECKSUM="d50fe727b6bed7b04569671a46d4d8a56b93c295afb69703b14c0544286ff86c" ID="IDcf9818bb-567b-44ee-88d8-60a1420feae3" SIZE="2530049">
+    <fileGrp USE="Common Specification representation urn:uuid:docs_mig-1" ID="uuid-cee0bbc3-ac88-4f21-834e-2c06104141ac">
+      <file MIMETYPE="application/pdf" USE="Datafile" CHECKSUMTYPE="SHA-256" CREATED="2016-12-14T09:15:05" CHECKSUM="d50fe727b6bed7b04569671a46d4d8a56b93c295afb69703b14c0544286ff86c" ID="uuid-cf9818bb-567b-44ee-88d8-60a1420feae3" SIZE="2530049">
         <FLocat xlink:href="./data/Suleiman the Magnificent.pdf" xlink:type="simple" LOCTYPE="URL"/>
       </file>
-      <file MIMETYPE="application/pdf" USE="Datafile" CHECKSUMTYPE="SHA-256" CREATED="2016-12-14T09:15:12" CHECKSUM="3824fb493235e94bcca3baf33c93a9e4f62d4af387ce055560f01c274ef63da9" ID="ID3b0e4dcb-727a-44d1-af24-d35676b02bed" SIZE="7603618">
+      <file MIMETYPE="application/pdf" USE="Datafile" CHECKSUMTYPE="SHA-256" CREATED="2016-12-14T09:15:12" CHECKSUM="3824fb493235e94bcca3baf33c93a9e4f62d4af387ce055560f01c274ef63da9" ID="uuid-3b0e4dcb-727a-44d1-af24-d35676b02bed" SIZE="7603618">
         <FLocat xlink:href="./data/Charlemagne.pdf" xlink:type="simple" LOCTYPE="URL"/>
       </file>
     </fileGrp>
   </fileSec>
-  <structMap TYPE="physical" LABEL="Common Specification structural map">
+  <structMap TYPE="physical" LABEL="CSIP structMap">
     <div LABEL="docs_mig-1">
       <div LABEL="metadata">
-        <fptr FILEID="ID2c990270-d140-4d92-8bca-629e21926535"/>
+        <fptr FILEID="uuid-2c990270-d140-4d92-8bca-629e21926535"/>
       </div>
       <div LABEL="data">
-        <fptr FILEID="IDcf9818bb-567b-44ee-88d8-60a1420feae3"/>
-        <fptr FILEID="ID3b0e4dcb-727a-44d1-af24-d35676b02bed"/>
+        <fptr FILEID="uuid-cf9818bb-567b-44ee-88d8-60a1420feae3"/>
+        <fptr FILEID="uuid-3b0e4dcb-727a-44d1-af24-d35676b02bed"/>
       </div>
     </div>
   </structMap>
   <structMap TYPE="logical" LABEL="Simple AIP structuring">
     <div LABEL="Package structure">
       <div LABEL="metadata files">
-        <fptr FILEID="ID2c990270-d140-4d92-8bca-629e21926535"/>
+        <fptr FILEID="uuid-2c990270-d140-4d92-8bca-629e21926535"/>
       </div>
       <div LABEL="schema files"/>
       <div LABEL="content files">
-        <fptr FILEID="IDcf9818bb-567b-44ee-88d8-60a1420feae3"/>
-        <fptr FILEID="ID3b0e4dcb-727a-44d1-af24-d35676b02bed"/>
+        <fptr FILEID="uuid-cf9818bb-567b-44ee-88d8-60a1420feae3"/>
+        <fptr FILEID="uuid-3b0e4dcb-727a-44d1-af24-d35676b02bed"/>
       </div>
     </div>
   </structMap>
@@ -1645,7 +1650,7 @@ listed in every payload manifest.
 
 ```xml
 <premis xmlns="info:lc/xmlns/premis-v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="info:lc/xmlns/premis-v2 ../../schemas/premis-v2-2.xsd">
-  <object xmlID="ID187f239d-c080-4a7f-936d-b35cec4e8ef7" xsi:type="representation">
+  <object xmlID="uuid-187f239d-c080-4a7f-936d-b35cec4e8ef7" xsi:type="representation">
     <objectIdentifier>
       <objectIdentifierType>repository</objectIdentifierType>
       <objectIdentifierValue>urn:uuid:7ff70669-73a0-4551-ad5b-12ed9b229e38</objectIdentifierValue>
@@ -1685,13 +1690,13 @@ listed in every payload manifest.
 
 ```xml
 <premis xmlns="info:lc/xmlns/premis-v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="info:lc/xmlns/premis-v2 ../../schemas/premis-v2-2.xsd">
-  <object xmlID="ID983381f2-edc7-4264-aaf8-10a33dc7a811" xsi:type="representation">
+  <object xmlID="uuid-983381f2-edc7-4264-aaf8-10a33dc7a811" xsi:type="representation">
     <objectIdentifier>
       <objectIdentifierType>repository</objectIdentifierType>
       <objectIdentifierValue>ID983381f2-edc7-4264-aaf8-10a33dc7a811</objectIdentifierValue>
     </objectIdentifier>
   </object>
-  <object xmlID="ID37b54f97-bef3-4018-abd0-dfd71216fa5f" xsi:type="file">
+  <object xmlID="uuid-37b54f97-bef3-4018-abd0-dfd71216fa5f" xsi:type="file">
     <objectIdentifier>
       <objectIdentifierType>filepath</objectIdentifierType>
       <objectIdentifierValue>./data/bluemarble.tiff</objectIdentifierValue>
