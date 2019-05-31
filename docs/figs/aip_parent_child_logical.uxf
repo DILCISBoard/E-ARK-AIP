@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>260</x>
+      <y>60</y>
+      <w>80</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1..n
+bg=black</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0;60.0;60.0;60.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>270</x>
+      <y>150</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>AIP (child)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>150</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>AIP (parent)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>190</x>
+      <y>40</y>
+      <w>100</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>AIP (logical)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>160</x>
+      <y>60</y>
+      <w>90</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1..1
+bg=black</panel_attributes>
+    <additional_attributes>50.0;10.0;50.0;60.0;10.0;60.0;10.0;90.0</additional_attributes>
+  </element>
+</diagram>
