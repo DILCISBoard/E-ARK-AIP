@@ -1,0 +1,17 @@
+
+    urn+uuid+123e4567-e89b-12d3-a456-426655440000/
+    ├── metadata
+    │   └── preservation
+    │       └── premis.xml
+    ├── METS.xml
+    └── submission
+        ├── metadata
+        │   └── descriptive
+        │       └── ead.xml
+        ├── METS.xml
+        └── representations
+            └── rep1
+                ├── data
+                │   └── Example1.docx
+                └── METS.xml
+
