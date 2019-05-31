@@ -1,0 +1,81 @@
+{
+    "BagIt-Profile-Info": {
+        "Source-Organization": "DILCIS",
+        "Contact-Name": "DILCIS Board",
+        "Contact-Email": "info@dilcis.eu",
+        "External-Description": "E-ARK BagIt profile",
+        "Version": "1.0"
+    },
+    "Bag-Info": {
+        "Source-Organization": {
+            "required": true,
+            "repeatable": false
+        },
+        "Organization-Address": {
+            "required": true,
+            "repeatable": false
+        },
+        "Contact-Name": {
+            "required": false,
+            "repeatable": false
+        },
+        "Contact-Phone": {
+            "required": false,
+            "repeatable": false
+        },
+        "Contact-Email": {
+            "required": false,
+            "repeatable": false
+        },
+        "External-Identifier": {
+            "required": true,
+            "repeatable": false
+        },
+        "External-Description": {
+            "required": true,
+            "repeatable": false
+        },
+        "Bagging-Date": {
+            "required": true,
+            "repeatable": false
+        },
+        "Bag-Size": {
+            "required": true,
+            "repeatable": false
+        },
+        "Payload-Oxum": {
+            "required": true,
+            "repeatable": false
+        },
+        "Bag-Group-Identifier": {
+            "required": false,
+            "repeatable": false
+        },
+        "Bag-Count": {
+            "required": false,
+            "repeatable": false
+        },
+        "E-ARK-Package-Type": {
+            "required": true,
+            "repeatable": false
+        },
+        "E-ARK-Specification-Version": {
+            "required": true,
+            "repeatable": false
+        }
+    },
+    "Manifests-Required":[
+      "md5", "sha1"
+    ],
+    "Allow-Fetch.txt": true,
+    "Serialization": "required",
+    "Accept-Serialization": [
+        "application/zip",
+        "application/x-tar",
+        "application/x-gzip"
+    ],
+    "Accept-BagIt-Version": [
+        "0.97"
+    ]
+}
+

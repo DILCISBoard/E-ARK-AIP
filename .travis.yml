@@ -1,11 +1,9 @@
 dist: trusty
 sudo: required
-
 language: java
 jdk:
   - openjdk8
   - oraclejdk8
-
 before_install:
   - sudo apt-get update
   - sudo apt-get install -y texlive texlive-base texlive-latex-extra texlive-fonts-extra python-virtualenv librsvg2-bin
@@ -16,11 +14,21 @@ before_install:
   - sudo chmod +x /opt/pandoc-2.5/bin/pandoc
   - sudo ln -s /opt/pandoc-2.5/bin/pandoc /usr/local/bin/pandoc
   - sudo ln -s /opt/pandoc-2.5/bin/pandoc-citeproc /usr/local/bin/pandoc-citeproc
-
+  - bundle install
 script:
   - bash create-pdf.sh
   - bash create-site.sh
-
+  - bundle exec jekyll build -s ./docs -d ./_site
+  - bundle exec htmlproofer ./_site --file-ignore /javadoc/ --only-4xx --check-html
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GH_TOKEN
+  keep_history: true
+  local_dir: docs
+  on:
+    branch: master
 env:
   global:
-    - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
+  - NOKOGIRI_USE_SYSTEM_LIBRARIES=true
+  - secure: BotaeBrNqqxykaQxjNsFDgTXyr+h2mhM/H4Pu7LkXyZmJyNJVqW9rD/0CGpSSBssJ5AquULmluwVK9nRNeE1bRq8eVEcQ7aQphtB6NvCOIBeJFnKfH7t8dnyjTa9nX4PbCDP9AIeARSTBEihSUyPao7RFh5DyW76S/AqQdyQyKJrNsm0L0ISHPjWqFzpVur7NjE+gXBAyr0xTpbTnxhnKCz0Na0S33YlyL2LGqMP99+JcVggrPa7IB9DZU5lGmy7R7zfC5hs4angnk1/bLnK0hR+dKZQ9AFUpWAMDM/Rg3u6OgZxP8fqFqsTfThezXp46z8XbGHIW9GEvnK/4zFdft3ooKVTVPD903hKlUZHoYn3CoWT46p+5eO+kZmflfU+j0lcW3z88nZHRXHv92rrPlo4HCe09ILm6JacU9co/9Up+pCkxNd0uOFrjtb9+1Lz5v8+2VBTpTwKCcri11Rimn0VedgA8MESZlfhCSh0G8Tc1RzOMO3PSaYHgaYdWdAH1FPFZO+q7TSbGkT+LIKnAcjaqFufOGGabaz4mIle8nQY7jpFP+t5grTSxFdZ4S7MGYPQbD54N8y/Wshe498trzW4Nwwbl2TCLQHtfkHB1qlqSnCfMjvG+DUO5reCyNmrro1qPlBruO+YMxYzQwYNWkUAQNk9yFh6kFahEsQt8nk=
