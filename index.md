@@ -752,14 +752,13 @@ Table 2 lists the attributes of the `<file>` element with an example value. The
 
 |      Attribute      |   Description   |          Example Value             |
 |---------------------|-----------------|------------------------------|
-| //file/\@ID          | Identifier of a file wich is part of the AIPFile identifier; must be unique and start with the prefix “ID` | ID77146c6c-c8c3-4406-80b5-b3b41901f9d0 |
-| //file/\@ADMID       | Used to link it to relevant administrative metadata sections that relate to the digital object described. Can be a white space separated list of identifiers. | ID4566af74-0f7b-11e5-a6c0-1697f925ec7b ID4566af74-0f7b-11e5-a6c0-1697f925ec7c |
-| //file/\@CHECKSUMTYPE | Hash-sum calculator algorithm | SHA-256 |
-| //file/\@CHECKSUM | Hash-sum | 977fb584d53cd64662dfba427f351908 \
-13dfc58979f51a2703f8621b9e1bc274 |
-| //file/\@CREATED | Date when the file entry was created. | 2014-05-01T01:00:00+01:00 |
-| //file/\@SIZE | Size of the file in bytes. | 2498 |
-| //file/\@MIMETYPE | Mime-type | application/pdf |
+| `file/@ID`          | Identifier of a file wich is part of the AIPFile identifier; must be unique and start with the prefix “ID` | `ID77146c6c-c8c3-4406-80b5-b3b41901f9d0` |
+| `file/@ADMID`       | Used to link it to relevant administrative metadata sections that relate to the digital object described. Can be a white space separated list of identifiers. | `ID4566af74-0f7b-11e5-a6c0-1697f925ec7b` <br/>`ID4566af74-0f7b-11e5-a6c0-1697f925ec7c` |
+| `file/@CHECKSUMTYPE` | Hash-sum calculator algorithm | `SHA-256` |
+| `file/@CHECKSUM` | Hash-sum | `977fb584d53cd64662dfba427f351908` <br/>`13dfc58979f51a2703f8621b9e1bc274` |
+| `file/@CREATED` | Date when the file entry was created. | `2014-05-01T01:00:00+01:00` |
+| `file/@SIZE` | Size of the file in bytes. | `2498` |
+| `file/@MIMETYPE` | Mime-type | `application/pdf` |
 
 **Table 2:**
 Attributes of the file element
