@@ -26,7 +26,7 @@ deploy:
   github_token: $GH_TOKEN
   keep_history: true
   local_dir: docs
-  fqdn: earkcsip.dilcis.eu
+  fqdn: earkaip.dilcis.eu
   on:
     branch: master
 env:
