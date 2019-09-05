@@ -12,3 +12,4 @@ plugins:
 - jekyll-github-metadata
 - jekyll-sitemap
 - jekyll-redirect-from
+- jemoji
