@@ -10,7 +10,6 @@ gfm_quirks: paragraph_end
 repository: DILCISBoard/E-ARK-AIP
 plugins:
 - jekyll-github-metadata
-- jekyll-mentions
 - jekyll-redirect-from
 - jekyll-sitemap
 - jemoji
