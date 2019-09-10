@@ -16,10 +16,10 @@ before_install:
   - sudo ln -s /opt/pandoc-2.5/bin/pandoc-citeproc /usr/local/bin/pandoc-citeproc
   - bundle install
 script:
-  - bash create-pdf.sh
   - bash create-site.sh
   - bundle exec jekyll build -s ./docs -d ./_site
   - bundle exec htmlproofer ./_site --file-ignore /javadoc/ --only-4xx --check-html
+  - bash create-pdf.sh
 deploy:
   provider: pages
   skip_cleanup: true
@@ -27,6 +27,7 @@ deploy:
   keep_history: true
   fqdn: earkaip.dilcis.eu
   local_dir: docs
+  fqdn: earkaip.dilcis.eu
   on:
     branch: master
 env:
