@@ -616,6 +616,7 @@ current METS file under `metadata/submission`, i.e. the metadata file
 the initial metadata and the updated metadata.
 
 <a name="parentchild"></a>
+
 ### Parent-Child relationship
 
 As already pointed out, the divided METS structure was introduced to make the
