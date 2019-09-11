@@ -276,6 +276,7 @@ representations. This requirement overrules requirement *CSIPSTR9* defined by
 the CSIP. See also requirement *AIP-REPRESENTATIONS*.
 
 <a name="compdiv"></a>
+
 ### Compound vs. divided package structure
 
 As mentioned, the ability to manage representations or representation parts
@@ -393,6 +394,7 @@ complemented by AIP specific properties. This is the reason why the inherent
 structure of the AIP is different to the one of the SIP and the DIP.
 
 <a name="aipcontsubm"></a>
+
 ### AIP container for submissions
 
 The AIP format allows storing submissions; having the submission in its original
@@ -616,6 +618,7 @@ current METS file under `metadata/submission`, i.e. the metadata file
 the initial metadata and the updated metadata.
 
 <a name="parentchild"></a>
+
 ### Parent-Child relationship
 
 As already pointed out, the divided METS structure was introduced to make the
