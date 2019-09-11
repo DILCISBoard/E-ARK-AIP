@@ -1,5 +1,5 @@
 ---
-title:  'E-ARK Archival Information Package (AIP)'
+title:  E-ARK Archival Information Package (AIP)
 subtitle: Specification for Archival Information Packages
 abstract: |
         This E-ARK AIP format specification defines the requirements for building
@@ -20,5 +20,5 @@ abstract: |
         into multiple, sub-ordinated parts. Finally, the AIP specification gives a best
         practice recommendations regarding the physical packaging of AIPs.
 version: 2.0.1
-date: 04.09.2019
+date: 09.09.2019
 ---
