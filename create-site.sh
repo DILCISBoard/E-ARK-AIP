@@ -25,7 +25,9 @@ cp -R profiles docs/
 cp -R archived docs/
 
 bash "$SCRIPT_DIR/spec-publisher/utils/create-venv.sh"
-source "$SCRIPT_DIR/.venv/markdown/bin/activate"
+command -v markdown-pp >/dev/null 2>&1 || {
+  tmpdir=$(dirname $(mktemp -u))
+  source "$tmpdir/.venv-markdown/bin/activate"
+}
 markdown-pp SITE_BASE.md -o /tmp/site.md
 markdown-pp SITE.md -o ./docs/index.md
-deactivate
