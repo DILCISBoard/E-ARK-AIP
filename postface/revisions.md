@@ -10,5 +10,5 @@
 | 0.9.2        | 13.01.2017 | Kuldar Aas                       | Comments                                               |
 | 1.0          | 27.01.2017 | Sven Schlarb <br/>Jan Rörden     | Address review comments and language; final changes.   |
 | 2.0-DRAFT    | 12.12.2018 | Sven Schlarb <br/>Carl Wilson    | Migration to markdown, review                          |
-| 2.0.0        | 15.05.2018 | Carl Wilson <br/>Sven Schlarb    | Version 2.0.0                                          |
-| 2.0.1        | 15.05.2018 | Carl Wilson                      | Site structure and PDF layout                          |
+| 2.0.0        | 15.05.2019 | Carl Wilson <br/>Sven Schlarb    | Version 2.0.0                                          |
+| 2.0.1        | 09.09.2019 | Carl Wilson                      | Site structure and PDF layout                          |
