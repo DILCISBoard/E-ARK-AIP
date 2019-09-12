@@ -77,6 +77,7 @@ format that makes system migration easier.
 # Preliminary definitions and remarks
 
 <a name="ip"></a>
+
 ## Information package (IP)
 
 As already mentioned, the CSIP defines the requirements for concrete package format
@@ -84,6 +85,7 @@ specifications, such as the SIP, AIP, or DIP. In this sense, an
 *information package* (IP) is an instance of a format that complies with the CSIP.
 
 <a name="reps"></a>
+
 ## Representations
 
 The concept of "representations" is used according to the definition given in
@@ -131,6 +133,7 @@ proposing the divided METS structure described more in detail in section
 or representation parts separately.
 
 <a name="structdiv"></a>
+
 ## Structural division of the AIP
 
 One of the basic requirements formulated by the CSIP is the use of METS as the
@@ -234,6 +237,7 @@ entity.
       Available at: http://www.ietf.org/rfc/rfc2119.txt
 
 <a name="csip"></a>
+
 ## Overview about the CSIP
 
 In the following, we will briefly describe the structure of an IP as defined
@@ -272,6 +276,7 @@ representations. This requirement overrules requirement *CSIPSTR9* defined by
 the CSIP. See also requirement *AIP-REPRESENTATIONS*.
 
 <a name="compdiv"></a>
+
 ### Compound vs. divided package structure
 
 As mentioned, the ability to manage representations or representation parts
@@ -360,6 +365,7 @@ of the first representation - all files are in the Portable Document Format
 (PDF).
 
 <a name="aipstruct"></a>
+
 ## AIP structure
 Based on the brief overview about the CSIP given in the previous section, the
 AIP format specifies a logical structure and guidelines
@@ -388,6 +394,7 @@ complemented by AIP specific properties. This is the reason why the inherent
 structure of the AIP is different to the one of the SIP and the DIP.
 
 <a name="aipcontsubm"></a>
+
 ### AIP container for submissions
 
 The AIP format allows storing submissions; having the submission in its original
@@ -470,6 +477,7 @@ folder directly contains an IP, is present in the following sections about the
 AIP structure.
 
 <a name="aipreps"></a>
+
 ### AIP representations
 
 As described in section [5.1](#csip) in relation to an IP, one or several
@@ -610,6 +618,7 @@ current METS file under `metadata/submission`, i.e. the metadata file
 the initial metadata and the updated metadata.
 
 <a name="parentchild"></a>
+
 ### Parent-Child relationship
 
 As already pointed out, the divided METS structure was introduced to make the
@@ -667,6 +676,7 @@ syntax, element attributes have a leading ’@’ character. For example
 `//mets:file/@USE` denotes the `USE` attribute of a `<file>` element.
 
 <a name="structmd"></a>
+
 ### Structural metadata
 
 Structural metadata is expressed by means of the METS standard. Some of the high
@@ -689,6 +699,7 @@ This section has a focus on METS, therefore, if no namespace prefix is given,
 the element belongs to the METS default namespace.
 
 <a name="metsid"></a>
+
 #### METS identifier
 
 Each METS document must be assigned a persistent and (ideally globally) unique
