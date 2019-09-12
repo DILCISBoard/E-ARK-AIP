@@ -1,4 +1,3 @@
-!INCLUDE "spec-publisher/res/md/common-intro.md"
 
 # Scope and purpose
 
@@ -49,9 +48,9 @@ that are being applied to an AIP due to metadata edits, digital preservation
 measures (e.g. migration or adding emulation information), or submission
 updates.[^1]
 
-[^1]: A *submission update* is a re-submission of an SIP at a later point in
-  time related to an AIP which contains a previous version of this SIP. Section
-[5.2.1](#aipcontsubm) explains this concept more in detail.
+[^1]: A *submission update* is a re-submission of an SIP at a later point in time
+      related to an AIP which contains a previous version of this SIP.
+      Section [5.2.1](#aipcontsubm) explains this concept more in detail.
 
 The purpose of defining a standard format for the archival information package
 is to pave the way for simplified repository migration. Given the increasing
@@ -77,13 +76,17 @@ format that makes system migration easier.
 
 # Preliminary definitions and remarks
 
-## <a name="ip"></a>Information package (IP)
+<a name="ip"></a>
+
+## Information package (IP)
 
 As already mentioned, the CSIP defines the requirements for concrete package format
 specifications, such as the SIP, AIP, or DIP. In this sense, an
 *information package* (IP) is an instance of a format that complies with the CSIP.
 
-## <a name="reps"></a>Representations
+<a name="reps"></a>
+
+## Representations
 
 The concept of "representations" is used according to the definition given in
 the PREMIS digital preservation metadata standard:
@@ -129,7 +132,9 @@ proposing the divided METS structure described more in detail in section
 [5.1](#compdiv). The divided structure makes it easier to manage representations
 or representation parts separately.
 
-## <a name="structdiv"></a>Structural division of the AIP
+<a name="structdiv"></a>
+
+## Structural division of the AIP
 
 One of the basic requirements formulated by the CSIP is the use of METS as the
 metadata standard to describe the structure of an IP.
@@ -228,10 +233,12 @@ specification which defines the bit-level manifestation of the transferable
 entity.
 
 [^2]: The requirements terminology is based upon RFC2119, "Key words for use in
-RFCs to indicate requirement levels", RFC 2119, S. Bradner, March 1997.
-Available at: http://www.ietf.org/rfc/rfc2119.txt
+      RFCs to indicate requirement levels", RFC 2119, S. Bradner, March 1997.
+      Available at: http://www.ietf.org/rfc/rfc2119.txt
 
-## <a name="csip"></a>Overview about the CSIP
+<a name="csip"></a>
+
+## Overview about the CSIP
 
 In the following, we will briefly describe the structure of an IP as defined
 by the CSIP. Against this background, the AIP format will be introduced as a
@@ -268,7 +275,9 @@ Archival Information Package (AIP) folder COULD include a folder named
 representations. This requirement overrules requirement *CSIPSTR9* defined by
 the CSIP. See also requirement *AIP-REPRESENTATIONS*.
 
-### <a name="compdiv"></a>Compound vs. divided package structure
+<a name="compdiv"></a>
+
+### Compound vs. divided package structure
 
 As mentioned, the ability to manage representations or representation parts
 separately is required because the digital data submissions can become very
@@ -355,7 +364,9 @@ are in the Open Document Format (ODT) and in the second one - as a derivative
 of the first representation - all files are in the Portable Document Format
 (PDF).
 
-## <a name="aipstruct"></a>AIP structure
+<a name="aipstruct"></a>
+
+## AIP structure
 Based on the brief overview about the CSIP given in the previous section, the
 AIP format specifies a logical structure and guidelines
 for using METS and PREMIS metadata to create AIPs.
@@ -382,7 +393,9 @@ in the sense that it inherits general properties from the CSIP which are
 complemented by AIP specific properties. This is the reason why the inherent
 structure of the AIP is different to the one of the SIP and the DIP.
 
-### <a name="aipcontsubm"></a>AIP container for submissions
+<a name="aipcontsubm"></a>
+
+### AIP container for submissions
 
 The AIP format allows storing submissions; having the submission in its original
 form can help to ensure authenticity of its representations. For this purpose,
@@ -463,7 +476,9 @@ For the sake of simplicity, only the first variant, i.e. where the `submission`
 folder directly contains an IP, is present in the following sections about the
 AIP structure.
 
-### <a name="aipreps"></a>AIP representations
+<a name="aipreps"></a>
+
+### AIP representations
 
 As described in section [5.1](#csip) in relation to an IP, one or several
 representations can be part of an SIP. Additionally, the AIP must be able to
@@ -602,7 +617,9 @@ current METS file under `metadata/submission`, i.e. the metadata file
 `AIP/submission/METS.xml`. In this way users have the possibility to consult both
 the initial metadata and the updated metadata.
 
-### <a name="parentchild"></a>Parent-Child relationship
+<a name="parentchild"></a>
+
+### Parent-Child relationship
 
 As already pointed out, the divided METS structure was introduced to make the
 separation of representations or representation parts easier and allow the
@@ -658,7 +675,9 @@ match the selection, no matter where they are. Also in line with the XPath
 syntax, element attributes have a leading ’@’ character. For example
 `//mets:file/@USE` denotes the `USE` attribute of a `<file>` element.
 
-### <a name="structmd"></a>Structural metadata
+<a name="structmd"></a>
+
+### Structural metadata
 
 Structural metadata is expressed by means of the METS standard. Some of the high
 level functions which the standard fulfils in the context of the AIP are the
@@ -679,7 +698,9 @@ parts belonging to the same intellectual entity.
 This section has a focus on METS, therefore, if no namespace prefix is given,
 the element belongs to the METS default namespace.
 
-#### <a name="metsid"></a>METS identifier
+<a name="metsid"></a>
+
+#### METS identifier
 
 Each METS document must be assigned a persistent and (ideally globally) unique
 identifier. Possible identifier schemes are amongst others: OCLC Purls[^5], CNRI
@@ -750,9 +771,9 @@ values replaced by “...” for readability)
 Table 2 lists the attributes of the `<file>` element with an example value. The
 `/file/FLocat` element provides the link to the actual file.
 
-|      Attribute      |   Description   |          Example Value             |
-|---------------------|-----------------|------------------------------|
-| `file/@ID`          | Identifier of a file wich is part of the AIPFile identifier; must be unique and start with the prefix “ID` | `ID77146c6c-c8c3-4406-80b5-b3b41901f9d0` |
+|  Attribute  |   Description   |  Example Value     |
+|-------------|-----------------|--------------------|
+| `file/@ID`        | Identifier of a file wich is part of the AIPFile identifier; must be unique and start with the prefix `ID` | `ID77146c6c-c8c3-4406-80b5-b3b41901f9d0` |
 | `file/@ADMID`       | Used to link it to relevant administrative metadata sections that relate to the digital object described. Can be a white space separated list of identifiers. | `ID4566af74-0f7b-11e5-a6c0-1697f925ec7b` <br/>`ID4566af74-0f7b-11e5-a6c0-1697f925ec7c` |
 | `file/@CHECKSUMTYPE` | Hash-sum calculator algorithm | `SHA-256` |
 | `file/@CHECKSUM` | Hash-sum | `977fb584d53cd64662dfba427f351908` <br/>`13dfc58979f51a2703f8621b9e1bc274` |
@@ -992,7 +1013,8 @@ code parts, the prefix "premis" is omitted (default namespace is the PREMIS
 namespace[^10]) while the "mets" prefix is explicitly added if a relation to the
 METS file is explained.
 
-[^10]: Namespace: http://www.loc.gov/premis/v3, namespace schema location: http://www.loc.gov/standards/premis/premis.xsd
+[^10]: Namespace: http://www.loc.gov/premis/v3, namespace schema location:
+       http://www.loc.gov/standards/premis/premis.xsd
 
 #### Vocabulary
 
@@ -1519,8 +1541,7 @@ version and tag file character encoding.
 `bagit-info.txt` MUST be available and valid according to the E-ARK BagIt
 profile (corresponding to the version of this specification).[^20]
 
-[^20]:
-https://github.com/DILCISBoard/E-ARK-AIP/blob/{version-tag}/profiles/bagit/e-ark-bag-profile.json
+[^20]: https://github.com/DILCISBoard/E-ARK-AIP/blob/{version-tag}/profiles/bagit/e-ark-bag-profile.json
 
 Example of a `bagit-info` file:
 
