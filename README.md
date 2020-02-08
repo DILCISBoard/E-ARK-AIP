@@ -1,6 +1,6 @@
 # E-ARK AIP Specification
 
-This repository holds information about the Archival Information Package (AIP)  format specification maintained by the DLM Archival Standards Board (http://www.dasboard.eu).
+This repository holds information about the Archival Information Package (AIP)  format specification maintained by the DILCIS Board (http://www.dilcis.eu).
 
 ## Objectives
 
