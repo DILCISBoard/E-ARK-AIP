@@ -266,7 +266,7 @@ metadata can relate either to the IP as a whole or to individual representations
 As already mentioned, the structural requirements defined by the CSIP generally
 apply to the AIP. However, the AIP `representations` folder contains
 representations which are created as part of the AIP maintenance. If no
-mainteance operation was performed, this folder is not present. For this reason,
+maintenance operation was performed, this folder is not present. For this reason,
 the CSIP requirement which prescribes the presence of the `representations`
 folder is overruled by the following AIP specific requirement.
 
@@ -373,7 +373,7 @@ for using METS and PREMIS metadata to create AIPs.
 
 The AIP format offers a structure for storing the complete SIP, and it allows
 holding data and metadata which are created during SIP to AIP conversion and
-data that are created during the lifecycle of the AIP.
+data that are created during the life-cycle of the AIP.
 
 It is important to note that the AIP format implements the CSIP differently
 compared to the SIP and the DIP. The SIP and the DIP represent “snapshots in
@@ -428,7 +428,7 @@ contain a METS file.
 The naming scheme of these sub-folders can be freely defined. However, it should
 reflect the order of original submission and updates. This means that the folder
 names should allow alphanumerical ordering, for example, by using
-zerofill-number suffixes or by deriving the folder name from an ISO 8601 date.
+zero-filled number suffixes or by deriving the folder name from an ISO 8601 date.
 
 <a name="aip-submissions-order"></a>**AIP-SUBMISSIONS-ORDER**: The sub-folders
 containing IPs SHOULD allow alphanumeric sorting, e.g. by using zero-fill
@@ -531,8 +531,8 @@ not have to follow such logic.
 The AIP is an extension of the IP format; therefore it must follow the
 basic structure of an IP. Figure [9](#fig9) shows that the IP components,
 consisting of METS file, `Metadata` and `representations` folders,
-are repeated on theAIP level. The extension of the AIP format is basically
-given by the fact thatthe AIP is an IP which can contain another IP (here i.e.
+are repeated on the AIP level. The extension of the AIP format is basically
+given by the fact that the AIP is an IP which can contain another IP (here i.e.
 a SIP) in the `submission` folder.
 
 Note that the `representations` folder in the AIP root folder is optional.
@@ -638,7 +638,7 @@ Parent-child relationship between AIPs
 
 Even though this parent-child relationship could be used to create a
 hierarchical graph of AIPs, the scope of this specification is limited to
-a flat list of AIPs which are sub-ordinated to one parent-AIP.
+a flat list of AIPs which are subordinated to one parent-AIP.
 
 Assuming that a new AIP (e.g. containing an additional representation) needs to
 be added after parent- and child-AIPs have been stored, the recreation of the
@@ -716,7 +716,7 @@ Using this identifier, the system must be able to retrieve the corresponding
 package from the repository.
 
 According to the Common Specification, any ID element must start with a prefix
-(also, the XML ID datatype is does not allow IDs ed to start with a number, so a
+(also, the XML ID data type does not permit IDs that start with a number, so a
 prefix solves this issue).
 
 We recommended to use as a prefix an internationally recognized standard identifier
@@ -773,7 +773,7 @@ Table 2 lists the attributes of the `<file>` element with an example value. The
 
 |  Attribute  |   Description   |  Example Value     |
 |-------------|-----------------|--------------------|
-| `file/@ID`        | Identifier of a file wich is part of the AIPFile identifier; must be unique and start with the prefix `ID` | `ID77146c6c-c8c3-4406-80b5-b3b41901f9d0` |
+| `file/@ID`        | Identifier of a file which is part of the AIP File identifier; must be unique and start with the prefix `ID` | `ID77146c6c-c8c3-4406-80b5-b3b41901f9d0` |
 | `file/@ADMID`       | Used to link it to relevant administrative metadata sections that relate to the digital object described. Can be a white space separated list of identifiers. | `ID4566af74-0f7b-11e5-a6c0-1697f925ec7b` <br/>`ID4566af74-0f7b-11e5-a6c0-1697f925ec7c` |
 | `file/@CHECKSUMTYPE` | Hash-sum calculator algorithm | `SHA-256` |
 | `file/@CHECKSUM` | Hash-sum | `977fb584d53cd64662dfba427f351908` <br/>`13dfc58979f51a2703f8621b9e1bc274` |
@@ -1057,7 +1057,7 @@ Object identifier
 
 <a name="aip-premis-checksums"></a>**AIP-PREMIS-CHECKSUMS**: Checksums COULD be
 provided as a descendant of the `objectCharacteristics` element information in
-form of a SHA-256 hashsum, a fixed size 256-bit value.
+form of a SHA-256 checksum, a fixed size 256-bit value.
 
 An example is shown in Listing 11.
 
@@ -1076,7 +1076,7 @@ Hashsum (value shortened)
 
 <a name="aip-premis-file-format"></a>**AIP-PREMIS-FILE-FORMAT**: The format
 element COULD be provided either using the formatRegistry or the
-formatDesignation element subelements, or both.
+formatDesignation element sub-elements, or both.
 
 <a name="aip-premis-file-format-puid"></a>**AIP-PREMIS-FILE-FORMAT-PUID**:
 Regarding the formatRegistry, the Persistent Unique Identifier (PUID)[^14]
@@ -1173,7 +1173,7 @@ object.
 
 <a name="aip-premis-aip-included"></a>**AIP-PREMIS-AIP-INCLUDED**: If an AIP is
 part of another AIP, then the element `relationshipSubType` MUST reference the
-superordinated AIP.
+super-ordinate AIP.
 
 An example of the latter case is shown in Listing 16.
 
@@ -1238,7 +1238,7 @@ Event identifier
 
 ##### Link to agent/object
 
-<a name="aip-premis-event-agent"></a>**AIP-PREMIS-EVENT-AGENT**: If an event is desscribed, the agent which caused
+<a name="aip-premis-event-agent"></a>**AIP-PREMIS-EVENT-AGENT**: If an event is described, the agent which caused
 the event (e.g. person, software, hardware, etc.) MUST be related to the event by means of the `linkingAgentIdentifier` element.
 
 In the example shown in listing 20 the SIP to AIP conversion software is linked as agent with identifier value
@@ -1485,7 +1485,7 @@ AIP content extracted from a TAR package.
 
 <a name="aip-tarpackage-manifest"></a>**AIP-TARPACKAGE-MANIFEST**: In addition
 to fixity information recorded in the METS file, the AIP COULD include a
-manifest file (manifest.txt) listing files with MD5 and SHA-256 hashsum.
+manifest file (manifest.txt) listing files with MD5 and SHA-256 checksum.
 
 The manifest file is a text file containing a list of records separated by two
 line breaks (two carriage return characters (hexadecimal 0D0D) or two times
