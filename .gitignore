@@ -1,5 +1,17 @@
 # aip-specification.pdf
 pandoc/bibliography.bib.bak
-.vagrant*
+# Site publication file
+docs/
+site/
 Gemfile.lock
-_site
+**/_site
+.classpath
+.project
+.settings
+**/*.jar
+**/target
+**/bin
+**/*.class
+.vagrant*
+.venv
+vendor
