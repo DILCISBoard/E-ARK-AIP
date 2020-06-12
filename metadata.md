@@ -19,6 +19,6 @@ abstract: |
         AIP specification defines a practice for splitting very large AIPs
         into multiple, sub-ordinated parts. Finally, the AIP specification gives a best
         practice recommendations regarding the physical packaging of AIPs.
-version: 2.0.1
-date: 09.09.2019
+version: 2.0.4
+date: 12.06.2020
 ---
