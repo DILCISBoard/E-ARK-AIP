@@ -2,10 +2,10 @@
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd "$SCRIPT_DIR" || exit
 
-cd "./postface/"
+cd "./postface/" || exit
 bash "$SCRIPT_DIR/spec-publisher/utils/create-venv.sh"
 command -v markdown-pp >/dev/null 2>&1 || {
-  tmpdir=$(dirname $(mktemp -u))
+  tmpdir=$(dirname "$(mktemp -u)")
   source "$tmpdir/.venv-markdown/bin/activate"
 }
 echo " - MARKDOWN-PP: Processing postface markdown"
@@ -41,7 +41,7 @@ cd "$SCRIPT_DIR" || exit
 
 echo " - MARKDOWN-PP: Preparing PDF markdown"
 command -v markdown-pp >/dev/null 2>&1 || {
-  tmpdir=$(dirname $(mktemp -u))
+  tmpdir=$(dirname "$(mktemp -u)")
   source "$tmpdir/.venv-markdown/bin/activate"
 }
 markdown-pp PDF.md -o docs/eark-aip-pdf.md -e tableofcontents
