@@ -21,10 +21,16 @@ then
   rm -rf ./docs/pdf]
 fi
 
-if [ -d ./docs/archived ]
+if [ -d ./docs/archive ]
 then
   echo " - removing existing archive directory"
-  rm -rf ./docs/archived
+  rm -rf ./docs/archive
+fi
+
+if [ -d ./docs/profile ]
+then
+  echo " - removing existing profile directory"
+  rm -rf ./docs/profile
 fi
 
 if [ -d ./docs/_data ]
@@ -71,5 +77,6 @@ find ./docs/_* -type f -exec sed -i 's/CSIP/AIP/' {} \;
 find ./docs/_* -type f -exec sed -i 's/csip/aip/' {} \;
 cp -R spec-publisher/res/md/figs docs/
 cp -R figs docs/
-cp -R archived docs/
+cp -R profile docs/
+cp -R archive docs/
 cp -R examples docs/

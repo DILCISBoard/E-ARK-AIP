@@ -3,20 +3,18 @@ sudo: required
 language: java
 jdk:
   - openjdk8
-  - oraclejdk8
 script:
   - docker run -it --rm -v "$PWD:/source" -u "$(id -u):$(id -g)" --entrypoint /source/create-site.sh eark4all/spec-pdf-publisher
   - docker run -it --rm -v "$PWD:/source" -u "$(id -u):$(id -g)" --entrypoint /source/create-pdf.sh eark4all/spec-pdf-publisher
   - mkdir site
   - docker run -it --rm -v "$PWD"/docs:/usr/src/app -v "$PWD"/site:/_site -u "$(id -u):$(id -g)" starefossen/github-pages jekyll build -d /_site
-  - bundle install
-  - bundle exec htmlproofer ./site --file-ignore /javadoc/ --only-4xx --check-html
+  # - bundle install
+  # - bundle exec htmlproofer ./site --file-ignore /javadoc/ --only-4xx --check-html
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GH_TOKEN
   keep_history: true
-  fqdn: earkaip.dilcis.eu
   local_dir: docs
   fqdn: "$CNAME"
   on:
