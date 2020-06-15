@@ -22,7 +22,31 @@ A visualisation of the current specification network can be seen here:
 This specification is maintained by the Digital Information LifeCycle Interoperability Standards Board (DILCIS Board, http://dilcis.eu/). The DILCIS Board was created to enhance and maintain the draft specifications developed in the European Archival Records and Knowledge Preservation Project (E-ARK project, http://eark-project.com/) which concluded in January 2017. The Board consists of eight members, but there is no restriction on the number of participants in the work. All Board documents and specifications are stored in GitHub (https://github.com/DILCISBoard) while published versions are made available on the Board webpage. Since 2018 the DILCIS Board has been responsible for the core specifications in the Connecting Europe Facility eArchiving Building Block https://ec.europa.eu/cefdigital/wiki/display/CEFDIGITAL/eArchiving.
 
 ## III Authors
-A full list of contributors to this specification, as well as the revision history can be found in Appendix 1.
+
+Contributors to current version
+-------
+
+| Name                             | Organisation                                       |
+| -------------------------------- | -------------------------------------------------- |
+| Sven Schlarb                     | Austrian Institute of Technology                   |
+| Karin Bredenberg                 | Swedish National Archives                          |
+| Carl Wilson                      | Open Preservation Foundation                       |
+| Anders Bo Nielsen                | Danish National Archives                           |
+| Phillip Mike Tømmerholt          | Danish National Archives                           |
+
+Contributors to previous versions
+-------
+
+| Name                             | Organisation                                       |
+| -------------------------------- | -------------------------------------------------- |
+| João Cardoso                     | Instituto Superior Técnico                         |
+| Janet Delve                      | University of Brighton                             |
+| Richard Healey                   | University of Portsmouth                           |
+| Anders Bo Nielsen                | Danish National Archives                           |
+| Jan Rörden                       | Austrian Institute of Technology                   |
+| Sven Schlarb                     | Austrian Institute of Technology                   |
+| Ricardo Vieira                   | Instituto Superior Técnico                         |
+| Gregor Završnik                  | Slovenian National Archives                        |
 
 # Scope and purpose
 
