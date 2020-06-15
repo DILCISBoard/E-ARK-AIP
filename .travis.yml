@@ -3,7 +3,6 @@ sudo: required
 language: java
 jdk:
   - openjdk8
-  - oraclejdk8
 script:
   - docker run -it --rm -v "$PWD:/source" -u "$(id -u):$(id -g)" --entrypoint /source/create-site.sh eark4all/spec-pdf-publisher
   - docker run -it --rm -v "$PWD:/source" -u "$(id -u):$(id -g)" --entrypoint /source/create-pdf.sh eark4all/spec-pdf-publisher
