@@ -12,3 +12,4 @@
 | 2.0-DRAFT    | 12.12.2018 | Sven Schlarb <br/>Carl Wilson    | Migration to markdown, review                          |
 | 2.0.0        | 15.05.2019 | Carl Wilson <br/>Sven Schlarb    | Version 2.0.0                                          |
 | 2.0.1        | 09.09.2019 | Carl Wilson                      | Site structure and PDF layout                          |
+| 2.0.4        | 12.06.2020 | K. Bredenberg, C.Wilson & J. Kaminski | SYD, OPF & HIGH | Preface text and output display update | 

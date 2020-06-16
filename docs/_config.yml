@@ -5,11 +5,11 @@ kramdown:
   hard_wrap: false
 future: true
 jailed: false
-theme: jekyll-theme-primer
 gfm_quirks: paragraph_end
 repository: DILCISBoard/E-ARK-AIP
 plugins:
 - jekyll-github-metadata
+- jekyll-mentions
 - jekyll-sitemap
 - jekyll-redirect-from
 - jemoji
