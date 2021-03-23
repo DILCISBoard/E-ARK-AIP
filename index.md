@@ -1,4 +1,3 @@
-
 # Scope and purpose
 
 To briefly recall the three types of information packages as defined by OAIS
@@ -8,21 +7,18 @@ submit digital objects to a repository system; the Archival Information Package
 storage over the long-term; and the Dissemination Information Package (DIP)
 which is used to disseminate digital objects to the requesting user.
 
-In this context, the current document represents the specification of the E-ARK
-Archival Information Package format (E-ARK AIP, in the following named shortly
-AIP). It defines the specific requirements for archiving and storing information
-packages for the long term and focuses on the structural peculiarities and
-metadata requirements relating to the AIP. Considered in detail, the key
-objectives of this format are to:
+This document is specification of the E-ARK Archival Information Package format
+(E-ARK AIP, in the following named shortly AIP). It defines requirements and
+guidelines for creating AIPs which are adequate to store information packages
+for the long term. The key objectives of this format are to:
 
-- define a generic structure of the AIP format in a way that it is suitable for
-  a wide variety of data types, such as document and image collections, archival
-records, databases or geographical data.
-- recommend a set of metadata standards related to the structural and the
+- define the AIP format as an extension of the E-ARK CSIP so that it is suitable for
+  the long-term storage of a wide variety of data types, such as document and image
+  collections, archival records, databases or geographical data.
+- recommend specific ways of using metadata standards related to the
   preservation aspects of the AIP.
-- ensure the format is suitable to store large quantities of data.
-- mitigate the potential preservation risk of repository obsolescence by
-  implementing a repository succession strategy.
+- specify a form of packaging AIP container files while ensuring that the
+  format is suitable to store large quantities of data.
 
 # Relation to other documents
 
@@ -41,12 +37,11 @@ are listed in the CSIP (section 1.4 "Relation to other documents").
 
 # Introduction
 
-The AIP format specification defines a basic structure for storing information
-packages which are transferred to an archive in form of submission information
-packages (SIPs). The AIP format provides the means to keep a record of changes
-that are being applied to an AIP due to metadata edits, digital preservation
-measures (e.g. migration or adding emulation information), or submission
-updates.[^1]
+The AIP format defines an information package for storing archival content that
+is going to be transferred to a repository for long-term preservation purposes.
+The AIP format allows keeping a record of changes that are applied to an AIP in
+form of metadata edits, digital preservation measures (e.g. migration or adding
+emulation information), or submission updates.[^1]
 
 [^1]: A *submission update* is a re-submission of an SIP at a later point in time
       related to an AIP which contains a previous version of this SIP.
@@ -74,13 +69,13 @@ impose a common storage format that all repository systems need to implement.
 While it can be used as an archival storage format, it can also be seen as a
 format that makes system migration easier.
 
-# Preliminary definitions and remarks
+# Definitions and remarks
 
 <a name="ip"></a>
 
-## Information package (IP)
+## Information package
 
-As already mentioned, the CSIP defines the requirements for concrete package format
+The CSIP defines the requirements for concrete information package format
 specifications, such as the SIP, AIP, or DIP. In this sense, an
 *information package* (IP) is an instance of a format that complies with the CSIP.
 
@@ -100,37 +95,27 @@ the PREMIS digital preservation metadata standard:
 > structural metadata showing the order of the pages; these 13 files constitute
 > the representation. [@premis3.0-2017]"
 
-According to the CSIP, representations are a core concept for all types of IPs.
-One specific requirement regarding representations in the AIP is that the AIP
-format must be able, on the one hand, to include representations which are part
-of the SIP, and, on the other hand, to manage representations which are created
-during SIP to AIP conversion or as a result of any maintenance operation
-applying changes to the AIP.
+According to the CSIP, representations are an important concept for all types of IPs.
+Regarding the AIP format, in addition to the organization and storage of the 
+representations, it is important that representations which are generated 
+during the AIP's life cycle are managed and documented in such a way that 
+changes can be tracked at any time.
 
-It should also be mentioned that representations can be derived from each other;
-this is typically the case if digital objects making up a representation are
-migrated to another format. However, a new representation, in our understanding,
-does not have to be necessarily the result of a file format migration. It can
-also consist of a set of instructions included as part of representation
-metadata explaining how to create an emulation environment in order to render a
-set of files.
+## Logical and physical AIP
 
-## Logical and physical representation of the AIP
-
-In line with OAIS, we call the logical container of the AIP the complete set of
-digital objects and metadata representing the conceptual entity as a whole. The
-conceptual entity must be distinguished from the physical representation of one
-or possibly more physical containers which represent one conceptual entity.
+On the one hand, we call the logical AIP the set of digital objects and metadata 
+representing the entire archival entity regardless of how the files are packaged. 
+On the other hand, the physical AIP consists of one or several physical container 
+files which contain all or parts of the logical AIP.
 
 From the point of view of preserving the integrity of the AIP, the ideal case is
-that the logical AIP representing the intellectual entity is packaged as one
-single physical container. This makes recovery easier because the information
-required to interpret and render the contained representations is bundled
-together. In reality, however, this is not always possible because the size of
-the physical container can become very large, and this is the reason for
-proposing the divided METS structure described more in detail in section
-[5.1](#compdiv). The divided structure makes it easier to manage representations
-or representation parts separately.
+that the logical AIP is packaged as one single physical container, because all the
+metadata and content required to interprete the information package is avialable if the 
+container file is unpackaged. In reality, however, this is not always possible 
+because the size of the physical container can become very large, and this is the 
+reason for proposing the divided METS structure described more in detail in 
+section [5.1](#compdiv). The divided structure makes it easier to manage 
+representations or representation parts separately.
 
 <a name="structdiv"></a>
 
@@ -142,8 +127,8 @@ metadata standard to describe the structure of an IP.
 Special attention was given to the fact that it might not be possible to store
 all representations of an intellectual entity in one physical container, or that
 even a single representation might have to be divided so that it can be stored
-on long-term storage media. For this reason, the AIP format describes means to
-manage representations or representation parts separately.
+on long-term storage media. For this reason, the AIP format describes how
+to manage representations or representation parts separately.
 
 This structure lays the groundwork for addressing the practical requirement of
 distributing parts of the intellectual entity over a sequence of physical
@@ -156,13 +141,13 @@ data exceeds the capacity limitation of long-term storage media.
 
 ## Authenticity of the original submission
 
-The AIP format provides a structure for storing the original submission
+The AIP format recommends a method for storing the original submission
 separately from any data that is created during SIP-to-AIP conversion and during
 the life-cycle of the AIP. This allows safeguarding the authenticity of the
 original submission.
 
 However, it is an implementation decision if the original submission is kept “as
-is” or if the SIP data is adapted during SIP to AIP conversion. In line with
+is” or if the SIP is adapted during SIP to AIP conversion. In line with
 OAIS, the content of the original SIP does not have to be identical to the
 version of the submitted data stored as part of the AIP:
 
@@ -170,20 +155,18 @@ version of the submitted data stored as part of the AIP:
 > precisely the same format as in the SIP. Indeed, preserving the original
 > information exactly as submitted may not be desirable. [@OAIS2012, p. 4-52]”
 
-The E-ARK AIP format prescribes a structure by defining a set of requirements
-and core metadata together with recommendations on how to use the requirements
-in order to allow changing the AIP while keeping seamless track of the AIP’s
-history.
+The AIP format suggests a method for storing information packages so that 
+both, the original submission, and a version in which perservation measures
+have been applied, can be archived.
 
-## Version of an AIP
+## Version and generation of an AIP
 
-While the AIP always describes the same unaltered conceptual entity, the way in
-which this information is represented may change. Therefore the AIP format
-describes the means to record the provenance from the time of the first
-submission, and also during the whole life-cycle of the AIP.
+Information packages are permanent: more precisely the information they contain 
+is assumed to be permanent and always describing the same unaltered conceptual 
+entity. Nevertheless, the way in which this information is represented may change. 
 
-For the purpose of the AIP format specification, the *AIP version* concept used
-is as defined by OAIS:
+For the purposes of the AIP format specification, the concept *AIP version* is 
+used as defined by OAIS:
 
 > “AIP Version: An AIP whose Content Information or Preservation Description
 > Information has undergone a Transformation on a source AIP and is a candidate
@@ -195,9 +178,6 @@ either the result of a digital migration or information that enables the creatio
 of an emulation environment to render a representation. The result of this
 operation is the creation of a new version of the AIP.
 
-The result of a new version of the AIP is stored separately from the submission
-as explained in detail in section [5.2.2](#aipreps).
-
 Furthermore, the AIP format allows updating the AIP by adding a new version of
 the submission. This allows supporting the AIP edition which is defined in OAIS
 as follows:
@@ -207,84 +187,31 @@ as follows:
 > preserve information, but to increase or improve it. An AIP edition is not
 > considered to be the result of a Migration. [@OAIS2012, p. 1-9]”
 
-The result of an AIP Edition is stored as part of the submission as explained in
-detail in section [5.2.1](#aipcontsubm).
+If the logical AIP is changed, the physical representation of the information 
+in a container may change as well. We call an *AIP generation* a new 
+manifestation of physical container files representing a new version of a 
+logical AIP. The new generation of the AIP can be a single container file or a 
+set of container files.
 
-## Cardinality of the SIP to AIP transformation
 
-Regarding the transformation of SIPs to AIPs, in the OAIS it is stated that "one
-or more SIPs are transformed into one or more Archival Information Packages (AIPs)
-for preservation [@OAIS2012, p. 2-8]”.
+# AIP format
 
-The recommendation in this regard is to guarantee a one-to-one relationship
-between the logical SIP and the logical AIP whereas the relation of the
-corresponding physical packages of SIPs and AIPs can be any kind of many-to-many
-mapping.
+The AIP format consists of a set of recommendations and requirements[^2]
+regarding the use of the metadata which go beyond the requirements defined by the
+CSIP.
 
-# AIP format specification
-
-The following AIP format specification is defined as a set of requirements[^2]
-which will be explained with the help of textual descriptions, figures, and
-concrete examples. It is divided into two parts. On the one hand, there is the
-structure and metadata specification which defines how the AIP is conceptually
-organized by means of a folder hierarchy in a file system and a set of
-metadata standards. And on the other hand, there is the physical container
-specification which defines the bit-level manifestation of the transferable
-entity.
-
-[^2]: The requirements terminology is based upon RFC2119, "Key words for use in
-      RFCs to indicate requirement levels", RFC 2119, S. Bradner, March 1997.
-      Available at: http://www.ietf.org/rfc/rfc2119.txt
-
-<a name="csip"></a>
-
-## Overview about the CSIP
-
-In the following, we will briefly describe the structure of an IP as defined
-by the CSIP. Against this background, the AIP format will be introduced as a
-container format which allows managing the life-cycle of an E-ARK IP that
-starts with the ingest of an SIP.
-
-As already mentioned in section [4.1](#reps), the CSIP relies on the concept of
-"representations". Figure [1](#fig1) gives an example of the structure of an IP
-with two representations.
-
-<a name="fig1"></a>
-![Information Package structure](figs/visio/fig_1_ip_structure.svg "Structure of an IP compliant with the E-ARK Common Specification for IPs structure")
-
-**Figure 1:**
-Structure of an IP.
-
-Furthermore, Figure [1](#fig1) shows that metadata can be stored either at the
-representation level or at the package level. In the CSIP it is explained in more
-detail where different types of metadata can be stored. In this context, it is
-sufficient to mention that descriptive, technical, preservation, and rights
-metadata can relate either to the IP as a whole or to individual representations.
-
-### Representations in the AIP
-
-As already mentioned, the structural requirements defined by the CSIP generally
-apply to the AIP. However, the AIP `representations` folder contains
-representations which are created as part of the AIP maintenance. If no
-maintenance operation was performed, this folder is not present. For this reason,
-the CSIP requirement which prescribes the presence of the `representations`
-folder is overruled by the following AIP specific requirement.
-
-<a name="aip-representations-optional"></a>**AIP-REPRESENTATIONS-OPTIONAL**: The
-Archival Information Package (AIP) folder COULD include a folder named
-representations. This requirement overrules requirement *CSIPSTR9* defined by
-the CSIP. See also requirement *AIP-REPRESENTATIONS*.
+## AIP specific structural metadata
 
 <a name="compdiv"></a>
 
 ### Compound vs. divided package structure
 
-As mentioned, the ability to manage representations or representation parts
-separately is required because the digital data submissions can become very
+The ability to manage representations or representation parts
+separately is required because the digital data submissions can be very
 large. This is not only relevant for storing the AIP, it also concerns the SIP
 which might need to be divided before the data is submitted to the repository.
 And regarding the DIP, it requires the capability to reconstruct the DIP from an
-AIP which is decomposed into multiple parts.
+AIP which is divided into multiple parts.
 
 In the following, two approaches for describing the structure of the IP will be
 described with a focus on requirements of the AIP format: the *compound*
@@ -364,260 +291,7 @@ are in the Open Document Format (ODT) and in the second one - as a derivative
 of the first representation - all files are in the Portable Document Format
 (PDF).
 
-<a name="aipstruct"></a>
-
-## AIP structure
-Based on the brief overview about the CSIP given in the previous section, the
-AIP format specifies a logical structure and guidelines
-for using METS and PREMIS metadata to create AIPs.
-
-The AIP format offers a structure for storing the complete SIP, and it allows
-holding data and metadata which are created during SIP to AIP conversion and
-data that are created during the life-cycle of the AIP.
-
-It is important to note that the AIP format implements the CSIP differently
-compared to the SIP and the DIP. The SIP and the DIP represent “snapshots in
-time`, one capturing the state of an information package at submission time
-(SIP), the other one capturing a specific form of delivery at the point in time
-when the information package for access was created (DIP). The AIP, in contrast,
-allows holding the original submission (snapshot of the IP at submission time),
-the outcome of preservation actions in the course of the life-cycle separately,
-and submission updates that occur after the AIP was created.
-
-The main difference is that the AIP is an information package which can
-contain one or several IPs, namely SIPs. The purpose of this meta-structure is
-to allow keeping a record of changes to the AIP over time. This requires a
-specific structure which is not required in the SIP and the DIP. The AIP must
-therefore not be understood as an extension of the IP (as defined by the CSIP)
-in the sense that it inherits general properties from the CSIP which are
-complemented by AIP specific properties. This is the reason why the inherent
-structure of the AIP is different to the one of the SIP and the DIP.
-
-<a name="aipcontsubm"></a>
-
-### AIP container for submissions
-
-The AIP format allows storing submissions; having the submission in its original
-form can help to ensure authenticity of its representations. For this purpose,
-the AIP format defines a `submission` folder in the root of the AIP which
-contains the original submission as well as any submission updates added after
-the AIP was created. The following obligatory requirement applies:
-
-<a name="aip-submission-root"></a>**AIP-SUBMISSION-ROOT**: The root folder of
-the AIP package COULD contain a `submission` folder which is a container for
-the original submission and for any updates of SIPs which are submitted after
-the AIP was created.
-
-If submission updates are enabled for a repository, the submission folder can
-contain sub-folders with a series of submissions, starting from the original
-one and followed by the submission updates.
-
-If the submission folder does not contain a METS file, it is assumed that
-one or several submissions are contained in subfolders.
-
-<a name="aip-submission-ip"></a>**AIP-SUBMISSION-IP**: The `submission` folder
-MUST contain an IP or at least one or several IPs in sub-folders.
-
-<a name="aip-submission-ips"></a>**AIP-SUBMISSION-IPS**: If the `submission`
-folder contains one or several sub-folders, the sub-folders MUST contain IPs.
-
-<a name="aip-submission-nomets"></a>**AIP-SUBMISSIONS-NOMETS**: If the
-`submission` folder contains one or several IPs in sub-folders it MUST NOT
-contain a METS file.
-
-The naming scheme of these sub-folders can be freely defined. However, it should
-reflect the order of original submission and updates. This means that the folder
-names should allow alphanumerical ordering, for example, by using
-zero-filled number suffixes or by deriving the folder name from an ISO 8601 date.
-
-<a name="aip-submissions-order"></a>**AIP-SUBMISSIONS-ORDER**: The sub-folders
-containing IPs SHOULD allow alphanumeric sorting, e.g. by using zero-fill
-numbers or ISO 8601 date derived strings as part of the folder name.
-
-Examples for submission folder names which allow alphanumerical sorting:
-
-- Zero-fill number suffixes:
-    + Submission-00001
-    + Submission-00002
-    + Submission-00003
-- Date/time based strings:
-    + 2017-12-25_ 081012
-    + 2017-12-26_ 083401
-    + 2017-12-27_ 090118
-- Date string suffixes:
-    + Submission-2017-12-25
-    + Submission-2017-12-26
-    + Submission-2017-12-27
-
-Figure [6](#fig6) shows the variant where the `submission` folder contains an IP which
-represents the original submission. Although this structure does not reflect the
-version of the submission, the versioning layer can be introduced when the AIP
-is updated. The IP contained in the submission folder must be moved to a version
-folder in that case.
-
-<a name="fig6"></a>
-
-![Information Package structure](figs/fig_6_sub_folder.png "The AIP's submission folder contains the IP of the original submission"){ width=193px }
-
-**Figure 6:**
-The AIP's "submission" folder containing the IP of the original submission.
-
-Figure [7](#fig7) shows an example of the alternative structure, where the submission
-folder contains three sub-folders representing one original submission and two
-updates which were created over the course of three days.
-
-<a name="fig7"></a>
-![Information Package structure](figs/visio/fig_7_sub_folder.svg "The AIP contains submissions in subfolders to support submission updates")
-
-**Figure 7:**
-The AIP containing submissions in subfolders to support submission updates.
-
-For the sake of simplicity, only the first variant, i.e. where the `submission`
-folder directly contains an IP, is present in the following sections about the
-AIP structure.
-
-<a name="aipreps"></a>
-
-### AIP representations
-
-As described in section [5.1](#csip) in relation to an IP, one or several
-representations can be part of an SIP. Additionally, the AIP must be able to
-include further representations which are either added during SIP to AIP
-conversion, or through measures which were taken as part of the repository
-maintenance or for digital preservation purposes.
-
-To illustrate this with the help of an example, Figure [8](#fig8) shows the
-structure of an AIP where the original submission consists of two
-representations which were part of the original submission. The
-`submission` folder of the AIP contains the original submission “as
-is”, which means that neither data nor metadata is changed.
-
-<a name="fig8"></a>
-![Information Package structure](figs/visio/fig_8_aip_reps.svg "AIP representations.")
-
-**Figure 8:**
-AIP representations.
-
-Let us now assume that during SIP to AIP conversion an additional representation
-is added to the AIP. Figure [9](#fig9) illustrates an example where an additional
-`representations` folder exists as a sibling of the `submission` folder
-which contains a new representation (rep-001.1) derived from one of the
-representations contained in the original submission (rep-001).
-
-<a name="fig9"></a>
-![Information Package structure](figs/visio/fig_9_aip_reps.svg "AIP representations.")
-
-**Figure 9:**
-AIP representations.
-
-This leads to the following requirement regarding representations which are
-added during SIP to AIP conversion.
-
-<a name="aip-representations"></a>**AIP-REPRESENTATIONS**: If a new
-representation is added during ingest (SIP to AIP conversion) or created as an
-AIP preservation measure (AIP to AIP conversion), the root folder of the AIP
-MUST contain a `representations` folder. For this folder, the same
-requirements as for the representations of an IP apply.
-
-Note that the three-digit number suffix following the name `rep-` used in
-the example of Figure [9](#fig9) indicates the order in time in which the
-representation of the original submission was created. And the additional
-number suffix after the dot indicates that the representation is a derivative
-of the representation identified by the three-digit number before the dot, i.e.
-`rep-001.1` is the first derivative of representation `rep-001`. This
-is however for illustration purposes only; the naming of representations does
-not have to follow such logic.
-
-The AIP is an extension of the IP format; therefore it must follow the
-basic structure of an IP. Figure [9](#fig9) shows that the IP components,
-consisting of METS file, `Metadata` and `representations` folders,
-are repeated on the AIP level. The extension of the AIP format is basically
-given by the fact that the AIP is an IP which can contain another IP (here i.e.
-a SIP) in the `submission` folder.
-
-Note that the `representations` folder in the AIP root folder is optional.
-It means that this folder must only exist in case representations other than
-the ones originally submitted are added to the AIP.
-
-The AIP is an IP, therefore the CSIP requirement *CSIPSTR4* applies and the
-AIP's root MUST contain a METS file that either references all metadata and
-data files or it references other METS files located in the corresponding
-representation folders of the AIPs or of the original submission’s
-`representations`.
-
-The METS file which is located in the root folder of the information package is
-called the *root METS* file.
-
-As a concrete example let us assume a policy stating that PDF documents must
-generally be converted to PDF/A. Taking the premise formulated in section
-[4.4](#structdiv) into account that the original submission is not to be
-changed, the additional representation is added in a `Representation`
-folder in the root of the AIP as shown in figure [7](#fig7). Note that this
-example uses a representation-based division of METS files.
-
-Analogously to Figure [8](#fig8) there are also two representations in the
-original submission shown in Figure [10](#fig10). The first representation
-(`Rep-001`) consists of a set of files in the Open Document Format (ODT)
-and the second one (`Rep-002`) is a derivative of the first set of files in
-the Portable Document Format (PDF). As an example we assume that an
-institutional policy prescribes that every PDF document must be converted to
-PDF/A during SIP to AIP conversion. Therefore the second representation
-(`Rep-002`) was converted to a set of PDF/A files and added to the AIP as
-an additional representation (`Rep-002.1`).
-
-<a name="fig10"></a>
-![Information Package structure](figs/visio/fig_10_aip_reps.svg "AIP using representation-based division of METS files.")
-
-**Figure 10:**
-AIP using representation-based division of METS files.
-
-The two representations of the original submission are located in the
-`submission/representations` folder of the AIP and the METS file of the
-submission references the corresponding representation METS files using a
-relative path to be resolved within the SIP. The root level METS file of the
-AIP references the METS file of the original submission
-(`submission/METS.xml`) and the METS file of the new representation
-(`representations/Rep-002.1/METS.xml`).
-
-### Changing the metadata of the original submission
-
-If the originally submitted SIP -- as a consequence of an implementation
-decision -- is not supposed to change, then the AIP level metadata folder
-can contain metadata that relates to representations contained in the original
-submission. Then, there might be scenarios where the originally submitted
-metadata needs to be updated.
-
-As an example let us assume that we have to recalculate the checksum during SIP
-to AIP conversion and that the checksum is recorded as an attribute of the METS
-file element. As shown in Figure [11](#fig11), the AIP’s `Metadata` folder can --
-additionally to the existing metadata category folders -- contain a
-`submission` folder with metadata files (here `METS.xml`) that by definition
-have priority over the ones contained in the original submission. This means
-that in case metadata needs to be updated, they must be placed into the root
-level metadata folder because metadata for the original submission is not
-allowed to be changed.
-
-<a name="fig11"></a>
-![Information Package structure](figs/visio/fig_11_aip_reps.svg "METS file priorities.")
-
-**Figure 11:**
-METS files in the AIP’s `Metadata/submission` folder have priority over
-the ones contained in the original submission
-
-<a name="aip-md-priority"></a>**AIP-MD-PRIORITY**: Let `<MDPath>` be a
-sub-folder-path to a metadata file, then a metadata file under the
-`AIP/metadata/submission` folder MUST have priority over a metadata file
-under the `AIP/submission` folder so that `AIP/metadata/submission/<MDPath>`
-has priority over `AIP/submission/<MDPath>`.
-
-An example is shown in Figure [11](#fig11) where the METS file in the root of
-the AIP references an obsolete METS file of the original submission and a
-current METS file under `metadata/submission`, i.e. the metadata file
-`AIP/metadata/submission/METS.xml` has priority over the metadata file
-`AIP/submission/METS.xml`. In this way users have the possibility to consult both
-the initial metadata and the updated metadata.
-
-<a name="parentchild"></a>
+<a name="parentchild"></a>aipstruct
 
 ### Parent-Child relationship
 
@@ -660,49 +334,11 @@ The result of this process is a sequence of physical containers of child-AIPs
 plus one additional parent-AIP. The relation of the AIPs is expressed by means
 of structural metadata in the METS files.
 
-## AIP metadata
-The AIP format specifies the use of structural and preservation metadata. Any
-type of additional metadata, such as descriptive metadata using Dublin Core or
-EAD[^4], can be used.
-
-[^4]: Encoded Archival Description, http://www.loc.gov/ead/
-
-In the following, XML elements are either enclosed between angle brackets
-(e.g. `<fileSpec>`) or addressed using XPath syntax (e.g. `/mets/metsHdr`). In the
-latter case a leading slash selects a node from the XML document root and the
-double slash (`//`) selects nodes in the document from the current node that
-match the selection, no matter where they are. Also in line with the XPath
-syntax, element attributes have a leading ’@’ character. For example
-`//mets:file/@USE` denotes the `USE` attribute of a `<file>` element.
-
-<a name="structmd"></a>
-
-### Structural metadata
-
-Structural metadata is expressed by means of the METS standard. Some of the high
-level functions which the standard fulfils in the context of the AIP are the
-following.
-
-- It provides an overview about the hierarchical structure of the AIP.
-- It is an entry point for the AIP, i.e. the first entity to consult to know
-what an AIP contains and what entities it references.
-- It references or embeds any metadata files describing the package as a whole
-as well as individual content files.
-- It contains a complete list of digital objects contained in a package together
-with basic information to ensure the integrity of the digital objects.
-- It establishes links between digital objects and metadata entities (both
-structural metadata and preservation metadata entities).
-- It can hold information about different representations or representation
-parts belonging to the same intellectual entity.
-
-This section has a focus on METS, therefore, if no namespace prefix is given,
-the element belongs to the METS default namespace.
-
 <a name="metsid"></a>
 
-#### METS identifier
+### METS identifier
 
-Each METS document must be assigned a persistent and (ideally globally) unique
+Each AIP root METS document must be assigned a persistent and unique
 identifier. Possible identifier schemes are amongst others: OCLC Purls[^5], CNRI
 Handles[^6], DOI[^7]. Alternatively, it is possible to use a UUID as a locally
 unique identifier.[^8]
@@ -719,7 +355,7 @@ According to the Common Specification, any ID element must start with a prefix
 (also, the XML ID data type does not permit IDs that start with a number, so a
 prefix solves this issue).
 
-We recommended to use as a prefix an internationally recognized standard identifier
+We recommend to use as a prefix an internationally recognized standard identifier
 for the institution from which the SIP originates. This may lead to problems
 with smaller institutions, which do not have any such internationally recognized
 standard identifier. We propose in that case, to start the prefix with the
@@ -741,174 +377,7 @@ element’s `OBJID` attribute:
 The `OBJID` attribute of the root METS is the persistent unique identifier of
 the AIP.
 
-#### Digital objects
-
-<a name="aip-digital-objects"></a>**AIP-DIGITAL-OBJECTS**: Any file contained
-in the AIP is a *digital objects* which MUST be described in a file section
-(`<fileSec>`) of the METS document.
-
-Listing 2 shows an example of a file section with one file.
-
-```xml
-<fileSec>
-    <fileGroup @USE="Common Specification root">
-        <file ID="uuid-77146c6c-c8c3-4406-80b5-b3b41901f9d0"
-            ADMID="..." MIMETYPE="text/x-sql" SIZE="2862064"
-            CHECKSUMTYPE="SHA-256" CHECKSUM="..."
-            CREATED="2015-0501T01:00:00+01:00">
-            <FLocat LOCTYPE="URL"
-                xlink:href="./submission/data/content/file.ext"
-                xlink:type="simple"/>
-        </file>
-    <fileGroup>
-</fileSec>
-```
-
-**Listing 2:**
-Example of a file in the `fileSec` as child of a `fileGroup` element (long attribute
-values replaced by “...” for readability)
-
-Table 2 lists the attributes of the `<file>` element with an example value. The
-`/file/FLocat` element provides the link to the actual file.
-
-|  Attribute  |   Description   |  Example Value     |
-|-------------|-----------------|--------------------|
-| `file/@ID`        | Identifier of a file which is part of the AIP File identifier; must be unique and start with the prefix `ID` | `ID77146c6c-c8c3-4406-80b5-b3b41901f9d0` |
-| `file/@ADMID`       | Used to link it to relevant administrative metadata sections that relate to the digital object described. Can be a white space separated list of identifiers. | `ID4566af74-0f7b-11e5-a6c0-1697f925ec7b` <br/>`ID4566af74-0f7b-11e5-a6c0-1697f925ec7c` |
-| `file/@CHECKSUMTYPE` | Hash-sum calculator algorithm | `SHA-256` |
-| `file/@CHECKSUM` | Hash-sum | `977fb584d53cd64662dfba427f351908` <br/>`13dfc58979f51a2703f8621b9e1bc274` |
-| `file/@CREATED` | Date when the file entry was created. | `2014-05-01T01:00:00+01:00` |
-| `file/@SIZE` | Size of the file in bytes. | `2498` |
-| `file/@MIMETYPE` | Mime-type | `application/pdf` |
-
-**Table 2:**
-Attributes of the file element
-
-The following rules apply for the URL attribute of the <FLocat> element:
-
-<a name="aip-paths-protocol"></a>**AIP-PATHS-PROTOCOL**: The local file paths
-COULD indicate the protocol part (`file://`), in this case the path must be a
-valid URI according to RFC3986.[^9]
-
-[^9]: https://tools.ietf.org/html/rfc3986
-
-<a name="aip-paths-relative"></a>**AIP-PATHS-RELATIVE**: If the protocol part
-is omitted, the path MUST be interpreted as a reference relative to the METS
-document (e.g. `./file.txt` or `file.txt` referring to the file `file.txt` in
-the current folder).
-
-Additionally, the following requirement applies for compressed files:
-
-<a name="aip-transform"></a>**AIP-TRANSFORM**: If a file is compressed, the
-transformFile element (`//file/transformFile`) SHOULD indicate how the packages
-have to be processed by means of the attributes ’TRANSFORMTYPE’,
-’TRANSFORMALGORITHM’, and ’TRANSFORMORDER’.
-
-```xml
-<file ...>
-    <FLocat xlink:href="../compressed.tar.gz" xlink:type="simple" LOCTYPE="URL"/>
-    <transformFile TRANSFORMORDER="1"
-        TRANSFORMTYPE="decompression" TRANSFORMALGORITHM="gzip"/>
-    <transformFile TRANSFORMORDER="2"
-        TRANSFORMTYPE="decompression" TRANSFORMALGORITHM="tar"/>
-</file>
-```
-
-**Listing 3:**
-Compressed file
-
-#### Referenced Metadata
-
-The use of embedded metadata by using the `<mdWrap>` element is discouraged.
-Instead, it is recommended to reference metadata by using the `<mdRef>` element.
-
-<a name="aip-mets-md-ref"></a>**AIP-METS-MD-REF**: External metadata files such
-as EAD or PREMIS files MUST be referenced by means of the `<mdRef>` element.
-Its `xlink:href` attribute value must be either a URL relative to the location
-of the METS root or an absolute URL.
-
-##### Descriptive metadata
-The descriptive metadata section (`<dmdSec>`) references descriptive metadata
-contained in the AIP. Multiple `<dmdSec>` elements are allowed so that descriptive
-metadata file can be referenced separately within the METS object.
-
-Descriptive metadata is referenced by means of the `<mdRef>` element as part of
-the descriptive metadata element `<dmdSec>`. Listing 4 shows an example linking to
-an EAD XML metadata file.
-
-```xml
-<dmdSec ID="uuid-550e8400-e29b-41d4-a716-44665544000a">
-	<mdRef LOCTYPE="URL" MDTYPE="EAD" MIMETYPE="text/xml"
-    	    CREATED="2015-04-26T12:00:00+01:00" xlink:type="simple"
-    	    xlink:href="./metadata/EAD.xml"
-    	    CHECKSUMTYPE="SHA-256" CHECKSUM="..." SIZE="2321"/>
-</dmdSec>
-```
-
-**Listing 4:**
-Linking to an EAD XML descriptive metadata file
-
-##### Administrative Metadata
-
-<a name="aip-mets-md-amdsec"></a>**AIP-METS-MD-AMDSEC**: The AIP METS MUST have
-a single `<amdSec>` element which contains one or several `<digiprovMD>`
-elements. The `<mdRef>` child of at least one of these elements must be of type
-`PREMIS` (`@MDTYPE=”PREMIS”`) with the reference to a PREMIS file in the `Metadata`
-folder of the AIP root.
-
-Listing 5 shows an example with a link to a PREMIS.xml file:
-
-```xml
-<amdSec ID="...">
-    <digiprovMD ID="..." @STATUS="CURRENT">
-        <mdRef CHECKSUM="..." CHECKSUMTYPE="SHA-256"
-            CREATED="..." LOCTYPE="URL" MDTYPE="PREMIS"
-            MIMETYPE="text/xml" SIZE="1109"
-            xlink:href=" metadata/preservation/premis.xml" xlink:type="simple"/>
-    </digiprovMD>
-</amdSec>
-```
-
-**Listing 5:**
-Linking to an EAD XML descriptive metadata file
-
-<a name="aip-premis-obsolete"></a>**AIP-PREMIS-OBSOLETE**: The `@STATUS`
-attribute value of the `<digiprovMD>` element SHOULD be `SUPERSEDED` if
-the PREMIS file is obsolete and only included in the AIP to ensure
-traceability.
-
-<a name="aip-premis-status"></a>**AIP-PREMIS-STATUS**: The `@STATUS` attribute
-value of the `<digiprovMD>` element COULD be `CURRENT` to make explicit that
-the PREMIS file is active.
-
-#### Structural map
-
-<a name="aip-structmap-label"></a>**AIP-STRUCTMAP-LABEL**: One `<structMap>`
-with the LABEL attribute value “CSIP structMap” MUST
-be present in the METS file.
-
-Listing 6 shows a structural map with the LABEL attribute value “Common
-Specification structural map”.
-
-```xml
-<structMap ID="uuid-f413c073-5b03-4499-830e-8ef724613bef" TYPE="physical" LABEL="CSIP structMap">
-    <div>
-        <div LABEL="submission">
-        	...
-    	</div>
-    	<div LABEL="representations">
-       <div LABEL="representations/rep-001">
-          ...
-       </div>
-    	</div>
-   </div>
-</structMap>
-```
-
-**Listing 6:**
-Obligatory CSIP structMap
-
-##### Structural map of a divided METS structure
+#### Structural map of a divided METS structure
 
 <a name="aip-divided-mets"></a>**AIP-DIVIDED-METS**: When an AIP uses the
 divided METS structure, i.e. the different representations have their own
@@ -935,9 +404,10 @@ corresponding `<file>` entry in the `<fileSec>` using the `<fptr>` element.
 **Listing 7:**
 Structural map referencing METS files of the different representations
 
-#### Metadata representation of the AIP structure
+### Metadata representation of the AIP structure
 
 #### Child AIP references parent AIP
+
 The optional reference to a parent AIP is expressed by a structural map with the
 LABEL attribute value `Parent`. Listing 8 shows an example where a UUID is used
 as the package identifier and the `xlink:href` attribute has the UUID identifier
@@ -1000,7 +470,7 @@ listing four child AIPs.
 **Listing 9:**
 Using a structMap to reference the parent AIP
 
-### Preservation metadata
+## AIP specific preservation metadata
 
 As already mentioned, PREMIS [@premis3.0-2017] is used to describe technical
 metadata of digital objects, rights metadata to define the rights status in
@@ -1016,7 +486,7 @@ METS file is explained.
 [^10]: Namespace: http://www.loc.gov/premis/v3, namespace schema location:
        http://www.loc.gov/standards/premis/premis.xsd
 
-#### Vocabulary
+### Vocabulary
 
 The definition of a vocabulary for PREMIS is an ongoing process, therefore
 there is no exhaustive list of vocabularies that are to be used exclusively.
@@ -1029,11 +499,11 @@ progress”) are taken into consideration.[^12]
 [^11]: http://id.loc.gov/vocabulary/preservation.html
 [^12]: http://premisimplementers.pbworks.com/w/page/102413902/Preservation%20Events%20Controlled%20Vocabulary
 
-#### PREMIS object
+### PREMIS object
 
 The PREMIS object contains technical information about a digital object.
 
-##### Object identifier
+#### Object identifier
 
 <a name="aip-id-local"></a>**AIP-ID-LOCAL**: If an identifier of type `local` is
 used, this identifier SHOULD be unique in the scope of the PREMIS document.
@@ -1053,7 +523,7 @@ Listing 10 shows an example of an identifier of type `local`.
 **Listing 10:**
 Object identifier
 
-##### Checksums
+#### Checksums
 
 <a name="aip-premis-checksums"></a>**AIP-PREMIS-CHECKSUMS**: Checksums COULD be
 provided as a descendant of the `objectCharacteristics` element information in
@@ -1072,7 +542,7 @@ An example is shown in Listing 11.
 **Listing 11:**
 Hashsum (value shortened)
 
-##### File format
+#### File format
 
 <a name="aip-premis-file-format"></a>**AIP-PREMIS-FILE-FORMAT**: The format
 element COULD be provided either using the formatRegistry or the
@@ -1104,7 +574,7 @@ An example is shown in Listing 12.
 **Listing 12:**
 Optionally, the format version can be provided using the `formatDesignation` element.
 
-##### Object characterisation
+#### Object characterisation
 
 <a name="aip-premis-characterisation"></a>**AIP-PREMIS-CHARACTERISATION**: The
 JHOVE[^16] technical characterisation result (XML format) COULD be embedded as
@@ -1124,7 +594,7 @@ shown in Listing 13.
 **Listing 13:**
 JHove digital object characterisation
 
-##### Original name
+#### Original name
 
 <a name="aip-premis-original-name"></a>**AIP-PREMIS-ORIGINAL-NAME**: The
 `originalName` element COULD be used to record the name of an original file.
@@ -1138,7 +608,7 @@ An example is shown in Listing 14.
 **Listing 14:**
 Original name
 
-##### Storage
+#### Storage
 
 <a name="aip-premis-storage"></a>**AIP-PREMIS-STORAGE**: The storage element
 COULD hold contain information about the physical location of the digital
@@ -1165,7 +635,7 @@ An example is shown in Listing 15.
 **Listing 15:**
 Storage description
 
-##### Relationship
+#### Relationship
 
 <a name="aip-premis-relationship"></a>**AIP-PREMIS-RELATIONSHIP**: The
 `relationship` element SHOULD be used to describe relationships of the digital
@@ -1193,7 +663,7 @@ An example of the latter case is shown in Listing 16.
 **Listing 16:**
 Relationship
 
-##### Linking rights statement
+#### Linking rights statement
 
 <a name="aip-premis-rights"></a>**AIP-PREMIS-RIGHTS**: The a
 `linkingRightsStatementIdentifier` element COULD be used to describe rights
@@ -1218,9 +688,9 @@ An example of the latter case is shown in Listing 17.
 **Listing 17:**
 Rights statement
 
-#### PREMIS event
+### PREMIS event
 
-##### Event identifier
+#### Event identifier
 
 <a name="aip-premis-event-id"></a>**AIP-PREMIS-EVENT-ID**: The `eventIdentifier`
 SHOULD be used to identify events, such as preservation actions, which were applied.
@@ -1236,7 +706,7 @@ An example is shown in Listing 18.
 **Listing 18:**
 Event identifier
 
-##### Link to agent/object
+#### Link to agent/object
 
 <a name="aip-premis-event-agent"></a>**AIP-PREMIS-EVENT-AGENT**: If an event is described, the agent which caused
 the event (e.g. person, software, hardware, etc.) MUST be related to the event by means of the `linkingAgentIdentifier` element.
@@ -1263,7 +733,7 @@ example is shown in Listing 20.
 **Listing 20:**
 Link to agent/object
 
-##### Migration event type
+#### Migration event type
 
 <a name="aip-premis-event-type"></a>**AIP-PREMIS-EVENT-AGENT**: The event by which a
 resource was created SHOULD to be recorded by means of the
@@ -1310,7 +780,7 @@ The event shown in Listing 21 expresses the fact that the object
 `metadata/file.xml` is the result of the migration event "migration-001" and the
 event which created the source object is "ingest-001".
 
-#### PREMIS agent
+### PREMIS agent
 
 <a name="aip-premis-agent"></a>**AIP-PREMIS-AGENT**: Agents which are referenced in
 events must be described by means of the `agent` element.
@@ -1341,7 +811,7 @@ In this case, the "discovery right" is assigned to this agent.
 **Listing 22:**
 Software as an agent
 
-#### PREMIS rights
+### PREMIS rights
 
 <a name="aip-premis-rights"></a>**AIP-PREMIS-RIGHTS**: Rights which are referenced
 in rights statements MUST be described by means of the `rights` element.
@@ -1710,30 +1180,31 @@ listed in every payload manifest.
 ## Appendix D - PREMIS.xml describing migration events (representation level)
 
 ```xml
+<?xml version='1.0' encoding='UTF-8'?>
 <premis xmlns="info:lc/xmlns/premis-v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0" xsi:schemaLocation="info:lc/xmlns/premis-v2 ../../schemas/premis-v2-2.xsd">
-  <object xmlID="uuid-983381f2-edc7-4264-aaf8-10a33dc7a811" xsi:type="representation">
+  <object xsi:type="representation" xmlID="IDd61654d8-44dd-4dee-872c-89cf1ad240bf">
     <objectIdentifier>
       <objectIdentifierType>repository</objectIdentifierType>
-      <objectIdentifierValue>ID983381f2-edc7-4264-aaf8-10a33dc7a811</objectIdentifierValue>
+      <objectIdentifierValue>IDd61654d8-44dd-4dee-872c-89cf1ad240bf</objectIdentifierValue>
     </objectIdentifier>
   </object>
-  <object xmlID="uuid-37b54f97-bef3-4018-abd0-dfd71216fa5f" xsi:type="file">
+  <object xsi:type="file" xmlID="ID9f65a8bd-5128-4830-a28b-0acb4455e128">
     <objectIdentifier>
       <objectIdentifierType>filepath</objectIdentifierType>
-      <objectIdentifierValue>./data/bluemarble.tiff</objectIdentifierValue>
+      <objectIdentifierValue>./data/OAIS_Wikipedia_Article.pdf</objectIdentifierValue>
     </objectIdentifier>
     <objectCharacteristics>
       <compositionLevel>0</compositionLevel>
       <fixity>
         <messageDigestAlgorithm>SHA-256</messageDigestAlgorithm>
-        <messageDigest>773a144dac9ec7844939ce52619b7580d1c7642c7257947d86eaa5f1ffbcb7a0</messageDigest>
+        <messageDigest>a0d26c309030408b2a6618805c3747d9d04599f70051be9630d948cecaed3a0e</messageDigest>
         <messageDigestOriginator>hashlib</messageDigestOriginator>
       </fixity>
-      <size>1746308</size>
+      <size>4667731</size>
       <format>
         <formatRegistry>
           <formatRegistryName>PRONOM</formatRegistryName>
-          <formatRegistryKey>fmt/353</formatRegistryKey>
+          <formatRegistryKey>fmt/276</formatRegistryKey>
           <formatRegistryRole>identification</formatRegistryRole>
         </formatRegistry>
       </format>
@@ -1742,13 +1213,13 @@ listed in every payload manifest.
       <relationshipType>derivation</relationshipType>
       <relationshipSubType>has source</relationshipSubType>
       <relatedObjectIdentification>
-        <relatedObjectIdentifierType>local</relatedObjectIdentifierType>
-        <relatedObjectIdentifierValue>../../submission/representations/images/data/bluemarble.gif</relatedObjectIdentifierValue>
+        <relatedObjectIdentifierType>filepath</relatedObjectIdentifierType>
+        <relatedObjectIdentifierValue>./../0910ba24-f328-4083-a05f-cce0cb3eb49f/data/OAIS_Wikipedia_Article.pdf</relatedObjectIdentifierValue>
         <relatedObjectSequence>0</relatedObjectSequence>
       </relatedObjectIdentification>
       <relatedEventIdentification>
         <relatedEventIdentifierType>local</relatedEventIdentifierType>
-        <relatedEventIdentifierValue>ID27c87d0a-0abd-44e4-bfde-05fdaa34e620</relatedEventIdentifierValue>
+        <relatedEventIdentifierValue>ID1656ae4a-9f1b-43a5-9e56-ddaef284ec71</relatedEventIdentifierValue>
         <relatedEventSequence>1</relatedEventSequence>
       </relatedEventIdentification>
     </relationship>
@@ -1756,17 +1227,40 @@ listed in every payload manifest.
   <event>
     <eventIdentifier>
       <eventIdentifierType>local</eventIdentifierType>
-      <eventIdentifierValue>ID27c87d0a-0abd-44e4-bfde-05fdaa34e620</eventIdentifierValue>
+      <eventIdentifierValue>ID1656ae4a-9f1b-43a5-9e56-ddaef284ec71</eventIdentifierValue>
     </eventIdentifier>
     <eventType>migration</eventType>
-    <eventDateTime>2016-12-14T09:15:01</eventDateTime>
+    <eventDateTime>2021-03-15T16:33:17</eventDateTime>
     <eventOutcomeInformation>
       <eventOutcome>success</eventOutcome>
     </eventOutcomeInformation>
     <linkingAgentIdentifier>
       <linkingAgentIdentifierType>software</linkingAgentIdentifierType>
-      <linkingAgentIdentifierValue>Version: ImageMagick 6.7.7-10 2016-06-01 Q16 http://www.imagemagick.orgCopyright: Copyright (C) 1999-2012 ImageMagick Studio LLCFeatures: OpenMP</linkingAgentIdentifierValue>
+      <linkingAgentIdentifierValue>GPL Ghostscript 9.26 (2018-11-20)</linkingAgentIdentifierValue>
     </linkingAgentIdentifier>
     <linkingObjectIdentifier>
-      <linkingObjectIdentifierType>local</linkingObjectIdentifierType>
+      <linkingObjectIdentifierType>filepath</linkingObjectIdentifierType>
+      <linkingObjectIdentifierValue>./data/OAIS_Wikipedia_Article.pdf</linkingObjectIdentifierValue>
+    </linkingObjectIdentifier>
+  </event>
+  <agent>
+    <agentIdentifier>
+      <agentIdentifierType>LOCAL</agentIdentifierType>
+      <agentIdentifierValue>Premis Generator</agentIdentifierValue>
+    </agentIdentifier>
+    <agentName>Premis Generator</agentName>
+    <agentType>Software</agentType>
+  </agent>
+  <agent>
+    <agentIdentifier>
+      <agentIdentifierType>LOCAL</agentIdentifierType>
+      <agentIdentifierValue>GPL Ghostscript 9.26 (2018-11-20)
+</agentIdentifierValue>
+    </agentIdentifier>
+    <agentName>GPL Ghostscript 9.26 (2018-11-20)
+</agentName>
+    <agentType>Software</agentType>
+  </agent>
+</premis>
 ```
+
