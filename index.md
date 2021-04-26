@@ -193,6 +193,17 @@ manifestation of physical container files representing a new version of a
 logical AIP. The new generation of the AIP can be a single container file or a 
 set of container files.
 
+## Generations
+Generational changes are made to AIPs as a consequence of preservation policy decisions. These are generally applied across AIPs without reference to their source or the content contained in them. Examples:
+
+- Changes to the information package structure to conform to a new specification (AIP v2.x -> v3.x)
+- Replacing all PDF v1.4 -> 2.0s with PDF/A equivalents due to archival policy change
+
+## Versions
+Versions are new AIPs generated due to some change in the content or metadata, or a policy for a particular collections:
+
+- Extending, correcting or removing package metadata
+- Adding, replacing or removing content items 
 
 # AIP format
 
