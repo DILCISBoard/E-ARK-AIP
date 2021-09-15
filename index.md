@@ -859,7 +859,35 @@ This part of the AIP format specification gives recommendations regarding the
 creation of the physical packaging of the logical AIP into either one or
 multiple transferable and storable entities.
 
-### Naming of the packaged entity
+### Naming scheme for physical containers
+
+The recommended naming of phyiscal containers differentiates 4 levels which
+can be reflected in the file name:
+
+- Identifier part (character-mapped unique identifier)
+- Version label (based on version number)
+- Bag label (based on Bag number)
+- Delta label (differential Package)
+
+The identifier is a name that uniquely identifies the AIP. Any physical container 
+file which belongs to the same AIP should start with a file name part that is
+based on this identifier.
+
+The "version label" denotes the version of an AIP and could be added as a suffix
+to the identifier part.
+
+The "bag label" represents a part of the AIP. This is optional in case the AIP
+is divided into several parts, e.g. because a policy prescribes a maximum file
+size limit for physical container files.
+
+The "delta label" represents a differential package where files and folders 
+of a physical container files are complemented or overridden by files or folders
+of a delta package. 
+
+In the following the requirements regarding the naming scheme will be defined 
+and examples will be given.
+
+#### Identifier part
 
 According to the requirement defined in section [5.3.1](#metsid)
 ("METS identifier"), every AIP bears an identifier which must be recorded
@@ -901,6 +929,10 @@ is the pairtree character mapping specification.[^18]
 
 [^18]: https://tools.ietf.org/html/draft-kunze-pairtree-01 (see section 3: “Identifier string cleaning”)
 
+<a name="aip-container-suffix"></a>**AIP-CONTAINER-UNIQUE-NAME**: The file name of the
+physical container file SHOULD start with a unique name of the AIP which is equal for to
+all versions and parts that belong to the same logical AIP.
+
 For example, let us assume the identifier of the AIP was:
 
     "urn:uuid:123e4567-e89b-12d3-a456-426655440000"
@@ -918,90 +950,82 @@ name would be:
 In this example, the AIP's physical container file name only consists of the
 AIP file name ID.
 
-<a name="aip-container-suffix"></a>**AIP-CONTAINER-SUFFIX**: Any suffix COULD be
-added to the physical container file that bears additional information, such as
-the version, date, sequence number, or the like.
+#### Version label
+
+<a name="aip-container-suffix"></a>**AIP-CONTAINER-VERSION-SUFFIX**: A suffix COULD be
+added to the physical container file that bears information about the version of the 
+physical container file. This suffix starts with the character 'v' followed by a 
+sequential number where higher numbers represent later versions of the AIP.
 
 For example, a version number could be added as a suffix to the AIP file name ID as
 follows:
 
     "urn+uuid+123e4567-e89b-12d3-a456-426655440000_v00001.tar"
+    
+<a name="aip-container-suffix"></a>**AIP-CONTAINER-FIRST-VERSION**: The first version
+of a submission could 0. Any changes applied (e.g. due to preservation measures) could
+be stored in subsequent versions.
 
-<a name="aip-container-part"></a>**AIP-CONTAINER-PART**: If a physical container
-contains a part of a superordinate AIP, a suffix COULD be added to the AIP file
-name ID.
+#### Bag label
 
-For example, a number for the corresponding part could be added as a suffix to the
-AIP file name ID as follows:
+<a name="aip-container-part"></a>**AIP-CONTAINER-BAG-SUFFIX**: If an AIP is divided into
+different phyiscal container files container, a suffix COULD be added to the name
+which denotes the corresponding part.
 
-    "urn+uuid+123e4567-e89b-12d3-a456-426655440000_part00001.tar"
+For example, the first part of an AIP could be added as a suffix to the AIP file name 
+ID as follows:
+
+    "urn+uuid+123e4567-e89b-12d3-a456-426655440000_v00001_b00001.tar"
+    
+where the character `b` stands for the first bag which contains the part of the
+AIP (more on the use of bags and the bagit packaging format will be described in the next section).
+
+#### Delta label
+
+<a name="aip-container-part"></a>**AIP-CONTAINER-DELTA-SUFFIX**: A "delta" package contains
+files and folders which complement or override parts of a complete physical container file.
+This container file represents an intermediate state of the information packages which should
+be consolidated, i.e. the delta package should be merged with the physical container file 
+which contains the last complete state of the physical container. 
+
+Note that this is valid for adding or updating content, but it is not possible to define 
+a delta package which removes content from the physical container file it refers to. 
+
+For example, the delta part of a physical container file could be added as a suffix to the AIP 
+physical container file name as follows:
+
+    "urn+uuid+123e4567-e89b-12d3-a456-426655440000_v00001_b00001_d00001.tar"
+    
+where the character `d` stands for the first delta package which relates to the first bag of version 1
+of the AIP. 
 
 ### Packaging
 
-#### TAR packaging
+Recommended formats for packaging AIPs are TAR and ZIP which are both widely used archive formats.
 
-TAR is an archive file format and also refers to the software `tar` which is
-a software utility that can be used to bundle up files into one file for being
+For both formats there are software utilities that can be used to bundle up files into one file for being
 able to transfer archival packages.
 
 <a name="aip-package-singlefolder"></a>**AIP-PACKAGE-SINGLEFOLDER**: The package
-content SHOULD be contained in a single folder.
+content MUST be contained in a single folder.
 
-This means that if a TAR packaged AIP is unpackaged, the content is
-extracted into a single folder which includes the AIP content.
+This means that if the packaged AIP is unpackaged, the content MUST be extracted into a single folder which 
+contains the individuals files and folders.
 
 As an example, let's assume a TAR file with the following name:
 
-    "urn+uuid+123e4567-e89b-12d3-a456-426655440000.tar"
+    "urn+uuid+123e4567-e89b-12d3-a456-426655440000_v00000_b00001.tar"
 
-If it is extracted, a folder `urn:uuid:123e4567-e89b-12d3-a456-426655440000` is
-created which includes the AIP content, as shown in Figure [14](#fig14).
-
-<a name="fig14"></a>
-![Information Package structure](figs/AIP-in-BagIt-data-folder.png "AIP content extracted from a TAR package.")
-
-**Figure 14:**
-AIP content extracted from a TAR package.
-
-
-<a name="aip-tarpackage-manifest"></a>**AIP-TARPACKAGE-MANIFEST**: In addition
-to fixity information recorded in the METS file, the AIP COULD include a
-manifest file (manifest.txt) listing files with MD5 and SHA-256 checksum.
-
-The manifest file is a text file containing a list of records separated by two
-line breaks (two carriage return characters (hexadecimal 0D0D) or two times
-carriage return/line feed (hexadecimal 0D0A0D0A). A record is a list of named
-fields, the minimum fields being:
-
-- Name := File path relative to the AIP root
-- Size := Size in bytes
-- SHA256 := SHA-256 Checksum
-- MD5 := MD5 Checksum
-
-An example is shown in Listing 24.
-
-```xml
-Name: METS.xml
-Size: 12135
-SHA256: d7dec534d2ba5f455391e2ed0cb89db89a2780e0531c83def79b0b0abcb38679
-MD5: e94dd23e792bd7e49721a863ad8ed769
-Name: metadata/PREMIS.xml
-Size: 53719
-SHA256: ef01bc59a21f6e99ad3d87b0d25b89d6e8b4915c63dadb8791d9490739fe26d4
-MD5: 96b85205a9b4b0b5d3c88e2e51b0dc4c
-```
-
-**Listing 25:**
-Manifest file
+If it is extracted, a folder `urn+uuid+123e4567-e89b-12d3-a456-426655440000_v00000_b00001` could
+with the actual AIP content is created.
 
 <a name="aip-package-uncompressed"></a>**AIP-PACKAGE-UNCOMPRESSED**: If TAR is
-used as the packaging format, the content SHOULD be aggregated without
-compression.
+used as the packaging format, the content SHOULD be aggregated without using compression.
 
 For example, to create a TAR archive without compression for the AIP folder
 `"urn+uuid+123e4567-e89b-12d3-a456-426655440000"` using the `tar` utility:
 
-    tar -cf "urn+uuid+123e4567-e89b-12d3-a456-426655440000.tar" "urn+uuid+123e4567-e89b-12d3-a456-426655440000"
+    tar -cf "urn+uuid+123e4567-e89b-12d3-a456-426655440000_v00000_b00001.tar" "urn+uuid+123e4567-e89b-12d3-a456-426655440000_v00000_b00001"
 
 #### BagIt
 
@@ -1056,6 +1080,143 @@ listed in every payload manifest.
 
 [^21]: https://tools.ietf.org/id/draft-kunze-bagit-08.html#rfc.section.2.2.3
 
+#### OCFL
+
+The Oxford Common File Layout (OCFL) specification[^22] allows describing the storage structure of an AIP's physical container files. 
+
+It is an optional extension which can be used in addition to the packaging and file naming recommendations.
+
+The purpose of the OCFL recommendation is to:
+
+- define standards and conventions for storing and exporting versioned AIPs (AIP life-cycle).
+- enable storing or exporting large amounts of archival content in form of AIP container files to file system storage 
+- support advanced use cases, such as splitting large information packages and delta-AIPs (including removal of content using delta packages).
+
+Listing 24 gives an example of an AIP (version 0) using OCFL. It is based on the OCFL Draft 2021[^23] 
+and the BagIt standard file system layout  for storage and transfer as defined by RFC8493[^24]. 
+
+```xml
+urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760/data
+├── 0=ocfl_object_1.0
+├── inventory.json
+├── inventory.json.sha512
+└── v00000
+    └── content
+        └── urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v00000_b00001
+            ├── bag-info.txt
+            ├── bagit.txt
+            ├── data
+            │   ├── metadata
+            │   │   ├── descriptive
+            │   │   │   ├── ead.xml
+            │   │   │   └── metadata.json
+            │   │   └── preservation
+            │   │       └── premis.xml
+            │   ├── METS.xml
+            │   └── representations
+            │       └── 9799fdd1-57b5-48e3-ba53-2705cc874a00
+            │           ├── data
+            │           │   └── example.pdf
+            │           ├── metadata
+            │           │   └── preservation
+            │           │       └── premis.xml
+            │           └── METS.xml
+            ├── manifest-sha256.txt
+            ├── manifest-sha512.txt
+            ├── tagmanifest-sha256.txt
+            └── tagmanifest-sha512.txt
+```
+
+**Listing 25:**
+OCFL file listing of an AIP (unpackaged container file)
+
+Note that the OCFL Object includes all versions – v00000, v00001, … - of the AIP and that one bagit container 
+or several bagit containers (segmentation!) are managed as one OCFL object (See in OCFL 5.4 BagIt in an OCFL Object[^25]).
+This is especially relevant for non-redundant storing of AIPs (the concept of a "delta-AIP") and for package segmentation.
+
+Also note that the exmaple in Listing 24 is the "unpackaged" version where the bagit container itself is not packaged.
+
+The packaged version 
+
+```xml
+urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760/data
+├── 0=ocfl_object_1.0
+├── inventory.json
+├── inventory.json.sha512
+└── v00000
+    └── content
+        └── urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v00000_b00001.tar
+```
+
+**Listing 26:**
+OCFL file listing of an AIP (packaged container file)
+
+Note that serialization has been removed from the BagIt specification after version 14 (from 2017, current version is 17) to narrow the scope of the specification.
+In BagIt Version 14 Section serialization was still included which defined the following requirements:
+
+- The top-level directory of a serialization MUST contain only one bag.
+- The serialization SHOULD have the same name as the bag's base directory, but MUST have an extension added to identify the format. 
+- A bag MUST NOT be serialized from within its base directory, but from the parent of the base directory.  
+- The deserialization of a bag MUST produce a single base directory bag.
+
+The content of the OCFL object file `0=ocfl_object_1.0` in the listing is shown in Listing 27.
+
+```xml
+ocfl_object_1.0
+```
+
+**Listing 27:**
+OCFL file listing of an AIP (packaged container file)
+
+And an example for the content of the `inventory.json` is is shown in Listing 28.
+
+```json
+{
+    "digestAlgorithm": "sha512",
+    "fixity": {
+        "md5": {
+            "e5ad509db4ddb4cef0de4c1c19c7988b": [
+                "00000/content/urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v00000_b00001.tar"
+            ]
+        },
+        "sha256": {
+            "68a5b60ddef62758389f6894a1e7df28c1d228a5d56d2eec3ce2f74e80c27910": [
+                "00000/content/urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v00000_b00001.tar"
+            ]
+        }
+    },
+    "head": "v00000",
+    "id": "urn:uuid:1017cc9b-eaed-4064-947e-a07c752d3760",
+    "manifest": {
+        "24db03a2a7d9c7e2e7ea533e2ac84b7274f937eaff31e95f508cd9c5418a902adf5c18d2f67fa80aa25b7d72ce829951e79ea66210959c86aab33b5ef0c8b8bc": [
+            "00000/content/urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v00000_b00001.tar"
+        ]
+    },
+    "type": "https://ocfl.io/1.0/spec/#inventory",
+    "versions": {
+        "v00000": {
+            "created": "2021-03-27T18:49:22Z",
+            "message": "Original SIP",
+            "state": {
+                "24db03a2a7d9c7e2e7ea533e2ac84b7274f937eaff31e95f508cd9c5418a902adf5c18d2f67fa80aa25b7d72ce829951e79ea66210959c86aab33b5ef0c8b8bc": [
+                    "00000/content/urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v00000_b00001.tar"
+                ]
+            }
+        }
+    }
+}
+```
+
+At the time of finalizing this specification, the OCFL standard does not support the listing of packaged container files in the inventory file. 
+This would allow using the inventory to document the actual content of physical container files and may follow in a future version of the AIP specification.
+
+**Listing 28:**
+OCFL file listing of an AIP (packaged container file)
+
+[^22]: https://ocfl.io
+[^23]: https://ocfl.io/draft/spec/
+[^24]: https://datatracker.ietf.org/doc/html/draft-kunze-bagit-17
+[^25]: https://ocfl.io/draft/spec/#example-bagit-in-ocfl
 
 # Appendices
 
