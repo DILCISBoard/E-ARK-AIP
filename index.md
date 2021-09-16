@@ -1207,18 +1207,18 @@ And an example for the content of the `inventory.json` is is shown in Listing 28
 }
 ```
 
-At the time of finalizing this specification, the OCFL standard does not support the listing of packaged container files in the inventory file. 
-This would allow using the inventory to document the actual content of physical container files and may follow in a future version of the AIP specification.
-
 **Listing 28:**
 OCFL file listing of an AIP (packaged container file)
+
+At the time of finalizing this specification, the OCFL standard does not support the listing of packaged container files in the inventory file. 
+This would allow using the inventory to document the actual content of physical container files and may follow in a future version of the AIP specification.
 
 [^22]: https://ocfl.io
 [^23]: https://ocfl.io/draft/spec/
 [^24]: https://datatracker.ietf.org/doc/html/draft-kunze-bagit-17
 [^25]: https://ocfl.io/draft/spec/#example-bagit-in-ocfl
 
-# Appendices
+# Appendices 
 
 ## Appendix A - METS referencing representation METS files
 
@@ -1436,3 +1436,38 @@ OCFL file listing of an AIP (packaged container file)
 </premis>
 ```
 
+## Appendix E - Naming scheme examples
+
+### Migrating a representation to a new version
+
+Single physical container file including metadata and all representations. One of the
+representations (R1 named JPEG2000) is migrated to a new representation R1.1 (named TIFF).
+The "version" suffix of the physical container file name is incremented.
+
+```xml                                                                    
+               Migrating representation R1 (JPEG2000) to R1.1 (TIFF)                                                             
+                                       |                                                              
+                                       |                                                              
+         aip1_v0                       |      aip1_v1                                                 
+        +------------------------+     |     +------------------------+                               
+        |                        |     |     |                        |                               
+        |       +----------+     |     |     |       +----------+     |                               
+        |    R1 | JPEG2000 |     |     |     |  R1.1 |   TIFF   |     |                               
+        |       +----------+     |     |     |       +----------+     |                               
+        |                        |     |     |                        |                               
+        |       +----------+     |     |     |       +----------+     |                               
+        |    R2 |   PNG    |     |     |     |    R2 |   PNG    |     |                               
+        |       +----------+     |     |     |       +----------+     |                               
+        |                        |     |     |                        |                               
+        |       +----------+     |     |     |       +----------+     |                               
+        |       |   METS   |     |     |     |       |   METS   |     |                               
+        |       |          |     |     |     |       |          |     |                               
+        |       |    R1    |     |     |     |       |    R1.1  |     |                               
+        |       |          |     |     |     |       |          |     |                               
+        |       |    R2    |     |     |     |       |    R2    |     |                               
+        |       +----------+     |     |     |       +----------+     |                               
+        |                        |     |     |                        |                               
+        +------------------------+     |     +------------------------+                               
+                                       |                                                              
+                                       |        
+```
