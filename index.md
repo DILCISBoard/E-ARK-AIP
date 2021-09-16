@@ -139,26 +139,6 @@ does not represent the complete intellectual entity and dependencies to another
 understand, or render the content - it is a necessary measure if the amount of
 data exceeds the capacity limitation of long-term storage media.
 
-## Authenticity of the original submission
-
-The AIP format recommends a method for storing the original submission
-separately from any data that is created during SIP-to-AIP conversion and during
-the life-cycle of the AIP. This allows safeguarding the authenticity of the
-original submission.
-
-However, it is an implementation decision if the original submission is kept “as
-is” or if the SIP is adapted during SIP to AIP conversion. In line with
-OAIS, the content of the original SIP does not have to be identical to the
-version of the submitted data stored as part of the AIP:
-
-> “An OAIS is not always required to retain the information submitted to it in
-> precisely the same format as in the SIP. Indeed, preserving the original
-> information exactly as submitted may not be desirable. [@OAIS2012, p. 4-52]”
-
-The AIP format suggests a method for storing information packages so that 
-both, the original submission, and a version in which perservation measures
-have been applied, can be archived.
-
 ## Version and generation of an AIP
 
 Information packages are permanent: more precisely the information they contain 
@@ -221,8 +201,8 @@ containing parts of an AIP or the entire AIP content.
 # AIP format
 
 The AIP format consists of a set of recommendations and requirements[^2]
-regarding the use of the metadata which go beyond the requirements defined by the
-CSIP.
+regarding the use of structural and preservation metadata which are 
+introduced in the following.
 
 ## AIP specific structural metadata
 
@@ -234,7 +214,7 @@ The ability to manage representations or representation parts
 separately is required because the digital data submissions can be very
 large. This is not only relevant for storing the AIP, it also concerns the SIP
 which might need to be divided before the data is submitted to the repository.
-And regarding the DIP, it requires the capability to reconstruct the DIP from an
+And regarding the DIP, it concerns the capability to reconstruct the DIP from an
 AIP which is divided into multiple parts.
 
 In the following, two approaches for describing the structure of the IP will be
