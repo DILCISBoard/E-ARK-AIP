@@ -119,7 +119,7 @@ representations or representation parts separately.
 
 <a name="structdiv"></a>
 
-## Structural division of the AIP
+## Segmentation of the AIP
 
 One of the basic requirements formulated by the CSIP is the use of METS as the
 metadata standard to describe the structure of an IP.
@@ -138,6 +138,26 @@ does not represent the complete intellectual entity and dependencies to another
 (lost) physical container can potentially make it impossible to interpret,
 understand, or render the content - it is a necessary measure if the amount of
 data exceeds the capacity limitation of long-term storage media.
+
+On the one hand, this concerns the ability to define the structure of an AIP
+across several parts of an AIP where each individual part constains structural
+metadata. This is described further in section "Compound vs. divided package structure". 
+On the other hand, it is about the ability to create a set of physical container
+files representing one logical AIP. 
+
+We call "segmentation" when a logical AIP is split into parts over various container 
+files. Each segment of the logical AIP is a packaged as a TAR or ZIP file and
+contains structural metadata (METS file). 
+
+The structure of the segmented AIP is defined by a header package where the METS
+file points to the child packages. And each child package points to the header
+package it belongs to. 
+
+### Splitting 
+
+Splitting is a special case of segmentation where large files (e.g. large representation 
+content files) are split into parts. However, the splitted content files are wrapped
+by AIP segments, they are contained in a package which also has a METS file. 
 
 ## Version and generation of an AIP
 
