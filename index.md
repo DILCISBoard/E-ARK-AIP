@@ -76,14 +76,15 @@ format that makes system migration easier.
 ## Information package
 
 The CSIP defines the requirements for concrete information package format
-specifications, such as the SIP, AIP, or DIP. In this sense, an
-*information package* (IP) is an instance of a format that complies with the CSIP.
+specifications, such as the SIP, AIP, or DIP. 
+
+An *information package* (IP) is an instance of a format that complies with the CSIP.
 
 <a name="reps"></a>
 
-## Representations
+## Representation
 
-The concept of "representations" is used according to the definition given in
+The concept of a "representation" is used according to the definition given in
 the PREMIS digital preservation metadata standard:
 
 > "The set of files, including structural metadata, needed for a complete and
@@ -95,7 +96,7 @@ the PREMIS digital preservation metadata standard:
 > structural metadata showing the order of the pages; these 13 files constitute
 > the representation. [@premis3.0-2017]"
 
-According to the CSIP, representations are an important concept for all types of IPs.
+According to the CSIP, representations are relevant for all types of IPs.
 Regarding the AIP format, in addition to the organization and storage of the 
 representations, it is important that representations which are generated 
 during the AIP's life cycle are managed and documented in such a way that 
@@ -103,61 +104,11 @@ changes can be tracked at any time.
 
 ## Logical and physical AIP
 
-On the one hand, we call the logical AIP the set of digital objects and metadata 
-representing the entire archival entity regardless of how the files are packaged. 
-On the other hand, the physical AIP consists of one or several physical container 
-files which contain all or parts of the logical AIP.
+*Definition:* The *logical AIP* is the set of digital objects and metadata
+representing an entire intellectual entity regardless of the physical manifestation. 
 
-From the point of view of preserving the integrity of the AIP, the ideal case is
-that the logical AIP is packaged as one single physical container, because all the
-metadata and content required to interprete the information package is avialable if the 
-container file is unpackaged. In reality, however, this is not always possible 
-because the size of the physical container can become very large, and this is the 
-reason for proposing the divided METS structure described more in detail in 
-section [5.1](#compdiv). The divided structure makes it easier to manage 
-representations or representation parts separately.
-
-<a name="structdiv"></a>
-
-## Segmentation of the AIP
-
-One of the basic requirements formulated by the CSIP is the use of METS as the
-metadata standard to describe the structure of an IP.
-
-Special attention was given to the fact that it might not be possible to store
-all representations of an intellectual entity in one physical container, or that
-even a single representation might have to be divided so that it can be stored
-on long-term storage media. For this reason, the AIP format describes how
-to manage representations or representation parts separately.
-
-This structure lays the groundwork for addressing the practical requirement of
-distributing parts of the intellectual entity over a sequence of physical
-containers representing a logical AIP. Even though this puts the integrity of
-the AIP at risk - because in case of disaster recovery the physical container
-does not represent the complete intellectual entity and dependencies to another
-(lost) physical container can potentially make it impossible to interpret,
-understand, or render the content - it is a necessary measure if the amount of
-data exceeds the capacity limitation of long-term storage media.
-
-On the one hand, this concerns the ability to define the structure of an AIP
-across several parts of an AIP where each individual part constains structural
-metadata. This is described further in section "Compound vs. divided package structure". 
-On the other hand, it is about the ability to create a set of physical container
-files representing one logical AIP. 
-
-We call "segmentation" when a logical AIP is split into parts over various container 
-files. Each segment of the logical AIP is a packaged as a TAR or ZIP file and
-contains structural metadata (METS file). 
-
-The structure of the segmented AIP is defined by a header package where the METS
-file points to the child packages. And each child package points to the header
-package it belongs to. 
-
-### Splitting 
-
-Splitting is a special case of segmentation where large files (e.g. large representation 
-content files) are split into parts. However, the splitted content files are wrapped
-by AIP segments, they are contained in a package which also has a METS file. 
+*Definition:* The *physical AIP* is the manifestation of a logical AIP in form
+of one or several container files.
 
 ## Version and generation of an AIP
 
@@ -178,22 +129,22 @@ either the result of a digital migration or information that enables the creatio
 of an emulation environment to render a representation. The result of this
 operation is the creation of a new version of the AIP.
 
-Furthermore, the AIP format allows updating the AIP by adding a new version of
-the submission. This allows supporting the AIP edition which is defined in OAIS
-as follows:
+Furthermore, the AIP format allows updating the AIP which correspond to the AIP 
+edition which is defined in OAIS as follows:
 
 > “AIP  Edition: An  AIP  whose  Content  Information  or Preservation
 > Description  Information  has been upgraded or improved with the intent not to
 > preserve information, but to increase or improve it. An AIP edition is not
 > considered to be the result of a Migration. [@OAIS2012, p. 1-9]”
 
+### Generation
+
 If the logical AIP is changed, the physical representation of the information 
-in a container may change as well. We call an *AIP generation* a new 
+in a container may change as well. We call a *generation* of the AIP a new 
 manifestation of physical container files representing a new version of a 
 logical AIP. The new generation of the AIP can be a single container file or a 
 set of container files.
 
-### Generation
 A generation of the AIP is created as a consequence of preservation policy 
 decisions. These are generally applied across AIPs without reference to their 
 source or the content contained in them. Examples:
@@ -202,15 +153,64 @@ source or the content contained in them. Examples:
 - Replacing all PDF v1.4 -> 2.0s with PDF/A equivalents due to archival policy change
 
 ### Version
+
 A version of an AIPs is created due to some change in the content or metadata, or 
-a policy for a particular collections:
+a policy for a particular collection:
 
 - Extending, correcting or removing package metadata
 - Adding, replacing or removing content items 
 
+
+## Segmentation of the AIP <a name="structdiv"></a>
+
+From the point of view of preserving the integrity of the AIP, the ideal case 
+isthat the logical AIP is packaged as one single physical container, because 
+all themetadata and content required to interprete the information package is 
+available inone single entity. In reality, however, this is not always possible 
+because the size of the physical container can become very large.
+
+For this reason, the AIP format describes how to partition the AIP and keep 
+representations or representation parts in separate physical container files 
+(see section [5.1](#compdiv)). Even though this puts the integrity of the AIP 
+at risk - because in case of disaster recovery the physical container does not 
+represent the complete intellectual entity and dependencies to another (lost) 
+physical container can potentially make it impossible to interpret, understand, 
+or render the content - it is a necessary measure if the amount of data exceeds 
+the capacity limitation of long-term storage media.
+
+*Definition:* *Segmentation* is a physical manifestation of a logical AIP where a set of 
+physical container files contains parts of the logical AIP. Each segment of the logical AIP 
+is a packaged as a TAR or ZIP file and contains its own structural metadata.
+
+When the AIP is segmented, the structure of the segmentation needs to be recorded in the
+structural metadata.
+
+In [@OAIS2012] p. 1-9, the Archival Information Collection (AIC) is described as  
+“an Archival Information Package whose Content Information is an aggregation of other 
+Archival Information Packages." The AIC can therefore represent a the structure of a segmented 
+AIP is defined by a header information package (AIC) pointing to the child information 
+packages (AIPs). 
+
+It is recommended that the structural metadata of the child information packages record
+to which header information package (AIC) they belong. 
+
+If during the life-cycle of the AIP preservation actions are applied to specific parts, 
+i.e. child packages of the logical AIP, the AIC (header information package) must update
+the references to the child packages. However, it is not required to update the 
+reference to a parent of a child package which is not concerned by a preservation action.
+
+### Splitting 
+
+*Definition:* *Splitting* is a special case of segmentation where large files 
+(e.g. large representation content files) are divided into parts of a fixed byte 
+length. However, the splitted content files are wrapped by AIP segments, i.e. they 
+are contained in an AIP which references the parent information package (AIC) 
+to which they belong.
+
 ## Differential AIP
+
 A differential package is an incomplete form of the AIP which contains only 
-part of the original AIP it relates to. The purpose of the differential AIP
+part of the original AIP it is derived from. The purpose of the differential AIP
 is to allow persisting updates to a previously stored AIP.
 
 The differential AIP is mostly relevant for the physical container files
@@ -257,7 +257,7 @@ One METS file in the root of the package references all metadata and data files
 Even though the number suffix of the folders `rep-001` and `rep-002` of the
 example shown in Figure [3](#fig3) suggests an order of representations, there
 are no requirements regarding the naming of folders containing the
-representations.  The order of representations and the relations between them is
+representations. The order of representations and the relations between them is
 defined by the structural and preservation metadata. The `representations`
 folder is mandatory, even for IPs which contain only one representation.
 
@@ -278,10 +278,10 @@ manage representations independently from each other. This can be desired for
 very large representations, in terms of file size or the amount of files (making
 the root METS difficult to work with).
 
-As a corollary of this division method we define, on the one hand, a
+As a corollary of this division method we define, a
 representation-based division as the separation of representations in different
 folders under the `representations` folder as shown in the example of Figure
-[4](#fig4). And, on the other hand, we define a size-based division as the
+[4](#fig4). And we define a size-based division as the
 separation of representation parts. To illustrate this, Figure [5](#fig5) shows
 an example where a set of files belongs to the same representation (here named
 `binary`) and is referenced in two separate physical containers (here named {C1}
@@ -309,7 +309,7 @@ containers.
 **Figure 5:**
 Example of an IP.
 
-For example, let us assume an IP with two representations, each of which
+For example, let us assume an AIP with two representations, each of which
 consists of a set of three files. In the first representation all data files
 are in the Open Document Format (ODT) and in the second one - as a derivative
 of the first representation - all files are in the Portable Document Format
@@ -319,9 +319,9 @@ of the first representation - all files are in the Portable Document Format
 
 ### Parent-Child relationship
 
-As already pointed out, the divided METS structure was introduced to make the
-separation of representations or representation parts easier and allow the
-distribution of these components over a sequence of AIPs.
+As already pointed out, the divided METS structure was introduced to support the
+physical separation of representations or representation parts and allow distributing 
+these components over a sequence of AIPs.
 
 As shown in Figure [12](#fig12) The composition of a logical AIP can be
 expressed by a parent-child relationship between AIPs. It is a bidirectional
@@ -1477,7 +1477,7 @@ stored redundantly.
  |       +-----------+     |     |     |       +-----------+     |                               
  |    R2 |    PNG    |     |     |     |    R2 |   PNG     |     |                               
  |       +-----------+     |     |     |       +-----------+     |                               
- |                         |     |     |                         |                               
+ |                         |---------->|                         |                               
  |       +-----------+     |     |     |       +-----------+     |                               
  |       | STRUCTURE |     |     |     |       | STRUCTURE |     |                               
  |       |           |     |     |     |       |           |     |                               
@@ -1511,7 +1511,7 @@ updated to the new version `aip1_v1`.
  |                        |     |      |                        |                                    
  |                        |     |      |                        |                                    
  |       +----------+     |     |      |       +----------+     |                                    
- |    R1 | JPEG2000 |     |     |      |  R1.1 |   TIFF   |     |                                    
+ |    R1 | JPEG2000 |     |----------->|  R1.1 |   TIFF   |     |                                    
  |       +----------+     |     |      |       +----------+     |                                    
  |                        |     |      |                        |                                    
  |                        |     |      |                        |                                    
@@ -1522,23 +1522,23 @@ updated to the new version `aip1_v1`.
  |                        |     |                                                               
  |                        |     |                                                               
  |      +----------+      |     |                                                               
- |   R1 | PNG      |      |     |                                                               
+ |   R2 | PNG      |      |     |                                                               
  |      +----------+      |     |                                                               
  |                        |     |                                                               
  |                        |     |                                                               
  +------------------------+     |                                                               
                                 |                                                               
  aip1_v0                        |      aip1_v1                                                  
- +------------------------+     |      +------------------------+                                    
- |                        |     |      |                        |                                    
- |    +------------+      |     |      |    +------------+      |                                    
- |    | STRUCTURE  |      |     |      |    | STRUCTURE  |      |                                    
- |    |            |      |     |      |    |            |      |                                    
- |    | aip1_v0_b1 |      |     |      |    | aip1_v1_b1 |      |                                    
- |    | aip1_v0_b2 |      |     |      |    | aip1_v0_b2 |      |                                    
- |    +------------+      |     |      |    +------------+      |                                    
- |                        |     |      |                        |                                    
- +------------------------+     |      +------------------------+                                    
+ +------------------------+     |      +-------------------------+                                    
+ |                        |     |      |                         |                                    
+ |    +------------+      |     |      |    +---------------+    |                                    
+ |    | STRUCTURE  |      |     |      |    | STRUCTURE     |    |                                    
+ |    |            |      |     |      |    |               |    |                                    
+ |    | aip1_v0_b1 |      |----------->|    | R1.1          |    |                                    
+ |    | aip1_v0_b2 |      |     |      |    | aip1_v0_b2/R2 |    |                                    
+ |    +------------+      |     |      |    +---------------+    |                                    
+ |                        |     |      |                         |                                    
+ +------------------------+     |      +-------------------------+                                    
                                 |                                                               
 ```                                                                                            
 
@@ -1560,23 +1560,23 @@ a new consolidated version `aip1_v1` of the physical container file which is com
 ```xml                                                                                               
                              |                                  |                                       
   aip1_v0                    |      aip1_v0_d1                  |       aip1_v1 (consolidated)          
-  +-------------------+      |      +---------------------+     |      +---------------------+          
-  |                   |      |      |                     |     |      |                     |          
-  |    +----------+   |      |      |      +----------+   |     |      |      +----------+   |          
-  | R1 | JPEG2000 |   |      |      | R1.1 |   TIFF   |   |     |      | R1.1 |   TIFF   |   |          
-  |    +----------+   |      |      |      +----------+   |     |      |      +----------+   |          
-  |                   |      |      |                     |     |      |                     |          
-  |    +----------+   |      |      |                     |     |      |      +----------+   |          
-  | R2 | PNG      |   |      |      |                     |     |      |   R2 |   PNG    |   |          
-  |    +----------+   |      |      |                     |     |      |      +----------+   |          
-  |                   |      |      |                     |     |      |                     |          
-  |  +-------------+  |      |      |  +---------------+  |     |      |   +-------------+   |          
-  |  |  STRUCTURE  |  |      |      |  |  STRUCTURE    |  |     |      |   |  STRUCTURE  |   |          
-  |  |             |  |      |      |  |               |  |     |      |   |             |   |          
-  |  | R1          |  |      |      |  | R1.1          |  |     |      |   | R1.1        |   |          
-  |  | R2          |  |      |      |  | aip1_v0/R2    |  |     |      |   | R2          |   |          
-  |  +-------------+  |      |      |  +---------------+  |     |      |   +-------------+   |          
-  |                   |      |      |                     |     |      |                     |          
-  +-------------------+      |      +---------------------+     |      +---------------------+          
+  +-------------------+      |      +---------------------+     |       +---------------------+          
+  |                   |      |      |                     |     |       |                     |          
+  |    +----------+   |      |      |      +----------+   |     |       |      +----------+   |          
+  | R1 | JPEG2000 |   |      |      | R1.1 |   TIFF   |   |     |       | R1.1 |   TIFF   |   |          
+  |    +----------+   |      |      |      +----------+   |     |       |      +----------+   |          
+  |                   |      |      |                     |     |       |                     |          
+  |    +----------+   |      |      |                     |     |       |      +----------+   |          
+  | R2 | PNG      |   |      |      |                     |     |       |   R2 |   PNG    |   |          
+  |    +----------+   |------------>|                     |------------>|      +----------+   |          
+  |                   |      |      |                     |     |       |                     |          
+  |  +-------------+  |      |      |  +---------------+  |     |       |   +-------------+   |          
+  |  |  STRUCTURE  |  |      |      |  |  STRUCTURE    |  |     |       |   |  STRUCTURE  |   |          
+  |  |             |  |      |      |  |               |  |     |       |   |             |   |          
+  |  | R1          |  |      |      |  | R1.1          |  |     |       |   | R1.1        |   |          
+  |  | R2          |  |      |      |  | aip1_v0/R2    |  |     |       |   | R2          |   |          
+  |  +-------------+  |      |      |  +---------------+  |     |       |   +-------------+   |          
+  |                   |      |      |                     |     |       |                     |          
+  +-------------------+      |      +---------------------+     |       +---------------------+          
                              |                                  |                                       
 ```                                                                                                        
