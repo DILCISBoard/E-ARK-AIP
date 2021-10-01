@@ -165,9 +165,9 @@ a policy for a particular collection:
 ## Segmentation of the AIP <a name="structdiv"></a>
 
 From the point of view of preserving the integrity of the AIP, the ideal case 
-isthat the logical AIP is packaged as one single physical container, because 
-all themetadata and content required to interprete the information package is 
-available inone single entity. In reality, however, this is not always possible 
+is that the logical AIP is packaged as one single physical container, because 
+all of the metadata and content required to interprete the information package is 
+available in a single entity. In reality, however, this is not always possible 
 because the size of the physical container can become very large.
 
 For this reason, the AIP format describes how to partition the AIP and keep 
@@ -238,7 +238,7 @@ which might need to be divided before the data is submitted to the repository.
 And regarding the DIP, it concerns the capability to reconstruct the DIP from an
 AIP which is divided into multiple parts.
 
-In the following, two approaches for describing the structure of the IP will be
+In the following, two approaches for defining the structure of the IP will be
 described with a focus on requirements of the AIP format: the *compound*
 structure is represented by one single structural metadata file, and the
 *divided* structure has one structural metadata file that references those of
@@ -259,8 +259,7 @@ Even though the number suffix of the folders `rep-001` and `rep-002` of the
 example shown in Figure [3](#fig3) suggests an order of representations, there
 are no requirements regarding the naming of folders containing the
 representations. The order of representations and the relations between them is
-defined by the structural and preservation metadata. The `representations`
-folder is mandatory, even for IPs which contain only one representation.
+defined by the structural and preservation metadata. 
 
 If the *divided* METS structure is used, as shown in Figure [4](#fig4), then a
 separate METS file for each representation exists which are referenced by the
@@ -282,7 +281,7 @@ the root METS difficult to work with).
 As a corollary of this division method we define, a
 representation-based division as the separation of representations in different
 folders under the `representations` folder as shown in the example of Figure
-[4](#fig4). And we define a size-based division as the
+[4](#fig4). We also define a size-based division as the
 separation of representation parts. To illustrate this, Figure [5](#fig5) shows
 an example where a set of files belongs to the same representation (here named
 `binary`) and is referenced in two separate physical containers (here named {C1}
@@ -380,8 +379,8 @@ According to the Common Specification, any ID element must start with a prefix
 (also, the XML ID data type does not permit IDs that start with a number, so a
 prefix solves this issue).
 
-We recommend to use as a prefix an internationally recognized standard identifier
-for the institution from which the SIP originates. This may lead to problems
+We recommend using an internationally recognized standard identifier for the 
+institution from which the SIP originates as a prefix. This may lead to problems 
 with smaller institutions, which do not have any such internationally recognized
 standard identifier. We propose in that case, to start the prefix with the
 internationally recognized standard identifier of the institution, where the
