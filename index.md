@@ -8,17 +8,17 @@ storage over the long-term; and the Dissemination Information Package (DIP)
 which is used to disseminate digital objects to the requesting user.
 
 This document is specification of the E-ARK Archival Information Package format
-(E-ARK AIP, in the following named shortly AIP). It defines requirements and
+(E-ARK AIP, subsequently referred to as AIP). It defines requirements and
 guidelines for creating AIPs which are adequate to store information packages
 for the long term. The key objectives of this format are to:
 
 - define the AIP format as an extension of the E-ARK CSIP so that it is suitable for
   the long-term storage of a wide variety of data types, such as document and image
   collections, archival records, databases or geographical data.
-- recommend specific ways of using metadata standards related to the
-  preservation aspects of the AIP.
+- recommend specific ways of using metadata standards to improve interoperability 
+  with regard to the use of long-term archiving standards.
 - specify a form of packaging AIP container files while ensuring that the
-  format is suitable to store large quantities of data.
+  format is suitable for the storage of large quantities of data.
 
 # Relation to other documents
 
@@ -75,7 +75,7 @@ format that makes system migration easier.
 
 ## Information package
 
-The CSIP defines the requirements for concrete information package format
+The CSIP defines the shared requirements for concrete information package format
 specifications, such as the SIP, AIP, or DIP. 
 
 An *information package* (IP) is an instance of a format that complies with the CSIP.
@@ -100,7 +100,7 @@ According to the CSIP, representations are relevant for all types of IPs.
 Regarding the AIP format, in addition to the organization and storage of the 
 representations, it is important that representations which are generated 
 during the AIP's life cycle are managed and documented in such a way that 
-changes can be tracked at any time.
+changes can be tracked.
 
 ## Logical and physical AIP
 
@@ -113,7 +113,7 @@ of one or several container files.
 ## Version and generation of an AIP
 
 Information packages are permanent: more precisely the information they contain 
-is assumed to be permanent and always describing the same unaltered conceptual 
+is assumed to be permanent and always describes the same unaltered conceptual 
 entity. Nevertheless, the way in which this information is represented may change. 
 
 For the purposes of the AIP format specification, the concept *AIP version* is 
@@ -124,10 +124,11 @@ used as defined by OAIS:
 > to replace the source AIP. An AIP version is considered to be the result of a
 > Digital Migration. [@OAIS2012, p. 1-9]”
 
-A new version of an AIP contains one or more new representations which can be
+A new version of an AIP can contain one or more new representations which can be
 either the result of a digital migration or information that enables the creation
-of an emulation environment to render a representation. The result of this
-operation is the creation of a new version of the AIP.
+of an emulation environment to render a representation. Or representation could
+be removed from the AIP. In both cases the result is the creation of a new version 
+of the AIP.
 
 Furthermore, the AIP format allows updating the AIP which correspond to the AIP 
 edition which is defined in OAIS as follows:
