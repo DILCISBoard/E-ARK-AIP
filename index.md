@@ -172,19 +172,18 @@ because the size of the physical container can become very large.
 
 For this reason, the AIP format describes how to partition the AIP and keep 
 representations or representation parts in separate physical container files 
-(see section [5.1](#compdiv)). Even though this puts the integrity of the AIP 
-at risk - because in case of disaster recovery the physical container does not 
-represent the complete intellectual entity and dependencies to another (lost) 
-physical container can potentially make it impossible to interpret, understand, 
-or render the content - it is a necessary measure if the amount of data exceeds 
+(see section [5.1](#compdiv)). Admittedly, this puts the integrity of the AIP at risk 
+because in case of disaster recovery the physical container does not 
+represent the entire intellectual entity. Further, dependencies to another (lost) 
+physical container could make it impossible to interpret, understand, or render 
+the content. However, it is a necessary measure if the amount of data exceeds 
 the capacity limitation of long-term storage media.
 
 *Definition:* *Segmentation* is a physical manifestation of a logical AIP where a set of 
 physical container files contains parts of the logical AIP. Each segment of the logical AIP 
 is a packaged as a TAR or ZIP file and contains its own structural metadata.
 
-When the AIP is segmented, the structure of the segmentation needs to be recorded in the
-structural metadata.
+It is mandatory to document the segmentation of an AIP in the structural metadata.
 
 In [@OAIS2012] p. 1-9, the Archival Information Collection (AIC) is described as  
 “an Archival Information Package whose Content Information is an aggregation of other 
@@ -235,8 +234,8 @@ The ability to manage representations or representation parts
 separately is required because the digital data submissions can be very
 large. This is not only relevant for storing the AIP, it also concerns the SIP
 which might need to be divided before the data is submitted to the repository.
-And regarding the DIP, it concerns the capability to reconstruct the DIP from an
-AIP which is divided into multiple parts.
+In addition, it is important to find and identify AIP segments when creating a 
+DIP which relies on metadata or content of these segments.
 
 In the following, two approaches for defining the structure of the IP will be
 described with a focus on requirements of the AIP format: the *compound*
@@ -299,9 +298,9 @@ into parts, the representation component MUST use the same name in the different
 containers.
 
 <a name="aip-rep-div-overlap"></a>**AIP2**: If a representation is
-divided into parts, any overlap MUST be avoided regarding the structure of the
-representations and each sub-folder path MUST be unique across the
-containers.
+divided into parts, each the sub-paths of items (folders and files) MUST be 
+unique across the different containers. This allows aggregating representation
+parts without accidentally overwriting folders or files.
 
 <a name="fig5"></a>
 ![Information Package structure](figs/visio/fig_5_mets_root.svg "Example of an IP.")
