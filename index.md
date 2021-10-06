@@ -424,7 +424,7 @@ corresponding `<file>` entry in the `<fileSec>` using the `<fptr>` element.
 </structMap>
 ```
 
-**Listing 7:**
+**Listing 1:**
 Structural map referencing METS files of the different representations
 
 ### Metadata representation of the AIP structure
@@ -432,7 +432,7 @@ Structural map referencing METS files of the different representations
 #### Child AIP references parent AIP
 
 The optional reference to a parent AIP is expressed by a structural map with the
-LABEL attribute value `Parent`. Listing 8 shows an example where a UUID is used
+LABEL attribute value `Parent`. Listing 2 shows an example where a UUID is used
 as the package identifier and the `xlink:href` attribute has the UUID identifier
 value of the referenced parent AIP as value. This identifier implicitly
 references the METS file of the corresponding package. If other locator
@@ -451,12 +451,12 @@ can be set correspondingly.
 </structMap>
 ```
 
-**Listing 8:**
+**Listing 2:**
 Using a structMap to reference the parent AIP
 
 #### Parent AIP references child AIPs
 The parent AIP which is referenced by child AIPs must have a structural map
-listing all child AIPs. Listing 9 shows the structural map of a parent AIP
+listing all child AIPs. Listing 3 shows the structural map of a parent AIP
 listing four child AIPs.
 
 ```xml
@@ -490,7 +490,7 @@ listing four child AIPs.
 </structMap>
 ```
 
-**Listing 9:**
+**Listing 3:**
 Using a structMap to reference the parent AIP
 
 ## AIP specific preservation metadata
@@ -534,7 +534,7 @@ used, this identifier SHOULD be unique in the scope of the PREMIS document.
 <a name="aip-id-other"></a>**AIP5**: Other object identifiers of the
 allowed types COULD be used additionally to the identifier of type `local`.
 
-Listing 10 shows an example of an identifier of type `local`.
+Listing 4 shows an example of an identifier of type `local`.
 
 ```xml
 <objectIdentifier>
@@ -543,7 +543,7 @@ Listing 10 shows an example of an identifier of type `local`.
 </objectIdentifier>
 ```
 
-**Listing 10:**
+**Listing 4:**
 Object identifier
 
 #### Checksums
@@ -552,7 +552,7 @@ Object identifier
 provided as a descendant of the `objectCharacteristics` element information in
 form of a SHA-256 checksum, a fixed size 256-bit value.
 
-An example is shown in Listing 11.
+An example is shown in Listing 5.
 
 ```xml
 <fixity>
@@ -562,7 +562,7 @@ An example is shown in Listing 11.
 </fixity>
 ```
 
-**Listing 11:**
+**Listing 5:**
 Hashsum (value shortened)
 
 #### File format
@@ -578,7 +578,7 @@ based on the PRONOM technical registry[^15] COULD be used.
 [^14]: http://www.nationalarchives.gov.uk/aboutapps/pronom/puid.htm
 [^15]: http://www.nationalarchives.gov.uk/PRONOM
 
-An example is shown in Listing 12.
+An example is shown in Listing 6.
 
 ```xml
 <format>
@@ -594,7 +594,7 @@ An example is shown in Listing 12.
 </format>
 ```
 
-**Listing 12:**
+**Listing 6:**
 Optionally, the format version can be provided using the `formatDesignation` element.
 
 #### Object characterisation
@@ -602,7 +602,7 @@ Optionally, the format version can be provided using the `formatDesignation` ele
 <a name="aip-premis-characterisation"></a>**AIP9**: The
 JHOVE[^16] technical characterisation result (XML format) COULD be embedded as
 a descendant of the `objectCharacteristicsExtension` element. An example is
-shown in Listing 13.
+shown in Listing 7.
 
 [^16]: http://sourceforge.net/projects/jhove/
 
@@ -614,7 +614,7 @@ shown in Listing 13.
 </objectCharacteristicsExtension>
 ```
 
-**Listing 13:**
+**Listing 7:**
 JHove digital object characterisation
 
 #### Original name
@@ -622,13 +622,13 @@ JHove digital object characterisation
 <a name="aip-premis-original-name"></a>**AIP10**: The
 `originalName` element COULD be used to record the name of an original file.
 
-An example is shown in Listing 14.
+An example is shown in Listing 8.
 
 ```xml
 <originalName>originalfilename.ext</originalName>
 ```
 
-**Listing 14:**
+**Listing 8:**
 Original name
 
 #### Storage
@@ -641,7 +641,7 @@ Ideally this is a resolvable URI, but it can also generally hold information
 needed to retrieve the digital object from the storage system (e.g. access
 control or for segmented AIPs).
 
-An example is shown in Listing 15.
+An example is shown in Listing 9.
 
 ```xml
 <storage>
@@ -655,7 +655,7 @@ An example is shown in Listing 15.
 </storage>
 ```
 
-**Listing 15:**
+**Listing 9:**
 Storage description
 
 #### Relationship
@@ -668,7 +668,7 @@ object.
 part of another AIP, then the element `relationshipSubType` MUST reference the
 super-ordinate AIP.
 
-An example of the latter case is shown in Listing 16.
+An example of the latter case is shown in Listing 10.
 
 ```xml
 <relationship>
@@ -683,7 +683,7 @@ An example of the latter case is shown in Listing 16.
 </relationship>
 ```
 
-**Listing 16:**
+**Listing 10:**
 Relationship
 
 #### Linking rights statement
@@ -695,7 +695,7 @@ statement attached to the object.
 For example, only files which have the "discovery right" are being indexed in
 order to allow these files to be retrievable by the full-text search.
 
-An example of the latter case is shown in Listing 17.
+An example of the latter case is shown in Listing 11.
 
 ```xml
 <linkingRightsStatementIdentifier>
@@ -708,7 +708,7 @@ An example of the latter case is shown in Listing 17.
 </linkingRightsStatementIdentifier>
 ```
 
-**Listing 17:**
+**Listing 11:**
 Rights statement
 
 ### PREMIS event
@@ -717,7 +717,7 @@ Rights statement
 
 <a name="aip-premis-event-id"></a>**AIP15**: The `eventIdentifier`
 SHOULD be used to identify events, such as preservation actions, which were applied.
-An example is shown in Listing 18.
+An example is shown in Listing 12.
 
 ```xml
 <eventIdentifier>
@@ -726,7 +726,7 @@ An example is shown in Listing 18.
 </eventIdentifier>
 ```
 
-**Listing 18:**
+**Listing 12:**
 Event identifier
 
 #### Link to agent/object
@@ -736,7 +736,7 @@ the event (e.g. person, software, hardware, etc.) MUST be related to the event b
 
 In the example shown in listing 20 the SIP to AIP conversion software is linked as agent with identifier value
 ’Sip2Aip’ and the corresponding object is linked by the local UUID value. An
-example is shown in Listing 20.
+example is shown in Listing 13.
 
 ```xml
 <linkingAgentIdentifier>
@@ -753,7 +753,7 @@ example is shown in Listing 20.
 </linkingObjectIdentifier>
 ```
 
-**Listing 20:**
+**Listing 13:**
 Link to agent/object
 
 #### Migration event type
@@ -762,7 +762,7 @@ Link to agent/object
 resource was created SHOULD to be recorded by means of the
 `relatedEventIdentification` element.
 
-An example is shown in Listing 21.
+An example is shown in Listing 14.
 
 ```xml
 <event>
@@ -796,10 +796,10 @@ An example is shown in Listing 21.
 </event>
 ```
 
-**Listing 21:**
+**Listing 14:**
 Migration event
 
-The event shown in Listing 21 expresses the fact that the object
+The event shown in Listing 15 expresses the fact that the object
 `metadata/file.xml` is the result of the migration event "migration-001" and the
 event which created the source object is "ingest-001".
 
@@ -808,7 +808,7 @@ event which created the source object is "ingest-001".
 <a name="aip-premis-agent"></a>**AIP18**: Agents which are referenced in
 events must be described by means of the `agent` element.
 
-Listing 22 shows a software for indexing named `IndexingSoftware` which supports
+Listing 15 shows a software for indexing named `IndexingSoftware` which supports
 full text search of the items contained in a package.
 In this case, the "discovery right" is assigned to this agent.
 
@@ -831,7 +831,7 @@ In this case, the "discovery right" is assigned to this agent.
 </agent>
 ```
 
-**Listing 22:**
+**Listing 15:**
 Software as an agent
 
 ### PREMIS rights
@@ -840,7 +840,7 @@ Software as an agent
 in rights statements MUST be described by means of the `rights` element.
 
 The `rights` element holds information about the rights status of individual
-digital objects or about agents. An example is shown in Listing 23.
+digital objects or about agents. An example is shown in Listing 16.
 
 ```xml
 <rights>
@@ -862,7 +862,7 @@ digital objects or about agents. An example is shown in Listing 23.
 </rights>
 ```
 
-**Listing 23:**
+**Listing 16:**
 Discovery right statement
 
 ## Physical Container Packaging
@@ -1075,11 +1075,25 @@ Example of a `bagit-info` file:
     E-ARK-Specification-Version: 1.1
 
 <a name="aip-package-bagit"></a>**AIP31**: The containing folder of
-the AIP SHOULD be located in the `data` folder as shown Figure [8](#fig8).
+the AIP SHOULD be located in the `data` folder as shown Listing [17](#fig8).
 
-<a name="fig8"></a> ![Information Package structure](figs/AIP-in-BagIt-data-folder.png "AIP in the `data` folder of a BagIt container.")
-
-**Figure 15:** AIP in the `data` folder of a BagIt container.
+```xml
+urn+uuid+123e4567-e89b-12d3-a456-426655440000/
+├── bagix.txt
+├── data
+│   └── urn+uuid+123e4567-e89b-12d3-a456-426655440000
+│       ├── metadata
+│       │   └── preservation
+│       │       └── premix.xml
+│       ├── METS.xml
+│       └── representations
+│           └── rep1
+│               ├── data
+│               │   └── Example1.docx
+│               └── METS.xml
+└── manifest-md5.txt
+```
+**Listing 17:** AIP in the `data` folder of a BagIt container.
 
 <a name="aip-package-bagit-fetch"></a>**AIP32**: If the AIP is
 a parent-AIP with the content of the logical AIP distributed over multiple
@@ -1105,7 +1119,7 @@ The purpose of the OCFL recommendation is to:
 - enable storing or exporting large amounts of archival content in form of AIP container files to file system storage 
 - support advanced use cases, such as splitting large information packages and differential AIPs (including removal of content using differential packages).
 
-Listing 24 gives an example of an AIP (version 0) using OCFL. It is based on the OCFL Draft 2021[^23] 
+Listing 18 gives an example of an AIP (version 0) using OCFL. It is based on the OCFL Draft 2021[^23] 
 and the BagIt standard file system layout  for storage and transfer as defined by RFC8493[^24]. 
 
 ```xml
@@ -1140,14 +1154,14 @@ urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760
       └── tagmanifest-sha512.txt
 ```
 
-**Listing 25:**
+**Listing 18:**
 OCFL file listing of an AIP (unpackaged container file)
 
 Note that the OCFL Object includes all versions – v0, v1, … - of the AIP and that one bagit container 
 or several bagit containers (segmentation!) are managed as one OCFL object (See in OCFL 5.4 BagIt in an OCFL Object[^25]).
 This is especially relevant for non-redundant storing of AIPs (the concept of a "differential AIP") and for package segmentation.
 
-Also note that the exmaple in Listing 24 is the "unpackaged" version where the bagit container itself is not packaged.
+Also note that the exmaple in Listing 19 is the "unpackaged" version where the bagit container itself is not packaged.
 
 The packaged version 
 
@@ -1161,7 +1175,7 @@ urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760
       └── urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v0_b00001.tar
 ```
 
-**Listing 26:**
+**Listing 19:**
 OCFL file listing of an AIP (packaged container file)
 
 Note that serialization has been removed from the BagIt specification after version 14 (from 2017, current version is 17) to narrow the scope of the specification.
@@ -1172,16 +1186,16 @@ In BagIt Version 14 Section serialization was still included which defined the f
 - A bag MUST NOT be serialized from within its base directory, but from the parent of the base directory.  
 - The deserialization of a bag MUST produce a single base directory bag.
 
-The content of the OCFL object file `0=ocfl_object_1.0` in the listing is shown in Listing 27.
+The content of the OCFL object file `0=ocfl_object_1.0` in the listing is shown in Listing 20.
 
 ```xml
 ocfl_object_1.0
 ```
 
-**Listing 27:**
+**Listing 20:**
 OCFL file listing of an AIP (packaged container file)
 
-And an example for the content of the `inventory.json` is is shown in Listing 28.
+And an example for the content of the `inventory.json` is is shown in Listing 21.
 
 ```json
 {
@@ -1220,7 +1234,7 @@ And an example for the content of the `inventory.json` is is shown in Listing 28
 }
 ```
 
-**Listing 28:**
+**Listing 21:**
 OCFL file listing of an AIP (packaged container file)
 
 At the time of finalizing this specification, the OCFL standard does not support the listing of packaged container files in the inventory file. 
@@ -1453,7 +1467,7 @@ This would allow using the inventory to document the actual content of physical 
 
 ### Migrating a representation to a new version
 
-In the example shown in Figure [9](#fig9), a single physical container file includes metadata and two representations, 
+In the example shown in Figure [8](#fig8), a single physical container file includes metadata and two representations, 
 namely representation R1 (JPEG2000) and representation R2 (PNG). Representation R1 is
 to be migrated to R1.1 (TIFF).
 Representation R1 (JPEG2000) is migrated to a new representation R1.1 (TIFF).
@@ -1463,12 +1477,14 @@ is updated so that it references the new version R1.1.
 Note that a copy of representation R2 (PNG) is created so that this representation is
 stored redundantly.
 
-<a name="fig9"></a> ![Information Package structure](figs/ditaa/ditaa_appendix_e_migration.png "Migrating a representation to a new version")
+<a name="fig8"></a> ![Information Package structure](figs/ditaa/ditaa_appendix_e_migration.png "Migrating a representation to a new version")
 
+**Figure 8:**
+Migrating a representation to a new version.
 
 ### Migrating a representation to a new version with segmented packages
 
-In the example shown in Figure [10](#fig10), an AIP is segmented. There are two physical container with the representations
+In the example shown in Figure [9](#fig9), an AIP is segmented. There are two physical container with the representations
 as child packages and one physical container file as the parent package which holds the root METS
 file. This means that representation R1 (JPEG2000) and representation R2 (PNG) are stored in two
 separate container files. 
@@ -1479,11 +1495,15 @@ container file is created. The physical container file `aip1_v0_b2` remains unch
 The parent physical container file `aip1_v0` which holds the references to child packages is also 
 updated to the new version `aip1_v1`.
 
-<a name="fig10"></a> ![Information Package structure](figs/ditaa/ditaa_appendix_e_migration_segmented.png "Migrating a representation to a new version with segmented packages")
+<a name="fig9"></a> ![Information Package structure](figs/ditaa/ditaa_appendix_e_migration_segmented.png "Migrating a representation to a new version with segmented packages")
+
+**Figure 9:**
+Migrating a representation to a new version with segmented packages.
+
 
 ### Migrating a representation using a differential package
 
-In the example shown in Figure [11](#fig11), a single physical container file includes metadata and two representations, 
+In the example shown in Figure [10](#fig10), a single physical container file includes metadata and two representations, 
 namely representation R1 (JPEG2000) and representation R2 (PNG). Representation R1 is
 to be migrated to R1.1 (TIFF). 
 
@@ -1497,3 +1517,6 @@ The differential physical container file is incomplete and needs to be consolida
 a new consolidated version `aip1_v1` of the physical container file which is complete.
 
 <a name="fig10"></a> ![Information Package structure](figs/ditaa/ditaa_appendix_e_migration_segmented.png "Migrating a representation using a differential package")                                                                                          
+
+**Figure 10:**
+Migrating a representation using a differential package.
