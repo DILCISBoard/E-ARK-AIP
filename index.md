@@ -322,15 +322,15 @@ As already pointed out, the divided METS structure was introduced to support the
 physical separation of representations or representation parts and allow distributing 
 these components over a sequence of AIPs.
 
-As shown in Figure [12](#fig12) The composition of a logical AIP can be
+As shown in Figure [6](#fig6) The composition of a logical AIP can be
 expressed by a parent-child relationship between AIPs. It is a bidirectional
 relationship where each child-AIP bears the information about the parent-AIP
 to which they belong and, vice versa, the parent-AIP references the child-AIPs.
 
-<a name="fig12"></a>
+<a name="fig6"></a>
 ![Information Package structure](figs/visio/fig_12_aip_parent_child.svg "Parent-child relationship between AIPs."){ width=278px }
 
-**Figure 12:**
+**Figure 6:**
 Parent-child relationship between AIPs
 
 Even though this parent-child relationship could be used to create a
@@ -342,15 +342,15 @@ be added after parent- and child-AIPs have been stored, the recreation of the
 whole logical AIP might be inefficient, especially if the AIPs are very large.
 For this reason, existing child-AIPs remain unchanged in case a new version of
 the parent-AIP is created. Only the new version of the parent-AIP has references
-to all child-AIPs as illustrated in Figure [13](#fig13). As a consequence, in order to
+to all child-AIPs as illustrated in Figure [7](#fig13). As a consequence, in order to
 find all siblings of a single child-AIP it is necessary to get the latest
 version of the parent-AIP which implies the risk that the integrity of the
 logical AIP is in danger if the latest version of the parent-AIP is lost.
 
-<a name="fig13"></a>
+<a name="fig7"></a>
 ![Information Package structure](figs/visio/fig_13_new_aip_parent.svg "New version of a parent-AIP."){ width=382px }
 
-**Figure 13:**
+**Figure 7:**
 New version of a parent-AIP
 
 The result of this process is a sequence of physical containers of child-AIPs
@@ -1075,9 +1075,9 @@ Example of a `bagit-info` file:
     E-ARK-Specification-Version: 1.1
 
 <a name="aip-package-bagit"></a>**AIP31**: The containing folder of
-the AIP SHOULD be located in the `data` folder as shown Figure [15](#fig15).
+the AIP SHOULD be located in the `data` folder as shown Figure [8](#fig8).
 
-<a name="fig15"></a> ![Information Package structure](figs/AIP-in-BagIt-data-folder.png "AIP in the `data` folder of a BagIt container.")
+<a name="fig8"></a> ![Information Package structure](figs/AIP-in-BagIt-data-folder.png "AIP in the `data` folder of a BagIt container.")
 
 **Figure 15:** AIP in the `data` folder of a BagIt container.
 
@@ -1109,35 +1109,35 @@ Listing 24 gives an example of an AIP (version 0) using OCFL. It is based on the
 and the BagIt standard file system layout  for storage and transfer as defined by RFC8493[^24]. 
 
 ```xml
-urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760/data
+urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760
 ├── 0=ocfl_object_1.0
 ├── inventory.json
 ├── inventory.json.sha512
 └── v0
     └── content
-        └── urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v0_b00001
-            ├── bag-info.txt
-            ├── bagit.txt
-            ├── data
-            │   ├── metadata
-            │   │   ├── descriptive
-            │   │   │   ├── ead.xml
-            │   │   │   └── metadata.json
-            │   │   └── preservation
-            │   │       └── premis.xml
-            │   ├── METS.xml
-            │   └── representations
-            │       └── 9799fdd1-57b5-48e3-ba53-2705cc874a00
-            │           ├── data
-            │           │   └── example.pdf
-            │           ├── metadata
-            │           │   └── preservation
-            │           │       └── premis.xml
-            │           └── METS.xml
-            ├── manifest-sha256.txt
-            ├── manifest-sha512.txt
-            ├── tagmanifest-sha256.txt
-            └── tagmanifest-sha512.txt
+    └── urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v0_b00001
+      ├── bag-info.txt
+      ├── bagit.txt
+      ├── data
+      │   ├── metadata
+      │   │   ├── descriptive
+      │   │   │   ├── ead.xml
+      │   │   │   └── metadata.json
+      │   │   └── preservation
+      │   │      └── premis.xml
+      │   ├── METS.xml
+      │   └── representations
+      │      └── 9799fdd1-57b5-48e3-ba53-2705cc874a00
+      │      ├── data
+      │      │   └── example.pdf
+      │      ├── metadata
+      │      │   └── preservation
+      │      │      └── premis.xml
+      │      └── METS.xml
+      ├── manifest-sha256.txt
+      ├── manifest-sha512.txt
+      ├── tagmanifest-sha256.txt
+      └── tagmanifest-sha512.txt
 ```
 
 **Listing 25:**
@@ -1152,13 +1152,13 @@ Also note that the exmaple in Listing 24 is the "unpackaged" version where the b
 The packaged version 
 
 ```xml
-urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760/data
+urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760
 ├── 0=ocfl_object_1.0
 ├── inventory.json
 ├── inventory.json.sha512
 └── v0
     └── content
-        └── urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v0_b00001.tar
+      └── urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v0_b00001.tar
 ```
 
 **Listing 26:**
@@ -1453,7 +1453,7 @@ This would allow using the inventory to document the actual content of physical 
 
 ### Migrating a representation to a new version
 
-In this example, a single physical container file includes metadata and two representations, 
+In the example shown in Figure [9](#fig9), a single physical container file includes metadata and two representations, 
 namely representation R1 (JPEG2000) and representation R2 (PNG). Representation R1 is
 to be migrated to R1.1 (TIFF).
 Representation R1 (JPEG2000) is migrated to a new representation R1.1 (TIFF).
@@ -1463,36 +1463,12 @@ is updated so that it references the new version R1.1.
 Note that a copy of representation R2 (PNG) is created so that this representation is
 stored redundantly.
 
-```xml                                                                                                      
-                                 |                                                              
-                                 |                                                              
- aip1_v0                         |      aip1_v1                                                 
- +-------------------------+     |     +-------------------------+                               
- |                         |     |     |                         |                               
- |       +-----------+     |     |     |       +-----------+     |                               
- |    R1 | JPEG2000  |     |     |     |  R1.1 |   TIFF    |     |                               
- |       +-----------+     |     |     |       +-----------+     |                               
- |                         |     |     |                         |                               
- |       +-----------+     |     |     |       +-----------+     |                               
- |    R2 |    PNG    |     |     |     |    R2 |   PNG     |     |                               
- |       +-----------+     |     |     |       +-----------+     |                               
- |                         |---------->|                         |                               
- |       +-----------+     |     |     |       +-----------+     |                               
- |       | STRUCTURE |     |     |     |       | STRUCTURE |     |                               
- |       |           |     |     |     |       |           |     |                               
- |       |    R1     |     |     |     |       |   R1.1    |     |                               
- |       |           |     |     |     |       |           |     |                               
- |       |    R2     |     |     |     |       |    R2     |     |                               
- |       +-----------+     |     |     |       +-----------+     |                               
- |                         |     |     |                         |                               
- +-------------------------+     |     +-------------------------+                               
-                                 |                                                              
-                                 |        
-```
+<a name="fig9"></a> ![Information Package structure](figs/ditaa/ditaa_appendix_e_migration.png "Migrating a representation to a new version")
+
 
 ### Migrating a representation to a new version with segmented packages
 
-In this example, an AIP is segmented. There are two physical container with the representations
+In the example shown in Figure [10](#fig10), an AIP is segmented. There are two physical container with the representations
 as child packages and one physical container file as the parent package which holds the root METS
 file. This means that representation R1 (JPEG2000) and representation R2 (PNG) are stored in two
 separate container files. 
@@ -1503,47 +1479,11 @@ container file is created. The physical container file `aip1_v0_b2` remains unch
 The parent physical container file `aip1_v0` which holds the references to child packages is also 
 updated to the new version `aip1_v1`.
 
-```xml
-                                |                                                               
- aip1_v0_b1                     |      aip1_v1_b1                                               
- +------------------------+     |      +------------------------+                                    
- |                        |     |      |                        |                                    
- |                        |     |      |                        |                                    
- |       +----------+     |     |      |       +----------+     |                                    
- |    R1 | JPEG2000 |     |----------->|  R1.1 |   TIFF   |     |                                    
- |       +----------+     |     |      |       +----------+     |                                    
- |                        |     |      |                        |                                    
- |                        |     |      |                        |                                    
- +------------------------+     |      +------------------------+                                    
-                                |                                                               
- aip1_v0_b2                     |                                                               
- +------------------------+     |                                                               
- |                        |     |                                                               
- |                        |     |                                                               
- |      +----------+      |     |                                                               
- |   R2 | PNG      |      |     |                                                               
- |      +----------+      |     |                                                               
- |                        |     |                                                               
- |                        |     |                                                               
- +------------------------+     |                                                               
-                                |                                                               
- aip1_v0                        |      aip1_v1                                                  
- +------------------------+     |      +-------------------------+                                    
- |                        |     |      |                         |                                    
- |    +------------+      |     |      |    +---------------+    |                                    
- |    | STRUCTURE  |      |     |      |    | STRUCTURE     |    |                                    
- |    |            |      |     |      |    |               |    |                                    
- |    | aip1_v0_b1 |      |----------->|    | R1.1          |    |                                    
- |    | aip1_v0_b2 |      |     |      |    | aip1_v0_b2/R2 |    |                                    
- |    +------------+      |     |      |    +---------------+    |                                    
- |                        |     |      |                         |                                    
- +------------------------+     |      +-------------------------+                                    
-                                |                                                               
-```                                                                                            
+<a name="fig10"></a> ![Information Package structure](figs/ditaa/ditaa_appendix_e_migration_segmented.png "Migrating a representation to a new version with segmented packages")
 
 ### Migrating a representation using a differential package
 
-In this example, a single physical container file includes metadata and two representations, 
+In the example shown in Figure [11](#fig11), a single physical container file includes metadata and two representations, 
 namely representation R1 (JPEG2000) and representation R2 (PNG). Representation R1 is
 to be migrated to R1.1 (TIFF). 
 
@@ -1556,26 +1496,4 @@ relates to the previous complete state which is stored in the physical container
 The differential physical container file is incomplete and needs to be consolidated into
 a new consolidated version `aip1_v1` of the physical container file which is complete.
 
-```xml                                                                                               
-                             |                                  |                                       
-  aip1_v0                    |      aip1_v0_d1                  |       aip1_v1 (consolidated)          
-  +-------------------+      |      +---------------------+     |       +---------------------+          
-  |                   |      |      |                     |     |       |                     |          
-  |    +----------+   |      |      |      +----------+   |     |       |      +----------+   |          
-  | R1 | JPEG2000 |   |      |      | R1.1 |   TIFF   |   |     |       | R1.1 |   TIFF   |   |          
-  |    +----------+   |      |      |      +----------+   |     |       |      +----------+   |          
-  |                   |      |      |                     |     |       |                     |          
-  |    +----------+   |      |      |                     |     |       |      +----------+   |          
-  | R2 | PNG      |   |      |      |                     |     |       |   R2 |   PNG    |   |          
-  |    +----------+   |------------>|                     |------------>|      +----------+   |          
-  |                   |      |      |                     |     |       |                     |          
-  |  +-------------+  |      |      |  +---------------+  |     |       |   +-------------+   |          
-  |  |  STRUCTURE  |  |      |      |  |  STRUCTURE    |  |     |       |   |  STRUCTURE  |   |          
-  |  |             |  |      |      |  |               |  |     |       |   |             |   |          
-  |  | R1          |  |      |      |  | R1.1          |  |     |       |   | R1.1        |   |          
-  |  | R2          |  |      |      |  | aip1_v0/R2    |  |     |       |   | R2          |   |          
-  |  +-------------+  |      |      |  +---------------+  |     |       |   +-------------+   |          
-  |                   |      |      |                     |     |       |                     |          
-  +-------------------+      |      +---------------------+     |       +---------------------+          
-                             |                                  |                                       
-```                                                                                                        
+<a name="fig10"></a> ![Information Package structure](figs/ditaa/ditaa_appendix_e_migration_segmented.png "Migrating a representation using a differential package")                                                                                          
