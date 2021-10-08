@@ -500,6 +500,11 @@ metadata of digital objects, rights metadata to define the rights status in
 relation to specific agents or for specific objects, and to record events that
 are relevant regarding the digital provenance of digital objects.
 
+Regarding general use of PREMIS, there is the E-ARK Content Information Type 
+Specification for Preservation Metadata using PREMIS [^9]
+
+[^9]: https://citspremis.dilcis.eu/specification/CITS_Preservation_metadata_v1.0.pdf      
+
 In the following, only the PREMIS elements which are relevant for the AIP
 format are described. **NOTE:** in the listings showing PREMIS
 code parts, the prefix "premis" is omitted (default namespace is the PREMIS
@@ -508,6 +513,7 @@ METS file is explained.
 
 [^10]: Namespace: http://www.loc.gov/premis/v3, namespace schema location:
        http://www.loc.gov/standards/premis/premis.xsd
+        
 
 ### PREMIS object
 
