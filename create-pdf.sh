@@ -69,6 +69,8 @@ pandoc  --from markdown \
         --include-before-body "./preface.tex" \
         --include-after-body "./postface.tex" \
         --number-sections \
+        --citeproc \
+        --bibliography "../pandoc/bibliography.bib" \
         eark-aip-pdf.md \
         -o "./pdf/eark-aip.pdf"
 echo "PANDOC: Finished"
