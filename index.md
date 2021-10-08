@@ -600,6 +600,31 @@ An example of the latter case is shown in Listing 10.
 **Listing 10:**
 Relationship
 
+#### Linking rights statement
+
+<a name="aip-premis-rights"></a>**AIP14**: The a
+`linkingRightsStatementIdentifier` element COULD be used to describe rights
+statement attached to the object.
+
+For example, only files which have the "discovery right" are being indexed in
+order to allow these files to be retrievable by the full-text search.
+
+An example of the latter case is shown in Listing 11.
+
+```xml
+<linkingRightsStatementIdentifier>
+    <linkingRightsStatementIdentifierType>
+        filepath
+    </linkingRightsStatementIdentifierType>
+    <linkingRightsStatementIdentifierValue>
+        metadata/file.xml
+    </linkingRightsStatementIdentifierValue>
+</linkingRightsStatementIdentifier>
+```
+
+**Listing 11:**
+Rights statement
+
 ### PREMIS event
 
 #### Event identifier
