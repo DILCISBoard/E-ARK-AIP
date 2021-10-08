@@ -362,14 +362,14 @@ of structural metadata in the METS files.
 ### METS identifier
 
 Each AIP root METS document must be assigned a persistent and unique
-identifier. Possible identifier schemes are amongst others: OCLC Purls[^5], CNRI
-Handles[^6], DOI[^7]. Alternatively, it is possible to use a UUID as a locally
-unique identifier.[^8]
+identifier. Possible identifier schemes are amongst others: OCLC Purls[^4], CNRI
+Handles[^5], DOI[^6]. Alternatively, it is possible to use a UUID as a locally
+unique identifier.[^7]
 
-[^5]: http://purl.org/docs/index.html
-[^6]: http://www.handle.net
-[^7]: https://www.doi.org
-[^8]: Universally Unique Identifier according to RFC 4122, http://tools.ietf.org/html/rfc4122.html
+[^4]: http://purl.org/docs/index.html
+[^5]: http://www.handle.net
+[^6]: https://www.doi.org
+[^7]: Universally Unique Identifier according to RFC 4122, http://tools.ietf.org/html/rfc4122.html
 
 Using this identifier, the system must be able to retrieve the corresponding
 package from the repository.
@@ -501,17 +501,17 @@ relation to specific agents or for specific objects, and to record events that
 are relevant regarding the digital provenance of digital objects.
 
 Regarding general use of PREMIS, there is the E-ARK Content Information Type 
-Specification for Preservation Metadata using PREMIS [^9]
+Specification for Preservation Metadata using PREMIS [^8]
 
-[^9]: https://citspremis.dilcis.eu/specification/CITS_Preservation_metadata_v1.0.pdf      
+[^8]: https://citspremis.dilcis.eu/specification/CITS_Preservation_metadata_v1.0.pdf      
 
 In the following, only the PREMIS elements which are relevant for the AIP
 format are described. **NOTE:** in the listings showing PREMIS
 code parts, the prefix "premis" is omitted (default namespace is the PREMIS
-namespace[^10]) while the "mets" prefix is explicitly added if a relation to the
+namespace[^9]) while the "mets" prefix is explicitly added if a relation to the
 METS file is explained.
 
-[^10]: Namespace: http://www.loc.gov/premis/v3, namespace schema location:
+[^9]: Namespace: http://www.loc.gov/premis/v3, namespace schema location:
        http://www.loc.gov/standards/premis/premis.xsd
         
 
@@ -526,11 +526,11 @@ element COULD be provided either using the formatRegistry or the
 formatDesignation element sub-elements, or both.
 
 <a name="aip-premis-file-format-puid"></a>**AIP8**:
-Regarding the formatRegistry, the Persistent Unique Identifier (PUID)[^14]
-based on the PRONOM technical registry[^15] COULD be used.
+Regarding the formatRegistry, the Persistent Unique Identifier (PUID)[^10]
+based on the PRONOM technical registry[^11] COULD be used.
 
-[^14]: http://www.nationalarchives.gov.uk/aboutapps/pronom/puid.htm
-[^15]: http://www.nationalarchives.gov.uk/PRONOM
+[^10]: http://www.nationalarchives.gov.uk/aboutapps/pronom/puid.htm
+[^11]: http://www.nationalarchives.gov.uk/PRONOM
 
 An example is shown in Listing 6.
 
@@ -841,10 +841,10 @@ name part from the AIP's identifier and, vice versa, to infer the identifier
 from the physical container's filename.
 
 A first option to implement this requirement would be to limit the characters
-used in the file name to the "Portable Filename Character Set"[^17] which
+used in the file name to the "Portable Filename Character Set"[^12] which
 only allows the following character set for saving files:
 
-[^17]: http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1\_chap03.html#tag\_03\_282
+[^12]: http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1\_chap03.html#tag\_03\_282
 
 * Uppercase A to Z
 * Lowercase a to z
@@ -858,9 +858,9 @@ character set, then these would need to be mapped into specific ones of the
 accepted character set.
 
 One proposed way to achieve a bi-directional mapping between identifiers and file names
-is the pairtree character mapping specification.[^18]
+is the pairtree character mapping specification.[^13]
 
-[^18]: https://tools.ietf.org/html/draft-kunze-pairtree-01 (see section 3: “Identifier string cleaning”)
+[^13]: https://tools.ietf.org/html/draft-kunze-pairtree-01 (see section 3: “Identifier string cleaning”)
 
 <a name="aip-container-suffix"></a>**AIP22**: The file name of the
 physical container file SHOULD start with a unique name of the AIP which is equal for to
@@ -962,11 +962,11 @@ For example, to create a TAR archive without compression for the AIP folder
 
 #### BagIt
 
-The BagIt[^19] format specifies a set of hierarchical file layout conventions
+The BagIt[^14] format specifies a set of hierarchical file layout conventions
 for storage and transfer of arbitrary digital content. It can be used for
 packaging the AIP.
 
-[^19]: https://tools.ietf.org/html/rfc8493
+[^14]: https://tools.ietf.org/html/rfc8493
 
 <a name="aip-package-bagit"></a>**AIP29**: As defined by the BagIt
 specification, the `bagit.txt` file in the root folder MUST contain the BagIt
@@ -977,9 +977,9 @@ version and tag file character encoding.
 
 <a name="aip-package-bagit-profile"></a>**AIP30**: A
 `bagit-info.txt` MUST be available and valid according to the E-ARK BagIt
-profile (corresponding to the version of this specification).[^20]
+profile (corresponding to the version of this specification).[^15]
 
-[^20]: https://github.com/DILCISBoard/E-ARK-AIP/blob/{version-tag}/profiles/bagit/e-ark-bag-profile.json
+[^15]: https://github.com/DILCISBoard/E-ARK-AIP/blob/{version-tag}/profiles/bagit/e-ark-bag-profile.json
 
 Example of a `bagit-info` file:
 
@@ -1017,7 +1017,7 @@ urn+uuid+123e4567-e89b-12d3-a456-426655440000/
 
 <a name="aip-package-bagit-fetch"></a>**AIP32**: If the AIP is
 a parent-AIP with the content of the logical AIP distributed over multiple
-child-AIPs, then the `fetch.txt` file[^21] SHOULD contain a list of URLs
+child-AIPs, then the `fetch.txt` file[^16] SHOULD contain a list of URLs
 referencing the child-AIP packages.
 
 <a name="aip-package-bagit-fetch-manifest"></a>
@@ -1025,7 +1025,7 @@ referencing the child-AIP packages.
 child-AIPs is used, then every child-AIP file listed in the fetch file SHOULD be
 listed in every payload manifest.
 
-[^21]: https://tools.ietf.org/id/draft-kunze-bagit-08.html#rfc.section.2.2.3
+[^16]: https://tools.ietf.org/id/draft-kunze-bagit-08.html#rfc.section.2.2.3
 
 #### OCFL
 
