@@ -500,8 +500,8 @@ metadata of digital objects, rights metadata to define the rights status in
 relation to specific agents or for specific objects, and to record events that
 are relevant regarding the digital provenance of digital objects.
 
-In the following sections, the PREMIS format and the way that it relates to the
-METS elements is described in detail. **NOTE:** in the listings showing PREMIS
+In the following, only the PREMIS elements which are relevant for the AIP
+format are described. **NOTE:** in the listings showing PREMIS
 code parts, the prefix "premis" is omitted (default namespace is the PREMIS
 namespace[^10]) while the "mets" prefix is explicitly added if a relation to the
 METS file is explained.
@@ -509,61 +509,9 @@ METS file is explained.
 [^10]: Namespace: http://www.loc.gov/premis/v3, namespace schema location:
        http://www.loc.gov/standards/premis/premis.xsd
 
-### Vocabulary
-
-The definition of a vocabulary for PREMIS is an ongoing process, therefore
-there is no exhaustive list of vocabularies that are to be used exclusively.
-
-The basis of the preservation vocabulary is the preservation
-schemes provided by the Library of Congress (LoC).[^11] Additionally, recent
-contributions by the PREMIS Implementers Group (which are still “work in
-progress”) are taken into consideration.[^12]
-
-[^11]: http://id.loc.gov/vocabulary/preservation.html
-[^12]: http://premisimplementers.pbworks.com/w/page/102413902/Preservation%20Events%20Controlled%20Vocabulary
-
 ### PREMIS object
 
 The PREMIS object contains technical information about a digital object.
-
-#### Object identifier
-
-<a name="aip-id-local"></a>**AIP4**: If an identifier of type `local` is
-used, this identifier SHOULD be unique in the scope of the PREMIS document.
-
-<a name="aip-id-other"></a>**AIP5**: Other object identifiers of the
-allowed types COULD be used additionally to the identifier of type `local`.
-
-Listing 4 shows an example of an identifier of type `local`.
-
-```xml
-<objectIdentifier>
-	<objectIdentifierType>local</objectIdentifierType>
-	<objectIdentifierValue>fileId001</objectIdentifierValue>
-</objectIdentifier>
-```
-
-**Listing 4:**
-Object identifier
-
-#### Checksums
-
-<a name="aip-premis-checksums"></a>**AIP6**: Checksums COULD be
-provided as a descendant of the `objectCharacteristics` element information in
-form of a SHA-256 checksum, a fixed size 256-bit value.
-
-An example is shown in Listing 5.
-
-```xml
-<fixity>
-	<messageDigestAlgorithm>SHA-256</messageDigestAlgorithm>
-	<messageDigest>3b1d00f7871d9102001c77f...</messageDigest>
-	<messageDigestOriginator>/usr/bin/sha256sum</messageDigestOriginator>
-</fixity>
-```
-
-**Listing 5:**
-Hashsum (value shortened)
 
 #### File format
 
@@ -596,40 +544,6 @@ An example is shown in Listing 6.
 
 **Listing 6:**
 Optionally, the format version can be provided using the `formatDesignation` element.
-
-#### Object characterisation
-
-<a name="aip-premis-characterisation"></a>**AIP9**: The
-JHOVE[^16] technical characterisation result (XML format) COULD be embedded as
-a descendant of the `objectCharacteristicsExtension` element. An example is
-shown in Listing 7.
-
-[^16]: http://sourceforge.net/projects/jhove/
-
-```xml
-<objectCharacteristicsExtension>
-    <jhove>
-      	...
-    </jhove>
-</objectCharacteristicsExtension>
-```
-
-**Listing 7:**
-JHove digital object characterisation
-
-#### Original name
-
-<a name="aip-premis-original-name"></a>**AIP10**: The
-`originalName` element COULD be used to record the name of an original file.
-
-An example is shown in Listing 8.
-
-```xml
-<originalName>originalfilename.ext</originalName>
-```
-
-**Listing 8:**
-Original name
 
 #### Storage
 
@@ -685,31 +599,6 @@ An example of the latter case is shown in Listing 10.
 
 **Listing 10:**
 Relationship
-
-#### Linking rights statement
-
-<a name="aip-premis-rights"></a>**AIP14**: The a
-`linkingRightsStatementIdentifier` element COULD be used to describe rights
-statement attached to the object.
-
-For example, only files which have the "discovery right" are being indexed in
-order to allow these files to be retrievable by the full-text search.
-
-An example of the latter case is shown in Listing 11.
-
-```xml
-<linkingRightsStatementIdentifier>
-    <linkingRightsStatementIdentifierType>
-        filepath
-    </linkingRightsStatementIdentifierType>
-    <linkingRightsStatementIdentifierValue>
-        metadata/file.xml
-    </linkingRightsStatementIdentifierValue>
-</linkingRightsStatementIdentifier>
-```
-
-**Listing 11:**
-Rights statement
 
 ### PREMIS event
 
