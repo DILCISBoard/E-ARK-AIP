@@ -71,37 +71,6 @@ format that makes system migration easier.
 
 # Definitions and remarks
 
-<a name="ip"></a>
-
-## Information package
-
-The CSIP defines the shared requirements for concrete information package format
-specifications, such as the SIP, AIP, or DIP. 
-
-An *information package* (IP) is an instance of a format that complies with the CSIP.
-
-<a name="reps"></a>
-
-## Representation
-
-The concept of a "representation" is used according to the definition given in
-the PREMIS digital preservation metadata standard:
-
-> "The set of files, including structural metadata, needed for a complete and
-> reasonable rendition of an Intellectual Entity. For example, a journal
-> article may be complete in one PDF file; this single file constitutes the
-> representation. Another journal article may consist of one SGML file and two
-> image files; these three files constitute the representation. A third article
-> may be represented by one TIFF image for each of 12 pages plus an XML file of
-> structural metadata showing the order of the pages; these 13 files constitute
-> the representation. [@premis3.0-2017]"
-
-According to the CSIP, representations are relevant for all types of IPs.
-Regarding the AIP format, in addition to the organization and storage of the 
-representations, it is important that representations which are generated 
-during the AIP's life cycle are managed and documented in such a way that 
-changes can be tracked.
-
 ## Logical and physical AIP
 
 *Definition:* The *logical AIP* is the set of digital objects and metadata
@@ -110,7 +79,7 @@ representing an entire intellectual entity regardless of the physical manifestat
 *Definition:* The *physical AIP* is the manifestation of a logical AIP in form
 of one or several container files.
 
-## Version and generation of an AIP
+## Version of an AIP
 
 Information packages are permanent: more precisely the information they contain 
 is assumed to be permanent and always describes the same unaltered conceptual 
@@ -130,37 +99,9 @@ of an emulation environment to render a representation. Or representation could
 be removed from the AIP. In both cases the result is the creation of a new version 
 of the AIP.
 
-Furthermore, the AIP format allows updating the AIP which correspond to the AIP 
-edition which is defined in OAIS as follows:
-
-> “AIP  Edition: An  AIP  whose  Content  Information  or Preservation
-> Description  Information  has been upgraded or improved with the intent not to
-> preserve information, but to increase or improve it. An AIP edition is not
-> considered to be the result of a Migration. [@OAIS2012, p. 1-9]”
-
-### Generation
-
 If the logical AIP is changed, the physical representation of the information 
-in a container may change as well. We call a *generation* of the AIP a new 
-manifestation of physical container files representing a new version of a 
-logical AIP. The new generation of the AIP can be a single container file or a 
-set of container files.
-
-A generation of the AIP is created as a consequence of preservation policy 
-decisions. These are generally applied across AIPs without reference to their 
-source or the content contained in them. Examples:
-
-- Changes to the information package structure to conform to a new specification 
-- Replacing all PDF v1.4 -> 2.0s with PDF/A equivalents due to archival policy change
-
-### Version
-
-A version of an AIPs is created due to some change in the content or metadata, or 
-a policy for a particular collection:
-
-- Extending, correcting or removing package metadata
-- Adding, replacing or removing content items 
-
+in a container may change as well. The result is a new version of the physical 
+container files. 
 
 ## Segmentation of the AIP <a name="structdiv"></a>
 
@@ -199,7 +140,7 @@ i.e. child packages of the logical AIP, the AIC (header information package) mus
 the references to the child packages. However, it is not required to update the 
 reference to a parent of a child package which is not concerned by a preservation action.
 
-### Splitting 
+## Splitting 
 
 *Definition:* *Splitting* is a special case of segmentation where large files 
 (e.g. large representation content files) are divided into parts of a fixed byte 
@@ -493,7 +434,7 @@ listing four child AIPs.
 **Listing 3:**
 Using a structMap to reference the parent AIP
 
-## AIP specific preservation metadata
+## AIP relevant preservation metadata
 
 As already mentioned, PREMIS [@premis3.0-2017] is used to describe technical
 metadata of digital objects, rights metadata to define the rights status in
@@ -605,31 +546,6 @@ An example of the latter case is shown in Listing 10.
 
 **Listing 10:**
 Relationship
-
-#### Linking rights statement
-
-<a name="aip-premis-rights"></a>**AIP14**: The a
-`linkingRightsStatementIdentifier` element COULD be used to describe rights
-statement attached to the object.
-
-For example, only files which have the "discovery right" are being indexed in
-order to allow these files to be retrievable by the full-text search.
-
-An example of the latter case is shown in Listing 11.
-
-```xml
-<linkingRightsStatementIdentifier>
-    <linkingRightsStatementIdentifierType>
-        filepath
-    </linkingRightsStatementIdentifierType>
-    <linkingRightsStatementIdentifierValue>
-        metadata/file.xml
-    </linkingRightsStatementIdentifierValue>
-</linkingRightsStatementIdentifier>
-```
-
-**Listing 11:**
-Rights statement
 
 ### PREMIS event
 
@@ -753,37 +669,6 @@ In this case, the "discovery right" is assigned to this agent.
 
 **Listing 15:**
 Software as an agent
-
-### PREMIS rights
-
-<a name="aip-premis-rights"></a>**AIP19**: Rights which are referenced
-in rights statements MUST be described by means of the `rights` element.
-
-The `rights` element holds information about the rights status of individual
-digital objects or about agents. An example is shown in Listing 16.
-
-```xml
-<rights>
-	<rightsStatement>
-    	<rightsStatementIdentifier>
-        	<rightsStatementIdentifierType>
-            	local
-        	</rightsStatementIdentifierType>
-        	<rightsStatementIdentifierValue>
-            	discovery-right-001
-        	</rightsStatementIdentifierValue>
-    	</rightsStatementIdentifier>
-    	<rightsBasis>Statute</rightsBasis>
-    	<rightsGranted>
-        	<act>Discovery</act>
-        	<restriction></restriction>
-    	</rightsGranted>
-	</rightsStatement>
-</rights>
-```
-
-**Listing 16:**
-Discovery right statement
 
 ## Physical Container Packaging
 
