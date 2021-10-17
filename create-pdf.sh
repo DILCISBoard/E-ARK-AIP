@@ -20,7 +20,6 @@ pandoc  --from gfm \
         "../spec-publisher/res/md/common-intro.md" \
         -o "./preface.tex"
 echo " - PANDOC: Finished"
-sed -i 's%fig_1_dip.svg%fig_1_dip.png%' ./preface.tex
 sed -i 's%section{%section*{%' ./preface.tex
 
 echo " - PANDOC: Generating Postface from markdown"
@@ -61,6 +60,8 @@ cd docs || exit
 # eark-sip-pdf.md \                              # Input Markdown file
 # -o ./pdf/eark-dip.pdf                          # PDF Destinaton
 echo " - PANDOC: Generating PDF document from markdown"
+# pandoc -s --bibliography "../pandoc/bibliography.bib" --citeproc eark-aip-pdf.md -o cits.html
+
 pandoc  --from markdown \
         --template "../spec-publisher/pandoc/templates/eisvogel.latex" \
         --listings \
@@ -69,10 +70,9 @@ pandoc  --from markdown \
         --include-before-body "./preface.tex" \
         --include-after-body "./postface.tex" \
         --number-sections \
-        --citeproc \
         --bibliography "../pandoc/bibliography.bib" \
-        eark-aip-pdf.md \
+        --citeproc eark-aip-pdf.md \
         -o "./pdf/eark-aip.pdf"
 echo "PANDOC: Finished"
-rm "$SCRIPT_DIR/docs/preface.tex" "$SCRIPT_DIR/docs/postface.tex" "$SCRIPT_DIR/docs/eark-aip-pdf.md"
+# rm "$SCRIPT_DIR/docs/preface.tex" "$SCRIPT_DIR/docs/postface.tex" "$SCRIPT_DIR/docs/eark-aip-pdf.md"
 cd "$SCRIPT_DIR" || exit
