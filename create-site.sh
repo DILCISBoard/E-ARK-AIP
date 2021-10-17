@@ -87,3 +87,4 @@ cp -R spec-publisher/res/md/figs docs/
 cp -R profile docs/
 cp -R archive docs/
 cp -R examples docs/
+cp -Rf spec-publisher/site/* docs/
