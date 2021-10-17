@@ -71,7 +71,7 @@ pandoc  --from markdown \
         --include-after-body "./postface.tex" \
         --number-sections \
         --bibliography "../pandoc/bibliography.bib" \
-        --citeproc eark-aip-pdf.md \
+        --filter pandoc-citeproc eark-aip-pdf.md \
         -o "./pdf/eark-aip.pdf"
 echo "PANDOC: Finished"
 # rm "$SCRIPT_DIR/docs/preface.tex" "$SCRIPT_DIR/docs/postface.tex" "$SCRIPT_DIR/docs/eark-aip-pdf.md"
