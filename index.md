@@ -71,37 +71,6 @@ format that makes system migration easier.
 
 # Definitions and remarks
 
-<a name="ip"></a>
-
-## Information package
-
-The CSIP defines the shared requirements for concrete information package format
-specifications, such as the SIP, AIP, or DIP.
-
-An *information package* (IP) is an instance of a format that complies with the CSIP.
-
-<a name="reps"></a>
-
-## Representation
-
-The concept of a "representation" is used according to the definition given in
-the PREMIS digital preservation metadata standard:
-
-> "The set of files, including structural metadata, needed for a complete and
-> reasonable rendition of an Intellectual Entity. For example, a journal
-> article may be complete in one PDF file; this single file constitutes the
-> representation. Another journal article may consist of one SGML file and two
-> image files; these three files constitute the representation. A third article
-> may be represented by one TIFF image for each of 12 pages plus an XML file of
-> structural metadata showing the order of the pages; these 13 files constitute
-> the representation. [@premis3.0-2017]"
-
-According to the CSIP, representations are relevant for all types of IPs.
-Regarding the AIP format, in addition to the organization and storage of the
-representations, it is important that representations which are generated
-during the AIP's life cycle are managed and documented in such a way that
-changes can be tracked.
-
 ## Logical and physical AIP
 
 *Definition:* The *logical AIP* is the set of digital objects and metadata
@@ -130,37 +99,9 @@ of an emulation environment to render a representation. Or representation could
 be removed from the AIP. In both cases the result is the creation of a new version
 of the AIP.
 
-Furthermore, the AIP format allows updating the AIP which correspond to the AIP
-edition which is defined in OAIS as follows:
-
-> “AIP  Edition: An  AIP  whose  Content  Information  or Preservation
-> Description  Information  has been upgraded or improved with the intent not to
-> preserve information, but to increase or improve it. An AIP edition is not
-> considered to be the result of a Migration. [@OAIS2012, p. 1-9]”
-
-### Generation
-
 If the logical AIP is changed, the physical representation of the information
-in a container may change as well. We call a *generation* of the AIP a new
-manifestation of physical container files representing a new version of a
-logical AIP. The new generation of the AIP can be a single container file or a
-set of container files.
-
-A generation of the AIP is created as a consequence of preservation policy
-decisions. These are generally applied across AIPs without reference to their
-source or the content contained in them. Examples:
-
-- Changes to the information package structure to conform to a new specification
-- Replacing all PDF v1.4 -> 2.0s with PDF/A equivalents due to archival policy change
-
-### Version
-
-A version of an AIPs is created due to some change in the content or metadata, or
-a policy for a particular collection:
-
-- Extending, correcting or removing package metadata
-- Adding, replacing or removing content items
-
+in a container may change as well. The result is a new version of the physical
+container files.
 
 ## Segmentation of the AIP <a name="structdiv"></a>
 
@@ -172,11 +113,11 @@ because the size of the physical container can become very large.
 
 For this reason, the AIP format describes how to partition the AIP and keep
 representations or representation parts in separate physical container files
-(see section [5.1](#compdiv)). Even though this puts the integrity of the AIP
-at risk - because in case of disaster recovery the physical container does not
-represent the complete intellectual entity and dependencies to another (lost)
-physical container can potentially make it impossible to interpret, understand,
-or render the content - it is a necessary measure if the amount of data exceeds
+(see section [5.1](#compdiv)). Admittedly, this puts the integrity of the AIP at risk
+because in case of disaster recovery the physical container does not
+represent the entire intellectual entity. Further, dependencies to another (lost)
+physical container could make it impossible to interpret, understand, or render
+the content. However, it is a necessary measure if the amount of data exceeds
 the capacity limitation of long-term storage media.
 
 *Definition:* *Segmentation* is a physical manifestation of a logical AIP where a set of
@@ -199,7 +140,7 @@ i.e. child packages of the logical AIP, the AIC (header information package) mus
 the references to the child packages. However, it is not required to update the
 reference to a parent of a child package which is not concerned by a preservation action.
 
-### Splitting
+## Splitting
 
 *Definition:* *Splitting* is a special case of segmentation where large files
 (e.g. large representation content files) are divided into parts of a fixed byte
@@ -943,18 +884,18 @@ the AIP SHOULD be located in the `data` folder as shown Listing [17](#fig8).
 
 ```
 urn+uuid+123e4567-e89b-12d3-a456-426655440000/
-|- bagix.txt
+|- bagit.txt
 |- data
-|   |-urn+uuid+123e4567-e89b-12d3-a456-426655440000
-|       |- metadata
-|       |   |- preservation
-|       |      |- premix.xml
-|       |- METS.xml
-|       |- representations
-|           |- rep1
-|               |- data
-|               |  |- Example1.docx
-|               |- METS.xml
+|   |- urn+uuid+123e4567-e89b-12d3-a456-426655440000
+|       |- metadata
+|       |   |- preservation
+|       |       |- premix.xml
+|       |- METS.xml
+|       |- representations
+|           |- rep1
+|               |- data
+|               |   |- Example1.docx
+|               |- METS.xml
 |- manifest-md5.txt
 ```
 **Listing 17:** AIP in the `data` folder of a BagIt container.
@@ -983,39 +924,39 @@ The purpose of the OCFL recommendation is to:
 - enable storing or exporting large amounts of archival content in form of AIP container files to file system storage
 - support advanced use cases, such as splitting large information packages and differential AIPs (including removal of content using differential packages).
 
-Listing 24 gives an example of an AIP (version 0) using OCFL. It is based on the OCFL Draft 2021[^23]
+Listing 18 gives an example of an AIP (version 0) using OCFL. It is based on the OCFL Draft 2021[^23]
 and the BagIt standard file system layout  for storage and transfer as defined by RFC8493[^24].
 
-```
-urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760/data
+```xml
+urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760
 |- 0=ocfl_object_1.0
 |- inventory.json
 |- inventory.json.sha512
 |- v0
     |- content
-        |- urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v0_b00001
-            |- bag-info.txt
-            |- bagit.txt
-            |- data
-            |   |- metadata
-            |   |   |- descriptive
-            |   |   |   |- ead.xml
-            |   |   |   |- metadata.json
-            |   |   |- preservation
-            |   |   |   |- premis.xml
-            |   |- METS.xml
-            |   |- representations
-            |       |- 9799fdd1-57b5-48e3-ba53-2705cc874a00
-            |           |- data
-            |           |   |- example.pdf
-            |           |- metadata
-            |           |   |- preservation
-            |           |       |- premis.xml
-            |           |- METS.xml
-            |- manifest-sha256.txt
-            |- manifest-sha512.txt
-            |- tagmanifest-sha256.txt
-            |- tagmanifest-sha512.txt
+    |- urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v0_b00001
+      |- bag-info.txt
+      |- bagit.txt
+      |- data
+      |   |- metadata
+      |   |   |- descriptive
+      |   |   |   |- ead.xml
+      |   |   |   |- metadata.json
+      |   |   |- preservation
+      |   |       |- premis.xml
+      |   |- METS.xml
+      |   |- representations
+      |       |- 9799fdd1-57b5-48e3-ba53-2705cc874a00
+      |       |- data
+      |       |   |- example.pdf
+      |       |- metadata
+      |       |   |- preservation
+      |       |       |- premis.xml
+      |       |- METS.xml
+      |- manifest-sha256.txt
+      |- manifest-sha512.txt
+      |- tagmanifest-sha256.txt
+      |- tagmanifest-sha512.txt
 ```
 
 **Listing 18:**
@@ -1030,13 +971,13 @@ Also note that the exmaple in Listing 19 is the "unpackaged" version where the b
 The packaged version
 
 ```xml
-urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760/data
+urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760
 |- 0=ocfl_object_1.0
 |- inventory.json
 |- inventory.json.sha512
 |- v0
     |- content
-        |- urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v0_b00001.tar
+      |- urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v0_b00001.tar
 ```
 
 **Listing 19:**
@@ -1331,7 +1272,7 @@ This would allow using the inventory to document the actual content of physical 
 
 ### Migrating a representation to a new version
 
-In this example, a single physical container file includes metadata and two representations,
+In the example shown in Figure [8](#fig8), a single physical container file includes metadata and two representations,
 namely representation R1 (JPEG2000) and representation R2 (PNG). Representation R1 is
 to be migrated to R1.1 (TIFF).
 Representation R1 (JPEG2000) is migrated to a new representation R1.1 (TIFF).
@@ -1341,8 +1282,7 @@ is updated so that it references the new version R1.1.
 Note that a copy of representation R2 (PNG) is created so that this representation is
 stored redundantly.
 
-<a name="fig8"></a>
-![Information Package structure](figs/ditaa/ditaa_appendix_e_migration.png "Migrating a representation to a new version")
+<a name="fig8"></a> ![Information Package structure](figs/ditaa/ditaa_appendix_e_migration.png "Migrating a representation to a new version")
 
 **Figure 8:**
 Migrating a representation to a new version.
@@ -1360,8 +1300,7 @@ container file is created. The physical container file `aip1_v0_b2` remains unch
 The parent physical container file `aip1_v0` which holds the references to child packages is also
 updated to the new version `aip1_v1`.
 
-<a name="fig9"></a>
-![Information Package structure](figs/ditaa/ditaa_appendix_e_migration_segmented.png "Migrating a representation to a new version with segmented packages")
+<a name="fig9"></a> ![Information Package structure](figs/ditaa/ditaa_appendix_e_migration_segmented.png "Migrating a representation to a new version with segmented packages")
 
 **Figure 9:**
 Migrating a representation to a new version with segmented packages.
@@ -1369,7 +1308,7 @@ Migrating a representation to a new version with segmented packages.
 
 ### Migrating a representation using a differential package
 
-In this example, a single physical container file includes metadata and two representations,
+In the example shown in Figure [10](#fig10), a single physical container file includes metadata and two representations,
 namely representation R1 (JPEG2000) and representation R2 (PNG). Representation R1 is
 to be migrated to R1.1 (TIFF).
 
@@ -1382,8 +1321,7 @@ relates to the previous complete state which is stored in the physical container
 The differential physical container file is incomplete and needs to be consolidated into
 a new consolidated version `aip1_v1` of the physical container file which is complete.
 
-<a name="fig10"></a>
-![Information Package structure](figs/ditaa/ditaa_appendix_e_migration_segmented.png "Migrating a representation using a differential package")                                                                                          
+<a name="fig10"></a> ![Information Package structure](figs/ditaa/ditaa_appendix_e_migration_segmented.png "Migrating a representation using a differential package")                                                                                          
 
 **Figure 10:**
 Migrating a representation using a differential package.

@@ -81,10 +81,10 @@ markdown-pp SITE.md -o ./docs/index.md
 
 echo " - copying files to docs directory"
 cp -R figs docs/
-find ./docs/_* -type f -exec sed -i 's/CSIP/AIP/' {} \;
-find ./docs/_* -type f -exec sed -i 's/csip/aip/' {} \;
 cp -R spec-publisher/res/md/figs docs/
 cp -R profile docs/
 cp -R archive docs/
 cp -R examples docs/
 cp -Rf spec-publisher/site/* docs/
+find ./docs/_* -type f -exec sed -i 's/CSIP/AIP/' {} \;
+find ./docs/_* -type f -exec sed -i 's/csip/aip/' {} \;
