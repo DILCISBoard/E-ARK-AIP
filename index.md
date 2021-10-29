@@ -15,7 +15,7 @@ for the long term. The key objectives of this format are to:
 - define the AIP format as an extension of the E-ARK CSIP so that it is suitable for
   the long-term storage of a wide variety of data types, such as document and image
   collections, archival records, databases or geographical data.
-- recommend specific ways of using metadata standards to improve interoperability 
+- recommend specific ways of using metadata standards to improve interoperability
   with regard to the use of long-term archiving standards.
 - specify a form of packaging AIP container files while ensuring that the
   format is suitable for the storage of large quantities of data.
@@ -74,18 +74,18 @@ format that makes system migration easier.
 ## Logical and physical AIP
 
 *Definition:* The *logical AIP* is the set of digital objects and metadata
-representing an entire intellectual entity regardless of the physical manifestation. 
+representing an entire intellectual entity regardless of the physical manifestation.
 
 *Definition:* The *physical AIP* is the manifestation of a logical AIP in form
 of one or several container files.
 
 ## Version of an AIP
 
-Information packages are permanent: more precisely the information they contain 
-is assumed to be permanent and always describes the same unaltered conceptual 
-entity. Nevertheless, the way in which this information is represented may change. 
+Information packages are permanent: more precisely the information they contain
+is assumed to be permanent and always describes the same unaltered conceptual
+entity. Nevertheless, the way in which this information is represented may change.
 
-For the purposes of the AIP format specification, the concept *AIP version* is 
+For the purposes of the AIP format specification, the concept *AIP version* is
 used as defined by OAIS:
 
 > “AIP Version: An AIP whose Content Information or Preservation Description
@@ -96,73 +96,73 @@ used as defined by OAIS:
 A new version of an AIP can contain one or more new representations which can be
 either the result of a digital migration or information that enables the creation
 of an emulation environment to render a representation. Or representation could
-be removed from the AIP. In both cases the result is the creation of a new version 
+be removed from the AIP. In both cases the result is the creation of a new version
 of the AIP.
 
-If the logical AIP is changed, the physical representation of the information 
-in a container may change as well. The result is a new version of the physical 
-container files. 
+If the logical AIP is changed, the physical representation of the information
+in a container may change as well. The result is a new version of the physical
+container files.
 
 ## Segmentation of the AIP <a name="structdiv"></a>
 
-From the point of view of preserving the integrity of the AIP, the ideal case 
-is that the logical AIP is packaged as one single physical container, because 
-all of the metadata and content required to interprete the information package is 
-available in a single entity. In reality, however, this is not always possible 
+From the point of view of preserving the integrity of the AIP, the ideal case
+is that the logical AIP is packaged as one single physical container, because
+all of the metadata and content required to interprete the information package is
+available in a single entity. In reality, however, this is not always possible
 because the size of the physical container can become very large.
 
-For this reason, the AIP format describes how to partition the AIP and keep 
-representations or representation parts in separate physical container files 
-(see section [5.1](#compdiv)). Admittedly, this puts the integrity of the AIP at risk 
-because in case of disaster recovery the physical container does not 
-represent the entire intellectual entity. Further, dependencies to another (lost) 
-physical container could make it impossible to interpret, understand, or render 
-the content. However, it is a necessary measure if the amount of data exceeds 
+For this reason, the AIP format describes how to partition the AIP and keep
+representations or representation parts in separate physical container files
+(see section [5.1](#compdiv)). Admittedly, this puts the integrity of the AIP at risk
+because in case of disaster recovery the physical container does not
+represent the entire intellectual entity. Further, dependencies to another (lost)
+physical container could make it impossible to interpret, understand, or render
+the content. However, it is a necessary measure if the amount of data exceeds
 the capacity limitation of long-term storage media.
 
-*Definition:* *Segmentation* is a physical manifestation of a logical AIP where a set of 
-physical container files contains parts of the logical AIP. Each segment of the logical AIP 
+*Definition:* *Segmentation* is a physical manifestation of a logical AIP where a set of
+physical container files contains parts of the logical AIP. Each segment of the logical AIP
 is a packaged as a TAR or ZIP file and contains its own structural metadata.
 
 It is mandatory to document the segmentation of an AIP in the structural metadata.
 
 In [@OAIS2012] p. 1-9, the Archival Information Collection (AIC) is described as  
-“an Archival Information Package whose Content Information is an aggregation of other 
-Archival Information Packages." The AIC can therefore represent a the structure of a segmented 
-AIP is defined by a header information package (AIC) pointing to the child information 
-packages (AIPs). 
+“an Archival Information Package whose Content Information is an aggregation of other
+Archival Information Packages." The AIC can therefore represent a the structure of a segmented
+AIP is defined by a header information package (AIC) pointing to the child information
+packages (AIPs).
 
 It is recommended that the structural metadata of the child information packages record
-to which header information package (AIC) they belong. 
+to which header information package (AIC) they belong.
 
-If during the life-cycle of the AIP preservation actions are applied to specific parts, 
+If during the life-cycle of the AIP preservation actions are applied to specific parts,
 i.e. child packages of the logical AIP, the AIC (header information package) must update
-the references to the child packages. However, it is not required to update the 
+the references to the child packages. However, it is not required to update the
 reference to a parent of a child package which is not concerned by a preservation action.
 
-## Splitting 
+## Splitting
 
-*Definition:* *Splitting* is a special case of segmentation where large files 
-(e.g. large representation content files) are divided into parts of a fixed byte 
-length. However, the splitted content files are wrapped by AIP segments, i.e. they 
-are contained in an AIP which references the parent information package (AIC) 
+*Definition:* *Splitting* is a special case of segmentation where large files
+(e.g. large representation content files) are divided into parts of a fixed byte
+length. However, the splitted content files are wrapped by AIP segments, i.e. they
+are contained in an AIP which references the parent information package (AIC)
 to which they belong.
 
 ## Differential AIP
 
-A differential package is an incomplete form of the AIP which contains only 
+A differential package is an incomplete form of the AIP which contains only
 part of the original AIP it is derived from. The purpose of the differential AIP
 is to allow persisting updates to a previously stored AIP.
 
 The differential AIP is mostly relevant for the physical container files
 storing the actual content of the AIP. In case of large AIPs, this allows
 adding or overriding data or metadata to an physical container
-containing parts of an AIP or the entire AIP content. 
+containing parts of an AIP or the entire AIP content.
 
 # AIP format
 
 The AIP format consists of a set of recommendations and requirements[^2]
-regarding the use of structural and preservation metadata which are 
+regarding the use of structural and preservation metadata which are
 introduced in the following.
 
 ## AIP specific structural metadata
@@ -175,7 +175,7 @@ The ability to manage representations or representation parts
 separately is required because the digital data submissions can be very
 large. This is not only relevant for storing the AIP, it also concerns the SIP
 which might need to be divided before the data is submitted to the repository.
-In addition, it is important to find and identify AIP segments when creating a 
+In addition, it is important to find and identify AIP segments when creating a
 DIP which relies on metadata or content of these segments.
 
 In the following, two approaches for defining the structure of the IP will be
@@ -199,7 +199,7 @@ Even though the number suffix of the folders `rep-001` and `rep-002` of the
 example shown in Figure [3](#fig3) suggests an order of representations, there
 are no requirements regarding the naming of folders containing the
 representations. The order of representations and the relations between them is
-defined by the structural and preservation metadata. 
+defined by the structural and preservation metadata.
 
 If the *divided* METS structure is used, as shown in Figure [4](#fig4), then a
 separate METS file for each representation exists which are referenced by the
@@ -239,7 +239,7 @@ into parts, the representation component MUST use the same name in the different
 containers.
 
 <a name="aip-rep-div-overlap"></a>**AIP2**: If a representation is
-divided into parts, each the sub-paths of items (folders and files) MUST be 
+divided into parts, each the sub-paths of items (folders and files) MUST be
 unique across the different containers. This allows aggregating representation
 parts without accidentally overwriting folders or files.
 
@@ -260,7 +260,7 @@ of the first representation - all files are in the Portable Document Format
 ### Parent-Child relationship
 
 As already pointed out, the divided METS structure was introduced to support the
-physical separation of representations or representation parts and allow distributing 
+physical separation of representations or representation parts and allow distributing
 these components over a sequence of AIPs.
 
 As shown in Figure [6](#fig6) The composition of a logical AIP can be
@@ -319,8 +319,8 @@ According to the Common Specification, any ID element must start with a prefix
 (also, the XML ID data type does not permit IDs that start with a number, so a
 prefix solves this issue).
 
-We recommend using an internationally recognized standard identifier for the 
-institution from which the SIP originates as a prefix. This may lead to problems 
+We recommend using an internationally recognized standard identifier for the
+institution from which the SIP originates as a prefix. This may lead to problems
 with smaller institutions, which do not have any such internationally recognized
 standard identifier. We propose in that case, to start the prefix with the
 internationally recognized standard identifier of the institution, where the
@@ -441,7 +441,7 @@ metadata of digital objects, rights metadata to define the rights status in
 relation to specific agents or for specific objects, and to record events that
 are relevant regarding the digital provenance of digital objects.
 
-Regarding general use of PREMIS, there is the E-ARK Content Information Type 
+Regarding general use of PREMIS, there is the E-ARK Content Information Type
 Specification for Preservation Metadata using PREMIS [^8]
 
 [^8]: https://citspremis.dilcis.eu/specification/CITS_Preservation_metadata_v1.0.pdf      
@@ -454,7 +454,7 @@ METS file is explained.
 
 [^9]: Namespace: http://www.loc.gov/premis/v3, namespace schema location:
        http://www.loc.gov/standards/premis/premis.xsd
-        
+
 
 ### PREMIS object
 
@@ -686,7 +686,7 @@ can be reflected in the file name:
 - Bag label (based on Bag number)
 - Differential label (differential Package)
 
-The identifier is a name that uniquely identifies the AIP. Any physical container 
+The identifier is a name that uniquely identifies the AIP. Any physical container
 file which belongs to the same AIP should start with a file name part that is
 based on this identifier.
 
@@ -697,9 +697,9 @@ The "bag label" represents a part of the AIP. This is optional in case the AIP
 is divided into several parts, e.g. because a policy prescribes a maximum file
 size limit for physical container files.
 
-The "differential label" represents a differential package where files and folders 
+The "differential label" represents a differential package where files and folders
 of a physical container files are complemented or overridden by files or folders
-of a differential package. 
+of a differential package.
 
 In the following the concepts of the naming scheme will be introduced. Concrete
 examples of how the naming scheme can be applied in specific digital preservation
@@ -771,15 +771,15 @@ AIP file name ID.
 #### Version label
 
 <a name="aip-container-suffix"></a>**AIP23**: A suffix COULD be
-added to the physical container file that bears information about the version of the 
-physical container file. This suffix starts with the character 'v' followed by a 
+added to the physical container file that bears information about the version of the
+physical container file. This suffix starts with the character 'v' followed by a
 sequential number where higher numbers represent later versions of the AIP.
 
 For example, a version number could be added as a suffix to the AIP file name ID as
 follows:
 
     "urn+uuid+123e4567-e89b-12d3-a456-426655440000_v1.tar"
-    
+
 <a name="aip-container-suffix"></a>**AIP24**: The first version
 of a submission could 0. Any changes applied (e.g. due to preservation measures) could
 be stored in subsequent versions.
@@ -790,11 +790,11 @@ be stored in subsequent versions.
 different phyiscal container files container, a suffix COULD be added to the name
 which denotes the corresponding part.
 
-For example, the first part of an AIP could be added as a suffix to the AIP file name 
+For example, the first part of an AIP could be added as a suffix to the AIP file name
 ID as follows:
 
     "urn+uuid+123e4567-e89b-12d3-a456-426655440000_v1_b1.tar"
-    
+
 where the character `b` stands for the first bag which contains the part of the
 AIP (more on the use of bags and the bagit packaging format will be described in the next section).
 
@@ -803,19 +803,19 @@ AIP (more on the use of bags and the bagit packaging format will be described in
 <a name="aip-container-part"></a>**AIP26**: A "differential" package contains
 files and folders which complement or override parts of a complete physical container file.
 This container file represents an intermediate state of the information packages which should
-be consolidated, i.e. the differential package should be merged with the physical container file 
-which contains the last complete state of the physical container. 
+be consolidated, i.e. the differential package should be merged with the physical container file
+which contains the last complete state of the physical container.
 
-Note that this is valid for adding or updating content, but it is not possible to define 
-a differential package which removes content from the physical container file it refers to. 
+Note that this is valid for adding or updating content, but it is not possible to define
+a differential package which removes content from the physical container file it refers to.
 
-For example, the differential part of a physical container file could be added as a suffix to the AIP 
+For example, the differential part of a physical container file could be added as a suffix to the AIP
 physical container file name as follows:
 
     "urn+uuid+123e4567-e89b-12d3-a456-426655440000_v1_b1_d1.tar"
-    
-where the character `d` stands for the first differential physical container file which relates to 
-the first bag of version 1 of the AIP. 
+
+where the character `d` stands for the first differential physical container file which relates to
+the first bag of version 1 of the AIP.
 
 ### Packaging
 
@@ -827,7 +827,7 @@ able to transfer archival packages.
 <a name="aip-package-singlefolder"></a>**AIP27**: The package
 content MUST be contained in a single folder.
 
-This means that if the packaged AIP is unpackaged, the content MUST be extracted into a single folder which 
+This means that if the packaged AIP is unpackaged, the content MUST be extracted into a single folder which
 contains the individuals files and folders.
 
 As an example, let's assume a TAR file with the following name:
@@ -882,21 +882,21 @@ Example of a `bagit-info` file:
 <a name="aip-package-bagit"></a>**AIP31**: The containing folder of
 the AIP SHOULD be located in the `data` folder as shown Listing [17](#fig8).
 
-```xml
+```
 urn+uuid+123e4567-e89b-12d3-a456-426655440000/
-├── bagix.txt
-├── data
-│   └── urn+uuid+123e4567-e89b-12d3-a456-426655440000
-│       ├── metadata
-│       │   └── preservation
-│       │       └── premix.xml
-│       ├── METS.xml
-│       └── representations
-│           └── rep1
-│               ├── data
-│               │   └── Example1.docx
-│               └── METS.xml
-└── manifest-md5.txt
+|- bagit.txt
+|- data
+|   |- urn+uuid+123e4567-e89b-12d3-a456-426655440000
+|       |- metadata
+|       |   |- preservation
+|       |       |- premix.xml
+|       |- METS.xml
+|       |- representations
+|           |- rep1
+|               |- data
+|               |   |- Example1.docx
+|               |- METS.xml
+|- manifest-md5.txt
 ```
 **Listing 17:** AIP in the `data` folder of a BagIt container.
 
@@ -914,70 +914,70 @@ listed in every payload manifest.
 
 #### OCFL
 
-The Oxford Common File Layout (OCFL) specification[^22] allows describing the storage structure of an AIP's physical container files. 
+The Oxford Common File Layout (OCFL) specification[^22] allows describing the storage structure of an AIP's physical container files.
 
 It is an optional extension which can be used in addition to the packaging and file naming recommendations.
 
 The purpose of the OCFL recommendation is to:
 
 - define standards and conventions for storing and exporting versioned AIPs (AIP life-cycle).
-- enable storing or exporting large amounts of archival content in form of AIP container files to file system storage 
+- enable storing or exporting large amounts of archival content in form of AIP container files to file system storage
 - support advanced use cases, such as splitting large information packages and differential AIPs (including removal of content using differential packages).
 
-Listing 18 gives an example of an AIP (version 0) using OCFL. It is based on the OCFL Draft 2021[^23] 
-and the BagIt standard file system layout  for storage and transfer as defined by RFC8493[^24]. 
+Listing 18 gives an example of an AIP (version 0) using OCFL. It is based on the OCFL Draft 2021[^23]
+and the BagIt standard file system layout  for storage and transfer as defined by RFC8493[^24].
 
 ```xml
 urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760
-├── 0=ocfl_object_1.0
-├── inventory.json
-├── inventory.json.sha512
-└── v0
-    └── content
-    └── urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v0_b00001
-      ├── bag-info.txt
-      ├── bagit.txt
-      ├── data
-      │   ├── metadata
-      │   │   ├── descriptive
-      │   │   │   ├── ead.xml
-      │   │   │   └── metadata.json
-      │   │   └── preservation
-      │   │      └── premis.xml
-      │   ├── METS.xml
-      │   └── representations
-      │      └── 9799fdd1-57b5-48e3-ba53-2705cc874a00
-      │      ├── data
-      │      │   └── example.pdf
-      │      ├── metadata
-      │      │   └── preservation
-      │      │      └── premis.xml
-      │      └── METS.xml
-      ├── manifest-sha256.txt
-      ├── manifest-sha512.txt
-      ├── tagmanifest-sha256.txt
-      └── tagmanifest-sha512.txt
+|- 0=ocfl_object_1.0
+|- inventory.json
+|- inventory.json.sha512
+|- v0
+    |- content
+    |- urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v0_b00001
+      |- bag-info.txt
+      |- bagit.txt
+      |- data
+      |   |- metadata
+      |   |   |- descriptive
+      |   |   |   |- ead.xml
+      |   |   |   |- metadata.json
+      |   |   |- preservation
+      |   |       |- premis.xml
+      |   |- METS.xml
+      |   |- representations
+      |       |- 9799fdd1-57b5-48e3-ba53-2705cc874a00
+      |       |- data
+      |       |   |- example.pdf
+      |       |- metadata
+      |       |   |- preservation
+      |       |       |- premis.xml
+      |       |- METS.xml
+      |- manifest-sha256.txt
+      |- manifest-sha512.txt
+      |- tagmanifest-sha256.txt
+      |- tagmanifest-sha512.txt
 ```
 
 **Listing 18:**
 OCFL file listing of an AIP (unpackaged container file)
 
-Note that the OCFL Object includes all versions – v0, v1, … - of the AIP and that one bagit container 
+Note that the OCFL Object includes all versions – v0, v1, … - of the AIP and that one bagit container
 or several bagit containers (segmentation!) are managed as one OCFL object (See in OCFL 5.4 BagIt in an OCFL Object[^25]).
 This is especially relevant for non-redundant storing of AIPs (the concept of a "differential AIP") and for package segmentation.
 
 Also note that the exmaple in Listing 19 is the "unpackaged" version where the bagit container itself is not packaged.
 
-The packaged version 
+The packaged version
 
 ```xml
 urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760
-├── 0=ocfl_object_1.0
-├── inventory.json
-├── inventory.json.sha512
-└── v0
-    └── content
-      └── urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v0_b00001.tar
+|- 0=ocfl_object_1.0
+|- inventory.json
+|- inventory.json.sha512
+|- v0
+    |- content
+      |- urn+uuid+1017cc9b-eaed-4064-947e-a07c752d3760_v0_b00001.tar
 ```
 
 **Listing 19:**
@@ -987,7 +987,7 @@ Note that serialization has been removed from the BagIt specification after vers
 In BagIt Version 14 Section serialization was still included which defined the following requirements:
 
 - The top-level directory of a serialization MUST contain only one bag.
-- The serialization SHOULD have the same name as the bag's base directory, but MUST have an extension added to identify the format. 
+- The serialization SHOULD have the same name as the bag's base directory, but MUST have an extension added to identify the format.
 - A bag MUST NOT be serialized from within its base directory, but from the parent of the base directory.  
 - The deserialization of a bag MUST produce a single base directory bag.
 
@@ -1042,7 +1042,7 @@ And an example for the content of the `inventory.json` is is shown in Listing 21
 **Listing 21:**
 OCFL file listing of an AIP (packaged container file)
 
-At the time of finalizing this specification, the OCFL standard does not support the listing of packaged container files in the inventory file. 
+At the time of finalizing this specification, the OCFL standard does not support the listing of packaged container files in the inventory file.
 This would allow using the inventory to document the actual content of physical container files and may follow in a future version of the AIP specification.
 
 [^22]: https://ocfl.io
@@ -1050,7 +1050,7 @@ This would allow using the inventory to document the actual content of physical 
 [^24]: https://datatracker.ietf.org/doc/html/draft-kunze-bagit-17
 [^25]: https://ocfl.io/draft/spec/#example-bagit-in-ocfl
 
-# Appendices 
+# Appendices
 
 ## Appendix A - METS referencing representation METS files
 
@@ -1272,7 +1272,7 @@ This would allow using the inventory to document the actual content of physical 
 
 ### Migrating a representation to a new version
 
-In the example shown in Figure [8](#fig8), a single physical container file includes metadata and two representations, 
+In the example shown in Figure [8](#fig8), a single physical container file includes metadata and two representations,
 namely representation R1 (JPEG2000) and representation R2 (PNG). Representation R1 is
 to be migrated to R1.1 (TIFF).
 Representation R1 (JPEG2000) is migrated to a new representation R1.1 (TIFF).
@@ -1292,12 +1292,12 @@ Migrating a representation to a new version.
 In the example shown in Figure [9](#fig9), an AIP is segmented. There are two physical container with the representations
 as child packages and one physical container file as the parent package which holds the root METS
 file. This means that representation R1 (JPEG2000) and representation R2 (PNG) are stored in two
-separate container files. 
+separate container files.
 
-Representation R1 is migrated to R1.1 (TIFF). A new version named `aip1_v1_b1` of the `aip1_v0_b1` 
+Representation R1 is migrated to R1.1 (TIFF). A new version named `aip1_v1_b1` of the `aip1_v0_b1`
 container file is created. The physical container file `aip1_v0_b2` remains unchanged.
 
-The parent physical container file `aip1_v0` which holds the references to child packages is also 
+The parent physical container file `aip1_v0` which holds the references to child packages is also
 updated to the new version `aip1_v1`.
 
 <a name="fig9"></a> ![Information Package structure](figs/ditaa/ditaa_appendix_e_migration_segmented.png "Migrating a representation to a new version with segmented packages")
@@ -1308,16 +1308,16 @@ Migrating a representation to a new version with segmented packages.
 
 ### Migrating a representation using a differential package
 
-In the example shown in Figure [10](#fig10), a single physical container file includes metadata and two representations, 
+In the example shown in Figure [10](#fig10), a single physical container file includes metadata and two representations,
 namely representation R1 (JPEG2000) and representation R2 (PNG). Representation R1 is
-to be migrated to R1.1 (TIFF). 
+to be migrated to R1.1 (TIFF).
 
 Representation R1 is migrated to a differential package which only stores the representation
-and structural information which was modified. 
+and structural information which was modified.
 
 Note that the version number is not incremented for the differential package. The suffix `d1`
-indicates that the physical container file is a differential physical container file which 
-relates to the previous complete state which is stored in the physical container file `aip1_v0`. 
+indicates that the physical container file is a differential physical container file which
+relates to the previous complete state which is stored in the physical container file `aip1_v0`.
 The differential physical container file is incomplete and needs to be consolidated into
 a new consolidated version `aip1_v1` of the physical container file which is complete.
 
