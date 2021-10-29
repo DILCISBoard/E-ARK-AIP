@@ -5,6 +5,11 @@ jdk:
   - openjdk8
 script:
   - docker run -it --rm -v "$PWD:/source" -u "$(id -u):$(id -g)" --entrypoint /source/create-site.sh eark4all/spec-pdf-publisher
+  - cd spec-publisher
+  - git stash
+  - git checkout feat/pdf-publication
+  - git pull
+  - cd ..
   - docker run -it --rm -v "$PWD:/source" -u "$(id -u):$(id -g)" --entrypoint /source/create-pdf.sh eark4all/spec-pdf-publisher
   - mkdir site
   - docker run -it --rm -v "$PWD"/docs:/usr/src/app -v "$PWD"/site:/_site -u "$(id -u):$(id -g)" starefossen/github-pages jekyll build -d /_site
