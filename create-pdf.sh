@@ -9,7 +9,7 @@ command -v markdown-pp >/dev/null 2>&1 || {
   source "$tmpdir/.venv-markdown/bin/activate"
 }
 echo " - MARKDOWN-PP: Processing postface markdown"
-markdown-pp postface.md -o "$SCRIPT_DIR/docs/postface.md" -e tableofcontents
+markdown-pp postface-pdf.md -o "$SCRIPT_DIR/docs/postface-pdf.md" -e tableofcontents
 
 cd "$SCRIPT_DIR/docs" || exit
 
@@ -26,10 +26,10 @@ echo " - PANDOC: Generating Postface from markdown"
 pandoc  --from gfm \
         --to latex \
         --metadata-file "../spec-publisher/pandoc/metadata.yaml" \
-        "$SCRIPT_DIR/docs/postface.md" \
+        "$SCRIPT_DIR/docs/postface-pdf.md" \
         -o ./postface.tex
 sed -i 's%section{%section*{%' ./postface.tex
-rm "$SCRIPT_DIR/docs/postface.md"
+rm "$SCRIPT_DIR/docs/postface-pdf.md"
 
 if [ ! -d "$SCRIPT_DIR/docs/pdf" ]
 then
