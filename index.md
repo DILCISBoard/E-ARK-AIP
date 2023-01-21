@@ -256,8 +256,9 @@ of the first representation - all files are in the Portable Document Format
 (PDF).
 
 Note that in Figure [4](#fig4) and Figure [5](#fig5) there is no folder for descriptive metadata on the representation level.
-The reason for this is that new representations are added as a new form for persisting and visualising the content. Metadata
-relate to the intellectual entity and should be maintained on the root level.
+The reason for this is that new representations are added as a new form for persisting and visualising the content. 
+Metadata specific to the representation are usually technical or preservation metadata. Descriptive metadata relate to the 
+intellectual entity and should be maintained on the root level. 
 
 <a name="parentchild"></a>aipstruct
 
