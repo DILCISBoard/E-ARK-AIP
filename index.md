@@ -1326,7 +1326,7 @@ relates to the previous complete state which is stored in the physical container
 The differential physical container file is incomplete and needs to be consolidated into
 a new consolidated version `aip1_v1` of the physical container file which is complete.
 
-<a name="fig10"></a> ![Information Package structure](figs/ditaa/ditaa_appendix_e_migration_segmented.png "Migrating a representation using a differential package")                                                                                          
+<a name="fig10"></a> ![Information Package structure](figs/ditaa/ditaa_appendix_e_migration_differential.png "Migrating a representation using a differential package")                                                                                          
 
 **Figure 10:**
 Migrating a representation using a differential package.
