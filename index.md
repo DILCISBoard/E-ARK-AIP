@@ -79,7 +79,7 @@ representing an entire intellectual entity regardless of the physical manifestat
 *Definition:* The *physical AIP* is the manifestation of a logical AIP in form
 of one or several container files.
 
-## Version of an AIP
+## Version and generation of an AIP
 
 Information packages are permanent: more precisely the information they contain
 is assumed to be permanent and always describes the same unaltered conceptual
@@ -97,11 +97,19 @@ A new version of an AIP can contain one or more new representations which can be
 either the result of a digital migration or information that enables the creation
 of an emulation environment to render a representation. Or representation could
 be removed from the AIP. In both cases the result is the creation of a new version
-of the AIP.
+of the AIP. Also changing metadata related to the logical AIP as a whole 
+may lead to a new AIP version. The logical AIP represents the same intellectual 
+entity in all these cases.
+
+*Definition:* An *AIP version* is a new form of the logical AIP for which the
+either metadata of the logical AIP or representation information was changed, 
+i.e. one or more representations have been modified or removed or were added.
 
 If the logical AIP is changed, the physical representation of the information
-in a container may change as well. The result is a new version of the physical
-container files.
+in a container may change as well. 
+
+*Definition:* A *generation* is a manifestation of a logical AIP in form of
+one ore several physical container files.
 
 ## Segmentation of the AIP <a name="structdiv"></a>
 
@@ -1054,6 +1062,20 @@ This would allow using the inventory to document the actual content of physical 
 [^23]: https://ocfl.io/draft/spec/
 [^24]: https://datatracker.ietf.org/doc/html/draft-kunze-bagit-17
 [^25]: https://ocfl.io/draft/spec/#example-bagit-in-ocfl
+
+# AIP life-cycle
+
+While the SIP and the DIP formats are like “snapshots” in time – one capturing the state of an information package at the time of submission (SIP), the other one capturing one form of delivery of the information for access (DIP) – the AIP needs to deal with an “evolving object” which is constantly updated by preservation actions or metadata changes undertaken in the course of the object’s lifecycle. These changes may lead to new AIP versions and new AIP generations (container manifestations) of the logical AIP as part of AIP maintenance over time.
+
+In this section we give examples and recommendations how the state of the AIP can be changed by SIPs. A mechanism for relating SIPs and AIPs to be updated helps implementing the AIP update mechanism including the generation of new versions and generations of the AIP.
+
+## Using SIPs to update the AIP
+
+[TBD]
+
+## Applying long-term preservation to AIPs
+
+[TBD]
 
 # Appendices
 
