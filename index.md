@@ -74,7 +74,8 @@ format that makes system migration easier.
 ## Logical and physical AIP
 
 *Definition:* The *logical AIP* is the set of digital objects and metadata
-representing an entire intellectual entity regardless of the physical manifestation.
+representing an entire intellectual entity regardless of the physical manifestation
+or packaging.
 
 *Definition:* The *physical AIP* is the manifestation of a logical AIP in form
 of one or several container files.
@@ -156,15 +157,17 @@ length. However, the splitted content files are wrapped by AIP segments, i.e. th
 are contained in an AIP which references the parent information package (AIC)
 to which they belong.
 
-## Differential AIP
+## Differential or delta AIP
 
 A differential package is an incomplete form of the AIP which contains only
 part of the original AIP it is derived from. The purpose of the differential AIP
-is to allow persisting updates to a previously stored AIP.
+is to allow persisting updates to a previously stored AIP. This is sometimes
+referred to as delta AIP. In the context of this specification we use the term
+"Differential" and understand it synonymously with the term "Delta".
 
 The differential AIP is mostly relevant for the physical container files
-storing the actual content of the AIP. In case of large AIPs, this allows
-adding or overriding data or metadata to an physical container
+and concerns changes of metadata and/or content of the AIP. In case of large AIPs, 
+this allows adding or overriding data or metadata to an physical container
 containing parts of an AIP or the entire AIP content.
 
 # AIP format
@@ -173,9 +176,108 @@ The AIP format consists of a set of recommendations and requirements[^2]
 regarding the use of structural and preservation metadata which are
 introduced in the following.
 
-## AIP specific structural metadata
+## AIP specific structural metadata (METS)
+
+<a name="mets"></a>
+
+METS (Metadata Encoding and Transmission Standard) is a standard for encoding descriptive, administrative, and structural metadata formalised using the XML Schema Language. The use of METS in the AIP is mandatory and it must comply with the specification rules set by the CSIP. See CSIP for the general use of METS in information packages.
+
+The E-ARK AIP specification may contain one or many representations. Additional representations may be added during the life-cycle of the AIP in the course of preservation actions. 
+
+The following table gives an overview about the METS structure.
+
+|          |  Elements     |             |             | Values                      |Comments                            |
+|----------|---------------|-------------|-------------|-----------------------------|------------------------------------|
+| **mets** |               |             |             |                             |                                    |
+|          | **metsHdr**   |             |             |                             |                                    |
+|          |               | **agent**   |             |                             | Agent creating the AIP             |
+|          | **dmdSec**    |             |             |                             |                                    |
+|          |               | **mdRef**   |             | *EAD*                       | Descriptive metadata (e.g EAD)     |
+|          | **amdSec**    |             |             |                             |                                    |
+|          |               | **mdRef**   |             | *PREMIS*                    | Preservation metadata (e.g PREMIS) |
+|          | **fileSec**   |             |             |                             |                                    |
+|          |               | **fileGrp** |             | *Common Specification root* |                                    |
+|          |               |             | **fileGrp** | *metadata*                  |                                    |
+|          |               |             | **fileGrp** | *representations*           | Representations of the AIP         |
+|          |               |             | **fileGrp** | *schemas*                   |                                    |
+|          |               |             | **fileGrp** | *documentation*             |                                    |
+|          | **structMap** |             |             |                             |                                    |
+|          |               | **div**     |             | *metadata*                  |                                    |
+|          |               | **div**     |             | *representations*           | Pointer(s) to representation METS  |
+|          |               | **div**     |             | *schemas*                   |                                    |
+|          |               | **div**     |             | *documentation*             |                                    |
+
+
+
+|  ID     | Name, Location & Description | Card & Level |
+| ------- | ---------------------------- | ------------ |
+| <a name="AIP1"></a>**AIP1** | **Package Identifier** <br/> `mets/@OBJID` <br/> The value of the `mets/@OBJID attribute` for the AIP does not change during the life-cycle of the AIP. | **1..1** <br/> MUST |
+| <a name="AIP2"></a>**AIP2** | **METS Profile** <br/> `mets/@PROFILE` <br/> The value is set to "https://earkdip.dilcis.eu/profile/E-ARK-AIP.xml". | **1..1** <br/> MUST |
 
 <a name="compdiv"></a>
+
+In the following specific requirements concerning the METS for an E-ARK AIP will be presented.
+
+**Node level: mets root**
+
+**Example:** METS root element showing use of `csip:@OTHERTYPE` attribute when an appropriate package content category value is not available in the vocabulary. The `@TYPE` attribute value is set to OTHER.
+
+```xml
+<mets:mets OBJID="urn:uuid:123e4567-e89b-12d3-a456-426655440000" LABEL="Sample E-ARK AIP Information Package" TYPE="OTHER" OTHERTYPE="Patterns" PROFILE="https://earksip.dilcis.eu/profile/E-ARK-AIP.xml" schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.w3.org/1999/xlink http://www.loc.gov/standards/mets/xlink.xsd https://dilcis.eu/XML/METS/CSIPExtensionMETS https://dilcis.eu/XML/METS/CSIPExtensionMETS/DILCISExtensionMETS.xsd">
+</mets:mets>
+```
+
+**Example:** METS root element illustrating the use of a custom `csip:@OTHERCONTENTINFORMATIONTYPE` attribute value when the correct content type value does note exist in the vocabulary. The `csip:@CONTENTINFORMATIONTYPE` attribute value is set to OTHER.
+
+```xml
+<mets:mets OBJID="urn:uuid:123e4567-e89b-12d3-a456-426655440000" LABEL="Sample E-ARK AIP Information Package" TYPE="Datasets" CONTENTINFORMATIONTYPE="OTHER" OTHERCONTENTINFORMATIONTYPE="Custom content type" PROFILE="https://earksip.dilcis.eu/profile/E-ARK-AIP.xml" schemaLocation="http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.w3.org/1999/xlink http://www.loc.gov/standards/mets/xlink.xsd https://dilcis.eu/XML/METS/CSIPExtensionMETS https://dilcis.eu/XML/METS/CSIPExtensionMETS/DILCISExtensionMETS.xsd">
+</mets:mets>
+```
+
+**Node level: metsHdr**
+
+|  ID     | Name, Location & Description | Card & Level |
+| ------- | ---------------------------- | ------------ |
+| <a name="AIP3"></a>**AIP3** | **OAIS Package type information** <br/> `metsHdr[@csip:OAISPACKAGETYPE=`AIP`]` <br/> The in CSIP attribute `@csip:OAISPACKAGETYPE` is used with the value "AIP". <br/> **See also:** [OAIS Package type](#VocabularyOAISPackageType) | **1..1** <br/> MUST |
+
+The METS header section for the root METS file must contain a CREATEDATE attribute which is the date and time when the AIP was created for the first time. Note that dates are recorded in the Coordinated Universal Time (UTC) format, for example 2021-10-12T00:00:00+01:00, and the time zone can be added, for example 2021-10-12T14:35:10+01:00, where the +01:00 denotes the BST timezone. See also CSIP section 5.2.2. Additionally, METS header section LASTMODDATE=”2019-06-27T00:28:56” should have a LASTMODDATE attribute with the date when the AIP was updated by a SIP update operation.
+
+|  ID     | Name, Location & Description | Card & Level |
+| ------- | ---------------------------- | ------------ |
+| <a name="AIP3"></a>**AIP3** | **OAIS Package type information** <br/> `metsHdr[@CREATEDATE]` <br/> The attribute `@CREATEDATE` in Coordinated Universal Time (UTC) format | **1..1** <br/> MUST |
+| <a name="AIP3"></a>**AIP3** | **OAIS Package type information** <br/> `metsHdr[@LASTMODDATE]` <br/> The attribute `@LASTMODDATE` in Coordinated Universal Time (UTC) format | **1..1** <br/> SHOULD |
+
+```xml
+<metsHdr CREATEDATE=”2019-06-18T23:52:11”/>
+```
+
+**Example:** METS agent example of the mandatory agent
+
+```xml
+<mets:metsHdr CREATEDATE="2023-05-24T10:51:34.602+01:00" LASTMODDATE="2023-05-24T10:51:34.602+01:00" RECORDSTATUS="NEW" OAISPACKAGETYPE="AIP">
+  <mets:agent ROLE="CREATOR" TYPE="OTHER" OTHERTYPE="SOFTWARE">
+    <mets:name>earkweb</mets:name>
+    <mets:note NOTETYPE="SOFTWARE VERSION">1.0</mets:note>
+  </mets:agent>
+</mets:metsHdr>
+```
+
+**Node level: dmdSec**
+
+The AIP may contain different versions of the metadata. Using the attribute `dmdSec/@STATUS` the current metadata should be indicated.
+
+|  ID     | Name, Location & Description | Card & Level |
+| ------- | ---------------------------- | ------------ |
+| <a name="AIP4"></a>**AIP4** | **Status of the descriptive metadata** <br/> `dmdSec/@STATUS` <br/> Indicates the status of the descriptive metadata using a predefined vocabulary. One of the metadata elements in an AIP SHOULD be set to "CURRENT". <br/> **See also:** [dmdSec status](#VocabularyStatus) | **0..1** <br/> SHOULD |
+
+**Example:** METS example of referencing the descriptive metadata which is described with an EAD document
+
+```xml
+<mets:dmdSec ID="uuid-308F4G12-GH43-4779-KJ2C-238F8506848S" CREATED="2023-05-24T10:51:34.602+01:00" STATUS="CURRENT">
+  <mets:mdRef LOCTYPE="URL" MDTYPE="EAD" type="simple" href="metadata/descriptive/ead2002.xml" MIMETYPE="application/xml" SIZE="746" CREATED="2023-05-24T10:51:34.602+01:00" CHECKSUM="F24263BF09994749F335E1664DCE0086DB6DCA323FDB6996938BCD28EA9E8153" CHECKSUMTYPE="SHA-256">
+  </mets:mdRef>
+</mets:dmdSec>
+```
 
 ### Compound vs. divided package structure
 
