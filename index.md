@@ -71,15 +71,6 @@ format that makes system migration easier.
 
 # Definitions and remarks
 
-## Logical and physical AIP
-
-*Definition:* The *logical AIP* is the set of digital objects and metadata
-representing an entire intellectual entity regardless of the physical manifestation
-or packaging.
-
-*Definition:* The *physical AIP* is the manifestation of a logical AIP in form
-of one or several container files.
-
 ## Version and generation of an AIP
 
 Information packages are permanent: more precisely the information they contain
@@ -111,64 +102,6 @@ in a container may change as well.
 
 *Definition:* A *generation* is a manifestation of a logical AIP in form of
 one ore several physical container files.
-
-## Segmentation of the AIP <a name="structdiv"></a>
-
-From the point of view of preserving the integrity of the AIP, the ideal case
-is that the logical AIP is packaged as one single physical container, because
-all of the metadata and content required to interprete the information package is
-available in a single entity. In reality, however, this is not always possible
-because the size of the physical container can become very large.
-
-For this reason, the AIP format describes how to partition the AIP and keep
-representations or representation parts in separate physical container files
-(see section [5.1](#compdiv)). Admittedly, this puts the integrity of the AIP at risk
-because in case of disaster recovery the physical container does not
-represent the entire intellectual entity. Further, dependencies to another (lost)
-physical container could make it impossible to interpret, understand, or render
-the content. However, it is a necessary measure if the amount of data exceeds
-the capacity limitation of long-term storage media.
-
-*Definition:* *Segmentation* is a physical manifestation of a logical AIP where a set of
-physical container files contains parts of the logical AIP. Each segment of the logical AIP
-is a packaged as a TAR or ZIP file and contains its own structural metadata.
-
-It is mandatory to document the segmentation of an AIP in the structural metadata.
-
-In [@OAIS2012] p. 1-9, the Archival Information Collection (AIC) is described as  
-“an Archival Information Package whose Content Information is an aggregation of other
-Archival Information Packages." The AIC can therefore represent a the structure of a segmented
-AIP is defined by a header information package (AIC) pointing to the child information
-packages (AIPs).
-
-It is recommended that the structural metadata of the child information packages record
-to which header information package (AIC) they belong.
-
-If during the life-cycle of the AIP preservation actions are applied to specific parts,
-i.e. child packages of the logical AIP, the AIC (header information package) must update
-the references to the child packages. However, it is not required to update the
-reference to a parent of a child package which is not concerned by a preservation action.
-
-## Splitting
-
-*Definition:* *Splitting* is a special case of segmentation where large files
-(e.g. large representation content files) are divided into parts of a fixed byte
-length. However, the splitted content files are wrapped by AIP segments, i.e. they
-are contained in an AIP which references the parent information package (AIC)
-to which they belong.
-
-## Differential or delta AIP
-
-A differential package is an incomplete form of the AIP which contains only
-part of the original AIP it is derived from. The purpose of the differential AIP
-is to allow persisting updates to a previously stored AIP. This is sometimes
-referred to as delta AIP. In the context of this specification we use the term
-"Differential" and understand it synonymously with the term "Delta".
-
-The differential AIP is mostly relevant for the physical container files
-and concerns changes of metadata and/or content of the AIP. In case of large AIPs, 
-this allows adding or overriding data or metadata to an physical container
-containing parts of an AIP or the entire AIP content.
 
 # AIP format
 
@@ -372,36 +305,14 @@ intellectual entity and should be maintained on the root level.
 
 <a name="parentchild"></a>aipstruct
 
-### Parent-Child relationship
+### Life-cycle of information packages organised in parent-Child relationship
 
-As already pointed out, the divided METS structure was introduced to support the
-physical separation of representations or representation parts and allow distributing
-these components over a sequence of AIPs.
-
-As shown in Figure [6](#fig6) The composition of a logical AIP can be
-expressed by a parent-child relationship between AIPs. It is a bidirectional
-relationship where each child-AIP bears the information about the parent-AIP
-to which they belong and, vice versa, the parent-AIP references the child-AIPs.
-
-<a name="fig6"></a>
-![Information Package structure](figs/visio/fig_12_aip_parent_child.svg "Parent-child relationship between AIPs."){ width=278px }
-
-**Figure 6:**
-Parent-child relationship between AIPs
-
-Even though this parent-child relationship could be used to create a
-hierarchical graph of AIPs, the scope of this specification is limited to
-a flat list of AIPs which are subordinated to one parent-AIP.
-
-Assuming that a new AIP (e.g. containing an additional representation) needs to
-be added after parent- and child-AIPs have been stored, the recreation of the
+Assuming that a new AIP (e.g. containing an additional representation) needs to be added after parent- and child-AIPs have been stored, the recreation of the
 whole logical AIP might be inefficient, especially if the AIPs are very large.
-For this reason, existing child-AIPs remain unchanged in case a new version of
-the parent-AIP is created. Only the new version of the parent-AIP has references
-to all child-AIPs as illustrated in Figure [7](#fig13). As a consequence, in order to
-find all siblings of a single child-AIP it is necessary to get the latest
-version of the parent-AIP which implies the risk that the integrity of the
-logical AIP is in danger if the latest version of the parent-AIP is lost.
+
+For this reason, existing child-AIPs remain unchanged in case a new version of the parent-AIP is created. Only the new version of the parent-AIP has references
+to all child-AIPs as illustrated in Figure [7](#fig13). As a consequence, in order to find all siblings of a single child-AIP it is necessary to get the latest
+version of the parent-AIP which implies the risk that the integrity of the logical AIP is in danger if the latest version of the parent-AIP is lost.
 
 <a name="fig7"></a>
 ![Information Package structure](figs/visio/fig_13_new_aip_parent.svg "New version of a parent-AIP."){ width=382px }
