@@ -23,18 +23,20 @@ to change the meaning of the specification.
 ### Administrative:
 Standard changes between versions, e.g. version number and release date.
 
-Version 2.0.4
+Version 2.2.0
 -------------
-June 12th 2020
+May 17th 2024
 
 ### Specification Changes
+None
 
 #### Major
 None
 
 #### Minor
-None
-
+- AIP METS Profile including an AIP METS example added.
+- Definitions and recommendations related to segmentation and splitting of information packages were moved to a CSIP Appendix.
+  
 #### Corrections
 - Minor typos and corrections [[#60][]].
 
