@@ -117,31 +117,6 @@ METS (Metadata Encoding and Transmission Standard) is a standard for encoding de
 
 The E-ARK AIP specification may contain one or many representations. Additional representations may be added during the life-cycle of the AIP in the course of preservation actions. 
 
-The following table gives an overview about the METS structure.
-
-|          |  Elements     |             |             | Values                      |Comments                            |
-|----------|---------------|-------------|-------------|-----------------------------|------------------------------------|
-| **mets** |               |             |             |                             |                                    |
-|          | **metsHdr**   |             |             |                             |                                    |
-|          |               | **agent**   |             |                             | Agent creating the AIP             |
-|          | **dmdSec**    |             |             |                             |                                    |
-|          |               | **mdRef**   |             | *EAD*                       | Descriptive metadata (e.g EAD)     |
-|          | **amdSec**    |             |             |                             |                                    |
-|          |               | **mdRef**   |             | *PREMIS*                    | Preservation metadata (e.g PREMIS) |
-|          | **fileSec**   |             |             |                             |                                    |
-|          |               | **fileGrp** |             | *Common Specification root* |                                    |
-|          |               |             | **fileGrp** | *metadata*                  |                                    |
-|          |               |             | **fileGrp** | *representations*           | Representations of the AIP         |
-|          |               |             | **fileGrp** | *schemas*                   |                                    |
-|          |               |             | **fileGrp** | *documentation*             |                                    |
-|          | **structMap** |             |             |                             |                                    |
-|          |               | **div**     |             | *metadata*                  |                                    |
-|          |               | **div**     |             | *representations*           | Pointer(s) to representation METS  |
-|          |               | **div**     |             | *schemas*                   |                                    |
-|          |               | **div**     |             | *documentation*             |                                    |
-
-
-
 |  ID     | Name, Location & Description | Card & Level |
 | ------- | ---------------------------- | ------------ |
 | <a name="AIP1"></a>**AIP1** | **Package Identifier** <br/> `mets/@OBJID` <br/> The value of the `mets/@OBJID attribute` for the AIP does not change during the life-cycle of the AIP. | **1..1** <br/> MUST |
