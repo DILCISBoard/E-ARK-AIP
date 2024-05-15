@@ -121,6 +121,23 @@ In the following  requirements concerning the METS for an E-ARK AIP will be spec
 | <a name="AIP1"></a>**AIP1** | **Package Identifier** <br/> `mets/@OBJID` <br/> The value of the `mets/@OBJID attribute` for the AIP does not change during the life-cycle of the AIP. | **1..1** <br/> MUST |
 | <a name="AIP2"></a>**AIP2** | **METS Profile** <br/> `mets/@PROFILE` <br/> The value is set to "https://earkdip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml". | **1..1** <br/> MUST |
 
+**Example:** METS root element showing use of `mets/@OBJID`, `mets/@PROFILE`.
+
+```xml
+<mets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:sip="https://DILCIS.eu/XML/METS/SIPExtensionMETS"
+  xmlns="http://www.loc.gov/METS/"
+  xmlns:csip="https://DILCIS.eu/XML/METS/CSIPExtensionMETS"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  OBJID="urn:example:eark.examples.minimal.documents"
+  LABEL="Set of documents"
+  TYPE="Other"
+  csip:OTHERTYPE="type"
+  csip:CONTENTINFORMATIONTYPE="MIXED"
+  PROFILE="https://earkcsip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml"
+  xsi:schemaLocation="http://www.loc.gov/METS/ schemas/mets1_12.xsd http://www.w3.org/1999/xlink schemas/xlink.xsd https://dilcis.eu/XML/METS/CSIPExtensionMETS schemas/DILCISExtensionMETS.xsd https://dilcis.eu/XML/METS/SIPExtensionMETS schemas/DILCISExtensionSIPMETS.xsd">
+```
+
 Note that while it is possible to validate requirement `AIP2` for an individual AIP, requirement 
 `AIP1` refers to different versions of the AIP which could be separate information packages, 
 possibly packaged as different ZIP or TAR archive files.
@@ -134,17 +151,15 @@ to the potentially long retention period.
 | ------- | ---------------------------- | ------------ |
 | <a name="AIP3"></a>**AIP3** | **OAIS Package type information** <br/> `metsHdr[@csip:OAISPACKAGETYPE=`AIP`]` <br/> The CSIP attribute `@csip:OAISPACKAGETYPE` is used with the value "AIP". <br/> **See also:** [OAIS Package type](#VocabularyOAISPackageType) | **1..1** <br/> MUST |
 
-**Example:** METS root element showing use of `mets/@OBJID` and `mets/@PROFILE`.
+**Example:** OAIS package type `AIP` defined in the `metsHdr` element using the `@csip:OAISPACKAGETYPE` attribute.
 
 ```xml
-<mets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.loc.gov/METS/"
-  xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:csip="https://DILCIS.eu/XML/METS/CSIPExtensionMETS"
-  xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance schemas/XMLSchema.xsd http://www.loc.gov/METS/ schemas/mets.xsd 
-    http://www.w3.org/1999/xlink schemas/xlink.xsd 
-    https://DILCIS.eu/XML/METS/CSIPExtensionMETS schemas/CSIPExtensionMETS.xsd" 
-  OBJID="urn:example:eark.examples.database.northwind" TYPE="Databases" csip:CONTENTINFORMATIONTYPE="SIARD2" 
-  PROFILE="https://earkcsip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml" csip:OAISPACKAGETYPE="AIP">
+ <metsHdr CREATEDATE="2024-04-14T20:00:00" LASTMODDATE="2024-05-04T19:00:00" RECORDSTATUS="NEW" csip:OAISPACKAGETYPE="AIP">
+    <agent ROLE="CREATOR" TYPE="OTHER" OTHERTYPE="SOFTWARE">
+      <name>E-ARK</name>
+      <note csip:NOTETYPE="SOFTWARE VERSION">1.0</note>
+    </agent>
+  </metsHdr>
 ```
 
 **Node level: dmdSec**
