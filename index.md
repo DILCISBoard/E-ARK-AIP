@@ -118,8 +118,8 @@ In the following  requirements concerning the METS for an E-ARK AIP will be spec
 
 |  ID     | Name, Location & Description | Card & Level |
 | ------- | ---------------------------- | ------------ |
-| <a name="AIP1"></a>**AIP1** | **Package Identifier** <br/> `mets/@OBJID` <br/> The value of the `mets/@OBJID attribute` for the AIP does not change during the life-cycle of the AIP. | **1..1** <br/> MUST |
-| <a name="AIP2"></a>**AIP2** | **METS Profile** <br/> `mets/@PROFILE` <br/> The value is set to "https://earkdip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml". | **1..1** <br/> MUST |
+| <a name="AIPM1"></a>**AIPM1** | **Package Identifier** <br/> `mets/@OBJID` <br/> The value of the `mets/@OBJID attribute` for the AIP does not change during the life-cycle of the AIP. | **1..1** <br/> MUST |
+| <a name="AIPM2"></a>**AIPM2** | **METS Profile** <br/> `mets/@PROFILE` <br/> The value is set to "https://earkdip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml". | **1..1** <br/> MUST |
 
 **Example:** METS root element showing use of `mets/@OBJID`, `mets/@PROFILE`.
 
@@ -138,8 +138,8 @@ In the following  requirements concerning the METS for an E-ARK AIP will be spec
   xsi:schemaLocation="http://www.loc.gov/METS/ schemas/mets1_12.xsd http://www.w3.org/1999/xlink schemas/xlink.xsd https://dilcis.eu/XML/METS/CSIPExtensionMETS schemas/DILCISExtensionMETS.xsd https://dilcis.eu/XML/METS/SIPExtensionMETS schemas/DILCISExtensionSIPMETS.xsd">
 ```
 
-Note that while it is possible to validate requirement `AIP2` for an individual AIP, requirement 
-`AIP1` refers to different versions of the AIP which could be separate information packages, 
+Note that while it is possible to validate requirement `AIPM2` for an individual AIP, requirement 
+`AIPM1` refers to different versions of the AIP which could be separate information packages, 
 possibly packaged as different ZIP or TAR archive files.
 
 The specification of a concrete version of the METS profile is especially important for the AIP due 
@@ -149,7 +149,7 @@ to the potentially long retention period.
 
 |  ID     | Name, Location & Description | Card & Level |
 | ------- | ---------------------------- | ------------ |
-| <a name="AIP3"></a>**AIP3** | **OAIS Package type information** <br/> `metsHdr[@csip:OAISPACKAGETYPE=`AIP`]` <br/> The CSIP attribute `@csip:OAISPACKAGETYPE` is used with the value "AIP". <br/> **See also:** [OAIS Package type](#VocabularyOAISPackageType) | **1..1** <br/> MUST |
+| <a name="AIPM3"></a>**AIPM3** | **OAIS Package type information** <br/> `metsHdr[@csip:OAISPACKAGETYPE=`AIP`]` <br/> The CSIP attribute `@csip:OAISPACKAGETYPE` is used with the value "AIP". <br/> **See also:** [OAIS Package type](#VocabularyOAISPackageType) | **1..1** <br/> MUST |
 
 **Example:** OAIS package type `AIP` defined in the `metsHdr` element using the `@csip:OAISPACKAGETYPE` attribute.
 
@@ -168,7 +168,7 @@ The AIP may contain different versions of the metadata. Using the attribute `dmd
 
 |  ID     | Name, Location & Description | Card & Level |
 | ------- | ---------------------------- | ------------ |
-| <a name="AIP4"></a>**AIP4** | **Status of the descriptive metadata** <br/> `dmdSec/@STATUS` <br/> Indicates the status of the descriptive metadata using a predefined vocabulary. One of the metadata elements in an AIP SHOULD be set to "CURRENT". <br/> **See also:** [dmdSec status](#VocabularyStatus) | **0..1** <br/> SHOULD |
+| <a name="AIPM4"></a>**AIPM4** | **Status of the descriptive metadata** <br/> `dmdSec/@STATUS` <br/> Indicates the status of the descriptive metadata using a predefined vocabulary. One of the metadata elements in an AIP SHOULD be set to "CURRENT". <br/> **See also:** [dmdSec status](#VocabularyStatus) | **0..1** <br/> SHOULD |
 
 **Example:** METS example of referencing the descriptive metadata which is described with an EAD document
 
