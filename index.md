@@ -136,6 +136,7 @@ In the following  requirements concerning the METS for an E-ARK AIP will be spec
   csip:CONTENTINFORMATIONTYPE="MIXED"
   PROFILE="https://earkcsip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml"
   xsi:schemaLocation="http://www.loc.gov/METS/ schemas/mets1_12.xsd http://www.w3.org/1999/xlink schemas/xlink.xsd https://dilcis.eu/XML/METS/CSIPExtensionMETS schemas/DILCISExtensionMETS.xsd https://dilcis.eu/XML/METS/SIPExtensionMETS schemas/DILCISExtensionSIPMETS.xsd">
+</mets>
 ```
 
 Note that while it is possible to validate requirement `AIPM2` for an individual AIP, requirement 
