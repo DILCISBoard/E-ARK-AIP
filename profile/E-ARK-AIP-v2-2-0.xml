@@ -108,6 +108,18 @@
                 </description>
             </requirement>
 	</dmdSec>
+        <amdSec ID="amdSecElement">
+            <requirement ID="AIPM5" REQLEVEL="MUST" RELATEDMAT="VocabularyOAISPackageType" EXAMPLES="metsAIPamdSecDigiProvElementExample1">
+                <description>
+                    <head>Digital provenance metadata</head>
+                    <p xmlns="http://www.w3.org/1999/xhtml">Digital provenance metadata must be referenced in the `amdSec` section using the `digiprovMD/mdRef` element.</p>
+                    <dl xmlns="http://www.w3.org/1999/xhtml">
+                        <dt>METS XPath</dt><dd>amdSec/digiprovMD/mdRef</dd>
+                        <dt>Cardinality</dt><dd>1..1</dd>
+                    </dl>
+                </description>
+            </requirement>
+	</amdSec>	    
     </structural_requirements>
     <Example ID="metsAIPRootElementExample1" LABEL="AIP METS root element example.">
 	<mets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -137,6 +149,14 @@
 	  <mets:mdRef LOCTYPE="URL" MDTYPE="EAD" type="simple" href="metadata/descriptive/ead2002.xml" MIMETYPE="application/xml" SIZE="746" CREATED="2024-05-24T10:51:34.602+01:00" CHECKSUM="F24263BF09994749F335E1664DCE0086DB6DCA323FDB6996938BCD28EA9E8153" CHECKSUMTYPE="SHA-256">
 	  </mets:mdRef>
 	</mets:dmdSec>
+    </Example>	
+    <Example ID="metsAIPamdSecDigiProvElementExample1" LABEL="METS example of referencing the digital provenance metadata (PREMIS).">
+	 <mets:amdSec>
+	    <mets:digiprovMD ID="ID_premis_3" CREATED="2024-04-24T14:47:52.783+01:00" STATUS="CURRENT">
+	      <mets:mdRef LOCTYPE="URL" xlink:type="simple" xlink:href="metadata/preservation/PREMIS3.xml" MDTYPE="PREMIS" MDTYPEVERSION="3.0" 
+		  MIMETYPE="text/xml" SIZE="5509" CREATED="2024-04-24T14:37:52.783+01:00" CHECKSUM="59975F80A4BB5C410D12079111C8F06DDF85AF13BA4A30E072EF028E1BE9518B" CHECKSUMTYPE="SHA-256" LABEL="Digital provenance metadata (PREMIS)"></mdRef>
+	    </mets:digiprovMD>
+	 </mets:amdSec>
     </Example>	
     <Appendix NUMBER="1" LABEL="Example of a whole METS document describing an archival information package (database example).">
         <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
