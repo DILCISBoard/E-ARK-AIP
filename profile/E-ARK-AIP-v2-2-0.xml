@@ -74,17 +74,17 @@
 			    </testWrap>
 		      </test>
 	     </requirement>
-		
-            <requirement ID="AIPM2" REQLEVEL="MUST" EXAMPLES="metsAIPRootElementExample1">
-                <description>
-                    <head>AIP METS Profile</head>
-                    <p xmlns="http://www.w3.org/1999/xhtml">The value of the AIP METS profile attribute must be set to "https://earkdip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml".</p>
-                    <dl xmlns="http://www.w3.org/1999/xhtml">
-                        <dt>METS XPath</dt><dd>mets/@PROFILE</dd>
-                        <dt>Cardinality</dt><dd>1..1</dd>
-                    </dl>
-                </description>
-            </requirement>
+             <requirement ID="AIPM2" REQLEVEL="MUST" RELATEDMAT="VocabularyNoteType" EXAMPLES="metsAIPRootElementExample1">
+		      <description>
+			  <head>AIP METS Profile</head>
+			  <p xmlns="http://www.w3.org/1999/xhtml">The value of the AIP METS profile attribute must be set to "https://earkdip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml".</p>
+		      </description>
+		      <test ID="TEST-AIPM2-1" TESTLANGUAGE="XPath" TESTLANGUAGEVERSION="3.1">
+			    <testWrap>
+				<testXML>/mets[@PROFILE="https://earkdip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml"]</testXML>
+			    </testWrap>
+		      </test>
+	     </requirement>
         </metsRootElement>
         <metsHdr ID="metsHeaderElement">
             <requirement ID="AIPM3" REQLEVEL="MUST" RELATEDMAT="VocabularyOAISPackageType" EXAMPLES="metsAIPHeaderElementExample1">
