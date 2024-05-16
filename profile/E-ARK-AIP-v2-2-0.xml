@@ -86,17 +86,18 @@
 		      </test>
 	     </requirement>
         </metsRootElement>
-        <metsHdr ID="metsHeaderElement">
-            <requirement ID="AIPM3" REQLEVEL="MUST" RELATEDMAT="VocabularyOAISPackageType" EXAMPLES="metsAIPHeaderElementExample1">
-                <description>
-                    <head>OAIS Package type information</head>
-                    <p xmlns="http://www.w3.org/1999/xhtml">The in CSIP added attribute `@csip:OAISPACKAGETYPE` is used with the value "AIP".</p>
-                    <dl xmlns="http://www.w3.org/1999/xhtml">
-                        <dt>METS XPath</dt><dd>metsHdr[@csip:OAISPACKAGETYPE=`AIP`]</dd>
-                        <dt>Cardinality</dt><dd>1..1</dd>
-                    </dl>
-                </description>
-            </requirement>
+        <metsHdr ID="metsHeaderElement">	    
+             <requirement ID="AIPM3" REQLEVEL="MUST" RELATEDMAT="VocabularyNoteType" EXAMPLES="metsAIPHeaderElementExample1">
+		      <description>
+			  <head>OAIS Package type information</head>
+			  <p xmlns="http://www.w3.org/1999/xhtml">The value of the AIP METS profile attribute must be set to "https://earkdip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml".</p>
+		      </description>
+		      <test ID="TEST-AIPM3-1" TESTLANGUAGE="XPath" TESTLANGUAGEVERSION="3.1">
+			    <testWrap>
+				<testXML>/mets/metsHdr[@csip:OAISPACKAGETYPE="AIP"]</testXML>
+			    </testWrap>
+		      </test>
+	     </requirement>
         </metsHdr>
         <dmdSec ID="dmdSecElement">
             <requirement ID="AIPM4" REQLEVEL="SHOULD" RELATEDMAT="VocabularyOAISPackageType" EXAMPLES="metsAIPdmdSecElementExample1">
