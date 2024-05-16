@@ -194,6 +194,25 @@ At least one of the digital provenance metadata type referenced in the administr
 | ------- | ---------------------------- | ------------ |
 | <a name="AIPM6"></a>**AIPM6** | **Digital provenance metadata type** <br/> `amdSec/digiprovMD/mdRef[MDTYPE="PREMIS"]` <br/> At least one of the digital provenance metadata which is referenced in the `amdSec` section (`digiprovMD/mdRef` element) should be of type `PREMIS`.| **0..1** <br/> SHOULD |
 
+The digital provenance metadata of type `PREMIS` referenced in the administrative section should be in major version 3.
+
+|  ID     | Name, Location & Description | Card & Level |
+| ------- | ---------------------------- | ------------ |
+| <a name="AIPM7"></a>**AIPM7** | **Digital provenance metadata type** <br/> `amdSec/digiprovMD/mdRef[MDTYPE="PREMIS"]` <br/> The digital provenance metadata of type `PREMIS` which is referenced in the `amdSec` section (`digiprovMD/mdRef` element) should be in major version 3.| **0..1** <br/> SHOULD |
+
+
+	    <requirement ID="AIPM7" REQLEVEL="SHOULD" EXAMPLES="metsAIPamdSecDigiProvElementExample1">
+                <description>
+                    <head>Digital provenance metadata type version</head>
+                    <p xmlns="http://www.w3.org/1999/xhtml">The digital provenance metadata of type `PREMIS` should be used in version 3.</p>
+                    <dl xmlns="http://www.w3.org/1999/xhtml">
+                        <dt>METS XPath</dt><dd>amdSec/digiprovMD/mdRef[starts-with(@MDTYPEVERSION,"3")]</dd>
+                        <dt>Cardinality</dt><dd>0..1</dd>
+                    </dl>
+                </description>
+            </requirement>
+
+
 **Example:** Referencing digital provenance metadata (PREMIS) in the administrative section (`amdSec`).
 
 ```xml
