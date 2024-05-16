@@ -28,15 +28,16 @@ Version 2.2.0
 May 17th 2024
 
 ### Specification Changes
-None
+- AIP METS Profile including an AIP METS example added.
+- Basic AIP METS requirements defined.
+- Definitions and recommendations related to segmentation and splitting of information packages moved to a CSIP Appendix.
 
 #### Major
 None
 
 #### Minor
-- AIP METS Profile including an AIP METS example added.
-- Definitions and recommendations related to segmentation and splitting of information packages were moved to a CSIP Appendix.
-  
+None
+
 #### Corrections
 - Minor typos and corrections [[#60][]].
 
@@ -45,7 +46,7 @@ None
 
 ### Web site and PDF presentation
 - Uniform site structure and DILCIS branding:
-  + Descriptions for Baigit profile resources [[#58][]].
+  + Descriptions for Bagit profile resources [[#58][]].
   + Standard access to archive PDF versions [[#57][]].
   + Updates to Docker site production and Travis publication [[#56][]].
 
