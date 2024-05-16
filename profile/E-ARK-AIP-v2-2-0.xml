@@ -66,7 +66,7 @@
             <requirement ID="AIPM1" REQLEVEL="MUST" EXAMPLES="metsAIPRootElementExample1">
                 <description>
                     <head>Package Identifier</head>
-                    <p xmlns="http://www.w3.org/1999/xhtml">The value of the `mets/@OBJID attribute` for the AIP does not change during the life-cycle of the AIP.</p>
+                    <p xmlns="http://www.w3.org/1999/xhtml">The value of the `mets/@OBJID attribute` for the AIP MUST NOT change during the life-cycle of the AIP.</p>
                     <dl xmlns="http://www.w3.org/1999/xhtml">
                         <dt>METS XPath</dt><dd>mets/@OBJID</dd>
                         <dt>Cardinality</dt><dd>1..1</dd>
@@ -76,7 +76,7 @@
             <requirement ID="AIPM2" REQLEVEL="MUST" EXAMPLES="metsAIPRootElementExample1">
                 <description>
                     <head>AIP METS Profile</head>
-                    <p xmlns="http://www.w3.org/1999/xhtml">The value is set to "https://earkdip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml".</p>
+                    <p xmlns="http://www.w3.org/1999/xhtml">The value of the AIP METS profile attribute must be set to "https://earkdip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml".</p>
                     <dl xmlns="http://www.w3.org/1999/xhtml">
                         <dt>METS XPath</dt><dd>mets/@PROFILE</dd>
                         <dt>Cardinality</dt><dd>1..1</dd>
@@ -97,13 +97,13 @@
             </requirement>
         </metsHdr>
         <dmdSec ID="dmdSecElement">
-            <requirement ID="AIPM4" REQLEVEL="MUST" RELATEDMAT="VocabularyOAISPackageType" EXAMPLES="metsAIPdmdSecElementExample1">
+            <requirement ID="AIPM4" REQLEVEL="SHOULD" RELATEDMAT="VocabularyOAISPackageType" EXAMPLES="metsAIPdmdSecElementExample1">
                 <description>
                     <head>Status of the descriptive metadata</head>
-                    <p xmlns="http://www.w3.org/1999/xhtml">The in CSIP added attribute `@csip:OAISPACKAGETYPE` is used with the value "AIP".</p>
+                    <p xmlns="http://www.w3.org/1999/xhtml">The status of the descriptive metadata SHOULD be indicated using a predefined vocabulary. One of the metadata elements in an AIP SHOULD be set to "CURRENT".</p>
                     <dl xmlns="http://www.w3.org/1999/xhtml">
                         <dt>METS XPath</dt><dd>metsHdr[@csip:OAISPACKAGETYPE=`AIP`]</dd>
-                        <dt>Cardinality</dt><dd>1..1</dd>
+                        <dt>Cardinality</dt><dd>0..1</dd>
                     </dl>
                 </description>
             </requirement>
@@ -126,6 +126,7 @@
                     <dl xmlns="http://www.w3.org/1999/xhtml">
                         <dt>METS XPath</dt><dd>amdSec/digiprovMD/mdRef[@MDTYPE=`PREMIS`]</dd>
                         <dt>Cardinality</dt><dd>0..1</dd>
+			<dt>dependsOn</dt><dd>AIPM5</dd>    
                     </dl>
                 </description>
             </requirement>
@@ -136,6 +137,7 @@
                     <dl xmlns="http://www.w3.org/1999/xhtml">
                         <dt>METS XPath</dt><dd>amdSec/digiprovMD/mdRef[starts-with(@MDTYPEVERSION,"3")]</dd>
                         <dt>Cardinality</dt><dd>0..1</dd>
+			<dt>dependsOn</dt><dd>AIPM6</dd>    
                     </dl>
                 </description>
             </requirement>
