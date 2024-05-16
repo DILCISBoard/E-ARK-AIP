@@ -198,7 +198,7 @@ The digital provenance metadata of type `PREMIS` referenced in the administrativ
 
 |  ID     | Name, Location & Description | Card & Level |
 | ------- | ---------------------------- | ------------ |
-| <a name="AIPM7"></a>**AIPM7** | **Digital provenance metadata type** <br/> `amdSec/digiprovMD/mdRef[MDTYPE="PREMIS"]` <br/> The digital provenance metadata of type `PREMIS` which is referenced in the `amdSec` section (`digiprovMD/mdRef` element) should be in major version 3.| **0..1** <br/> SHOULD |
+| <a name="AIPM7"></a>**AIPM7** | **Digital provenance metadata type** <br/> `amdSec/digiprovMD/mdRef[starts-with(@MDTYPEVERSION,"3")]` <br/> The digital provenance metadata of type `PREMIS` which is referenced in the `amdSec` section (`digiprovMD/mdRef` element) should be in major version 3.| **0..1** <br/> SHOULD |
 
 
 **Example:** Referencing digital provenance metadata (PREMIS) in the administrative section (`amdSec`).
