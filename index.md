@@ -180,6 +180,25 @@ The AIP may contain different versions of the metadata. Using the attribute `dmd
 </mets:dmdSec>
 ```
 
+**Node level: amdSec**
+
+Digital provenance metadata is mandatory for the AIP which must be referenced in the `amdSec` using the `digiprovMD` element.
+
+|  ID     | Name, Location & Description | Card & Level |
+| ------- | ---------------------------- | ------------ |
+| <a name="AIPM5"></a>**AIPM5** | **Digital provenance metadata** <br/> `dmdSec/digiprovMD` <br/> Digital provenance metadata is referenced in the `amdSec` section using the `digiprovMD` element.br/> **See also:** [dmdSec status](#VocabularyStatus) | **0..1** <br/> SHOULD |
+
+**Example:** Referencing digital provenance metadata (PREMIS) in the administrative section (`amdSec`).
+
+```xml
+ <amdSec>
+    <digiprovMD ID="ID_premis_3" CREATED="2024-04-24T14:47:52.783+01:00" STATUS="CURRENT">
+      <mdRef LOCTYPE="URL" xlink:type="simple" xlink:href="metadata/preservation/PREMIS3.xml" MDTYPE="PREMIS" MDTYPEVERSION="3.0" 
+	  MIMETYPE="text/xml" SIZE="5509" CREATED="2024-04-24T14:37:52.783+01:00" CHECKSUM="59975F80A4BB5C410D12079111C8F06DDF85AF13BA4A30E072EF028E1BE9518B" CHECKSUMTYPE="SHA-256" LABEL="Digital provenance metadata (PREMIS)"></mdRef>
+    </digiprovMD>
+  </amdSec>
+```
+
 ### Compound vs. divided package structure
 
 The ability to manage representations or representation parts
