@@ -186,7 +186,20 @@ Digital provenance metadata is mandatory for the AIP which must be referenced in
 
 |  ID     | Name, Location & Description | Card & Level |
 | ------- | ---------------------------- | ------------ |
-| <a name="AIPM5"></a>**AIPM5** | **Digital provenance metadata** <br/> `dmdSec/digiprovMD` <br/> Digital provenance metadata is referenced in the `amdSec` section using the `digiprovMD` element.br/> **See also:** [dmdSec status](#VocabularyStatus) | **0..1** <br/> SHOULD |
+| <a name="AIPM5"></a>**AIPM5** | **Digital provenance metadata** <br/> `amdSec/digiprovMD/mdRef` <br/> Digital provenance metadata must be referenced in the `amdSec` section using the `digiprovMD/mdRef` element.<br/> **See also:** [dmdSec status](#VocabularyStatus) | **1..1** <br/> MUST |
+
+At least one of the digital provenance metadata type referenced in the administrative section should be of type `PREMIS`.
+
+|  ID     | Name, Location & Description | Card & Level |
+| ------- | ---------------------------- | ------------ |
+| <a name="AIPM6"></a>**AIPM6** | **Digital provenance metadata type** <br/> `amdSec/digiprovMD/mdRef[MDTYPE="PREMIS"]` <br/> At least one of the digital provenance metadata which is referenced in the `amdSec` section (`digiprovMD/mdRef` element) should be of type `PREMIS`.| **0..1** <br/> SHOULD |
+
+The digital provenance metadata of type `PREMIS` referenced in the administrative section should be in major version 3.
+
+|  ID     | Name, Location & Description | Card & Level |
+| ------- | ---------------------------- | ------------ |
+| <a name="AIPM7"></a>**AIPM7** | **Digital provenance metadata type** <br/> `amdSec/digiprovMD/mdRef[starts-with(@MDTYPEVERSION,"3")]` <br/> The digital provenance metadata of type `PREMIS` which is referenced in the `amdSec` section (`digiprovMD/mdRef` element) should be in major version 3.| **0..1** <br/> SHOULD |
+
 
 **Example:** Referencing digital provenance metadata (PREMIS) in the administrative section (`amdSec`).
 

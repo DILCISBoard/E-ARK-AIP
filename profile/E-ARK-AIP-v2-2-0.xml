@@ -63,63 +63,94 @@
     </controlled_vocabularies>
     <structural_requirements>
         <metsRootElement ID="metsRootElement">
-            <requirement ID="AIPM1" REQLEVEL="MUST" EXAMPLES="metsAIPRootElementExample1">
-                <description>
-                    <head>Package Identifier</head>
-                    <p xmlns="http://www.w3.org/1999/xhtml">The value of the `mets/@OBJID attribute` for the AIP does not change during the life-cycle of the AIP.</p>
-                    <dl xmlns="http://www.w3.org/1999/xhtml">
-                        <dt>METS XPath</dt><dd>mets/@OBJID</dd>
-                        <dt>Cardinality</dt><dd>1..1</dd>
-                    </dl>
-                </description>
-            </requirement>
-            <requirement ID="AIPM2" REQLEVEL="MUST" EXAMPLES="metsAIPRootElementExample1">
-                <description>
-                    <head>AIP METS Profile</head>
-                    <p xmlns="http://www.w3.org/1999/xhtml">The value is set to "https://earkdip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml".</p>
-                    <dl xmlns="http://www.w3.org/1999/xhtml">
-                        <dt>METS XPath</dt><dd>mets/@PROFILE</dd>
-                        <dt>Cardinality</dt><dd>1..1</dd>
-                    </dl>
-                </description>
-            </requirement>
+             <requirement ID="AIPM1" REQLEVEL="MUST" EXAMPLES="metsAIPRootElementExample1">
+		      <description>
+			  <head>Package Identifier</head>
+			  <p xmlns="http://www.w3.org/1999/xhtml">The value of the `mets/@OBJID attribute` for the AIP MUST NOT change during the life-cycle of the AIP.</p>
+			  <dl xmlns="http://www.w3.org/1999/xhtml">
+			      <dt>dependsOn</dt><dd>CSIP1</dd>    
+	                  </dl>    
+		      </description>
+	     </requirement>
+             <requirement ID="AIPM2" REQLEVEL="MUST" EXAMPLES="metsAIPRootElementExample1">
+		      <description>
+			  <head>AIP METS Profile</head>
+			  <p xmlns="http://www.w3.org/1999/xhtml">The value of the AIP METS profile attribute must be set to "https://earkdip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml".</p>
+		      </description>
+		      <test ID="TEST-AIPM2-1" TESTLANGUAGE="XPath" TESTLANGUAGEVERSION="3.1">
+			    <testWrap>
+				<testXML>/mets[@PROFILE="https://earkdip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml"]</testXML>
+			    </testWrap>
+		      </test>
+	     </requirement>
         </metsRootElement>
-        <metsHdr ID="metsHeaderElement">
-            <requirement ID="AIPM3" REQLEVEL="MUST" RELATEDMAT="VocabularyOAISPackageType" EXAMPLES="metsAIPHeaderElementExample1">
-                <description>
-                    <head>OAIS Package type information</head>
-                    <p xmlns="http://www.w3.org/1999/xhtml">The in CSIP added attribute `@csip:OAISPACKAGETYPE` is used with the value "AIP".</p>
-                    <dl xmlns="http://www.w3.org/1999/xhtml">
-                        <dt>METS XPath</dt><dd>metsHdr[@csip:OAISPACKAGETYPE=`AIP`]</dd>
-                        <dt>Cardinality</dt><dd>1..1</dd>
-                    </dl>
-                </description>
-            </requirement>
+        <metsHdr ID="metsHeaderElement">	    
+             <requirement ID="AIPM3" REQLEVEL="MUST" RELATEDMAT="VocabularyOAISPackageType" EXAMPLES="metsAIPHeaderElementExample1">
+		      <description>
+			  <head>OAIS Package type information</head>
+			  <p xmlns="http://www.w3.org/1999/xhtml">The value of the AIP METS profile attribute must be set to "https://earkdip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml".</p>
+		      </description>
+		      <test ID="TEST-AIPM3-1" TESTLANGUAGE="XPath" TESTLANGUAGEVERSION="3.1">
+			    <testWrap>
+				<testXML>/mets/metsHdr[@csip:OAISPACKAGETYPE="AIP"]</testXML>
+			    </testWrap>
+		      </test>
+	     </requirement>
         </metsHdr>
         <dmdSec ID="dmdSecElement">
-            <requirement ID="AIPM4" REQLEVEL="MUST" RELATEDMAT="VocabularyOAISPackageType" EXAMPLES="metsAIPdmdSecElementExample1">
-                <description>
-                    <head>Status of the descriptive metadata</head>
-                    <p xmlns="http://www.w3.org/1999/xhtml">The in CSIP added attribute `@csip:OAISPACKAGETYPE` is used with the value "AIP".</p>
-                    <dl xmlns="http://www.w3.org/1999/xhtml">
-                        <dt>METS XPath</dt><dd>metsHdr[@csip:OAISPACKAGETYPE=`AIP`]</dd>
-                        <dt>Cardinality</dt><dd>1..1</dd>
-                    </dl>
-                </description>
-            </requirement>
+	    <requirement ID="AIPM4" REQLEVEL="SHOULD" RELATEDMAT="VocabularyStatus" EXAMPLES="metsAIPHeaderElementExample1">
+		      <description>
+			  <head>Status of the descriptive metadata</head>
+			  <p xmlns="http://www.w3.org/1999/xhtml">The status of the descriptive metadata SHOULD be indicated using a predefined vocabulary. One of the metadata elements in an AIP SHOULD be set to "CURRENT".</p>
+		      </description>
+		      <test ID="TEST-AIPM4-1" TESTLANGUAGE="XPath" TESTLANGUAGEVERSION="3.1">
+			    <testWrap>
+				<testXML>/mets/dmdSec[@STATUS="CURRENT"]</testXML>
+			    </testWrap>
+		      </test>
+	     </requirement>	
 	</dmdSec>
         <amdSec ID="amdSecElement">
-            <requirement ID="AIPM5" REQLEVEL="MUST" RELATEDMAT="VocabularyOAISPackageType" EXAMPLES="metsAIPamdSecDigiProvElementExample1">
-                <description>
-                    <head>Digital provenance metadata</head>
-                    <p xmlns="http://www.w3.org/1999/xhtml">Digital provenance metadata must be referenced in the `amdSec` section using the `digiprovMD/mdRef` element.</p>
-                    <dl xmlns="http://www.w3.org/1999/xhtml">
-                        <dt>METS XPath</dt><dd>amdSec/digiprovMD/mdRef</dd>
-                        <dt>Cardinality</dt><dd>1..1</dd>
-                    </dl>
-                </description>
-            </requirement>
-	</amdSec>	    
+	    <requirement ID="AIPM5" REQLEVEL="MUST" EXAMPLES="metsAIPamdSecDigiProvElementExample1">
+		      <description>
+			  <head>Digital provenance metadata</head>
+			  <p xmlns="http://www.w3.org/1999/xhtml">Digital provenance metadata must be referenced in the `amdSec` section using the `digiprovMD/mdRef` element.</p>
+		      </description>
+		      <test ID="TEST-AIPM5-1" TESTLANGUAGE="XPath" TESTLANGUAGEVERSION="3.1">
+			    <testWrap>
+				<testXML>/mets/amdSec/digiprovMD/mdRef</testXML>
+			    </testWrap>
+		      </test>
+	     </requirement>	
+	     <requirement ID="AIPM6" REQLEVEL="SHOULD" EXAMPLES="metsAIPamdSecDigiProvElementExample1">
+		      <description>
+                    	  <head>Digital provenance metadata type</head>
+			  <p xmlns="http://www.w3.org/1999/xhtml">At least one of the digital provenance metadata which is referenced in the `amdSec` section (`digiprovMD/mdRef` element) should be of type `PREMIS`.</p>
+		      	  <dl xmlns="http://www.w3.org/1999/xhtml">
+			      <dt>dependsOn</dt><dd>AIPM5</dd>    
+	                  </dl>
+		      </description>
+		      <test ID="TEST-AIPM5-1" TESTLANGUAGE="XPath" TESTLANGUAGEVERSION="3.1">
+			    <testWrap>
+				<testXML>/mets/amdSec/digiprovMD/mdRef[@MDTYPE="PREMIS"]</testXML>
+			    </testWrap>
+		      </test>
+	    </requirement>	
+	     <requirement ID="AIPM7" REQLEVEL="SHOULD" EXAMPLES="metsAIPamdSecDigiProvElementExample1">
+		      <description>
+                    	  <head>Digital provenance metadata type version</head>
+			  <p xmlns="http://www.w3.org/1999/xhtml">The digital provenance metadata of type `PREMIS` should be used in version 3.</p>
+		      	   <dl xmlns="http://www.w3.org/1999/xhtml">
+				<dt>dependsOn</dt><dd>AIPM6</dd>    
+	                   </dl>
+		      </description>
+		      <test ID="TEST-AIPM5-1" TESTLANGUAGE="XPath" TESTLANGUAGEVERSION="3.1">
+			    <testWrap>
+				<testXML>/mets/amdSec/digiprovMD/mdRef[starts-with(@MDTYPEVERSION,"3")]</testXML>
+			    </testWrap>
+		      </test>
+	    </requirement>
+	</amdSec>    
     </structural_requirements>
     <Example ID="metsAIPRootElementExample1" LABEL="AIP METS root element example.">
 	<mets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -154,127 +185,126 @@
 	 <mets:amdSec>
 	    <mets:digiprovMD ID="ID_premis_3" CREATED="2024-04-24T14:47:52.783+01:00" STATUS="CURRENT">
 	      <mets:mdRef LOCTYPE="URL" xlink:type="simple" xlink:href="metadata/preservation/PREMIS3.xml" MDTYPE="PREMIS" MDTYPEVERSION="3.0" 
-		  MIMETYPE="text/xml" SIZE="5509" CREATED="2024-04-24T14:37:52.783+01:00" CHECKSUM="59975F80A4BB5C410D12079111C8F06DDF85AF13BA4A30E072EF028E1BE9518B" CHECKSUMTYPE="SHA-256" LABEL="Digital provenance metadata (PREMIS)"></mdRef>
+		  MIMETYPE="text/xml" SIZE="5509" CREATED="2024-04-24T14:37:52.783+01:00" CHECKSUM="59975F80A4BB5C410D12079111C8F06DDF85AF13BA4A30E072EF028E1BE9518B" CHECKSUMTYPE="SHA-256" LABEL="Digital provenance metadata (PREMIS)"></mets:mdRef>
 	    </mets:digiprovMD>
 	 </mets:amdSec>
     </Example>	
     <Appendix NUMBER="1" LABEL="Example of a whole METS document describing an archival information package (database example).">
-        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-		<!-- In this example IDs are carring information to ease understanding - they look like paths to ease understanding, but are just IDs, similar to the naming of namespaces - these IDs can be replaced with information less UUID -->
-		<!-- CSIPSTR15 goes like this: We recommend including all schema documents for any structured metadata within package. These schema documents SHOULD be placed in a sub-folder called schemas within the Information Package root folder and/or the representation folder. -->
-		<mets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.loc.gov/METS/"
-		  xmlns:xlink="http://www.w3.org/1999/xlink"
-		  xmlns:csip="https://DILCIS.eu/XML/METS/CSIPExtensionMETS"
-		  xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance schemas/XMLSchema.xsd http://www.loc.gov/METS/ schemas/mets.xsd 
-			http://www.w3.org/1999/xlink schemas/xlink.xsd 
-			https://DILCIS.eu/XML/METS/CSIPExtensionMETS schemas/CSIPExtensionMETS.xsd" 
-		  OBJID="eark.examples.database.siard.northwind" TYPE="Databases" csip:CONTENTINFORMATIONTYPE="SIARD2" 
-		  PROFILE="https://earkcsip.dilcis.eu/profile/E-ARK-CSIP.xml" csip:OAISPACKAGETYPE="AIP">
-		  <!-- CSIP1 - mets/@OBJID -->
-		  <!-- CSIP2 - mets/@TYPE -->
-		  <!-- CSIP4 - mets/@csip:CONTENTTYPESPECIFICATION -->
-		  <!-- CSIP6 - mets/@PROFILE  The PROFILE attribute has to have as its value the URL of the used profile. When this profile is implemented as is the value is the URL for the official CS IP METS Profile. -->
-		  <metsHdr CREATEDATE="2019-01-25T10:20:00" csip:OAISPACKAGETYPE="AIP" LASTMODDATE="2020-06-15T10:20:00">
-			<!-- CSIP7 mets/@metsHdr@CREATEDATE -->
-			<!-- CSIP9 mets/@metsHdr/@csip:OAISPACKAGETYPE -->
-			<agent ROLE="CREATOR" TYPE="OTHER" OTHERTYPE="SOFTWARE">
-			  <!-- CSIP10 mets/@metsHdr/agent -->
-			  <!-- CSIP11 mets/metsHdr/agent/@ROLE  The role of the mandatory agent is “CREATOR”.-->
-			  <!-- CSIP12 mets/metsHdr/agent/@TYPE The type of the mandatory agent is “OTHER”. -->
-			  <!-- CSIP13 metsmetsHdr/agent/@OTHERTYPE The other type of the mandatory agent is “SOFTWARE”. -->
-			  <name>E-ARK Corpus Team</name>
-			  <!-- CSIP14 mets/metsHdr/agent/name -->
-			  <note csip:NOTETYPE="SOFTWARE VERSION">1.0</note>
-			  <!-- CSIP15 mets/metsHdr/agent/note -->
-			  <!-- CSIP16 mets/metsHdr/agent/note/@csip:NOTETYPE The mandatory agent note is typed with the fixed value of “SOFTWARE VERSION”. -->
-			</agent>
-		  </metsHdr>
-		  <dmdSec ID="ID_archiveIndex.xml" CREATED="2020-06-15T10:20:00" STATUS="CURRENT">
-		   <mdRef LOCTYPE="URL" MDTYPE="OTHER" MDTYPEVERSION="1007" xlink:type="simple" xlink:href="metadata/descriptive/archiveIndex.xml" SIZE="2381" CREATED="2018-04-24T14:37:49.609+01:00" 
-			 CHECKSUM="4E17DBF6DAA8865750D514C3FDEE656AEB823C0DC396B72D0B6AE17419549005" CHECKSUMTYPE="SHA-256" MIMETYPE="text/xml"/>
-		   </dmdSec>
-		  <dmdSec ID="ID_submission_agreement.xml" CREATED="2020-06-15T10:20:00" STATUS="CURRENT">
-			<mdRef LOCTYPE="URL" MDTYPE="OTHER" xlink:type="simple" xlink:href="metadata/descriptive/submission_agreement.xml" SIZE="1376" CREATED="2018-04-24T14:37:49.609+01:00" 
-			  CHECKSUM="1EDFDB31868D918BC17B2A12A6C0F64D" CHECKSUMTYPE="MD5" MIMETYPE="text/xml"/>
-		  </dmdSec>
-		  <amdSec>
-			<digiprovMD ID="ID_premis2.xml" CREATED="2018-04-24T14:47:52.783+01:00" STATUS="CURRENT">
-			  <mdRef LOCTYPE="URL" xlink:type="simple" xlink:href="metadata/preservation/PREMIS3.xml" MDTYPE="PREMIS" MDTYPEVERSION="3.0" 
-			  MIMETYPE="text/xml" SIZE="5509" CREATED="2018-04-24T14:37:52.783+01:00" CHECKSUM="59975F80A4BB5C410D12079111C8F06DDF85AF13BA4A30E072EF028E1BE9518B" CHECKSUMTYPE="SHA-256" LABEL="premis2.xml"></mdRef>
-			</digiprovMD>
-		  </amdSec>
-		  <fileSec ID="ID_filesec">
-			<!-- CSIP59 there MUST be an ID -->
-			<!-- schemas -->
-			<fileGrp USE="Schemas" ID="ID_schemas">
-			  <!-- CSIP60 there MUST be a fileGrp-element -->
-			  <!-- CSIP64 there MUST be an USE-attribute -->
-			  <!-- CSIP65 there MUST be an ID-attribute -->
-			  <!-- METS.xsd -->
-			  <file ID="ID_mets_xsd" MIMETYPE="application/xml" SIZE="133920" CREATED="2018-05-01T14:20:00"
-				CHECKSUM="4e9961dec3de72081e6142b28a437fb8" CHECKSUMTYPE="MD5">
-				<!-- CSIP66 there MUST be a file-element -->
-				<!-- CSIP67 there MUST be an ID-attribute -->
-				<!-- CSIP68 there MUST be an MIMETYPE-attribute -->
-				<!-- CSIP69 there MUST be an SIZE-attribute -->
-				<!-- CSIP70 there MUST be an CREATED-attribute -->
-				<!-- CSIP71 there MUST be an CHECKSUM-attribute -->
-				<!-- CSIP72 there MUST be an CHECKSUMTYPE-attribute -->
-				<FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="schemas/mets.xsd"/>
-				<!-- CSIP76 there MUST be a FLocat-element -->
-				<!-- CSIP77 there MUST be a LOCTYPE-attribute -->
-				<!-- CSIP78 there MUST be a xlink:type-attribute with the value "simple" -->
-				<!-- CSIP79 there MUST be a xlink:href-attribute -->
-			  </file>
-			  <!-- XMLSchema.xsd -->
-			  <file ID="ID_XMLSchema_xsd" MIMETYPE="application/xml" CREATED="2015-12-14T14:20:00"
-				CHECKSUM="94ed1a93ce3147d01bcb2fc1126255ed" CHECKSUMTYPE="MD5" SIZE="87677">
-				<FLocat LOCTYPE="URL" xlink:href="schemas/XMLSchema.xsd" xlink:type="simple"/>
-			  </file>
-			  <!-- xlink.xsd -->
-			  <file ID="ID_xlink_xsd" MIMETYPE="application/xml" CREATED="2015-12-14T14:20:00"
-				CHECKSUM="90c7527e6d4d3c3a6247ceb94b46bcf5" CHECKSUMTYPE="MD5" SIZE="8322">
-				<FLocat LOCTYPE="URL" xlink:href="schemas/xlink.xsd" xlink:type="simple"/>
-			  </file>
-			  <!-- CSIPExtensionMETS.xsd -->
-			  <file ID="ID_CSIPExtensionMETS.xsd" MIMETYPE="application/xml" CREATED="2018-12-14T14:20:00"
-				CHECKSUM="1a31b3aa3ae1e9b99e7a8b4618f3b485" CHECKSUMTYPE="MD5" SIZE="1673">
-				<FLocat LOCTYPE="URL" xlink:href="schemas/CSIPExtensionMETS.xsd" xlink:type="simple"/>
-			  </file>
-			</fileGrp>
-			<!-- documentation -->		
-			<fileGrp USE="Documentation" ID="ID_AVID_documentation">  <!-- this ID is just for internal reference -->
+	<!-- In this example IDs are carring information to ease understanding - they look like paths to ease understanding, but are just IDs, similar to the naming of namespaces - these IDs can be replaced with information less UUID -->
+	<!-- CSIPSTR15 goes like this: We recommend including all schema documents for any structured metadata within package. These schema documents SHOULD be placed in a sub-folder called schemas within the Information Package root folder and/or the representation folder. -->
+	<mets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.loc.gov/METS/"
+	  xmlns:xlink="http://www.w3.org/1999/xlink"
+	  xmlns:csip="https://DILCIS.eu/XML/METS/CSIPExtensionMETS"
+	  xsi:schemaLocation="http://www.w3.org/2001/XMLSchema-instance schemas/XMLSchema.xsd http://www.loc.gov/METS/ schemas/mets.xsd 
+		http://www.w3.org/1999/xlink schemas/xlink.xsd 
+		https://DILCIS.eu/XML/METS/CSIPExtensionMETS schemas/CSIPExtensionMETS.xsd" 
+	  OBJID="eark.examples.database.siard.northwind" TYPE="Databases" csip:CONTENTINFORMATIONTYPE="SIARD2" 
+	  PROFILE="https://earkcsip.dilcis.eu/profile/E-ARK-CSIP.xml" csip:OAISPACKAGETYPE="AIP">
+	  <!-- CSIP1 - mets/@OBJID -->
+	  <!-- CSIP2 - mets/@TYPE -->
+	  <!-- CSIP4 - mets/@csip:CONTENTTYPESPECIFICATION -->
+	  <!-- CSIP6 - mets/@PROFILE  The PROFILE attribute has to have as its value the URL of the used profile. When this profile is implemented as is the value is the URL for the official CS IP METS Profile. -->
+	  <metsHdr CREATEDATE="2019-01-25T10:20:00" csip:OAISPACKAGETYPE="AIP" LASTMODDATE="2020-06-15T10:20:00">
+		<!-- CSIP7 mets/@metsHdr@CREATEDATE -->
+		<!-- CSIP9 mets/@metsHdr/@csip:OAISPACKAGETYPE -->
+		<agent ROLE="CREATOR" TYPE="OTHER" OTHERTYPE="SOFTWARE">
+		  <!-- CSIP10 mets/@metsHdr/agent -->
+		  <!-- CSIP11 mets/metsHdr/agent/@ROLE  The role of the mandatory agent is “CREATOR”.-->
+		  <!-- CSIP12 mets/metsHdr/agent/@TYPE The type of the mandatory agent is “OTHER”. -->
+		  <!-- CSIP13 metsmetsHdr/agent/@OTHERTYPE The other type of the mandatory agent is “SOFTWARE”. -->
+		  <name>E-ARK Corpus Team</name>
+		  <!-- CSIP14 mets/metsHdr/agent/name -->
+		  <note csip:NOTETYPE="SOFTWARE VERSION">1.0</note>
+		  <!-- CSIP15 mets/metsHdr/agent/note -->
+		  <!-- CSIP16 mets/metsHdr/agent/note/@csip:NOTETYPE The mandatory agent note is typed with the fixed value of “SOFTWARE VERSION”. -->
+		</agent>
+	  </metsHdr>
+	  <dmdSec ID="ID_archiveIndex.xml" CREATED="2020-06-15T10:20:00" STATUS="CURRENT">
+	   <mdRef LOCTYPE="URL" MDTYPE="OTHER" MDTYPEVERSION="1007" xlink:type="simple" xlink:href="metadata/descriptive/archiveIndex.xml" SIZE="2381" CREATED="2018-04-24T14:37:49.609+01:00" 
+		 CHECKSUM="4E17DBF6DAA8865750D514C3FDEE656AEB823C0DC396B72D0B6AE17419549005" CHECKSUMTYPE="SHA-256" MIMETYPE="text/xml"/>
+	   </dmdSec>
+	  <dmdSec ID="ID_submission_agreement.xml" CREATED="2020-06-15T10:20:00" STATUS="CURRENT">
+		<mdRef LOCTYPE="URL" MDTYPE="OTHER" xlink:type="simple" xlink:href="metadata/descriptive/submission_agreement.xml" SIZE="1376" CREATED="2018-04-24T14:37:49.609+01:00" 
+		  CHECKSUM="1EDFDB31868D918BC17B2A12A6C0F64D" CHECKSUMTYPE="MD5" MIMETYPE="text/xml"/>
+	  </dmdSec>
+	  <amdSec>
+		<digiprovMD ID="ID_premis2.xml" CREATED="2018-04-24T14:47:52.783+01:00" STATUS="CURRENT">
+		  <mdRef LOCTYPE="URL" xlink:type="simple" xlink:href="metadata/preservation/PREMIS3.xml" MDTYPE="PREMIS" MDTYPEVERSION="3.0" 
+		  MIMETYPE="text/xml" SIZE="5509" CREATED="2018-04-24T14:37:52.783+01:00" CHECKSUM="59975F80A4BB5C410D12079111C8F06DDF85AF13BA4A30E072EF028E1BE9518B" CHECKSUMTYPE="SHA-256" LABEL="premis2.xml"></mdRef>
+		</digiprovMD>
+	  </amdSec>
+	  <fileSec ID="ID_filesec">
+		<!-- CSIP59 there MUST be an ID -->
+		<!-- schemas -->
+		<fileGrp USE="Schemas" ID="ID_schemas">
+		  <!-- CSIP60 there MUST be a fileGrp-element -->
+		  <!-- CSIP64 there MUST be an USE-attribute -->
+		  <!-- CSIP65 there MUST be an ID-attribute -->
+		  <!-- METS.xsd -->
+		  <file ID="ID_mets_xsd" MIMETYPE="application/xml" SIZE="133920" CREATED="2018-05-01T14:20:00"
+			CHECKSUM="4e9961dec3de72081e6142b28a437fb8" CHECKSUMTYPE="MD5">
+			<!-- CSIP66 there MUST be a file-element -->
+			<!-- CSIP67 there MUST be an ID-attribute -->
+			<!-- CSIP68 there MUST be an MIMETYPE-attribute -->
+			<!-- CSIP69 there MUST be an SIZE-attribute -->
+			<!-- CSIP70 there MUST be an CREATED-attribute -->
+			<!-- CSIP71 there MUST be an CHECKSUM-attribute -->
+			<!-- CSIP72 there MUST be an CHECKSUMTYPE-attribute -->
+			<FLocat LOCTYPE="URL" xlink:type="simple" xlink:href="schemas/mets.xsd"/>
+			<!-- CSIP76 there MUST be a FLocat-element -->
+			<!-- CSIP77 there MUST be a LOCTYPE-attribute -->
+			<!-- CSIP78 there MUST be a xlink:type-attribute with the value "simple" -->
+			<!-- CSIP79 there MUST be a xlink:href-attribute -->
+		  </file>
+		  <!-- XMLSchema.xsd -->
+		  <file ID="ID_XMLSchema_xsd" MIMETYPE="application/xml" CREATED="2015-12-14T14:20:00"
+			CHECKSUM="94ed1a93ce3147d01bcb2fc1126255ed" CHECKSUMTYPE="MD5" SIZE="87677">
+			<FLocat LOCTYPE="URL" xlink:href="schemas/XMLSchema.xsd" xlink:type="simple"/>
+		  </file>
+		  <!-- xlink.xsd -->
+		  <file ID="ID_xlink_xsd" MIMETYPE="application/xml" CREATED="2015-12-14T14:20:00"
+			CHECKSUM="90c7527e6d4d3c3a6247ceb94b46bcf5" CHECKSUMTYPE="MD5" SIZE="8322">
+			<FLocat LOCTYPE="URL" xlink:href="schemas/xlink.xsd" xlink:type="simple"/>
+		  </file>
+		  <!-- CSIPExtensionMETS.xsd -->
+		  <file ID="ID_CSIPExtensionMETS.xsd" MIMETYPE="application/xml" CREATED="2018-12-14T14:20:00"
+			CHECKSUM="1a31b3aa3ae1e9b99e7a8b4618f3b485" CHECKSUMTYPE="MD5" SIZE="1673">
+			<FLocat LOCTYPE="URL" xlink:href="schemas/CSIPExtensionMETS.xsd" xlink:type="simple"/>
+		  </file>
+		</fileGrp>
+		<!-- documentation -->		
+		<fileGrp USE="Documentation" ID="ID_AVID_documentation">  <!-- this ID is just for internal reference -->
 
-			  <!-- ER diagramme -->
-			  <file ID="ID_IP_er_diagramme" USE="documentation" MIMETYPE="PNG"  CREATED="2015-12-14T14:20:00" 
-				CHECKSUM="005a46043be036835027b474dba863b5" CHECKSUMTYPE="MD5" SIZE="86453">
-				<FLocat LOCTYPE="URL" xlink:href="documentation/Northwind_ER_diagram.png" xlink:type="simple"/>
-			  </file>	
-			</fileGrp>
-			<fileGrp USE="Representations" csip:OAISPACKAGETYPE="SIP" csip:CONTENTINFORMATIONTYPE="SIARD2" csip:OTHERCONTENTTYPESPECIFICATION="SIARD_2.1" ID="ID_Rep1">
-			  <file ID="ID_IP_18006_SIARD2_1Rep_externallobs_METS.xml" USE="OTHER" MIMETYPE="application/xml"  CREATED="2015-12-14T14:20:00" 
-				 CHECKSUM="90c7527e6d4d3c3a6247ceb94b46bcf5" CHECKSUMTYPE="MD5" SIZE="8322">
-				 <FLocat LOCTYPE="URL" xlink:href="representations/rep1/METS.xml" xlink:type="simple"/>
-			   </file>	
-			 </fileGrp>
-		  </fileSec>
-		   <structMap ID="ID_StructmapID" TYPE="PHYSICAL" LABEL="CSIP">
-			<div ID="ID_struct-map-example-div" LABEL="csip-mets-example">
-			  <div ID="ID_struct-map-metadata-div" LABEL="Metadata" ADMID="ID_premis2.xml" DMDID="ID_archiveIndex.xml ID_submission_agreement.xml">
-			  </div>
-			  <div ID="ID_struct-map-schema-div" LABEL="Schemas">
-				<fptr FILEID="ID_schemas">
-				</fptr>
-			  </div>
-					<div ID="ID_struct-map-documentation-div" LABEL="Documentation">
-				<fptr FILEID="ID_AVID_documentation">
-				</fptr>
-			  </div>
-			  <div ID="ID_struct-map-reps-ing-div" LABEL="Representations">
-				<mptr LOCTYPE="URL" xlink:type="simple" xlink:href="representations/rep1/METS.xml" xlink:title="ID_Rep1" ></mptr>
-			  </div>
-			</div>
-		  </structMap>
-		</mets>
+		  <!-- ER diagramme -->
+		  <file ID="ID_IP_er_diagramme" USE="documentation" MIMETYPE="PNG"  CREATED="2015-12-14T14:20:00" 
+			CHECKSUM="005a46043be036835027b474dba863b5" CHECKSUMTYPE="MD5" SIZE="86453">
+			<FLocat LOCTYPE="URL" xlink:href="documentation/Northwind_ER_diagram.png" xlink:type="simple"/>
+		  </file>	
+		</fileGrp>
+		<fileGrp USE="Representations" csip:OAISPACKAGETYPE="SIP" csip:CONTENTINFORMATIONTYPE="SIARD2" csip:OTHERCONTENTTYPESPECIFICATION="SIARD_2.1" ID="ID_Rep1">
+		  <file ID="ID_IP_18006_SIARD2_1Rep_externallobs_METS.xml" USE="OTHER" MIMETYPE="application/xml"  CREATED="2015-12-14T14:20:00" 
+			 CHECKSUM="90c7527e6d4d3c3a6247ceb94b46bcf5" CHECKSUMTYPE="MD5" SIZE="8322">
+			 <FLocat LOCTYPE="URL" xlink:href="representations/rep1/METS.xml" xlink:type="simple"/>
+		   </file>	
+		 </fileGrp>
+	  </fileSec>
+	   <structMap ID="ID_StructmapID" TYPE="PHYSICAL" LABEL="CSIP">
+		<div ID="ID_struct-map-example-div" LABEL="csip-mets-example">
+		  <div ID="ID_struct-map-metadata-div" LABEL="Metadata" ADMID="ID_premis2.xml" DMDID="ID_archiveIndex.xml ID_submission_agreement.xml">
+		  </div>
+		  <div ID="ID_struct-map-schema-div" LABEL="Schemas">
+			<fptr FILEID="ID_schemas">
+			</fptr>
+		  </div>
+				<div ID="ID_struct-map-documentation-div" LABEL="Documentation">
+			<fptr FILEID="ID_AVID_documentation">
+			</fptr>
+		  </div>
+		  <div ID="ID_struct-map-reps-ing-div" LABEL="Representations">
+			<mptr LOCTYPE="URL" xlink:type="simple" xlink:href="representations/rep1/METS.xml" xlink:title="ID_Rep1" ></mptr>
+		  </div>
+		</div>
+	  </structMap>
+	</mets>
     </Appendix>
 </METS_Profile>
