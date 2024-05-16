@@ -113,16 +113,17 @@
 	     </requirement>	
 	</dmdSec>
         <amdSec ID="amdSecElement">
-            <requirement ID="AIPM5" REQLEVEL="MUST" EXAMPLES="metsAIPamdSecDigiProvElementExample1">
-                <description>
-                    <head>Digital provenance metadata</head>
-                    <p xmlns="http://www.w3.org/1999/xhtml">Digital provenance metadata must be referenced in the `amdSec` section using the `digiprovMD/mdRef` element.</p>
-                    <dl xmlns="http://www.w3.org/1999/xhtml">
-                        <dt>METS XPath</dt><dd>amdSec/digiprovMD/mdRef</dd>
-                        <dt>Cardinality</dt><dd>1..1</dd>
-                    </dl>
-                </description>
-            </requirement>
+	    <requirement ID="AIPM5" REQLEVEL="MUST" EXAMPLES="metsAIPamdSecDigiProvElementExample1">
+		      <description>
+			  <head>Digital provenance metadata</head>
+			  <p xmlns="http://www.w3.org/1999/xhtml">Digital provenance metadata must be referenced in the `amdSec` section using the `digiprovMD/mdRef` element.</p>
+		      </description>
+		      <test ID="TEST-AIPM5-1" TESTLANGUAGE="XPath" TESTLANGUAGEVERSION="3.1">
+			    <testWrap>
+				<testXML>amdSec/digiprovMD/mdRef</testXML>
+			    </testWrap>
+		      </test>
+	     </requirement>	
 	    <requirement ID="AIPM6" REQLEVEL="SHOULD" EXAMPLES="metsAIPamdSecDigiProvElementExample1">
                 <description>
                     <head>Digital provenance metadata type</head>
