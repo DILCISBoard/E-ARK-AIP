@@ -67,12 +67,10 @@
 		      <description>
 			  <head>Package Identifier</head>
 			  <p xmlns="http://www.w3.org/1999/xhtml">The value of the `mets/@OBJID attribute` for the AIP MUST NOT change during the life-cycle of the AIP.</p>
+			  <dl xmlns="http://www.w3.org/1999/xhtml">
+			      <dt>dependsOn</dt><dd>CSIP1</dd>    
+	                  </dl>    
 		      </description>
-		      <test ID="TEST-AIPM1-1" TESTLANGUAGE="XPath" TESTLANGUAGEVERSION="3.1">
-			    <testWrap>
-				<testXML>/mets/@OBJID</testXML>
-			    </testWrap>
-		      </test>
 	     </requirement>
              <requirement ID="AIPM2" REQLEVEL="MUST" EXAMPLES="metsAIPRootElementExample1">
 		      <description>
