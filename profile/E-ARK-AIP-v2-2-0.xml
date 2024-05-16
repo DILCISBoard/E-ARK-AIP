@@ -119,7 +119,17 @@
                     </dl>
                 </description>
             </requirement>
-	</amdSec>	    
+	    <requirement ID="AIPM6" REQLEVEL="SHOULD" RELATEDMAT="VocabularyOAISPackageType" EXAMPLES="metsAIPamdSecDigiProvElementExample1">
+                <description>
+                    <head>Digital provenance metadata type</head>
+                    <p xmlns="http://www.w3.org/1999/xhtml">At least one of the digital provenance metadata which is referenced in the `amdSec` section (`digiprovMD/mdRef` element) should be of type `PREMIS`.</p>
+                    <dl xmlns="http://www.w3.org/1999/xhtml">
+                        <dt>METS XPath</dt><dd>amdSec/digiprovMD/mdRef[@MDTYPE=`PREMIS`]</dd>
+                        <dt>Cardinality</dt><dd>1..1</dd>
+                    </dl>
+                </description>
+            </requirement>
+	</amdSec>    
     </structural_requirements>
     <Example ID="metsAIPRootElementExample1" LABEL="AIP METS root element example.">
 	<mets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
