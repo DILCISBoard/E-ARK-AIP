@@ -1,0 +1,45 @@
+---
+preface:
+  - name: common-intro
+    type: file
+    source: spec-publisher/res/md/common-intro.md
+
+body:
+  - name: specification
+    type: file
+    source: specification/specification.md
+
+  - name: metadata-root-requirments
+    heading: Mets Root Element Requirements
+    type: requirements
+    section: metsRootElement
+    examples: true
+
+  - name: biblography
+    type: file
+    source: specification/biblography.md
+
+appendices:
+  - name: mets.examples
+    heading: "E-ARK Information Package METS Example"
+    label: "A"
+    type: mets
+    section: Appendix
+
+  - name: mets.schema
+    heading: "External Schema"
+    label: "B"
+    type: mets
+    section: external_schema
+
+  - name: mets.vocabs
+    heading: "External Vocabularies"
+    label: "C"
+    type: mets
+    section: vocabulary
+
+  - name: mets.metadata.requirments
+    heading: "E-ARK SIP Metadata Requirements"
+    label: "D"
+    type: mets
+    section: requirements
