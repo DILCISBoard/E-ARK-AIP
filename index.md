@@ -201,18 +201,6 @@ The digital provenance metadata of type `PREMIS` referenced in the administrativ
 | <a name="AIPM7"></a>**AIPM7** | **Digital provenance metadata type** <br/> `amdSec/digiprovMD/mdRef[MDTYPE="PREMIS"]` <br/> The digital provenance metadata of type `PREMIS` which is referenced in the `amdSec` section (`digiprovMD/mdRef` element) should be in major version 3.| **0..1** <br/> SHOULD |
 
 
-	    <requirement ID="AIPM7" REQLEVEL="SHOULD" EXAMPLES="metsAIPamdSecDigiProvElementExample1">
-                <description>
-                    <head>Digital provenance metadata type version</head>
-                    <p xmlns="http://www.w3.org/1999/xhtml">The digital provenance metadata of type `PREMIS` should be used in version 3.</p>
-                    <dl xmlns="http://www.w3.org/1999/xhtml">
-                        <dt>METS XPath</dt><dd>amdSec/digiprovMD/mdRef[starts-with(@MDTYPEVERSION,"3")]</dd>
-                        <dt>Cardinality</dt><dd>0..1</dd>
-                    </dl>
-                </description>
-            </requirement>
-
-
 **Example:** Referencing digital provenance metadata (PREMIS) in the administrative section (`amdSec`).
 
 ```xml
