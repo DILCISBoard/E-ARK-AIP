@@ -1,8 +1,7 @@
 # aip-specification.pdf
 pandoc/bibliography.bib.bak
 # Site publication file
-docs/
-site/
+
 Gemfile.lock
 **/_site
 .classpath
@@ -15,3 +14,4 @@ Gemfile.lock
 .vagrant*
 .venv
 vendor
+.vscode
