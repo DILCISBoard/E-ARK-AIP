@@ -86,7 +86,7 @@
 			<requirement ID="AIPM3" REQLEVEL="MUST" RELATEDMAT="VocabularyOAISPackageType" EXAMPLES="metsAIPHeaderElementExample1">
 				<description>
 					<head>OAIS Package type information</head>
-					<p xmlns="http://www.w3.org/1999/xhtml">The CSIP attribute @csip:OAISPACKAGETYPE must have the value "AIP".</p>
+					<p xmlns="http://www.w3.org/1999/xhtml">The CSIP attribute `@csip:OAISPACKAGETYPE` must have the value "AIP".</p>
 				</description>
 				<test ID="TEST-AIPM3-1" TESTLANGUAGE="XPath" TESTLANGUAGEVERSION="3.1">
 					<testWrap>
