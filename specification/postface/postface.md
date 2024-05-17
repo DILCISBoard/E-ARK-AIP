@@ -1,8 +1,7 @@
-
 # Postface
 
 !INCLUDE "authors.md"
 
-!INCLUDE "revisions-pdf.md"
+!INCLUDE "revisions.md"
 
 !INCLUDE "ack-contact.md"

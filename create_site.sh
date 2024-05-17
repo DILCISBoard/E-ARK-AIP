@@ -11,20 +11,19 @@ mvn package -f spec-publisher/pom.xml
 java -jar ./spec-publisher/target/mets-profile-processor-0.1.0-SNAPSHOT.jar -f ./specification.yaml -o doc/site profile/E-ARK-AIP-v2-2-0.xml
 
 mkdir ./site/release-notes
-cp ./RELEASENOTES.md ./docs/release-notes/index.md
+cp ./RELEASENOTES.md ./site/release-notes/index.md
 
 bash "$SCRIPT_DIR/spec-publisher/scripts/create-venv.sh"
 command -v markdown-pp >/dev/null 2>&1 || {
   tmpdir=$(dirname "$(mktemp -u)")
   source "$tmpdir/.venv-markdown/bin/activate"
 }
+echo " - MARKDOWN-PP: Processing postface markdown"
+cd "$SCRIPT_DIR/specification/postface/" || exit
+markdown-pp postface.md -o "$SCRIPT_DIR/doc/site/postface.md" -e tableofcontents
+
 echo " - MARKDOWN-PP: generating site page with TOC..."
 cd "$SCRIPT_DIR/doc/site" || exit
-bash "$SCRIPT_DIR/spec-publisher/scripts/create-venv.sh"
-command -v markdown-pp >/dev/null 2>&1 || {
-  tmpdir=$(dirname "$(mktemp -u)")
-  source "$tmpdir/.venv-markdown/bin/activate"
-}
 markdown-pp body.md -o body_toc.md
 
 echo " - MARKDOWN-PP: generating site index.md..."

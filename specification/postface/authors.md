@@ -1,4 +1,3 @@
-
 ## I. Authors
 
 | Name                             | Organisation                                       |

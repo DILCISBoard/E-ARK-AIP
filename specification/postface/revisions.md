@@ -1,4 +1,3 @@
-
 ## II. Revision History
 
 | Revision No. | Date       | Authors(s)                       | Description                               |
