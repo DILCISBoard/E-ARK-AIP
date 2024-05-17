@@ -23,11 +23,14 @@ to change the meaning of the specification.
 ### Administrative:
 Standard changes between versions, e.g. version number and release date.
 
-Version 2.0.4
+Version 2.2.0
 -------------
-June 12th 2020
+May 17th 2024
 
 ### Specification Changes
+- AIP METS Profile including an AIP METS example added.
+- Basic AIP METS requirements defined.
+- Definitions and recommendations related to segmentation and splitting of information packages moved to a CSIP Appendix.
 
 #### Major
 None
@@ -43,7 +46,7 @@ None
 
 ### Web site and PDF presentation
 - Uniform site structure and DILCIS branding:
-  + Descriptions for Baigit profile resources [[#58][]].
+  + Descriptions for Bagit profile resources [[#58][]].
   + Standard access to archive PDF versions [[#57][]].
   + Updates to Docker site production and Travis publication [[#56][]].
 
