@@ -5,7 +5,7 @@ title: Archived Versions of the AIP Specification
 
 ## Latest
 
-[PDF Version 2.2.0](/pdf/eark-aip.pdf) 17-03-2024
+[PDF Version 2.2.0](/pdf/eark-aip.pdf) 17-05-2024
 
 ## Archived Versions
 
