@@ -6,7 +6,7 @@
 	xmlns:csip="https://DILCIS.eu/XML/METS/CSIPExtensionMETS"
 	xmlns:sip="https://DILCIS.eu/XML/METS/SIPExtensionMETS"
 	xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="http://www.loc.gov/METS_Profile/v2 http://www.loc.gov/standards/mets/profile_docs/mets.profile.v2-0.xsd http://www.loc.gov/METS/ http://www.loc.gov/standards/mets/mets.xsd http://www.w3.org/1999/xlink http://www.loc.gov/standards/mets/xlink.xsd" STATUS="provisional" REGISTRATION="unregistered" ID="AIPV2.2.0">
-	<URI LOCTYPE="URL" ASSIGNEDBY="local">https://earkdip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml</URI>
+	<URI LOCTYPE="URL" ASSIGNEDBY="local">https://earkaip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml</URI>
 	<title>E-ARK AIP METS Profile</title>
 	<abstract>This is the extension of the E-ARK CSIP profile for creation of a E-ARK AIP. The profile describes the Archival Information Package (AIP) specification and the implementation of METS for packaging OAIS conformant Information Packages. The profile belongs to the AIP specification document which can be found at: https://dilcis.eu/specifications/aip.</abstract>
 	<date>2024-05-17T09:00:00</date>
@@ -73,11 +73,11 @@
 			<requirement ID="AIPM2" REQLEVEL="MUST" EXAMPLES="metsAIPRootElementExample1">
 				<description>
 					<head>AIP METS Profile</head>
-					<p xmlns="http://www.w3.org/1999/xhtml">The value of the AIP METS profile attribute must be set to <a href="https://earkdip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml">https://earkdip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml</a>.</p>
+					<p xmlns="http://www.w3.org/1999/xhtml">The value of the AIP METS profile attribute must be set to <a href="https://earkaip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml">https://earkaip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml</a>.</p>
 				</description>
 				<test ID="TEST-AIPM2-1" TESTLANGUAGE="XPath" TESTLANGUAGEVERSION="3.1">
 					<testWrap>
-						<testXML>/mets[@PROFILE="https://earkdip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml"]</testXML>
+						<testXML>/mets[@PROFILE="https://earkaip.dilcis.eu/profile/E-ARK-AIP-v2-2-0.xml"]</testXML>
 					</testWrap>
 				</test>
 			</requirement>
